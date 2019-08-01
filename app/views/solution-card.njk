@@ -1,0 +1,41 @@
+{% from 'components/panel/macro.njk' import panel %}
+{% from 'components/label/macro.njk' import label %}
+
+
+{% macro sectionHeader(title) %}
+  {{
+    label({
+      "classes": "nhsuk-label--s",
+      "text": title
+    })
+  }}
+{% endmacro %}
+
+{% macro sectionValue(value) %}
+  {% if value | isArray %}
+    {% for v in value %}
+      <p>- {{ v }}</p>
+    {% endfor %}
+  {% else %}
+    <p>{{ value }}</p>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro solutionCard(solution) %}
+
+  {% macro sections(data) %}
+    {% for sectionData in data %}
+      {{ label({
+        "html": sectionHeader(sectionData.name)+sectionValue(sectionData.value)
+      }) }}
+    {% endfor %}
+  {% endmacro %}
+
+  <div data-test-id="solution-card">
+    {{ panel({
+      "HTML": "<h3>YO " + solution.name + "</h3>
+      <div data-test-id='solution-sections'>"+ sections(solution.sections) +"</div>"
+    }) }}
+  </div>
+{% endmacro %}

@@ -35,12 +35,14 @@ const appViews = [
   path.join(__dirname, '/node_modules/nhsuk-frontend/packages/'),
 ];
 
-nunjucks.configure(appViews, {
+const env = nunjucks.configure(appViews, {
   autoescape: true,
   express: app,
   noCache: true,
   watch: true,
 });
+
+env.addFilter('isArray', value => Array.isArray(value))
 
 // Routes
 app.use('/', routes);
