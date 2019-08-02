@@ -1,8 +1,8 @@
 {
-  "name": "nodejs-boilerplate",
+  "name": "public-browse",
   "version": "1.0.0",
   "description": "Nodejs express app for Buying Catalogue - Public Browse",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
     "build": "npm run build:css && npm run build:js && npm run build:assets",
@@ -15,8 +15,8 @@
     "lint:css": "sass-lint 'app/**/*.scss' -v -q",
     "nuke": "npm run clean && rm -rf node_modules/",
     "postinstall": "npm run build",
-    "start": "node app",
-    "test": "npm run lint && jest",
+    "start": "node server",
+    "test": "jest",
     "prewatch": "npm run build:css",
     "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\" \"npm run watch:assets\"  \"npm start\"",
     "watch:scss": "npm run build:css -- -w",

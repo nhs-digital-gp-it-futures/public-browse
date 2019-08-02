@@ -1,8 +1,7 @@
 const request = require('supertest');
 const express = require('express')
-const nunjucks = require('nunjucks')
-const path = require('path')
 const cheerio = require('cheerio')
+const { App } = require('../../app')
 
 const capability = (text, value, checked = false) => ({
   text,
@@ -15,22 +14,7 @@ const basicContext = {
 }
 
 const createDummyApp = (context) => {
-  // Initialise application
-  const app = express();
-
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
-  app.use(express.static(path.join(__dirname, 'public/')));
-  app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/node_modules/nhsuk-frontend/packages')));
-
-  app.set('view engine', 'njk');
-  
-  const env = nunjucks.configure(['app/views', 'node_modules/nhsuk-frontend/packages'], {
-    autoescape: true,
-    express   : app,
-  });
-
-  env.addFilter('isArray', value => Array.isArray(value))
+  const app = new App().createApp()
 
   const router = express.Router();
   const dummyRouter = router.get('/bang', (req, res) => {
