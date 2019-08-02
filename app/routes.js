@@ -39,9 +39,9 @@ router.get('/', (req, res) => {
       }
     ],
     solutions: [
-      {
-        id: "00001",
-        name: "The first solution",
+        {
+          id: "00001",
+          name: "The first solution",
         sections: [
           {
             name: "Description",

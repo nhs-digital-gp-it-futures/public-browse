@@ -3,21 +3,11 @@ import express from 'express';
 import cheerio from 'cheerio';
 import { App } from '../../app';
 
-const capability = (text, value, checked = false) => ({
-  text,
-  value,
-  checked,
-})
-
-const basicContext = {
-  capabilities: []
-}
-
 const createDummyApp = (context) => {
   const app = new App().createApp()
 
   const router = express.Router();
-  const dummyRouter = router.get('/bang', (req, res) => {
+  const dummyRouter = router.get('/', (req, res) => {
     res.render('index.njk', context);
   })
 
@@ -33,7 +23,7 @@ describe('index page', () => {
 
       const app = createDummyApp(context)
       request(app)
-        .get('/bang')
+        .get('/')
         .then(res => {
           const $ = cheerio.load(res.text);
 
@@ -48,7 +38,7 @@ describe('index page', () => {
 
     const app = createDummyApp(context)
     request(app)
-      .get('/bang')
+      .get('/')
       .then(res => {
         const $ = cheerio.load(res.text);
 
@@ -66,7 +56,7 @@ describe('index page', () => {
   
       const app = createDummyApp(context)
       request(app)
-        .get('/bang')
+        .get('/')
         .then(res => {
           const $ = cheerio.load(res.text);
 
@@ -90,7 +80,7 @@ describe('index page', () => {
   
       const app = createDummyApp(context)
       request(app)
-        .get('/bang')
+        .get('/')
         .then(res => {
           const $ = cheerio.load(res.text);
 
@@ -122,7 +112,7 @@ describe('index page', () => {
   
       const app = createDummyApp(context)
       request(app)
-        .get('/bang')
+        .get('/')
         .then(res => {
           const $ = cheerio.load(res.text);
 

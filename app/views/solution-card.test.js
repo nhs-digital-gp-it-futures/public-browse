@@ -31,7 +31,7 @@ const createDummyApp = (context) => {
   const app = new App().createApp()
 
   const router = express.Router();
-  const dummyRouter = router.get('/bang', (req, res) => {
+  const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card.njk' import solutionCard %}
                           {{ solutionCard(solution) }}`
 
@@ -50,7 +50,7 @@ describe('solution-card', () => {
   it('should render the title of the Solution', (done) => {
     const dummyApp = createDummyApp(basicSolutionWithNoSectionsContext)
     request(dummyApp)
-      .get('/bang')
+      .get('/')
       .then(res => {
         const $ = cheerio.load(res.text)
 
@@ -70,7 +70,7 @@ describe('solution-card', () => {
     
     const dummyApp = createDummyApp(context)
     request(dummyApp)
-      .get('/bang')
+      .get('/')
       .then(res => {
         const $ = cheerio.load(res.text)
         const section = $('[data-test-id="solution-sections"] > label')
@@ -93,7 +93,7 @@ describe('solution-card', () => {
     
     const dummyApp = createDummyApp(context)
     request(dummyApp)
-      .get('/bang')
+      .get('/')
       .then(res => {
         const $ = cheerio.load(res.text)
         const section = $('[data-test-id="solution-sections"] > label')
@@ -119,7 +119,7 @@ describe('solution-card', () => {
     
     const dummyApp = createDummyApp(context)
     request(dummyApp)
-      .get('/bang')
+      .get('/')
       .then(res => {
         const $ = cheerio.load(res.text)
         const section = $('[data-test-id="solution-sections"] > label')
