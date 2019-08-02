@@ -1,7 +1,7 @@
 {
   "name": "nodejs-boilerplate",
   "version": "1.0.0",
-  "description": "Nodejs boilerplate with express, nunjucks, webpack and browsersync.",
+  "description": "Nodejs express app for Buying Catalogue - Public Browse",
   "main": "app.js",
   "scripts": {
     "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
@@ -16,8 +16,7 @@
     "nuke": "npm run clean && rm -rf node_modules/",
     "postinstall": "npm run build",
     "start": "node app",
-    "test": "mocha --require @babel/register test/**/*.spec.js && npm run lint",
-    "test-view": "jest",
+    "test": "npm run lint && jest",
     "prewatch": "npm run build:css",
     "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\" \"npm run watch:assets\"  \"npm start\"",
     "watch:scss": "npm run build:css -- -w",
@@ -25,10 +24,10 @@
     "watch:assets": "npm run build:assets -- -w",
     "webpack": "webpack"
   },
-  "author": "https://github.com/AdamChrimes",
+  "author": "Buying catalogue",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdamChrimes/nodejs-boilerplate.git"
+    "url": "https://github.com/nhs-digital-gp-it-futures/public-browse.git"
   },
   "license": "MIT",
   "dependencies": {
