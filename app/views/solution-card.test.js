@@ -1,8 +1,8 @@
-const request = require('supertest');
-const express = require('express')
-const nunjucks = require('nunjucks')
-const cheerio = require('cheerio')
-const { App } = require('../../app')
+import request from 'supertest';
+import express from 'express';
+import nunjucks from 'nunjucks';
+import cheerio from 'cheerio';
+import { App } from '../../app';
 
 const basicSolutionWithNoSectionsContext = {
   solution: {

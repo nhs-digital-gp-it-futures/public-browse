@@ -1,7 +1,7 @@
-const request = require('supertest');
-const express = require('express')
-const cheerio = require('cheerio')
-const { App } = require('../../app')
+import request from 'supertest';
+import express from 'express';
+import cheerio from 'cheerio';
+import { App } from '../../app';
 
 const capability = (text, value, checked = false) => ({
   text,
