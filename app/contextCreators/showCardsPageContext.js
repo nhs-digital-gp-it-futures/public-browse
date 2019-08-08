@@ -39,6 +39,22 @@ export const createShowCardPageContext = (solutionData) => {
 
   context.solutions = solutions
 
-
   return context
+}
+
+export const applySectionConfig = (sections, config) => {
+  const decoratedSections = []
+
+  sections.map(section => {
+    if (config[section.id] !== undefined) {
+      const decoratedSection = {
+        ...section,
+        ...config[section.id]
+      }
+      decoratedSections.push(decoratedSection)
+    }
+  })
+
+
+  return decoratedSections
 }

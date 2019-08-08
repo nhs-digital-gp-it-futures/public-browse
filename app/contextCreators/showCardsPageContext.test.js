@@ -1,4 +1,4 @@
-import { createShowCardPageContext } from './showCardsPageContext'
+import { createShowCardPageContext, applySectionConfig } from './showCardsPageContext'
 
 const dummySection = (sectionName, sectionValue) => ({
   "id": sectionName.toLowerCase().replace(' ', '-'),
@@ -148,6 +148,70 @@ describe('showCardsPageContext', () => {
       ]
 
     const context = createShowCardPageContext(oneSolutionWithASectionAndCapabilities)
+
+    expect(context).toEqual(expectedContext)
+  })
+})
+
+describe('applySectionConfig', () => {
+  it('should only return sections defined in the config', () => {
+    const expectedContext = [
+      {
+        id: "first-section",
+        name: "First Section",
+        value: "First Section Value",
+      }
+    ]
+
+
+    const config = {
+      "first-section": {}
+    }
+
+    const initialContext = [
+      {
+        id: "first-section",
+        name: "First Section",
+        value: "First Section Value",
+      },
+      {
+        id: "unknown-section",
+        name: "Unknown Section",
+        value: "Unknown Section Value",
+      },
+    ]
+
+    const context = applySectionConfig(initialContext, config)
+
+    expect(context).toEqual(expectedContext)
+  })
+
+  it('should decorate a section with the config provided for that section', () => {
+    const expectedContext = [
+      {
+        id: "first-section",
+        name: "First Section",
+        value: "First Section Value",
+        showTitle: false
+      }
+    ]
+
+
+    const config = {
+      "first-section": {
+        showTitle: false
+      }
+    }
+
+    const initialContext = [
+      {
+        id: "first-section",
+        name: "First Section",
+        value: "First Section Value",
+      }
+    ]
+
+    const context = applySectionConfig(initialContext, config)
 
     expect(context).toEqual(expectedContext)
   })
