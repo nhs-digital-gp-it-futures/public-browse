@@ -12,7 +12,7 @@ const dummySection = (sectionName, sectionValue) => ({
   ],
 })
 
-const dummySolutionData = (id, name, sections, capabilities = []) => ({
+const dummySolutionData = (id, name, sections, capabilities) => ({
   "id": id,
   "name": name,
   "marketingData": {
@@ -118,7 +118,7 @@ describe('showCardsPageContext', () => {
     expect(context).toEqual(expectedContext)
   })
 
-  it.only('should create a context with the capabilities added to the section', () => {
+  it('should create a context with the capabilities added to the section', () => {
     const expectedContext = {
       solutions: [
         {
