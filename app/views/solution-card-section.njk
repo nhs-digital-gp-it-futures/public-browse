@@ -1,0 +1,26 @@
+{% from 'components/label/macro.njk' import label %}
+
+{% macro sectionHeader(title) %}
+  {{
+    label({
+      "classes": "nhsuk-label--s",
+      "text": title
+    })
+  }}
+{% endmacro %}
+
+{% macro sectionValue(value) %}
+  {% if value | isArray %}
+    {% for v in value %}
+      <p>- {{ v }}</p>
+    {% endfor %}
+  {% else %}
+    <p>{{ value }}</p>
+  {% endif %}
+{% endmacro %}
+
+{% macro solutionCardSection(section) %}
+  {{ label({
+    "html": sectionHeader(section.name)+sectionValue(section.value) 
+  }) }}
+{% endmacro %}
