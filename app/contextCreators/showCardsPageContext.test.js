@@ -151,6 +151,58 @@ describe('showCardsPageContext', () => {
 
     expect(context).toEqual(expectedContext)
   })
+
+  it('should apply the section config if one is provided', () => {
+    const expectedContext = {
+      solutions: [
+        {
+          id: "00001",
+          name: "The first solution",
+          sections: [
+            {
+              id: "first-section",
+              name: "First Section",
+              value: "First Solution Section Value",
+              showTitle: false,
+              columns: 1
+            },
+            {
+              id: "capability-section",
+              name: "Capabilities",
+              value: ["Capability A", "Capability B"],
+              showTitle: true,
+              columns: 2
+            },
+          ],
+        },
+      ]
+    }
+
+    const config = {
+      "first-section": {
+        showTitle: false,
+        columns: 1
+      },
+      "capability-section": {
+        showTitle: true,
+        columns: 2
+      }
+    }
+
+    const capabilities = [{id: "001", name: "Capability A"}, {id: "002", name: "Capability B"}]
+
+    const oneSolutionWithASectionAndCapabilities = 
+      [
+        dummySolutionData('00001', 'The first solution', 
+          [dummySection('First Section', 'First Solution Section Value'),
+          dummySection('Unknown Section', 'Unknown Section Value')], 
+          capabilities),
+      ]
+
+    const context = createShowCardPageContext(oneSolutionWithASectionAndCapabilities, config)
+
+    expect(context).toEqual(expectedContext)
+  })
 })
 
 describe('applySectionConfig', () => {
@@ -195,7 +247,6 @@ describe('applySectionConfig', () => {
         showTitle: false
       }
     ]
-
 
     const config = {
       "first-section": {

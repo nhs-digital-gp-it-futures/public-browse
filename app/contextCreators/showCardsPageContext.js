@@ -1,4 +1,4 @@
-export const createShowCardPageContext = (solutionData) => {
+export const createShowCardPageContext = (solutionData, config) => {
   const context = {}
   const solutions = [];
 
@@ -30,8 +30,8 @@ export const createShowCardPageContext = (solutionData) => {
       capabilitySection.value = capabilityValues
       sections.push(capabilitySection)
     }
-
-    solution.sections = sections
+    
+    solution.sections = config ? applySectionConfig(sections, config) : sections
 
     solutions.push(solution)
   
