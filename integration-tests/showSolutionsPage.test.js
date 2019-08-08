@@ -25,3 +25,21 @@ test('should render the title', async t => {
   await t
     .expect(title.innerText).eql('View all solutions')
 })
+
+test('should render page description', async t => {
+  pageSetup(t)
+
+  const pageDescription = Selector('.nhsuk-body-l')
+
+  await t
+    .expect(pageDescription.innerText).eql('All the solutions. Check them out.')
+})
+
+test('should render the solutions cards', async t => {
+  pageSetup(t)
+
+  const solutionsCards = Selector('[data-test-id="solution-card"]')
+  
+  await t
+    .expect(solutionsCards.count).eql(3)
+})
