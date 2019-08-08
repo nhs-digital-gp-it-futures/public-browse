@@ -74,9 +74,9 @@ router.get('/', async (req, res) => {
     ]
   }
 
-  const newContext = await getShowCardsPageContext()
+  const newContext = await getShowCardsPageContext();
 
-  res.render('index', newContext);
+  res.render('index', context);
 });
 
 module.exports = router;

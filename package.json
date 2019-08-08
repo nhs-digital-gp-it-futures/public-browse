@@ -16,6 +16,7 @@
     "nuke": "npm run clean && rm -rf node_modules/",
     "postinstall": "npm run build",
     "start": "babel-node server",
+    "test:integration": "NODE_ENV=development babel-node integration-tests/testcafeRunner.js",
     "test": "jest",
     "prewatch": "npm run build:css",
     "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\" \"npm run watch:assets\"  \"npm start\"",
@@ -40,22 +41,30 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/node": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
-    "@babel/node": "^7.4.4",
     "babel-loader": "^8.0.5",
+    "cheerio": "^1.0.0-rc.3",
     "concurrently": "^4.1.0",
     "cpx": "^1.5.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
+    "jest": "^24.8.0",
     "nhsuk-frontend": "^2.3.0",
+    "nock": "^10.0.6",
     "node-sass": "^4.12.0",
     "sass-lint": "^1.13.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1",
     "supertest": "^4.0.2",
-    "cheerio": "^1.0.0-rc.3",
-    "jest": "^24.8.0"
+    "testcafe": "^1.4.0",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/integration-tests"
+    ]
   }
 }
