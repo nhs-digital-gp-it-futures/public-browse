@@ -1,47 +1,14 @@
-// External dependencies
-const express = require('express');
+import express from 'express';
+import { getShowCardsPageContext } from './controllers/controller';
 
-// Initialise router
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const context = {
-    capabilities: [
-      {
-        text: "capability A",
-        value: "capability A",
-        checked: false
-      },
-      {
-        text: "capability B",
-        value: "capability B",
-        checked: false
-      },
-      {
-        text: "capability C",
-        value: "capability C",
-        checked: false
-      },
-      {
-        text: "capability D",
-        value: "capability D",
-        checked: false
-      },
-      {
-        text: "capability E",
-        value: "capability E",
-        checked: false
-      },
-      {
-        text: "capability F",
-        value: "capability F",
-        checked: false
-      }
-    ],
     solutions: [
-        {
-          id: "00001",
-          name: "The first solution",
+      {
+        id: "00001",
+        name: "The first solution",
         sections: [
           {
             name: "Description",
@@ -107,7 +74,9 @@ router.get('/', (req, res) => {
     ]
   }
 
-  res.render('index', context);
+  const newContext = await getShowCardsPageContext()
+
+  res.render('index', newContext);
 });
 
 module.exports = router;
