@@ -64,7 +64,7 @@ describe('solution-card', () => {
       })
   })
 
-  it('should render just the one simple section when provided', (done) => {
+  it('should render just the one section when provided', (done) => {
     const context = {
       solution: {
         ...basicSolutionWithNoSectionsContext.solution,
@@ -80,34 +80,6 @@ describe('solution-card', () => {
         const section = $('[data-test-id="solution-sections"] > label')
 
         expect(section.length).toEqual(1)
-        expect(section.find('label .nhsuk-label--s').text().trim()).toEqual('Simple Section')
-        expect(section.find('p').text()).toEqual('This is the simple section')
-
-        done();
-      })
-  })
-
-  it('should render just the one section of type list when provided', (done) => {
-    const context = {
-      solution: {
-        ...basicSolutionWithNoSectionsContext.solution,
-        sections: [aListSection]
-      }
-    }
-    
-    const dummyApp = createDummyApp(context)
-    request(dummyApp)
-      .get('/')
-      .then(res => {
-        const $ = cheerio.load(res.text)
-        const section = $('[data-test-id="solution-sections"] > label')
-
-        expect(section.length).toEqual(1)
-        expect(section.find('label .nhsuk-label--s').text().trim()).toEqual('List Section')
-        expect(section.find('p').length).toEqual(3)
-        section.find('p').each((index, sectionValue) => {
-          expect($(sectionValue).text()).toEqual(`- ${aListSection.value[index]}`)
-        })
 
         done();
       })
