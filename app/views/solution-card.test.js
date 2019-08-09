@@ -16,6 +16,8 @@ const basicSolutionWithNoSectionsContext = {
 const aSimpleSection = {
   name: "Simple Section",
   value: "This is the simple section",
+  showTitle: true,
+  columns: 1
 }
 
 const aListSection = {
@@ -25,6 +27,8 @@ const aListSection = {
     "value 2",
     "value 3",
   ],
+  showTitle: true,
+  columns: 1
 }
 
 const createDummyApp = (context) => {

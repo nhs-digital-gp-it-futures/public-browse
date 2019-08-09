@@ -1,4 +1,4 @@
-import { createShowCardPageContext, applySectionConfig } from './showCardsPageContext'
+import { createShowCardPageContext, applySectionConfig, applyDefaultConfig } from './showCardsPageContext'
 
 const dummySection = (sectionName, sectionValue) => ({
   "id": sectionName.toLowerCase().replace(' ', '-'),
@@ -35,6 +35,8 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Section Value",
+              showTitle: true,
+              columns: 1
             },
           ],
         }
@@ -60,11 +62,15 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Section Value",
+              showTitle: true,
+              columns: 1
             },
             {
               id: "second-section",
               name: "Second Section",
               value: ["Second section value 1", "Second section value 2", "Second section value 3"],
+              showTitle: true,
+              columns: 1
             },
           ],
         }
@@ -91,6 +97,8 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Solution Section Value",
+              showTitle: true,
+              columns: 1
             },
           ],
         },
@@ -102,6 +110,8 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "Second Solution Section Value",
+              showTitle: true,
+              columns: 1
             },
           ],
         }
@@ -129,11 +139,15 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Solution Section Value",
+              showTitle: true,
+              columns: 1
             },
             {
               id: "capability-section",
               name: "Capabilities",
               value: ["Capability A", "Capability B"],
+              showTitle: true,
+              columns: 1
             },
           ],
         },
@@ -212,6 +226,8 @@ describe('applySectionConfig', () => {
         id: "first-section",
         name: "First Section",
         value: "First Section Value",
+        showTitle: true,
+        columns: 1
       }
     ]
 
@@ -244,7 +260,8 @@ describe('applySectionConfig', () => {
         id: "first-section",
         name: "First Section",
         value: "First Section Value",
-        showTitle: false
+        showTitle: false,
+        columns: 1
       }
     ]
 
@@ -263,6 +280,32 @@ describe('applySectionConfig', () => {
     ]
 
     const context = applySectionConfig(initialContext, config)
+
+    expect(context).toEqual(expectedContext)
+  })
+})
+
+describe('applyDefaultConfig', () => {
+  it('show decorate the section with the default config when a config is not provided', () => {
+    const expectedContext = [
+      {
+        id: "first-section",
+        name: "First Section",
+        value: "First Section Value",
+        showTitle: true,
+        columns: 1
+      }
+    ]
+
+    const initialContext = [
+      {
+        id: "first-section",
+        name: "First Section",
+        value: "First Section Value",
+      }
+    ]
+
+    const context = applyDefaultConfig(initialContext)
 
     expect(context).toEqual(expectedContext)
   })

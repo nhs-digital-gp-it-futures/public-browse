@@ -1,12 +1,14 @@
 {% from 'components/label/macro.njk' import label %}
 
-{% macro sectionHeader(title) %}
-  {{
-    label({
-      "classes": "nhsuk-label--s",
-      "text": title
-    })
-  }}
+{% macro sectionHeader(section) %}
+  {% if section.showTitle %}
+    {{
+      label({
+        "classes": "nhsuk-label--s",
+        "text": section.name
+      })
+    }}
+  {% endif %}
 {% endmacro %}
 
 {% macro sectionValue(value) %}
@@ -21,6 +23,6 @@
 
 {% macro solutionCardSection(section) %}
   {{ label({
-    "html": sectionHeader(section.name)+sectionValue(section.value) 
+    "html": sectionHeader(section)+sectionValue(section.value) 
   }) }}
 {% endmacro %}

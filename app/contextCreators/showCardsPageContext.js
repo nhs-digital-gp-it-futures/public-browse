@@ -31,7 +31,7 @@ export const createShowCardPageContext = (solutionData, config) => {
       sections.push(capabilitySection)
     }
     
-    solution.sections = config ? applySectionConfig(sections, config) : sections
+    solution.sections = config ? applySectionConfig(sections, config) : applyDefaultConfig(sections)
 
     solutions.push(solution)
   
@@ -43,18 +43,41 @@ export const createShowCardPageContext = (solutionData, config) => {
 }
 
 export const applySectionConfig = (sections, config) => {
+  const defaultSectionConfig = {
+    showTitle: true,
+    columns: 1
+  }
   const decoratedSections = []
 
   sections.map(section => {
     if (config[section.id] !== undefined) {
       const decoratedSection = {
         ...section,
+        ...defaultSectionConfig,
         ...config[section.id]
       }
       decoratedSections.push(decoratedSection)
     }
   })
 
+
+  return decoratedSections
+}
+
+export const applyDefaultConfig = (sections) => {
+  const defaultSectionConfig = {
+    showTitle: true,
+    columns: 1
+  }
+  const decoratedSections = []
+
+  sections.map(section => {
+    const decoratedSection = {
+      ...section,
+      ...defaultSectionConfig,
+    }
+    decoratedSections.push(decoratedSection)
+  })
 
   return decoratedSections
 }
