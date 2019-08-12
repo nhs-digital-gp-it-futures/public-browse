@@ -1,15 +1,15 @@
 import createTestcafe from 'testcafe';
-import { App } from './../app';
-import routes from './../app/routes';
+import { App } from '../app';
+import routes from '../app/routes';
 
-let testcafe
-let server
+let testcafe;
+let server;
 
 createTestcafe('localhost')
-  .then(tc => {
-    testcafe = tc
+  .then((tc) => {
+    testcafe = tc;
 
-    const app = new App().createApp()
+    const app = new App().createApp();
     app.use('/', routes);
 
     server = app.listen('1234');
@@ -17,9 +17,9 @@ createTestcafe('localhost')
     return tc.createRunner()
       .src(['integration-tests/*.test.js'])
       .browsers('chrome')
-      .run()
+      .run();
   })
-  .then(failCount => {
-    server.close()
-    testcafe.close()
-  })
+  .then((failCount) => {
+    server.close();
+    testcafe.close();
+  });
