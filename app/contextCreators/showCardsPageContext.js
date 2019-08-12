@@ -54,10 +54,13 @@ export const applySectionConfig = (sections, config) => {
         ...defaultSectionConfig,
         ...config[section.id]
       };
+
+      if (config[section.id].displayType === "columns") {
+        decoratedSection.value = createColumnsForSectionValue(section.value)
+      }
       decoratedSections.push(decoratedSection);
     }
   })
-
 
   return decoratedSections;
 }

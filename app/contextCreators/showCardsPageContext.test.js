@@ -173,15 +173,17 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Solution Section Value",
-              showTitle: false,
-              columns: 1
+              showTitle: false
             },
             {
               id: "capability-section",
               name: "Capabilities",
-              value: ["Capability A", "Capability B"],
+              value: {
+                column1: ["Capability A"],
+                column2: ["Capability B"]
+              },
               showTitle: true,
-              columns: 2
+              displayType: "columns"
             },
           ],
         },
@@ -191,11 +193,10 @@ describe('showCardsPageContext', () => {
     const config = {
       "first-section": {
         showTitle: false,
-        columns: 1
       },
       "capability-section": {
         showTitle: true,
-        columns: 2
+        displayType: "columns"
       }
     }
 
@@ -256,14 +257,12 @@ describe('applySectionConfig', () => {
         name: "First Section",
         value: "First Section Value",
         showTitle: false,
-        displayType: "columns"
       }
     ]
 
     const config = {
       "first-section": {
-        showTitle: false,
-        displayType: "columns"
+        showTitle: false
       }
     }
 
