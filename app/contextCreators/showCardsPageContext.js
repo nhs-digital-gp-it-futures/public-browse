@@ -65,8 +65,7 @@ export const applySectionConfig = (sections, config) => {
 
 export const applyDefaultConfig = (sections) => {
   const defaultSectionConfig = {
-    showTitle: true,
-    columns: 1
+    showTitle: true
   };
   const decoratedSections = [];
 

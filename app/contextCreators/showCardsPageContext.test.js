@@ -38,8 +38,7 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Section Value",
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
           ],
         }
@@ -65,15 +64,13 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Section Value",
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
             {
               id: "second-section",
               name: "Second Section",
               value: ["Second section value 1", "Second section value 2", "Second section value 3"],
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
           ],
         }
@@ -100,8 +97,7 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Solution Section Value",
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
           ],
         },
@@ -113,8 +109,7 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "Second Solution Section Value",
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
           ],
         }
@@ -142,15 +137,13 @@ describe('showCardsPageContext', () => {
               id: "first-section",
               name: "First Section",
               value: "First Solution Section Value",
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
             {
               id: "capability-section",
               name: "Capabilities",
               value: ["Capability A", "Capability B"],
-              showTitle: true,
-              columns: 1
+              showTitle: true
             },
           ],
         },
@@ -295,8 +288,7 @@ describe('applyDefaultConfig', () => {
         id: "first-section",
         name: "First Section",
         value: "First Section Value",
-        showTitle: true,
-        columns: 1
+        showTitle: true
       }
     ]
 
