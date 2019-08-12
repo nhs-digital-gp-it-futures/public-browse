@@ -43,8 +43,7 @@ export const createShowCardPageContext = (solutionData, config) => {
 
 export const applySectionConfig = (sections, config) => {
   const defaultSectionConfig = {
-    showTitle: true,
-    columns: 1
+    showTitle: true
   };
   const decoratedSections = [];
 

@@ -222,8 +222,7 @@ describe('applySectionConfig', () => {
         id: "first-section",
         name: "First Section",
         value: "First Section Value",
-        showTitle: true,
-        columns: 1
+        showTitle: true
       }
     ]
 
@@ -257,13 +256,14 @@ describe('applySectionConfig', () => {
         name: "First Section",
         value: "First Section Value",
         showTitle: false,
-        columns: 1
+        displayType: "columns"
       }
     ]
 
     const config = {
       "first-section": {
-        showTitle: false
+        showTitle: false,
+        displayType: "columns"
       }
     }
 
