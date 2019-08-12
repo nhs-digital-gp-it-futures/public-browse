@@ -11,18 +11,35 @@
   {% endif %}
 {% endmacro %}
 
-{% macro sectionValue(value) %}
-  {% if value | isArray %}
-    {% for v in value %}
-      <p>- {{ v }}</p>
-    {% endfor %}
-  {% else %}
-    <p>{{ value }}</p>
-  {% endif %}
+{% macro sectionValue(section) %}
+  <div class="nhsuk-grid-row">
+    {% if section.displayType === "columns" %}
+      <div data-test-id="section-column1" class="nhsuk-grid-column-one-half">
+        {% for v in section.value.column1 %}
+          <p>- {{ v }}</p>
+        {% endfor %}
+      </div>
+      <div data-test-id="section-column2" class="nhsuk-grid-column-one-half">
+        {% for v in section.value.column2 %}
+          <p>- {{ v }}</p>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="nhsuk-grid-column-full">
+        {% if section.value | isArray %}
+          {% for v in section.value %}
+            <p>- {{ v }}</p>
+          {% endfor %}
+        {% else %}
+          <p>{{ section.value }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
 {% endmacro %}
 
 {% macro solutionCardSection(section) %}
   {{ label({
-    "html": sectionHeader(section)+sectionValue(section.value) 
+    "html": sectionHeader(section)+sectionValue(section) 
   }) }}
 {% endmacro %}

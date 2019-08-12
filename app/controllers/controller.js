@@ -1,26 +1,23 @@
-import { createShowCardPageContext } from './../contextCreators/showCardsPageContext';
 import axios from 'axios';
+import { createShowCardPageContext } from '../contextCreators/showCardsPageContext';
 
 const config = {
-  "description": {
+  description: {
     showTitle: false,
-    columns: 1
   },
-  "features": {
+  features: {
     showTitle: true,
-    columns: 1
   },
-  "capability-section": {
+  'capability-section': {
     showTitle: true,
-    columns: 2
-  }
-}
-
+    displayType: 'columns',
+  },
+};
 
 export const getShowCardsPageContext = async () => {
   const solutionData = await axios.get('http://localhost:5000/api/v1/solutions');
 
-  const context = createShowCardPageContext(solutionData.data.solutions);
+  const context = createShowCardPageContext(solutionData.data.solutions, config);
 
   return context;
-}
+};
