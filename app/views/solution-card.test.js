@@ -58,7 +58,7 @@ describe('solution-card', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('.nhsuk-panel h3').text()).toEqual('YO This is the title of the solution');
+        expect($('.nhsuk-panel h3').text()).toEqual('This is the title of the solution');
 
         done();
       });
