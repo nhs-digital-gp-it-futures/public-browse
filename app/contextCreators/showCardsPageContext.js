@@ -1,3 +1,7 @@
+const defaultSectionConfig = {
+  showTitle: true,
+};
+
 export const createColumnsForSectionValue = (value) => {
   const newValue = {};
   const column1 = [];
@@ -19,9 +23,6 @@ export const createColumnsForSectionValue = (value) => {
 };
 
 export const applyDefaultConfig = (sections) => {
-  const defaultSectionConfig = {
-    showTitle: true,
-  };
   const decoratedSections = [];
 
   sections.map((section) => {
@@ -36,9 +37,6 @@ export const applyDefaultConfig = (sections) => {
 };
 
 export const applySectionConfig = (sections, config) => {
-  const defaultSectionConfig = {
-    showTitle: true,
-  };
   const decoratedSections = [];
 
   sections.map((section) => {
