@@ -68,7 +68,6 @@ export const createShowCardPageContext = (solutionData, config) => {
 
     const sections = [];
 
-
     solData.marketingData.sections.map((s) => {
       const section = {};
 
@@ -98,6 +97,45 @@ export const createShowCardPageContext = (solutionData, config) => {
   });
 
   context.solutions = solutions;
+
+  return context;
+};
+
+export const createSolutionPageContext = (solutionData, config) => {
+  const context = {};
+
+  const solution = {};
+  solution.id = solutionData.id;
+  solution.name = solutionData.name;
+
+  const sections = [];
+
+  solutionData.marketingData.sections.map((s) => {
+    const section = {};
+
+    section.id = s.id;
+    section.name = s.name;
+    section.value = s.data[0].value;
+
+    sections.push(section);
+  });
+
+  if (solutionData.capabilities) {
+    const capabilitySection = {};
+    capabilitySection.id = 'capability-section';
+    capabilitySection.name = 'Capabilities';
+
+    const capabilityValues = solutionData.capabilities.map(cap => cap.name);
+
+    capabilitySection.value = capabilityValues;
+    sections.push(capabilitySection);
+  }
+
+  solution.sections = config
+    ? applySectionConfig(sections, config)
+    : applyDefaultConfig(sections);
+
+  context.solution = solution;
 
   return context;
 };

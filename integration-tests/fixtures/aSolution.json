@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "message": "solution retrieved succesfully",
+  "solution": {
+    "id": "00001",
+    "name": "The first solution and more",
+    "marketingData": {
+      "manifestId": "buying-catalogue-live",
+      "sections": [
+        {
+          "id": "description",
+          "name": "Description",
+          "data": [
+            {
+              "id": "summary-description",
+              "name": "Summary Description",
+              "value": "First the worst"
+            }
+          ]
+        },
+        {
+          "id": "features",
+          "name": "Features",
+          "data": [
+            {
+              "id": "feature-listing",
+              "name": "Feature Listing",
+              "value": [
+                "feature 1",
+                "feature 2",
+                "feature 3"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "some-section",
+          "name": "Some Section",
+          "data": [
+            {
+              "id": "some-section-stuff",
+              "name": "Some Section Stuff",
+              "value": [
+                "section stuff 1",
+                "section stuff 2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "capabilities": [
+      {
+        "id": "001",
+        "name": "Prescribing"
+      },
+      {
+        "id": "002",
+        "name": "Referral Management"
+      }
+    ]
+  }  
+}

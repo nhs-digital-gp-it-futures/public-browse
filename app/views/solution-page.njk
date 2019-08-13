@@ -1,0 +1,21 @@
+{% extends 'includes/layout.njk' %}
+{% from 'components/breadcrumb/macro.njk' import breadcrumb %}
+{% from './solution-card.njk' import solutionCard %}
+
+{% block body %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+
+    <h1>View Solution</h1>
+
+    <p class="nhsuk-body-l">
+      {{ solution.name }}
+    </p>
+
+    <div data-test-id="full-solution-card">
+      {{ solutionCard(solution) }}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

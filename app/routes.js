@@ -1,5 +1,5 @@
 import express from 'express';
-import { getShowCardsPageContext } from './controllers/controller';
+import { getShowCardsPageContext, getSolutionPageContext } from './controllers/controller';
 
 const router = express.Router();
 
@@ -78,5 +78,14 @@ router.get('/', async (req, res) => {
 
   res.render('index', newContext);
 });
+
+router.get('/:solutionId', async (req, res) => {
+  const { solutionId } = req.params;
+
+  const newContext = await getSolutionPageContext(solutionId);
+
+  res.render('solution-page', newContext);
+});
+
 
 module.exports = router;

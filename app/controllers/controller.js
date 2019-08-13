@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createShowCardPageContext } from '../contextCreators/showCardsPageContext';
+import { createShowCardPageContext, createSolutionPageContext } from '../contextCreators/showCardsPageContext';
 
 const config = {
   description: {
@@ -18,6 +18,14 @@ export const getShowCardsPageContext = async () => {
   const solutionData = await axios.get('http://localhost:5000/api/v1/solutions');
 
   const context = createShowCardPageContext(solutionData.data.solutions, config);
+
+  return context;
+};
+
+export const getSolutionPageContext = async (solutionId) => {
+  const solutionData = await axios.get(`http://localhost:5000/api/v1/solution/${solutionId}`);
+
+  const context = createSolutionPageContext(solutionData.data.solution);
 
   return context;
 };

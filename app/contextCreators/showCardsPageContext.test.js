@@ -1,5 +1,6 @@
 import {
   createShowCardPageContext,
+  createSolutionPageContext,
   applySectionConfig,
   applyDefaultConfig,
   createColumnsForSectionValue,
@@ -210,6 +211,32 @@ describe('showCardsPageContext', () => {
     ];
 
     const context = createShowCardPageContext(oneSolutionWithASectionAndCapabilities, config);
+
+    expect(context).toEqual(expectedContext);
+  });
+});
+
+describe('showSolutionPageContext', () => {
+  it('should create a context for the solution page', () => {
+    const expectedContext = {
+      solution: {
+        id: '00001',
+        name: 'The first solution',
+        sections: [
+          {
+            id: 'first-section',
+            name: 'First Section',
+            value: 'First Section Value',
+            showTitle: true,
+          },
+        ],
+      },
+    };
+
+    const aSolutionWithOneSection = dummySolutionData('00001', 'The first solution',
+      [dummySection('First Section', 'First Section Value')]);
+
+    const context = createSolutionPageContext(aSolutionWithOneSection);
 
     expect(context).toEqual(expectedContext);
   });
