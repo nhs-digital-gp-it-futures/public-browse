@@ -45,9 +45,9 @@ const createDummyApp = (context) => {
     const macroWrapper = `{% from './solution-card-section.njk' import solutionCardSection %}
                           {{ solutionCardSection(section) }}`;
 
-    const a = nunjucks.renderString(macroWrapper, context);
+    const viewToTest = nunjucks.renderString(macroWrapper, context);
 
-    res.send(a);
+    res.send(viewToTest);
   });
 
   app.use(dummyRouter);
