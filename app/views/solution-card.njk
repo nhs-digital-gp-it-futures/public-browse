@@ -2,14 +2,16 @@
 {% from 'components/label/macro.njk' import label %}
 {% from './solution-card-section.njk' import solutionCardSection %}
 
-{% macro solutionCard(solution) %}
+{% macro solutionCard(solution, showTitle) %}
 
-  {% macro solutionTitle(solution) %}
-    <h3>
-      <a href="./{{ solution.id }}">
-        {{ solution.name }}
-      </a>
-    </h3>
+  {% macro solutionTitle(solution, showTitle) %}
+    {% if showTitle %}
+      <h3>
+        <a href="./{{ solution.id }}">
+          {{ solution.name }}
+        </a>
+      </h3>
+    {% endif %}
   {% endmacro %}
 
   {% macro sections(data) %}
@@ -20,7 +22,7 @@
 
   <div data-test-id="solution-card">
     {{ panel({
-      "HTML": solutionTitle(solution) +
+      "HTML": solutionTitle(solution, showTitle) +
       "<div data-test-id='solution-sections'>"+ sections(solution.sections) +"</div>"
     }) }}
   </div>

@@ -31,13 +31,13 @@ const aListSection = {
   columns: 1,
 };
 
-const createDummyApp = (context) => {
+const createDummyApp = (context, showTitle = true) => {
   const app = new App().createApp();
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card.njk' import solutionCard %}
-                          {{ solutionCard(solution) }}`;
+                          {{ solutionCard(solution, ${showTitle}) }}`;
 
     const a = nunjucks.renderString(macroWrapper, context);
 
@@ -60,6 +60,19 @@ describe('solution-card', () => {
 
         expect($('.nhsuk-panel h3').text().trim()).toEqual('This is the title of the solution');
         expect($('.nhsuk-panel h3 a').attr('href')).toEqual('./00001');
+
+        done();
+      });
+  });
+
+  it('should not render the title of the Solution if the showTitle flag is false', (done) => {
+    const dummyApp = createDummyApp(basicSolutionWithNoSectionsContext, false);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('.nhsuk-panel h3').length).toEqual(0);
 
         done();
       });
