@@ -58,7 +58,8 @@ describe('solution-card', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('.nhsuk-panel h3').text()).toEqual('This is the title of the solution');
+        expect($('.nhsuk-panel h3').text().trim()).toEqual('This is the title of the solution');
+        expect($('.nhsuk-panel h3 a').attr('href')).toEqual('./00001');
 
         done();
       });

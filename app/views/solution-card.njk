@@ -4,6 +4,14 @@
 
 {% macro solutionCard(solution) %}
 
+  {% macro solutionTitle(solution) %}
+    <h3>
+      <a href="./{{ solution.id }}">
+        {{ solution.name }}
+      </a>
+    </h3>
+  {% endmacro %}
+
   {% macro sections(data) %}
     {% for sectionData in data %}
       {{ solutionCardSection(sectionData) }}
@@ -12,8 +20,8 @@
 
   <div data-test-id="solution-card">
     {{ panel({
-      "HTML": "<h3>" + solution.name + "</h3>
-      <div data-test-id='solution-sections'>"+ sections(solution.sections) +"</div>"
+      "HTML": solutionTitle(solution) +
+      "<div data-test-id='solution-sections'>"+ sections(solution.sections) +"</div>"
     }) }}
   </div>
 {% endmacro %}
