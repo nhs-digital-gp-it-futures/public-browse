@@ -1,11 +1,16 @@
 import nock from 'nock';
 import { Selector } from 'testcafe';
 import allSolutionFixture from './fixtures/allSolutions.json';
+import aSolutionFixture from './fixtures/aSolution.json';
 
 const mocks = () => {
   nock('http://localhost:5000')
     .get('/api/v1/solutions')
     .reply(200, allSolutionFixture);
+
+  nock('http://localhost:5000')
+    .get('/api/v1/solution/00001')
+    .reply(200, aSolutionFixture);
 };
 
 const pageSetup = async (t) => {
@@ -40,4 +45,14 @@ test('should render the solutions cards', async (t) => {
 
   await t
     .expect(solutionsCards.count).eql(3);
+});
+
+test('should navigate to the solution details page when clicking on the title of the solution', async (t) => {
+  pageSetup(t);
+
+  const firstSolutionsCard = Selector('[data-test-id="solution-card"] h3').nth(0);
+
+  await t
+    .click(firstSolutionsCard)
+    .navigateTo('./00001');
 });
