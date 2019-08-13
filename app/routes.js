@@ -1,5 +1,5 @@
 import express from 'express';
-import { getShowCardsPageContext, getSolutionPageContext } from './controllers/controller';
+import { getShowCardsPageContext, getSolutionPageContext } from './controller';
 
 const router = express.Router();
 
