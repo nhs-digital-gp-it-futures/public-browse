@@ -1,6 +1,6 @@
 module.exports = {
   // App name
-  appName: 'NHS.UK frontend boilerplate',
+  appName: 'Buying Catalogue - Public Browse',
 
   // Environment
   env: process.env.NODE_ENV || 'development',

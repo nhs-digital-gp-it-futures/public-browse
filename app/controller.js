@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createShowCardPageContext, createSolutionPageContext } from './showCardsPageContext';
+import { createShowCardPageContext, createSolutionPageContext } from './contextCreator';
 
 const config = {
   description: {

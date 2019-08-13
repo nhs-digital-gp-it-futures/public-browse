@@ -4,7 +4,7 @@ import {
   applySectionConfig,
   applyDefaultConfig,
   createColumnsForSectionValue,
-} from './showCardsPageContext';
+} from './contextCreator';
 
 const dummySection = (sectionName, sectionValue) => ({
   id: sectionName.toLowerCase().replace(' ', '-'),
