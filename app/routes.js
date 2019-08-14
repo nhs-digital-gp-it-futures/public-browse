@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
 router.get('/:solutionId', async (req, res) => {
   const { solutionId } = req.params;
 
-  const newContext = await getSolutionPageContext(solutionId);
+  const context = await getSolutionPageContext(solutionId);
 
-  res.render('solution-page', newContext);
+  res.render('solution-page', context);
 });
 
 
