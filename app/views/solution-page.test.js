@@ -39,6 +39,7 @@ describe('solution-page', () => {
         id: '00001',
         name: 'Some solution name',
       },
+      pageContents: [],
     };
 
     const app = createDummyApp(context);
@@ -57,13 +58,7 @@ describe('solution-page', () => {
     it('should render the page content list', (done) => {
       const context = {
         solution: {},
-        pageContents: [
-          {
-            href: '#description',
-            text: 'Description',
-            current: true,
-          },
-        ],
+        pageContents: [],
       };
 
       const app = createDummyApp(context);
@@ -96,6 +91,7 @@ describe('solution-page', () => {
             },
           ],
         },
+        pageContents: [],
       };
 
       const app = createDummyApp(context);
