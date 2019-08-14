@@ -75,6 +75,10 @@ describe('page-contents-list', () => {
         const contentLists = $('li');
 
         expect(contentLists.length).toEqual(1);
+        $(contentLists).each((index, content) => {
+          expect($(content).text().trim()).toEqual(`${context.pageContents[index].text}`);
+          expect($(content).find('a').attr('href')).toEqual(`${context.pageContents[index].href}`);
+        });
 
         done();
       });
