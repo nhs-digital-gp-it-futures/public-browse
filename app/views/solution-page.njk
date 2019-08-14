@@ -1,6 +1,7 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/breadcrumb/macro.njk' import breadcrumb %}
 {% from './solution-card.njk' import solutionCard %}
+{% from './page-contents-list.njk' import pageContentsList %}
 
 {% block body %}
 <div class="nhsuk-grid-row">
@@ -12,7 +13,11 @@
       {{ solution.name }}
     </p>
 
-    <div data-test-id="full-solution-card">
+    <div class="nhsuk-grid-column-one-quarter" data-test-id="page-contents-list">
+      {{ pageContentsList() }}
+    </div>
+
+    <div class="nhsuk-grid-column-three-quarters" data-test-id="full-solution-card">
       {{ solutionCard(solution, false) }}
     </div>
 

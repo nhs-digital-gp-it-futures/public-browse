@@ -1,0 +1,8 @@
+{% from 'components/panel/macro.njk' import panel %}
+
+{% macro pageContentsList() %}
+  {{ panel({
+    "HTML": "<h4>Page Contents</h4>
+    <div>list of section show here</div>"
+  }) }}
+{% endmacro %}

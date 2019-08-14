@@ -53,6 +53,34 @@ describe('solution-page', () => {
       });
   });
 
+  describe('page content list', () => {
+    it('should render the page content list', (done) => {
+      const context = {
+        solution: {},
+        pageContents: [
+          {
+            href: '#description',
+            text: 'Description',
+            current: true,
+          },
+        ],
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          const pageContentsList = $('[data-test-id="page-contents-list"]');
+
+          expect(pageContentsList.length).toEqual(1);
+
+          done();
+        });
+    });
+  });
+
   describe('solution card', () => {
     it('should render the solution details', (done) => {
       const context = {
