@@ -1,13 +1,24 @@
 {% from 'components/label/macro.njk' import label %}
 
-{% macro sectionHeader(section) %}
+{% macro sectionHeader(section, showAnchor) %}
   {% if section.showTitle %}
-    {{
-      label({
-        "classes": "nhsuk-label--s",
-        "text": section.name
-      })
-    }}
+    {% if showAnchor %}
+      <a name="{{ section.id }}" >
+        {{
+          label({
+            "classes": "nhsuk-label--s",
+            "text": section.name
+          })
+        }}
+      </a>
+    {% else %}
+      {{
+        label({
+          "classes": "nhsuk-label--s",
+          "text": section.name
+        })
+      }}
+    {% endif %}
   {% endif %}
 {% endmacro %}
 
@@ -38,8 +49,8 @@
   </div>
 {% endmacro %}
 
-{% macro solutionCardSection(section) %}
+{% macro solutionCardSection(section, showAnchor) %}
   {{ label({
-    "html": sectionHeader(section)+sectionValue(section) 
+    "html": sectionHeader(section, showAnchor)+sectionValue(section) 
   }) }}
 {% endmacro %}

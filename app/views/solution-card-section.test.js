@@ -6,6 +6,7 @@ import { App } from '../../app';
 
 const aSimpleSection = (showTitle = true) => ({
   section: {
+    id: 'simple-section',
     name: 'Simple Section',
     value: 'This is the simple section',
     showTitle,
@@ -37,13 +38,13 @@ const aColumnSection = {
 };
 
 
-const createDummyApp = (context) => {
+const createDummyApp = (context, showAnchor = false) => {
   const app = new App().createApp();
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card-section.njk' import solutionCardSection %}
-                          {{ solutionCardSection(section) }}`;
+                          {{ solutionCardSection(section, ${showAnchor}) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -78,6 +79,32 @@ describe('solution-card', () => {
         const $ = cheerio.load(res.text);
 
         expect($('label .nhsuk-label--s').length).toEqual(0);
+
+        done();
+      });
+  });
+
+  it('should render the title of the section as an anchor', (done) => {
+    const dummyApp = createDummyApp(aSimpleSection(), true);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('a').attr('name')).toEqual('simple-section');
+
+        done();
+      });
+  });
+
+  it('should not render the title of the section as an anchor if showAnchor is false', (done) => {
+    const dummyApp = createDummyApp(aSimpleSection(), false);
+    request(dummyApp)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        expect($('a').length).toEqual(0);
 
         done();
       });
