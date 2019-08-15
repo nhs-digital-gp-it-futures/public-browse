@@ -57,6 +57,19 @@ export const applySectionConfig = (sections, config) => {
   return decoratedSections;
 };
 
+export const createPageContentsContext = (sections) => {
+  const pageContents = [];
+
+  sections.map((section) => {
+    const pageContent = {};
+    pageContent.text = section.name;
+    pageContent.href = `#${section.id}`;
+    pageContents.push(pageContent);
+  });
+
+  return pageContents;
+};
+
 const createSolutionContext = (solutionData, config) => {
   const solution = {};
   solution.id = solutionData.id;
@@ -108,7 +121,10 @@ export const createShowCardPageContext = (solutionData, config) => {
 export const createSolutionPageContext = (solutionData, config) => {
   const context = {};
 
-  context.solution = createSolutionContext(solutionData, config);
+  const solution = createSolutionContext(solutionData, config);
+
+  context.solution = solution;
+  context.pageContents = createPageContentsContext(solution.sections);
 
   return context;
 };
