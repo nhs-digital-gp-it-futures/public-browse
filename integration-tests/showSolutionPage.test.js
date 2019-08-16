@@ -1,5 +1,5 @@
 import nock from 'nock';
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 import aSolutionFixture from './fixtures/aSolution.json';
 
 const mocks = () => {
@@ -40,4 +40,24 @@ test('should render the solution details', async (t) => {
 
   await t
     .expect(solutionDetails.count).eql(1);
+});
+
+test('should render the page contents', async (t) => {
+  pageSetup(t);
+
+  const pageContents = Selector('[data-test-id="page-contents-list"]');
+
+  await t
+    .expect(pageContents.count).eql(1);
+});
+
+test('should navigate to the particular section when clicking on the anchor points in the page contents', async (t) => {
+  pageSetup(t);
+  const getLocation = ClientFunction(() => document.location.href);
+
+  const firstPageContentSection = Selector('[data-test-id="page-contents-list"] a').nth(0);
+
+  await t
+    .click(firstPageContentSection)
+    .expect(getLocation()).contains('00001#description');
 });
