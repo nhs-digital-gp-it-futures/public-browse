@@ -3,7 +3,7 @@
 {% macro sectionHeader(section, showAnchor) %}
   {% if section.showTitle %}
     {% if showAnchor %}
-      <a name="{{ section.id }}" >
+      <a name="{{ section.id }}" style="color:inherit" >
         {{
           label({
             "classes": "nhsuk-label--s",
