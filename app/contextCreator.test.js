@@ -212,7 +212,7 @@ describe('createShowCardPageContext', () => {
         capabilities),
     ];
 
-    const context = createShowCardPageContext(oneSolutionWithASectionAndCapabilities, config);
+    const context = createShowCardPageContext(oneSolutionWithASectionAndCapabilities, undefined, config);
 
     expect(context).toEqual(expectedContext);
   });

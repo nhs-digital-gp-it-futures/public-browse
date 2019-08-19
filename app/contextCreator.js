@@ -120,7 +120,7 @@ const createSolutionContext = (solutionData, config) => {
   return solution;
 };
 
-export const createShowCardPageContext = (solutionData, config) => {
+export const createShowCardPageContext = (solutionData, capabilitiesData, config) => {
   const context = {};
   const solutions = [];
 
