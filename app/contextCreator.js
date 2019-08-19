@@ -85,6 +85,7 @@ export const createCapabilityFiltersContext = (capabilitiesData) => {
 
     return capabilityFilters;
   }
+  return undefined;
 };
 
 const createSolutionContext = (solutionData, config) => {

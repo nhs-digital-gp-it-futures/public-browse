@@ -463,6 +463,18 @@ describe('createPageContentsContext', () => {
 });
 
 describe('createCapabilityFiltersContext', () => {
+  it('should return undefined if no capabilities are provided', () => {
+    const context = createCapabilityFiltersContext();
+
+    expect(context).toEqual(undefined);
+  });
+
+  it('should return undefined if capabilities is an empty array', () => {
+    const context = createCapabilityFiltersContext([]);
+
+    expect(context).toEqual(undefined);
+  });
+
   it('should create a context consisting of one capability if only one capability is provided', () => {
     const expectedCapabilityFiltersContext = [
       {
