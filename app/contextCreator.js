@@ -70,6 +70,21 @@ export const createPageContentsContext = (sections) => {
   return pageContents;
 };
 
+export const createCapabilityFiltersContext = (capabilitiesData) => {
+  const capabilityFilters = [];
+
+  capabilitiesData.map((capabilityData) => {
+    const capabilityFilter = {};
+    capabilityFilter.text = capabilityData.name;
+    capabilityFilter.value = capabilityData.id;
+    capabilityFilter.checked = false;
+
+    capabilityFilters.push(capabilityFilter);
+  });
+
+  return capabilityFilters;
+};
+
 const createSolutionContext = (solutionData, config) => {
   const solution = {};
   solution.id = solutionData.id;

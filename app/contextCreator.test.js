@@ -5,6 +5,7 @@ import {
   applyDefaultConfig,
   createColumnsForSectionValue,
   createPageContentsContext,
+  createCapabilityFiltersContext,
 } from './contextCreator';
 
 const dummySection = (sectionName, sectionValue) => ({
@@ -417,5 +418,61 @@ describe('createPageContentsContext', () => {
     const pageContents = createPageContentsContext(sections);
 
     expect(pageContents).toEqual(expectedPageContents);
+  });
+});
+
+describe('createCapabilityFiltersContext', () => {
+  it('should create a context consisting of one capability if only one capability is provided', () => {
+    const expectedCapabilityFiltersContext = [
+      {
+        text: 'Capability One',
+        value: 'C1',
+        checked: false,
+      },
+    ];
+
+    const capabilitiesData = [
+      {
+        id: 'C1',
+        name: 'Capability One',
+        description: 'Some description about capability one',
+      },
+    ];
+
+    const context = createCapabilityFiltersContext(capabilitiesData);
+
+    expect(context).toEqual(expectedCapabilityFiltersContext);
+  });
+
+  it('should create a context consisting of multiple capabilities if multiple capabilities are provided', () => {
+    const expectedCapabilityFiltersContext = [
+      {
+        text: 'Capability One',
+        value: 'C1',
+        checked: false,
+      },
+      {
+        text: 'Capability Two',
+        value: 'C2',
+        checked: false,
+      },
+    ];
+
+    const capabilitiesData = [
+      {
+        id: 'C1',
+        name: 'Capability One',
+        description: 'Some description about capability one',
+      },
+      {
+        id: 'C2',
+        name: 'Capability Two',
+        description: 'Some description about capability two',
+      },
+    ];
+
+    const context = createCapabilityFiltersContext(capabilitiesData);
+
+    expect(context).toEqual(expectedCapabilityFiltersContext);
   });
 });
