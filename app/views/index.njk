@@ -14,7 +14,7 @@
       All the solutions. Check them out.
     </p>
 
-    <div class="nhsuk-grid-column-one-quarter">
+    <div class="nhsuk-grid-column-one-third">
       {% if capabilities %}
         {{ capabilityFilters(capabilities) }}
         {{ button({
@@ -23,7 +23,7 @@
       {% endif %}
     </div>
 
-    <div class="nhsuk-grid-column-three-quarters" data-test-id="solution-cards">
+    <div class="nhsuk-grid-column-two-thirds" data-test-id="solution-cards">
     {% for solution in solutions %}
       {{ solutionCard(solution, true, false) }}
     {% endfor %}

@@ -60,7 +60,7 @@ describe('index page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          expect($('.nhsuk-grid-column-one-quarter').text().trim()).toContain('Filter your capabilites?');
+          expect($('.nhsuk-grid-column-one-third').text().trim()).toContain('Filter your capabilites?');
 
           done();
         });
@@ -77,7 +77,7 @@ describe('index page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          expect($('.nhsuk-grid-column-one-quarter').find('button').text().trim()).toContain('Apply Filter');
+          expect($('.nhsuk-grid-column-one-third').find('button').text().trim()).toContain('Apply Filter');
 
           done();
         });
