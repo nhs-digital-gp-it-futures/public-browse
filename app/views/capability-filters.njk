@@ -1,0 +1,16 @@
+{% from 'components/panel/macro.njk' import panel %}
+{% from 'components/checkboxes/macro.njk' import checkboxes %}
+
+{% macro capabilityFilters(capabilitiesData) %}
+
+{{ checkboxes({
+  "idPrefix": "capabilities",
+  "name": "capabilities",
+  "fieldset": {
+    "legend": {
+      "text": "Filter your capabilites?"
+    }
+  },
+  "items": capabilitiesData
+}) }}
+{% endmacro %}
