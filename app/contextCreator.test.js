@@ -212,7 +212,48 @@ describe('createShowCardPageContext', () => {
         capabilities),
     ];
 
-    const context = createShowCardPageContext(oneSolutionWithASectionAndCapabilities, undefined, config);
+    const context = createShowCardPageContext(
+      oneSolutionWithASectionAndCapabilities, undefined, config,
+    );
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  it('should add the capabilities context if capability data is provided', () => {
+    const expectedContext = {
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+          sections: [
+            {
+              id: 'first-section',
+              name: 'First Section',
+              value: 'First Solution Section Value',
+              showTitle: true,
+            },
+          ],
+        },
+      ],
+      capabilities: [
+        {
+          text: 'Capability One',
+          value: 'C1',
+          checked: false,
+        },
+      ],
+    };
+
+    const capabilitiesData = [{ id: 'C1', name: 'Capability One' }];
+
+    const oneSolutionWithASection = [
+      dummySolutionData('00001', 'The first solution',
+        [dummySection('First Section', 'First Solution Section Value')]),
+    ];
+
+    const context = createShowCardPageContext(
+      oneSolutionWithASection, capabilitiesData, undefined,
+    );
 
     expect(context).toEqual(expectedContext);
   });

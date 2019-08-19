@@ -71,18 +71,20 @@ export const createPageContentsContext = (sections) => {
 };
 
 export const createCapabilityFiltersContext = (capabilitiesData) => {
-  const capabilityFilters = [];
+  if (capabilitiesData && capabilitiesData.length > 0) {
+    const capabilityFilters = [];
 
-  capabilitiesData.map((capabilityData) => {
-    const capabilityFilter = {};
-    capabilityFilter.text = capabilityData.name;
-    capabilityFilter.value = capabilityData.id;
-    capabilityFilter.checked = false;
+    capabilitiesData.map((capabilityData) => {
+      const capabilityFilter = {};
+      capabilityFilter.text = capabilityData.name;
+      capabilityFilter.value = capabilityData.id;
+      capabilityFilter.checked = false;
 
-    capabilityFilters.push(capabilityFilter);
-  });
+      capabilityFilters.push(capabilityFilter);
+    });
 
-  return capabilityFilters;
+    return capabilityFilters;
+  }
 };
 
 const createSolutionContext = (solutionData, config) => {
@@ -129,6 +131,8 @@ export const createShowCardPageContext = (solutionData, capabilitiesData, config
   });
 
   context.solutions = solutions;
+
+  context.capabilities = createCapabilityFiltersContext(capabilitiesData);
 
   return context;
 };
