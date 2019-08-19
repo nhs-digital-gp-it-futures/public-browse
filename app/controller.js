@@ -17,7 +17,11 @@ const config = {
 export const getShowCardsPageContext = async () => {
   const solutionData = await axios.get('http://localhost:5000/api/v1/solutions');
 
-  const context = createShowCardPageContext(solutionData.data.solutions, config);
+  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+
+  const context = createShowCardPageContext(
+    solutionData.data.solutions, capabilitiesData.data.capabilities, config,
+  );
 
   return context;
 };
