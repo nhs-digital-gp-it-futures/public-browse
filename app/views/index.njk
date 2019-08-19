@@ -1,6 +1,8 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/breadcrumb/macro.njk' import breadcrumb %}
+{% from 'components/button/macro.njk' import button %}
 {% from './solution-card.njk' import solutionCard %}
+{% from './capability-filters.njk' import capabilityFilters %}
 
 {% block body %}
 <div class="nhsuk-grid-row">
@@ -12,7 +14,16 @@
       All the solutions. Check them out.
     </p>
 
-    <div data-test-id="solution-cards">
+    <div class="nhsuk-grid-column-one-quarter">
+      {% if capabilities %}
+        {{ capabilityFilters(capabilities) }}
+        {{ button({
+          "text": "Apply Filter"
+        }) }}
+      {% endif %}
+    </div>
+
+    <div class="nhsuk-grid-column-three-quarters" data-test-id="solution-cards">
     {% for solution in solutions %}
       {{ solutionCard(solution, true, false) }}
     {% endfor %}

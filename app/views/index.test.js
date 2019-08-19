@@ -48,6 +48,42 @@ describe('index page', () => {
       });
   });
 
+  describe('capability filters', () => {
+    it('should render the capability filters component', (done) => {
+      const context = {
+        capabilities: [],
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          expect($('.nhsuk-grid-column-one-quarter').text().trim()).toContain('Filter your capabilites?');
+
+          done();
+        });
+    });
+
+    it('should render the Apply Filters button', (done) => {
+      const context = {
+        capabilities: [],
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          expect($('.nhsuk-grid-column-one-quarter').find('button').text().trim()).toContain('Apply Filter');
+
+          done();
+        });
+    });
+  });
+
   describe('solution cards', () => {
     it('should render 0 cards if no solutions are provided in the context', (done) => {
       const context = {
