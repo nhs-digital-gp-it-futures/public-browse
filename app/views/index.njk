@@ -16,10 +16,12 @@
 
     <div class="nhsuk-grid-column-one-third">
       {% if capabilities %}
-        {{ capabilityFilters(capabilities) }}
-        {{ button({
-          "text": "Apply Filter"
-        }) }}
+        <form method="post" action="/">
+          {{ capabilityFilters(capabilities) }}
+          {{ button({
+            "text": "Apply Filter"
+          }) }}
+        </form>
       {% endif %}
     </div>
 

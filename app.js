@@ -22,6 +22,10 @@ class App {
     // Use gzip compression to decrease the size of
     // the response body and increase the speed of web app
     app.use(compression());
+
+    app.use(express.urlencoded());
+
+    app.use(express.json());
   
     // Middleware to serve static assets
     app.use(express.static(path.join(__dirname, 'public/')));

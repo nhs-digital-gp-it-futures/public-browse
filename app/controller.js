@@ -33,3 +33,16 @@ export const getSolutionPageContext = async (solutionId) => {
 
   return context;
 };
+
+export const postCapabilityFilters = async (capabilities) => {
+  const solutionData = await axios.post('http://localhost:5000/api/v1/solutions', capabilities);
+
+  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+  // Will need to check selected capabilities
+
+  const context = createShowCardPageContext(
+    solutionData.data.solutions, capabilitiesData.data.capabilities, config,
+  );
+
+  return context;
+};
