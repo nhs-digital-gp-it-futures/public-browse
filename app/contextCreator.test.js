@@ -529,7 +529,7 @@ describe('createCapabilityFiltersContext', () => {
     expect(context).toEqual(expectedCapabilityFiltersContext);
   });
 
-  it('should mark all passed in selectedCapabilities as checked', () => {
+  it('should mark the single selectedCapabilities as checked', () => {
     const expectedCapabilityFiltersContext = [
       {
         text: 'Capability One',
@@ -556,7 +556,41 @@ describe('createCapabilityFiltersContext', () => {
       },
     ];
 
-    const selectedCapabilities = { capabilities: ['C1'] };
+    const selectedCapabilities = { capabilities: 'C1' };
+
+    const context = createCapabilityFiltersContext(capabilitiesData, selectedCapabilities);
+
+    expect(context).toEqual(expectedCapabilityFiltersContext);
+  });
+
+  it('should mark multiple selectedCapabilities as checked', () => {
+    const expectedCapabilityFiltersContext = [
+      {
+        text: 'Capability One',
+        value: 'C1',
+        checked: true,
+      },
+      {
+        text: 'Capability Two',
+        value: 'C2',
+        checked: true,
+      },
+    ];
+
+    const capabilitiesData = [
+      {
+        id: 'C1',
+        name: 'Capability One',
+        description: 'Some description about capability one',
+      },
+      {
+        id: 'C2',
+        name: 'Capability Two',
+        description: 'Some description about capability two',
+      },
+    ];
+
+    const selectedCapabilities = { capabilities: ['C1', 'C2'] };
 
     const context = createCapabilityFiltersContext(capabilitiesData, selectedCapabilities);
 
