@@ -70,7 +70,7 @@ export const createPageContentsContext = (sections) => {
   return pageContents;
 };
 
-export const createCapabilityFiltersContext = (capabilitiesData) => {
+export const createCapabilityFiltersContext = (capabilitiesData, selectedCapabilities = {}) => {
   if (capabilitiesData && capabilitiesData.length > 0) {
     const capabilityFilters = [];
 
@@ -78,13 +78,21 @@ export const createCapabilityFiltersContext = (capabilitiesData) => {
       const capabilityFilter = {};
       capabilityFilter.text = capabilityData.name;
       capabilityFilter.value = capabilityData.id;
-      capabilityFilter.checked = false;
+
+      if (selectedCapabilities.capabilities
+        && selectedCapabilities.capabilities.length > 0
+        && selectedCapabilities.capabilities.includes(capabilityData.id)) {
+        capabilityFilter.checked = true;
+      } else {
+        capabilityFilter.checked = false;
+      }
 
       capabilityFilters.push(capabilityFilter);
     });
 
     return capabilityFilters;
   }
+
   return undefined;
 };
 
@@ -123,7 +131,9 @@ const createSolutionContext = (solutionData, config) => {
   return solution;
 };
 
-export const createShowCardPageContext = (solutionData, capabilitiesData, config) => {
+export const createShowCardPageContext = (
+  solutionData, capabilitiesData, selectedCapabilities, config,
+) => {
   const context = {};
   const solutions = [];
 
@@ -133,7 +143,9 @@ export const createShowCardPageContext = (solutionData, capabilitiesData, config
 
   context.solutions = solutions;
 
-  context.capabilities = createCapabilityFiltersContext(capabilitiesData);
+  context.capabilities = createCapabilityFiltersContext(
+    capabilitiesData, selectedCapabilities,
+  );
 
   return context;
 };
