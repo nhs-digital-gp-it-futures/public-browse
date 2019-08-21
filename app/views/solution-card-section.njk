@@ -27,19 +27,19 @@
     {% if section.displayType === "columns" %}
       <div data-test-id="section-column1" class="nhsuk-grid-column-one-half">
         {% for v in section.value.column1 %}
-          <p>- {{ v }}</p>
+          <p data-test-id="{{section.id}}-value">- {{ v }}</p>
         {% endfor %}
       </div>
       <div data-test-id="section-column2" class="nhsuk-grid-column-one-half">
         {% for v in section.value.column2 %}
-          <p>- {{ v }}</p>
+          <p data-test-id="{{section.id}}-value">- {{ v }}</p>
         {% endfor %}
       </div>
     {% else %}
       <div class="nhsuk-grid-column-full">
         {% if section.value | isArray %}
           {% for v in section.value %}
-            <p>- {{ v }}</p>
+            <p data-test-id="{{section.id}}-value">- {{ v }}</p>
           {% endfor %}
         {% else %}
           <p>{{ section.value }}</p>
