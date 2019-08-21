@@ -133,12 +133,12 @@ describe('solution-card', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('p').length).toEqual(3);
-        $('p').each((index, sectionValue) => {
+        const sectionValues = $('[data-test-id="list-section-value"]');
+
+        expect(sectionValues.length).toEqual(3);
+        sectionValues.each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aListSection.section.value[index]}`);
         });
-        
-        expect($('p[data-test-id="list-section-value"]').length).toEqual(3);
 
         done();
       });
@@ -154,6 +154,7 @@ describe('solution-card', () => {
         const column1 = $('[data-test-id="section-column1"]');
         const column2 = $('[data-test-id="section-column2"]');
 
+        expect($('[data-test-id="column-section-value"]').length).toEqual(3);
         expect(column1.length).toEqual(1);
         expect(column1.find('p').length).toEqual(2);
         column1.find('p').each((index, sectionValue) => {
@@ -165,8 +166,6 @@ describe('solution-card', () => {
         column2.find('p').each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aColumnSection.section.value.column2[index]}`);
         });
-
-        expect($('[data-test-id="column-section-value"]').length).toEqual(3);
 
         done();
       });
