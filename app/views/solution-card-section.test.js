@@ -15,6 +15,7 @@ const aSimpleSection = (showTitle = true) => ({
 
 const aListSection = {
   section: {
+    id: 'list-section',
     name: 'List Section',
     value: [
       'value 1',
@@ -27,6 +28,7 @@ const aListSection = {
 
 const aColumnSection = {
   section: {
+    id: 'column-section',
     name: 'Column Section',
     value: {
       column1: ['Capability A', 'Capability B'],
@@ -118,6 +120,7 @@ describe('solution-card', () => {
         const $ = cheerio.load(res.text);
 
         expect($('p').text().trim()).toEqual('This is the simple section');
+        expect($('[data-test-id="simple-section-value"]').length).toEqual(1);
 
         done();
       });
@@ -134,6 +137,8 @@ describe('solution-card', () => {
         $('p').each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aListSection.section.value[index]}`);
         });
+        
+        expect($('p[data-test-id="list-section-value"]').length).toEqual(3);
 
         done();
       });
@@ -160,6 +165,8 @@ describe('solution-card', () => {
         column2.find('p').each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aColumnSection.section.value.column2[index]}`);
         });
+
+        expect($('[data-test-id="column-section-value"]').length).toEqual(3);
 
         done();
       });
