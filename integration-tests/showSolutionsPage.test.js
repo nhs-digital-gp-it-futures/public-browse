@@ -86,6 +86,7 @@ test('should filter the solutions based upon the capabilities selected', async (
   const solutionsCards = Selector('[data-test-id="solution-card"]');
 
   await t
+    .expect(solutionsCards.count).eql(3)
     .expect(Selector('#capabilities-1:checked').exists).notOk()
     .click(Selector('#capabilities-1'))
     .expect(Selector('#capabilities-1:checked').exists).ok()
