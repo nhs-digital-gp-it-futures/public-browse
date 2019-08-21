@@ -20,7 +20,7 @@ export const getShowCardsPageContext = async () => {
   const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
 
   const context = createShowCardPageContext(
-    solutionData.data.solutions, capabilitiesData.data.capabilities, config,
+    solutionData.data.solutions, capabilitiesData.data.capabilities, {}, config,
   );
 
   return context;
@@ -30,6 +30,18 @@ export const getSolutionPageContext = async (solutionId) => {
   const solutionData = await axios.get(`http://localhost:5000/api/v1/solution/${solutionId}`);
 
   const context = createSolutionPageContext(solutionData.data.solution);
+
+  return context;
+};
+
+export const postCapabilityFilters = async (selectedCapabilities) => {
+  const solutionData = await axios.post('http://localhost:5000/api/v1/solutions', selectedCapabilities);
+
+  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+
+  const context = createShowCardPageContext(
+    solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
+  );
 
   return context;
 };

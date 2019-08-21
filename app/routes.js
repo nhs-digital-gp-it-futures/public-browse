@@ -1,5 +1,5 @@
 import express from 'express';
-import { getShowCardsPageContext, getSolutionPageContext } from './controller';
+import { getShowCardsPageContext, getSolutionPageContext, postCapabilityFilters } from './controller';
 
 const router = express.Router();
 
@@ -15,6 +15,14 @@ router.get('/:solutionId', async (req, res) => {
   const context = await getSolutionPageContext(solutionId);
 
   res.render('solution-page', context);
+});
+
+router.post('/', async (req, res) => {
+  const selectedCapabilities = req.body;
+
+  const context = await postCapabilityFilters(selectedCapabilities);
+
+  res.render('index', context);
 });
 
 

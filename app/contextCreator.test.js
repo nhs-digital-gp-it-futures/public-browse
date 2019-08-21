@@ -213,7 +213,7 @@ describe('createShowCardPageContext', () => {
     ];
 
     const context = createShowCardPageContext(
-      oneSolutionWithASectionAndCapabilities, undefined, config,
+      oneSolutionWithASectionAndCapabilities, undefined, undefined, config,
     );
 
     expect(context).toEqual(expectedContext);
@@ -525,6 +525,74 @@ describe('createCapabilityFiltersContext', () => {
     ];
 
     const context = createCapabilityFiltersContext(capabilitiesData);
+
+    expect(context).toEqual(expectedCapabilityFiltersContext);
+  });
+
+  it('should mark the single selectedCapabilities as checked', () => {
+    const expectedCapabilityFiltersContext = [
+      {
+        text: 'Capability One',
+        value: 'C1',
+        checked: true,
+      },
+      {
+        text: 'Capability Two',
+        value: 'C2',
+        checked: false,
+      },
+    ];
+
+    const capabilitiesData = [
+      {
+        id: 'C1',
+        name: 'Capability One',
+        description: 'Some description about capability one',
+      },
+      {
+        id: 'C2',
+        name: 'Capability Two',
+        description: 'Some description about capability two',
+      },
+    ];
+
+    const selectedCapabilities = { capabilities: 'C1' };
+
+    const context = createCapabilityFiltersContext(capabilitiesData, selectedCapabilities);
+
+    expect(context).toEqual(expectedCapabilityFiltersContext);
+  });
+
+  it('should mark multiple selectedCapabilities as checked', () => {
+    const expectedCapabilityFiltersContext = [
+      {
+        text: 'Capability One',
+        value: 'C1',
+        checked: true,
+      },
+      {
+        text: 'Capability Two',
+        value: 'C2',
+        checked: true,
+      },
+    ];
+
+    const capabilitiesData = [
+      {
+        id: 'C1',
+        name: 'Capability One',
+        description: 'Some description about capability one',
+      },
+      {
+        id: 'C2',
+        name: 'Capability Two',
+        description: 'Some description about capability two',
+      },
+    ];
+
+    const selectedCapabilities = { capabilities: ['C1', 'C2'] };
+
+    const context = createCapabilityFiltersContext(capabilitiesData, selectedCapabilities);
 
     expect(context).toEqual(expectedCapabilityFiltersContext);
   });

@@ -1,12 +1,17 @@
 import nock from 'nock';
 import { Selector } from 'testcafe';
 import allSolutionFixture from './fixtures/allSolutions.json';
+import allCapabilitiesFixture from './fixtures/allCapabilities.json';
 import aSolutionFixture from './fixtures/aSolution.json';
 
 const mocks = () => {
   nock('http://localhost:5000')
     .get('/api/v1/solutions')
     .reply(200, allSolutionFixture);
+
+  nock('http://localhost:5000')
+    .get('/api/v1/capabilities')
+    .reply(200, allCapabilitiesFixture);
 
   nock('http://localhost:5000')
     .get('/api/v1/solution/00001')
@@ -45,6 +50,15 @@ test('should render the solutions cards', async (t) => {
 
   await t
     .expect(solutionsCards.count).eql(3);
+});
+
+test('should render the capabilites filter', async (t) => {
+  pageSetup(t);
+
+  const capabilityFilter = Selector('.nhsuk-grid-column-one-third');
+
+  await t
+    .expect(capabilityFilter.count).eql(1);
 });
 
 test('should navigate to the solution details page when clicking on the title of the solution', async (t) => {
