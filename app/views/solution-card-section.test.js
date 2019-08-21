@@ -110,7 +110,7 @@ describe('solution-card', () => {
       });
   });
 
-  it('should render the value of the section', (done) => {
+  it.only('should render the value of the section', (done) => {
     const dummyApp = createDummyApp(aSimpleSection());
     request(dummyApp)
       .get('/')
@@ -118,6 +118,7 @@ describe('solution-card', () => {
         const $ = cheerio.load(res.text);
 
         expect($('p').text().trim()).toEqual('This is the simple section');
+        expect($('[data-test-id="simple-section-value"]').length).toEqual(1);
 
         done();
       });
@@ -134,6 +135,7 @@ describe('solution-card', () => {
         $('p').each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aListSection.section.value[index]}`);
         });
+        expect($('[data-test-id="simple-section-value"]').length).toEqual(3);
 
         done();
       });
@@ -160,6 +162,8 @@ describe('solution-card', () => {
         column2.find('p').each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aColumnSection.section.value.column2[index]}`);
         });
+
+        expect($('[data-test-id="simple-section-value"]').length).toEqual(3);
 
         done();
       });

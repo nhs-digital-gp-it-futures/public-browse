@@ -42,7 +42,7 @@
             <p data-test-id="{{section.id}}-value">- {{ v }}</p>
           {% endfor %}
         {% else %}
-          <p>{{ section.value }}</p>
+          <p data-test-id="{{section.id}}-value">{{ section.value }}</p>
         {% endif %}
       </div>
     {% endif %}
