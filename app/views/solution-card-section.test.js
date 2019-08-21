@@ -15,6 +15,7 @@ const aSimpleSection = (showTitle = true) => ({
 
 const aListSection = {
   section: {
+    id: 'list-section',
     name: 'List Section',
     value: [
       'value 1',
@@ -27,6 +28,7 @@ const aListSection = {
 
 const aColumnSection = {
   section: {
+    id: 'column-section',
     name: 'Column Section',
     value: {
       column1: ['Capability A', 'Capability B'],
@@ -110,7 +112,7 @@ describe('solution-card', () => {
       });
   });
 
-  it.only('should render the value of the section', (done) => {
+  it('should render the value of the section', (done) => {
     const dummyApp = createDummyApp(aSimpleSection());
     request(dummyApp)
       .get('/')
@@ -135,7 +137,8 @@ describe('solution-card', () => {
         $('p').each((index, sectionValue) => {
           expect($(sectionValue).text()).toEqual(`- ${aListSection.section.value[index]}`);
         });
-        expect($('[data-test-id="simple-section-value"]').length).toEqual(3);
+        
+        expect($('p[data-test-id="list-section-value"]').length).toEqual(3);
 
         done();
       });
@@ -163,7 +166,7 @@ describe('solution-card', () => {
           expect($(sectionValue).text()).toEqual(`- ${aColumnSection.section.value.column2[index]}`);
         });
 
-        expect($('[data-test-id="simple-section-value"]').length).toEqual(3);
+        expect($('[data-test-id="column-section-value"]').length).toEqual(3);
 
         done();
       });
