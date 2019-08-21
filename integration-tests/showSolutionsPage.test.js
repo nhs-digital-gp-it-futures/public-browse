@@ -3,6 +3,7 @@ import { Selector } from 'testcafe';
 import allSolutionFixture from './fixtures/allSolutions.json';
 import allCapabilitiesFixture from './fixtures/allCapabilities.json';
 import aSolutionFixture from './fixtures/aSolution.json';
+import filteredSolutionsFixture from './fixtures/filteredSolutions.json';
 
 const mocks = () => {
   nock('http://localhost:5000')
@@ -16,6 +17,14 @@ const mocks = () => {
   nock('http://localhost:5000')
     .get('/api/v1/solution/00001')
     .reply(200, aSolutionFixture);
+
+  nock('http://localhost:5000')
+    .post('/api/v1/solutions')
+    .reply(200, filteredSolutionsFixture);
+
+  nock('http://localhost:5000')
+    .get('/api/v1/capabilities')
+    .reply(200, allCapabilitiesFixture);
 };
 
 const pageSetup = async (t) => {
@@ -69,4 +78,18 @@ test('should navigate to the solution details page when clicking on the title of
   await t
     .click(firstSolutionsCard)
     .navigateTo('./00001');
+});
+
+test('should filter the solutions based upon the capabilities selected', async (t) => {
+  pageSetup(t);
+
+  const solutionsCards = Selector('[data-test-id="solution-card"]');
+
+  await t
+    .expect(Selector('#capabilities-1:checked').exists).notOk()
+    .click(Selector('#capabilities-1'))
+    .expect(Selector('#capabilities-1:checked').exists).ok()
+    .click(Selector('.nhsuk-button'))
+    .expect(solutionsCards.count).eql(2)
+    .expect(Selector('#capabilities-1:checked').exists).ok();
 });

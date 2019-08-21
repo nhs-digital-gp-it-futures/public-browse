@@ -5,6 +5,7 @@ const path = require('path');
 const compression = require('compression');
 const express = require('express');
 const nunjucks = require('nunjucks');
+const bodyParser = require('body-parser');
 
 // Local dependencies
 const config = require('./app/config');
@@ -23,7 +24,7 @@ class App {
     // the response body and increase the speed of web app
     app.use(compression());
 
-    app.use(express.urlencoded());
+    app.use(bodyParser.urlencoded({ extended: true }));
 
     app.use(express.json());
   
