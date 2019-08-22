@@ -49,6 +49,23 @@ describe('index page', () => {
   });
 
   describe('capability filters', () => {
+    it('should render the show foundation only button', (done) => {
+      const context = {
+        capabilities: [],
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          expect($('[data-test-id="foundation-filter"]').find('button').text().trim()).toContain('Foundation only');
+
+          done();
+        });
+    });
+
     it('should render the capability filters component', (done) => {
       const context = {
         capabilities: [],
@@ -60,7 +77,7 @@ describe('index page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          expect($('.nhsuk-grid-column-one-third').text().trim()).toContain('Filter your capabilites?');
+          expect($('[data-test-id="capability-filter"]').text().trim()).toContain('Filter your capabilites?');
 
           done();
         });
@@ -77,7 +94,7 @@ describe('index page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          expect($('.nhsuk-grid-column-one-third').find('button').text().trim()).toContain('Apply Filter');
+          expect($('[data-test-id="capability-filter"]').find('button').text().trim()).toContain('Apply Filter');
 
           done();
         });

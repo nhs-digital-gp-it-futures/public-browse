@@ -90,7 +90,7 @@ test('should filter the solutions based upon the capabilities selected', async (
     .expect(Selector('#capabilities-1:checked').exists).notOk()
     .click(Selector('#capabilities-1'))
     .expect(Selector('#capabilities-1:checked').exists).ok()
-    .click(Selector('.nhsuk-button'))
+    .click(Selector('[data-test-id="capability-filter"] button'))
     .expect(solutionsCards.count).eql(2)
     .expect(Selector('#capabilities-1:checked').exists).ok();
 });

@@ -45,3 +45,27 @@ export const postCapabilityFilters = async (selectedCapabilities) => {
 
   return context;
 };
+
+const determineFoundationCapabilities = (capabilitiesData) => {
+  const selectedCapabilities = {};
+
+  const foundationCapabilityIds = capabilitiesData.data.capabilities.filter(capabilityData => capabilityData.type && capabilityData.type === 'foundation').map(foundationCap => foundationCap.id);
+
+  selectedCapabilities.capabilities = foundationCapabilityIds;
+
+  return selectedCapabilities;
+};
+
+export const getFoundationCapabilitySolutions = async () => {
+  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+
+  const selectedCapabilities = determineFoundationCapabilities(capabilitiesData);
+
+  const solutionData = await axios.post('http://localhost:5000/api/v1/solutions', selectedCapabilities);
+
+  const context = createShowCardPageContext(
+    solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
+  );
+
+  return context;
+};
