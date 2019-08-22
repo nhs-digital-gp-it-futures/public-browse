@@ -94,3 +94,16 @@ test('should filter the solutions based upon the capabilities selected', async (
     .expect(solutionsCards.count).eql(2)
     .expect(Selector('#capabilities-1:checked').exists).ok();
 });
+
+test('should navigate to the foundation solutions view when foundation capability selection is clicked', async (t) => {
+  pageSetup(t);
+
+  const solutionsCards = Selector('[data-test-id="solution-card"]');
+
+  await t
+    .expect(solutionsCards.count).eql(3)
+    .expect(Selector('#capabilities-1:checked').exists).notOk()
+    .expect(Selector('#capabilities-2:checked').exists).notOk()
+    .click(Selector('[data-test-id="foundation-filter"] button'))
+    .navigateTo('./foundation');
+});

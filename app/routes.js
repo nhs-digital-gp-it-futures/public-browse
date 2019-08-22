@@ -14,7 +14,13 @@ router.get('/', async (req, res) => {
   res.render('index', context);
 });
 
-router.get('/:solutionId', async (req, res) => {
+router.get('/foundation', async (req, res) => {
+  const context = await getFoundationCapabilitySolutions();
+
+  res.render('index', context);
+});
+
+router.get('/view/:solutionId', async (req, res) => {
   const { solutionId } = req.params;
 
   const context = await getSolutionPageContext(solutionId);
@@ -29,12 +35,5 @@ router.post('/', async (req, res) => {
 
   res.render('index', context);
 });
-
-router.get('/foundation', async (req, res) => {
-  const context = await getFoundationCapabilitySolutions();
-
-  res.render('index', context);
-});
-
 
 module.exports = router;

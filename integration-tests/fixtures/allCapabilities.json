@@ -5,12 +5,14 @@
     {
       "id": "C1",
       "name": "Appointments Management - Citizen",
-      "description": "Enables Citizens to manage their Appointments online. Supports the use of Appointment slots that have been configured in Appointments Management - GP."
+      "description": "Enables Citizens to manage their Appointments online. Supports the use of Appointment slots that have been configured in Appointments Management - GP.",
+      "type": "foundation"
     },
     {
       "id": "C10",
       "name": "GP Extracts Verification",
-      "description": "Supports Practice staff in ensuring accuracy of the data that is used with the Calculating Quality Reporting Service (CQRS)."
+      "description": "Supports Practice staff in ensuring accuracy of the data that is used with the Calculating Quality Reporting Service (CQRS).",
+      "type": "foundation"
     },
     {
       "id": "C11",

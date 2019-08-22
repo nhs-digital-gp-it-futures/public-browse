@@ -10,7 +10,7 @@ const mocks = () => {
 
 const pageSetup = async (t) => {
   mocks();
-  await t.navigateTo('http://localhost:1234/00001');
+  await t.navigateTo('http://localhost:1234/view/00001');
 };
 
 fixture('Show Solution Page');
