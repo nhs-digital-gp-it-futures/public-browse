@@ -16,8 +16,8 @@ createTestcafe('localhost')
 
     return tc.createRunner()
       .src(['integration-tests/*.test.js'])
-      .browsers('chrome')
-      .concurrency(1)
+      .browsers('chrome:headless')
+      .concurrency(2)
       .run();
   })
   .then((failCount) => {
