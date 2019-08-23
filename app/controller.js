@@ -49,7 +49,9 @@ export const postCapabilityFilters = async (selectedCapabilities) => {
 const determineFoundationCapabilities = (capabilitiesData) => {
   const selectedCapabilities = {};
 
-  const foundationCapabilityIds = capabilitiesData.data.capabilities.filter(capabilityData => capabilityData.type && capabilityData.type === 'foundation').map(foundationCap => foundationCap.id);
+  const foundationCapabilityIds = capabilitiesData.data.capabilities
+    .filter(capabilityData => capabilityData.type && capabilityData.type === 'foundation')
+    .map(foundationCapability => foundationCapability.id);
 
   selectedCapabilities.capabilities = foundationCapabilityIds;
 
