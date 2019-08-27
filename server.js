@@ -1,10 +1,10 @@
+const browserSync = require('browser-sync');
 const routes = require('./app/routes');
 const config = require('./app/config');
-const browserSync = require('browser-sync');
-const { App } = require('./app')
+const { App } = require('./app');
 
 // Routes
-const app = new App().createApp()
+const app = new App().createApp();
 app.use('/', routes);
 
 // Run application on configured port

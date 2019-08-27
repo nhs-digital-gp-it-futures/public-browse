@@ -5,14 +5,14 @@
 
   {% macro capabilityCheckboxes(capabilitiesData) %}
     {{ checkboxes({
-      "idPrefix": "capabilities",
-      "name": "capabilities",
-      "fieldset": {
-        "legend": {
-          "text": "Filter your capabilites?"
+      idPrefix: "capabilities",
+      name: "capabilities",
+      fieldset: {
+        legend: {
+          text: "Filter your capabilites?"
         }
       },
-      "items": capabilitiesData
+      items: capabilitiesData
     }) }}
   {% endmacro %}
 
