@@ -103,15 +103,26 @@ const createSolutionContext = (solutionData, config) => {
 
   const sections = [];
 
-  solutionData.marketingData.sections.map((s) => {
-    const section = {};
+  if (solutionData.summary) {
+    const summarySection = {};
+    summarySection.id = 'summary-section';
+    summarySection.name = 'Summary';
 
-    section.id = s.id;
-    section.name = s.name;
-    section.value = s.data[0].value;
+    summarySection.value = solutionData.summary;
+    sections.push(summarySection);
+  }
 
-    sections.push(section);
-  });
+  if (solutionData.marketingData) {
+    solutionData.marketingData.sections.map((s) => {
+      const section = {};
+
+      section.id = s.id;
+      section.name = s.name;
+      section.value = s.data[0].value;
+
+      sections.push(section);
+    });
+  }
 
   if (solutionData.capabilities) {
     const capabilitySection = {};

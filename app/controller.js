@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createShowCardPageContext, createSolutionPageContext } from './contextCreator';
 
 const config = {
-  description: {
+  'summary-section': {
     showTitle: false,
   },
   features: {
@@ -15,7 +15,7 @@ const config = {
 };
 
 export const getShowCardsPageContext = async () => {
-  const solutionData = await axios.get('http://localhost:5000/api/v1/solutions');
+  const solutionData = await axios.get('http://localhost:8080/api/v1/SolutionsSummary');
 
   const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
 
