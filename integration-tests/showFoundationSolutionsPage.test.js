@@ -4,12 +4,12 @@ import allCapabilitiesFixture from './fixtures/allCapabilities.json';
 import filteredSolutionsFixture from './fixtures/filteredSolutions.json';
 
 const mocks = () => {
-  nock('http://localhost:5000')
-    .post('/api/v1/solutions')
+  nock('http://localhost:8080')
+    .post('/api/v1/SolutionsSummary')
     .reply(200, filteredSolutionsFixture);
 
-  nock('http://localhost:5000')
-    .get('/api/v1/capabilities')
+  nock('http://localhost:8080')
+    .get('/api/v1/Capabilities')
     .reply(200, allCapabilitiesFixture);
 };
 

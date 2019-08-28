@@ -1,10 +1,9 @@
 {
-  "success": true,
-  "message": "solutions retrieved succesfully",
   "solutions": [
     {
       "id": "00001",
       "name": "The first solution and more",
+      "summary": "The summary of the first solution",
       "marketingData": {
         "manifestId": "buying-catalogue-live",
         "sections": [
@@ -64,6 +63,7 @@
     {
       "id": "00002",
       "name": "The second solution",
+      "summary": "The summary of the second solution",
       "marketingData": {
         "manifestId": "buying-catalogue-live",
         "sections": [

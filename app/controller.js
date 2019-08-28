@@ -17,7 +17,7 @@ const config = {
 export const getShowCardsPageContext = async () => {
   const solutionData = await axios.get('http://localhost:8080/api/v1/SolutionsSummary');
 
-  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+  const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
   const context = createShowCardPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, {}, config,
@@ -27,7 +27,7 @@ export const getShowCardsPageContext = async () => {
 };
 
 export const getSolutionPageContext = async (solutionId) => {
-  const solutionData = await axios.get(`http://localhost:5000/api/v1/solution/${solutionId}`);
+  const solutionData = await axios.get(`http://localhost:8080/api/v1/Solution/${solutionId}`);
 
   const context = createSolutionPageContext(solutionData.data.solution);
 
@@ -35,9 +35,9 @@ export const getSolutionPageContext = async (solutionId) => {
 };
 
 export const postCapabilityFilters = async (selectedCapabilities) => {
-  const solutionData = await axios.post('http://localhost:5000/api/v1/solutions', selectedCapabilities);
+  const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilities);
 
-  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+  const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
   const context = createShowCardPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
@@ -50,7 +50,7 @@ const determineFoundationCapabilities = (capabilitiesData) => {
   const selectedCapabilities = {};
 
   const foundationCapabilityIds = capabilitiesData.data.capabilities
-    .filter(capabilityData => capabilityData.type && capabilityData.type === 'foundation')
+    .filter(capabilityData => capabilityData.isFoundation)
     .map(foundationCapability => foundationCapability.id);
 
   selectedCapabilities.capabilities = foundationCapabilityIds;
@@ -59,11 +59,11 @@ const determineFoundationCapabilities = (capabilitiesData) => {
 };
 
 export const getFoundationCapabilitySolutions = async () => {
-  const capabilitiesData = await axios.get('http://localhost:5000/api/v1/capabilities');
+  const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
   const selectedCapabilities = determineFoundationCapabilities(capabilitiesData);
 
-  const solutionData = await axios.post('http://localhost:5000/api/v1/solutions', selectedCapabilities);
+  const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilities);
 
   const context = createShowCardPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
