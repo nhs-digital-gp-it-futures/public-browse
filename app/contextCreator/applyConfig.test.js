@@ -2,7 +2,7 @@ import { applySectionConfig, applyDefaultConfig } from './applyConfig';
 
 describe('applySectionConfig', () => {
   it('should only return sections defined in the config', () => {
-    const expectedContext = [
+    const expectedDecoratedSections = [
       {
         id: 'first-section',
         name: 'First Section',
@@ -16,7 +16,7 @@ describe('applySectionConfig', () => {
       'first-section': {},
     };
 
-    const initialContext = [
+    const initialSection = [
       {
         id: 'first-section',
         name: 'First Section',
@@ -29,13 +29,13 @@ describe('applySectionConfig', () => {
       },
     ];
 
-    const context = applySectionConfig(initialContext, config);
+    const context = applySectionConfig(initialSection, config);
 
-    expect(context).toEqual(expectedContext);
+    expect(context).toEqual(expectedDecoratedSections);
   });
 
   it('should decorate a section with the config provided for that section', () => {
-    const expectedContext = [
+    const expectedDecoratedSections = [
       {
         id: 'first-section',
         name: 'First Section',
@@ -50,7 +50,7 @@ describe('applySectionConfig', () => {
       },
     };
 
-    const initialContext = [
+    const initialSections = [
       {
         id: 'first-section',
         name: 'First Section',
@@ -58,15 +58,15 @@ describe('applySectionConfig', () => {
       },
     ];
 
-    const context = applySectionConfig(initialContext, config);
+    const context = applySectionConfig(initialSections, config);
 
-    expect(context).toEqual(expectedContext);
+    expect(context).toEqual(expectedDecoratedSections);
   });
 });
 
 describe('applyDefaultConfig', () => {
   it('show decorate the section with the default config when a config is not provided', () => {
-    const expectedContext = [
+    const expectedDecoratedSections = [
       {
         id: 'first-section',
         name: 'First Section',
@@ -75,7 +75,7 @@ describe('applyDefaultConfig', () => {
       },
     ];
 
-    const initialContext = [
+    const initialSections = [
       {
         id: 'first-section',
         name: 'First Section',
@@ -83,8 +83,8 @@ describe('applyDefaultConfig', () => {
       },
     ];
 
-    const context = applyDefaultConfig(initialContext);
+    const context = applyDefaultConfig(initialSections);
 
-    expect(context).toEqual(expectedContext);
+    expect(context).toEqual(expectedDecoratedSections);
   });
 });
