@@ -35,8 +35,15 @@ export const getSolutionPageContext = async (solutionId) => {
   return context;
 };
 
+const convertCapabilitiesToArrayIfRequired = selectedCapabilities => (
+  Array.isArray(selectedCapabilities.capabilities)
+    ? selectedCapabilities : { capabilities: [selectedCapabilities.capabilities] }
+);
+
 export const postCapabilityFilters = async (selectedCapabilities) => {
-  const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilities);
+  const selectedCapabilitiesToArray = convertCapabilitiesToArrayIfRequired(selectedCapabilities);
+
+  const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilitiesToArray);
 
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
