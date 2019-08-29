@@ -1,4 +1,4 @@
-import { createShowCardPageContext } from './createShowCardsPageContext';
+import { createShowCardsPageContext } from './createShowCardsPageContext';
 
 const dummySolutionData = (id, name, summary, capabilities, marketingData) => ({
   id,
@@ -47,7 +47,7 @@ describe('createShowCardPageContext', () => {
       dummySolutionData('00002', 'The second solution', 'The summary of the second solution'),
     ];
 
-    const context = createShowCardPageContext(twoSolutions);
+    const context = createShowCardsPageContext(twoSolutions);
 
     expect(context).toEqual(expectedContext);
   });
@@ -83,7 +83,7 @@ describe('createShowCardPageContext', () => {
       dummySolutionData('00001', 'The first solution', 'The summary of the first solution'),
     ];
 
-    const context = createShowCardPageContext(
+    const context = createShowCardsPageContext(
       oneSolution, capabilitiesData, undefined,
     );
 

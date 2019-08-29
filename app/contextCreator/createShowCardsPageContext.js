@@ -1,7 +1,7 @@
 import { createSolutionContext } from './createSolutionContext';
 import { createCapabilityFiltersContext } from './createCapabilityFiltersContext';
 
-export const createShowCardPageContext = (
+export const createShowCardsPageContext = (
   solutionData, capabilitiesData, selectedCapabilities, config,
 ) => {
   const context = {};

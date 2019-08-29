@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createSolutionPageContext } from './contextCreator/createSolutionPageContext';
-import { createShowCardPageContext } from './contextCreator/createShowCardsPageContext';
+import { createShowCardsPageContext } from './contextCreator/createShowCardsPageContext';
 
 const config = {
   'summary-section': {
@@ -20,7 +20,7 @@ export const getShowCardsPageContext = async () => {
 
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
-  const context = createShowCardPageContext(
+  const context = createShowCardsPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, {}, config,
   );
 
@@ -40,7 +40,7 @@ export const postCapabilityFilters = async (selectedCapabilities) => {
 
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
-  const context = createShowCardPageContext(
+  const context = createShowCardsPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
   );
 
@@ -66,7 +66,7 @@ export const getFoundationCapabilitySolutions = async () => {
 
   const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilities);
 
-  const context = createShowCardPageContext(
+  const context = createShowCardsPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
   );
 
