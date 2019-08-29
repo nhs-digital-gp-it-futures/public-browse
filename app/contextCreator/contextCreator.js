@@ -1,17 +1,5 @@
 import { applySectionConfig, applyDefaultConfig } from './applyConfig';
-
-export const createPageContentsContext = (sections) => {
-  const pageContents = [];
-
-  sections.map((section) => {
-    const pageContent = {};
-    pageContent.text = section.name;
-    pageContent.href = `#${section.id}`;
-    pageContents.push(pageContent);
-  });
-
-  return pageContents;
-};
+import { createPageContentsContext } from './createPageContentsContext';
 
 export const createCapabilityFiltersContext = (capabilitiesData, selectedCapabilities = {}) => {
   if (capabilitiesData && capabilitiesData.length > 0) {
