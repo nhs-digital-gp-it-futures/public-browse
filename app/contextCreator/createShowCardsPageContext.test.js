@@ -1,16 +1,5 @@
 import { createShowCardsPageContext } from './createShowCardsPageContext';
-
-const dummySolutionData = (id, name, summary, capabilities, marketingData) => ({
-  id,
-  name,
-  summary,
-  organisation: {
-    id: '235F7D1A',
-    name: 'Halls',
-  },
-  marketingData,
-  capabilities,
-});
+import { dummySolutionData } from './fixtures/createSolutionData';
 
 describe('createShowCardPageContext', () => {
   it('should create a context for 2 solutions', () => {
