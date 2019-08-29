@@ -1,7 +1,4 @@
-import {
-  createShowCardPageContext,
-  createSolutionPageContext,
-} from './contextCreator';
+import { createSolutionPageContext } from './createSolutionPageContext';
 
 const dummySection = (sectionName, sectionValue) => ({
   id: sectionName.toLowerCase().replace(' ', '-'),
