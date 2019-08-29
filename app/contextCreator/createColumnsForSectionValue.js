@@ -17,4 +17,3 @@ export const createColumnsForSectionValue = (value) => {
 
   return newValue;
 };
-
