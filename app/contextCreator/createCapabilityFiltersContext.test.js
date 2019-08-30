@@ -26,7 +26,6 @@ describe('createCapabilityFiltersContext', () => {
       {
         id: 'C1',
         name: 'Capability One',
-        description: 'Some description about capability one',
       },
     ];
 
@@ -53,12 +52,10 @@ describe('createCapabilityFiltersContext', () => {
       {
         id: 'C1',
         name: 'Capability One',
-        description: 'Some description about capability one',
       },
       {
         id: 'C2',
         name: 'Capability Two',
-        description: 'Some description about capability two',
       },
     ];
 
@@ -85,12 +82,10 @@ describe('createCapabilityFiltersContext', () => {
       {
         id: 'C1',
         name: 'Capability One',
-        description: 'Some description about capability one',
       },
       {
         id: 'C2',
         name: 'Capability Two',
-        description: 'Some description about capability two',
       },
     ];
 
@@ -119,12 +114,10 @@ describe('createCapabilityFiltersContext', () => {
       {
         id: 'C1',
         name: 'Capability One',
-        description: 'Some description about capability one',
       },
       {
         id: 'C2',
         name: 'Capability Two',
-        description: 'Some description about capability two',
       },
     ];
 
