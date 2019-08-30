@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createSolutionPageContext } from './contextCreator/createSolutionPageContext';
 import { createShowCardsPageContext } from './contextCreator/createShowCardsPageContext';
+import { convertCapabilitiesToArrayIfRequired, determineFoundationCapabilities } from './helpers';
 
 const config = {
   'summary-section': {
@@ -35,11 +36,6 @@ export const getSolutionPageContext = async (solutionId) => {
   return context;
 };
 
-const convertCapabilitiesToArrayIfRequired = selectedCapabilities => (
-  Array.isArray(selectedCapabilities.capabilities)
-    ? selectedCapabilities : { capabilities: [selectedCapabilities.capabilities] }
-);
-
 export const postCapabilityFilters = async (selectedCapabilities) => {
   const selectedCapabilitiesToArray = convertCapabilitiesToArrayIfRequired(selectedCapabilities);
 
@@ -52,18 +48,6 @@ export const postCapabilityFilters = async (selectedCapabilities) => {
   );
 
   return context;
-};
-
-const determineFoundationCapabilities = (capabilitiesData) => {
-  const selectedCapabilities = {};
-
-  const foundationCapabilityIds = capabilitiesData.data.capabilities
-    .filter(capabilityData => capabilityData.isFoundation)
-    .map(foundationCapability => foundationCapability.id);
-
-  selectedCapabilities.capabilities = foundationCapabilityIds;
-
-  return selectedCapabilities;
 };
 
 export const getFoundationCapabilitySolutions = async () => {
