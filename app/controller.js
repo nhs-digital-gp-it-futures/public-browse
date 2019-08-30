@@ -53,7 +53,7 @@ export const postCapabilityFilters = async (selectedCapabilities) => {
 export const getFoundationCapabilitySolutions = async () => {
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
-  const selectedCapabilities = determineFoundationCapabilities(capabilitiesData);
+  const selectedCapabilities = determineFoundationCapabilities(capabilitiesData.data.capabilities);
 
   const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilities);
 

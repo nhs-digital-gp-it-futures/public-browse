@@ -9,11 +9,11 @@ export const convertCapabilitiesToArrayIfRequired = (selectedCapabilities) => {
     ? selectedCapabilities : { capabilities: [selectedCapabilities.capabilities] };
 };
 
-export const determineFoundationCapabilities = (capabilitiesData) => {
+export const determineFoundationCapabilities = (capabilities) => {
   const selectedCapabilities = {};
 
-  const foundationCapabilityIds = capabilitiesData.data.capabilities
-    .filter(capabilityData => capabilityData.isFoundation)
+  const foundationCapabilityIds = capabilities
+    .filter(capability => capability.isFoundation)
     .map(foundationCapability => foundationCapability.id);
 
   selectedCapabilities.capabilities = foundationCapabilityIds;
