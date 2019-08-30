@@ -5,7 +5,7 @@ import filteredSolutionsFixture from './fixtures/filteredSolutions.json';
 
 const mocks = () => {
   nock('http://localhost:8080')
-    .post('/api/v1/SolutionsSummary')
+    .post('/api/v1/Solutions')
     .reply(200, filteredSolutionsFixture);
 
   nock('http://localhost:8080')

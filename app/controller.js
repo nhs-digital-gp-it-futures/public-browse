@@ -17,7 +17,7 @@ const config = {
 };
 
 export const getShowCardsPageContext = async () => {
-  const solutionData = await axios.get('http://localhost:8080/api/v1/SolutionsSummary');
+  const solutionData = await axios.get('http://localhost:8080/api/v1/Solutions');
 
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
@@ -39,7 +39,7 @@ export const getSolutionPageContext = async (solutionId) => {
 export const postCapabilityFilters = async (selectedCapabilities) => {
   const selectedCapabilitiesToArray = convertCapabilitiesToArrayIfRequired(selectedCapabilities);
 
-  const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilitiesToArray);
+  const solutionData = await axios.post('http://localhost:8080/api/v1/Solutions', selectedCapabilitiesToArray);
 
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
@@ -55,7 +55,7 @@ export const getFoundationCapabilitySolutions = async () => {
 
   const selectedCapabilities = determineFoundationCapabilities(capabilitiesData.data.capabilities);
 
-  const solutionData = await axios.post('http://localhost:8080/api/v1/SolutionsSummary', selectedCapabilities);
+  const solutionData = await axios.post('http://localhost:8080/api/v1/Solutions', selectedCapabilities);
 
   const context = createShowCardsPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, selectedCapabilities, config,
