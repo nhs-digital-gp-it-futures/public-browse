@@ -1,6 +1,4 @@
 {
-  "success": true,
-  "message": "solution retrieved succesfully",
   "solution": {
     "id": "00001",
     "name": "The first solution and more",

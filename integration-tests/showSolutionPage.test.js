@@ -3,8 +3,8 @@ import { Selector, ClientFunction } from 'testcafe';
 import aSolutionFixture from './fixtures/aSolution.json';
 
 const mocks = () => {
-  nock('http://localhost:5000')
-    .get('/api/v1/solution/00001')
+  nock('http://localhost:8080')
+    .get('/api/v1/Solution/00001')
     .reply(200, aSolutionFixture);
 };
 
