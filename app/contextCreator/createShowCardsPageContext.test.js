@@ -8,6 +8,7 @@ describe('createShowCardPageContext', () => {
         {
           id: '00001',
           name: 'The first solution',
+          organisation: 'Halls',
           sections: [
             {
               id: 'summary-section',
@@ -20,6 +21,7 @@ describe('createShowCardPageContext', () => {
         {
           id: '00002',
           name: 'The second solution',
+          organisation: 'Halls',
           sections: [
             {
               id: 'summary-section',
@@ -47,6 +49,7 @@ describe('createShowCardPageContext', () => {
         {
           id: '00001',
           name: 'The first solution',
+          organisation: 'Halls',
           sections: [
             {
               id: 'summary-section',

@@ -42,6 +42,7 @@ export const createSolutionContext = (solutionData, config) => {
   const solution = {};
   solution.id = solutionData.id;
   solution.name = solutionData.name;
+  solution.organisation = solutionData.organisation && solutionData.organisation.name;
 
   const sections = [];
 

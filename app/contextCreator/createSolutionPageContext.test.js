@@ -7,6 +7,7 @@ describe('createSolutionPageContext', () => {
       solution: {
         id: '00001',
         name: 'The first solution',
+        organisation: 'Halls',
         sections: [
           {
             id: 'first-section',

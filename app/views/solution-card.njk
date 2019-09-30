@@ -4,14 +4,26 @@
 
 {% macro solutionCard(solution, showTitle, showAnchor) %}
 
-  {% macro solutionTitle(solution, showTitle) %}
+  {% macro solutionOrganisation(solution) %}
+    <div data-test-id="solution-card-organisation">
+      {{ solution.organisation }}
+    </div>
+  {% endmacro %}
+
+  {% macro solutionName(solution, showTitle) %}
     {% if showTitle %}
-      <h3>
+      <h3 data-test-id="solution-card-name">
         <a href="./view/{{ solution.id }}">
           {{ solution.name }}
         </a>
       </h3>
     {% endif %}
+  {% endmacro %}
+
+  {% macro solutionId(solution) %}
+    <div data-test-id="solution-card-id">
+      {{ solution.id }}
+    </div>
   {% endmacro %}
 
   {% macro sections(data, showAnchor) %}
@@ -22,8 +34,9 @@
 
   <div data-test-id="solution-card">
     {{ panel({
-      "HTML": solutionTitle(solution, showTitle) +
-      "<div data-test-id='solution-sections'>"+ sections(solution.sections, showAnchor) +"</div>"
+      "HTML": solutionOrganisation(solution) + solutionName(solution, showTitle) +
+      "<div data-test-id='solution-sections'>"+ sections(solution.sections, showAnchor) +"</div>" +
+      solutionId(solution)
     }) }}
   </div>
 {% endmacro %}

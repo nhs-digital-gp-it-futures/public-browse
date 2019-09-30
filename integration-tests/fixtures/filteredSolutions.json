@@ -3,6 +3,10 @@
     {
       "id": "00001",
       "name": "The first solution and more",
+      "organisation": {
+        "id": "1000000",
+        "name": "Organisation A"
+      },
       "summary": "The summary of the first solution",
       "marketingData": {
         "manifestId": "buying-catalogue-live",
@@ -63,6 +67,10 @@
     {
       "id": "00002",
       "name": "The second solution",
+      "organisation": {
+        "id": "2000000",
+        "name": "Organisation B"
+      },
       "summary": "The summary of the second solution",
       "marketingData": {
         "manifestId": "buying-catalogue-live",
