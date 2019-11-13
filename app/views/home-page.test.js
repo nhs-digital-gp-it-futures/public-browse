@@ -38,6 +38,24 @@ describe('home page', () => {
       });
   });
 
+  it('should render the about us section', (done) => {
+    const context = {};
+
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const aboutUs = $('[data-test-id="about-us"]');
+
+        expect(aboutUs.length).toEqual(1);
+        expect(aboutUs.find('p').length).toEqual(3);
+
+        done();
+      });
+  });
+
   it('should render the guidance promo', (done) => {
     const context = {};
 
