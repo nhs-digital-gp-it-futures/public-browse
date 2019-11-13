@@ -9,31 +9,36 @@ import {
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const context = await getShowCardsPageContext();
 
-  res.render('index', context);
+  res.render('home-page', {});
 });
 
-router.get('/foundation', async (req, res) => {
-  const context = await getFoundationCapabilitySolutions();
+// router.get('/', async (req, res) => {
+//   const context = await getShowCardsPageContext();
 
-  res.render('index', context);
-});
+//   res.render('index', context);
+// });
 
-router.get('/view/:solutionId', async (req, res) => {
-  const { solutionId } = req.params;
+// router.get('/foundation', async (req, res) => {
+//   const context = await getFoundationCapabilitySolutions();
 
-  const context = await getSolutionPageContext(solutionId);
+//   res.render('index', context);
+// });
 
-  res.render('solution-page', context);
-});
+// router.get('/view/:solutionId', async (req, res) => {
+//   const { solutionId } = req.params;
 
-router.post('/', async (req, res) => {
-  const selectedCapabilities = req.body;
+//   const context = await getSolutionPageContext(solutionId);
 
-  const context = await postCapabilityFilters(selectedCapabilities);
+//   res.render('solution-page', context);
+// });
 
-  res.render('index', context);
-});
+// router.post('/', async (req, res) => {
+//   const selectedCapabilities = req.body;
+
+//   const context = await postCapabilityFilters(selectedCapabilities);
+
+//   res.render('index', context);
+// });
 
 module.exports = router;
