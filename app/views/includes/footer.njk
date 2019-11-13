@@ -1,5 +1,4 @@
 {% from 'components/footer/macro.njk' import footer %}
-{% from 'components/label/macro.njk' import label %}
 {% from 'components/panel/macro.njk' import panel %}
 
 <div data-test-id="footer">
@@ -34,11 +33,11 @@
     {{ panel({
       "HTML": "
       <div>
-        <span>Legal</span>
-        <span><a href=''>Privacy and cookies</a></span>
-        <span>Set Acceptable Use Policy in <a href=''>Bravo</a></span>
+        <span class='nhsuk-u-margin-right-1'>Legal</span>
+        <span class='nhsuk-u-margin-right-1'><a href=''>Privacy and cookies</a></span>
+        <span>See Acceptable Use Policy in <a href=''>Bravo</a></span>
       </div>",
-      "classes": "nhsuk-width-container footer-panel legal-panel-color legal-panel-text-padding"
+      "classes": "nhsuk-width-container footer-panel legal-panel-color"
     })}}
   </div>
 </div>
