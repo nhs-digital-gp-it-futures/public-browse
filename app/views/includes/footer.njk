@@ -1,5 +1,6 @@
 {% from 'components/footer/macro.njk' import footer %}
 {% from 'components/label/macro.njk' import label %}
+{% from 'components/panel/macro.njk' import panel %}
 
 {{ footer({
   "list": "nhsuk-footer__list--three-columns",
@@ -22,11 +23,19 @@
     {
       "label": "Capabilities and Standards Model"
     }
-  ]
+  ],
+  "copyright": " " 
 })}}
 
-<div data-test-id="legal-label">
-  {{ label({
-    "text": "Legal Privacy and cookies Set Acceptable Use Policy in Bravo"
-  }) }}
+<div data-test-id="legal-panel" class="legal-panel-color">
+  <div>
+    {{ panel({
+      "HTML": "
+      <div>
+      <div>Legal</div><div><a>Privacy and cookies</a></div> 
+      <div>Set Acceptable Use Policy in <a>Bravo</a></div>
+      </div>",
+      "classes": "nhsuk-width-container footer-panel"
+    })}}
+  </div>
 </div>
