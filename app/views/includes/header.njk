@@ -1,4 +1,11 @@
 {% from 'components/header/macro.njk' import header %}
+{% from 'components/panel/macro.njk' import panel %}
+
+{{ panel({
+  "colour": "grey",
+  "HTML": "<div>By using this website you are agreeing to abide by the terms of use which can be found <a href=''>some link</a>. If you do not agree with these terms you should not use this website</div>",
+  "classes": "header-panel nhsuk-width-container"
+}) }}
 
 {{ header({
   "classes": "nhsuk-header--white",
