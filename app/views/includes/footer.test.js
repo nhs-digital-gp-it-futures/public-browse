@@ -61,7 +61,7 @@ describe('footer', () => {
         expect(legalPanel.length).toEqual(1);
         expect(legalPanel.find('span:nth-child(1)').text().trim()).toEqual('Legal');
         expect(legalPanel.find('span:nth-child(2)').text().trim()).toEqual('Privacy and cookies');
-        expect(legalPanel.find('span:nth-child(3)').text().trim()).toEqual('Set Acceptable Use Policy in Bravo');
+        expect(legalPanel.find('span:nth-child(3)').text().trim()).toEqual('See Acceptable Use Policy in Bravo');
 
         done();
       });
