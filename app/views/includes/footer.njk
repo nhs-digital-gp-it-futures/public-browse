@@ -1,39 +1,32 @@
 {% from 'components/footer/macro.njk' import footer %}
+{% from 'components/label/macro.njk' import label %}
 
 {{ footer({
   "list": "nhsuk-footer__list--three-columns",
   "links": [
     {
-      "URL": "https://www.nhs.uk/nhs-sites/",
-      "label": "NHS sites"
+      "label": "Buyer's Guide"
     },
     {
-      "URL": "https://www.nhs.uk/about-us/",
-      "label": "About us"
+      "label": "Catalogue Submissions"
     },
     {
-      "URL": "https://www.nhs.uk/contact-us/",
-      "label": "Contact us"
+      "label": "NHS Digital service desk"
     },
     {
-      "URL": "https://www.nhs.uk/personalisation/login.aspx",
-      "label": "Profile editor login"
+      "label": "NHS Digital"
     },
     {
-      "URL": "https://www.nhs.uk/about-us/sitemap/",
-      "label": "Sitemap"
+      "label": "About GPIT Futures"
     },
     {
-      "URL": "https://www.nhs.uk/accessibility/",
-      "label": "Accessibility"
-    },
-    {
-      "URL": "https://www.nhs.uk/our-policies/",
-      "label": "Our policies"
-    },
-    {
-      "URL": "https://www.nhs.uk/our-policies/cookies-policy/",
-      "label": "Cookies"
+      "label": "Capabilities and Standards Model"
     }
   ]
 })}}
+
+<div data-test-id="legal-label">
+  {{ label({
+    "text": "Legal Privacy and cookies Set Acceptable Use Policy in Bravo"
+  }) }}
+</div>
