@@ -2,40 +2,43 @@
 {% from 'components/label/macro.njk' import label %}
 {% from 'components/panel/macro.njk' import panel %}
 
-{{ footer({
-  "list": "nhsuk-footer__list--three-columns",
-  "links": [
-    {
-      "label": "Buyer's Guide"
-    },
-    {
-      "label": "Catalogue Submissions"
-    },
-    {
-      "label": "NHS Digital service desk"
-    },
-    {
-      "label": "NHS Digital"
-    },
-    {
-      "label": "About GPIT Futures"
-    },
-    {
-      "label": "Capabilities and Standards Model"
-    }
-  ],
-  "copyright": " " 
-})}}
+<div data-test-id="footer">
+  <div data-test-id="footer-component">
+    {{ footer({
+      "list": "nhsuk-footer__list--three-columns",
+      "links": [
+        {
+          "label": "Buyer's Guide"
+        },
+        {
+          "label": "Catalogue Submissions"
+        },
+        {
+          "label": "NHS Digital service desk"
+        },
+        {
+          "label": "NHS Digital"
+        },
+        {
+          "label": "About GPIT Futures"
+        },
+        {
+          "label": "Capabilities and Standards Model"
+        }
+      ],
+      "copyright": " " 
+    })}}
+  </div>
 
-<div data-test-id="legal-panel" class="legal-panel-color">
-  <div>
+  <div data-test-id="legal-panel" class="legal-panel-color">
     {{ panel({
       "HTML": "
       <div>
-      <div>Legal</div><div><a>Privacy and cookies</a></div> 
-      <div>Set Acceptable Use Policy in <a>Bravo</a></div>
+        <span>Legal</span>
+        <span><a href=''>Privacy and cookies</a></span>
+        <span>Set Acceptable Use Policy in <a href=''>Bravo</a></span>
       </div>",
-      "classes": "nhsuk-width-container footer-panel"
+      "classes": "nhsuk-width-container footer-panel legal-panel-color legal-panel-text-padding"
     })}}
   </div>
 </div>

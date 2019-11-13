@@ -1,15 +1,30 @@
 {% extends 'includes/layout.njk' %}
-{% from 'components/breadcrumb/macro.njk' import breadcrumb %}
-{% from 'components/button/macro.njk' import button %}
-{% from './solution-card.njk' import solutionCard %}
-{% from './capability-filters.njk' import capabilityFilters %}
+{% from 'components/hero/macro.njk' import hero %}
+{% from 'components/promo/macro.njk' import promo %}
 
 {% block body %}
-<div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-full">
-
-    <h1>Public Browse</h1>
-
+  <div data-test-id="homepage-hero">
+    {{ hero({
+    "heading": "Homepage Title",
+    "text": "Brief introduction text to explain a bit about the Buying Catalogue, its aims and its purpose for existance"
+    }) }}
   </div>
-</div>
+  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="homepage-promo-group">
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
+      {{ promo({
+        "href": "/",
+        "heading": "Guidance Title",
+        "classes": "nhsuk-u-margin-top-5",
+        "description": "Brief outline of what the guidance includes and what it can be used for"
+      }) }}
+    </div>
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
+      {{ promo({
+        "href": "/",
+        "heading": "Browse Solutions",
+        "classes": "nhsuk-u-margin-top-5",
+        "description": "Brief outline of what the solution includes and what it can be used for"
+      }) }}
+    </div>
+  </div>
 {% endblock %}
