@@ -28,7 +28,11 @@ describe('header', () => {
         const $ = cheerio.load(res.text);
         const termsBanner = $('[data-test-id="terms-banner"] > div');
 
-        expect(termsBanner.hasClass('header-panel')).toEqual(true);
+        expect(termsBanner.hasClass('nhsuk-u-margin-top-0')).toEqual(true);
+        expect(termsBanner.hasClass('nhsuk-u-margin-bottom-0')).toEqual(true);
+        expect(termsBanner.hasClass('nhsuk-u-padding-top-3')).toEqual(true);
+        expect(termsBanner.hasClass('nhsuk-u-padding-bottom-3')).toEqual(true);
+        expect(termsBanner.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(termsBanner.hasClass('nhsuk-panel--grey')).toEqual(true);
         expect(termsBanner.hasClass('nhsuk-width-container')).toEqual(true);
 
