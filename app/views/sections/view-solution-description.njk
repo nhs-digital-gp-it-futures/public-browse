@@ -12,14 +12,14 @@
       {% if section.answers.summary %}
         <div data-test-id="view-section-question-summary" class="nhsuk-u-margin-bottom-4">
             {{ viewQuestionTitle('summary', 'Summary') }}
-            {{ viewQuestionDataText(section.answers.summary) }}
+            {{ viewQuestionDataText('summary', section.answers.summary) }}
         </div>
       {% endif %}
 
       {% if section.answers.description %}
         <div data-test-id="view-section-question-description" class="nhsuk-u-margin-bottom-4">
             {{ viewQuestionTitle('description', 'About the solution') }}
-            {{ viewQuestionDataText(section.answers.description) }}
+            {{ viewQuestionDataText('description', section.answers.description) }}
         </div>
       {% endif %}
       
