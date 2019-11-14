@@ -2,15 +2,15 @@ import request from 'supertest';
 import express from 'express';
 import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../../app';
+import { App } from '../../../app';
 
 const createDummyApp = (context) => {
   const app = new App().createApp();
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './preview/sections/preview-solution-description.njk' import previewSolutionDescription %}
-                            {{ previewSolutionDescription(section) }}`;
+    const macroWrapper = `{% from './sections/view-solution-description.njk' import viewSolutionDescription %}
+                            {{ viewSolutionDescription(section) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -22,7 +22,7 @@ const createDummyApp = (context) => {
   return app;
 };
 
-describe('preview-solution-description', () => {
+describe('view-solution-description', () => {
   it('should render the title of the section', (done) => {
     const context = {
       section: {},
@@ -50,7 +50,7 @@ describe('preview-solution-description', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="preview-solution-description"]').length).toEqual(0);
+        expect($('[data-test-id="view-solution-description"]').length).toEqual(0);
 
         done();
       });
@@ -72,10 +72,10 @@ describe('preview-solution-description', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const summaryQuestion = $('[data-test-id="preview-section-question-summary"]');
+          const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
-          expect(summaryQuestion.find('[data-test-id="preview-question-title"]').text().trim()).toEqual('Summary');
-          expect(summaryQuestion.find('[data-test-id="preview-question-data-text"]').text().trim()).toEqual('Some summary data');
+          expect(summaryQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Summary');
+          expect(summaryQuestion.find('[data-test-id="view-question-data-text"]').text().trim()).toEqual('Some summary data');
 
           done();
         });
@@ -96,10 +96,10 @@ describe('preview-solution-description', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const descriptionQuestion = $('[data-test-id="preview-section-question-description"]');
+          const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
 
-          expect(descriptionQuestion.find('[data-test-id="preview-question-title"]').text().trim()).toEqual('About the solution');
-          expect(descriptionQuestion.find('[data-test-id="preview-question-data-text"]').text().trim()).toEqual('Some description data');
+          expect(descriptionQuestion.find('[data-test-id="view-question-title"]').text().trim()).toEqual('About the solution');
+          expect(descriptionQuestion.find('[data-test-id="view-question-data-text"]').text().trim()).toEqual('Some description data');
 
           done();
         });
@@ -120,10 +120,10 @@ describe('preview-solution-description', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const linkQuestion = $('[data-test-id="preview-section-question-link"]');
+          const linkQuestion = $('[data-test-id="view-section-question-link"]');
 
-          expect(linkQuestion.find('[data-test-id="preview-question-title"]').length).toEqual(0);
-          expect(linkQuestion.find('[data-test-id="preview-question-data-link"]').text().trim()).toEqual('www.somelink.com');
+          expect(linkQuestion.find('[data-test-id="view-question-title"]').length).toEqual(0);
+          expect(linkQuestion.find('[data-test-id="view-question-data-link"]').text().trim()).toEqual('www.somelink.com');
 
           done();
         });
@@ -146,7 +146,7 @@ describe('preview-solution-description', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const summaryQuestion = $('[data-test-id="preview-section-question-summary"]');
+          const summaryQuestion = $('[data-test-id="view-section-question-summary"]');
 
           expect(summaryQuestion.length).toEqual(0);
 
@@ -169,7 +169,7 @@ describe('preview-solution-description', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const descriptionQuestion = $('[data-test-id="preview-section-question-description"]');
+          const descriptionQuestion = $('[data-test-id="view-section-question-description"]');
 
           expect(descriptionQuestion.length).toEqual(0);
 
@@ -192,7 +192,7 @@ describe('preview-solution-description', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const linkQuestion = $('[data-test-id="preview-section-question-link"]');
+          const linkQuestion = $('[data-test-id="view-section-question-link"]');
 
           expect(linkQuestion.length).toEqual(0);
 

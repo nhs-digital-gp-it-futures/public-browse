@@ -1,0 +1,11 @@
+{% extends 'includes/layout.njk' %}
+{% from './sections/preview-solution-description.njk' import previewSolutionDescription %}
+
+{% block body %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h1>Preview Page</h1>
+    {{ previewSolutionDescription(sections['solution-description']) }}
+  </div>
+</div>
+{% endblock %}
