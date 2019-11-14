@@ -17,6 +17,11 @@ router.get('/browse-solutions', async (req, res) => {
   res.render('browse-solutions-page', {});
 });
 
+router.get('/solutions', async (req, res) => {
+  const context = await getShowCardsPageContext();
+  res.render('solutions-list-page', context);
+});
+
 // router.get('/', async (req, res) => {
 //   const context = await getShowCardsPageContext();
 

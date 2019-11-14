@@ -1,0 +1,12 @@
+{% extends 'includes/layout.njk' %}
+{% from './solution-card.njk' import solutionCard %}
+
+{% block body %}
+  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="browse-solutions-promo-group">
+    <div data-test-id="solution-cards">
+    {% for solution in solutions %}
+      {{ solutionCard(solution, true, false) }}
+    {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createSolutionPageContext } from './contextCreator/createSolutionPageContext';
 import { createShowCardsPageContext } from './contextCreator/createShowCardsPageContext';
 import { convertCapabilitiesToArrayIfRequired, determineFoundationCapabilities } from './helpers';
+import { json } from 'graphlib';
 
 const config = {
   'summary-section': {
@@ -19,11 +20,14 @@ const config = {
 export const getShowCardsPageContext = async () => {
   const solutionData = await axios.get('http://localhost:8080/api/v1/Solutions');
 
+
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
 
   const context = createShowCardsPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, {}, config,
   );
+
+  console.log(JSON.stringify(context));
 
   return context;
 };
