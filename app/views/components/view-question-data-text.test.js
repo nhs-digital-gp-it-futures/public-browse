@@ -10,7 +10,7 @@ const createDummyApp = (context) => {
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './components/view-question-data-text.njk' import viewQuestionDataText %}
-                            {{ viewQuestionDataText(questionData) }}`;
+                            {{ viewQuestionDataText(questionId, questionData) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -25,6 +25,7 @@ const createDummyApp = (context) => {
 describe('view-question-data-text', () => {
   it('should render the data when provided', (done) => {
     const context = {
+      questionId: 'someId',
       questionData: 'Some question data',
     };
 
@@ -34,7 +35,7 @@ describe('view-question-data-text', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="view-question-data-text"]').text().trim()).toEqual('Some question data');
+        expect($('[data-test-id="view-question-data-text-someId"]').text().trim()).toEqual('Some question data');
 
         done();
       });
@@ -49,7 +50,7 @@ describe('view-question-data-text', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="view-question-data-text"]').length).toEqual(0);
+        expect($('[data-test-id^="view-question-data-text"]').length).toEqual(0);
 
         done();
       });
