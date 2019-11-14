@@ -1,0 +1,24 @@
+{% extends 'includes/layout.njk' %}
+{% from 'components/hero/macro.njk' import hero %}
+{% from 'components/promo/macro.njk' import promo %}
+
+{% block body %}
+  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="browse-solutions-promo-group">
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="foundation-solutions-promo">
+      {{ promo({
+        "href": "/",
+        "heading": "Browse Foundation Solutions",
+        "classes": "nhsuk-u-margin-top-5",
+        "description": "Brief outline of what browse foundation solutions are"
+      }) }}
+    </div>
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">
+      {{ promo({
+        "href": "/",
+        "heading": "Browse All Solutions",
+        "classes": "nhsuk-u-margin-top-5",
+        "description": "Brief outline of what all solutions include and can be used for"
+      }) }}
+    </div>
+  </div>
+{% endblock %}

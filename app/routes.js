@@ -13,6 +13,10 @@ router.get('/', async (req, res) => {
   res.render('home-page', {});
 });
 
+router.get('/browse-solutions', async (req, res) => {
+  res.render('browse-solutions-page', {});
+});
+
 // router.get('/', async (req, res) => {
 //   const context = await getShowCardsPageContext();
 
