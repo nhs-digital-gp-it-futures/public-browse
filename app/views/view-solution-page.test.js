@@ -67,4 +67,20 @@ describe('view solution', () => {
         done();
       });
   });
+
+  it('should render the solution contact details section', (done) => {
+    const context = {
+      sections: {
+        'contact-details': {},
+      },
+    };
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="view-solution-contact-details"]').length).toEqual(1);
+        done();
+      });
+  });
 });
