@@ -1,11 +1,10 @@
 {% extends 'includes/layout.njk' %}
-{% from './sections/preview-solution-description.njk' import previewSolutionDescription %}
+{% from './sections/view-solution-description.njk' import viewSolutionDescription %}
 
 {% block body %}
-<div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-full">
-    <h1>Preview Page</h1>
-    {{ previewSolutionDescription(sections['solution-description']) }}
+  <div class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
+    <h5 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h5>
+    <h1 data-test-id="view-solution-page-solution-name">{{ name }}</h1>
+    {{ viewSolutionDescription(sections['solution-description']) }}
   </div>
-</div>
 {% endblock %}

@@ -9,12 +9,24 @@ import {
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-
   res.render('home-page', {});
 });
-
 router.get('/view-solution/:solutionId', async (req, res) => {
-  res.render('view-solution-page', {});
+  const context = {
+    id: 'S100000-001',
+    name: 'Write on Time',
+    organisationName: 'Really Kool Corporation',
+    sections: {
+      'solution-description': {
+        answers: {
+          summary: 'Write on Time is a Citizen-facing Appointments Management system specifically designed to reduce the number of DNAs in your practice.',
+          description: 'a description',
+          link: 'link.com',
+        },
+      },
+    },
+  };
+  res.render('view-solution-page', context);
 });
 
 router.get('/browse-solutions', async (req, res) => {
