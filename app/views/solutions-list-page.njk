@@ -2,10 +2,10 @@
 {% from './solution-card.njk' import solutionCard %}
 
 {% block body %}
-  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="browse-solutions-promo-group">
-    <div data-test-id="solution-cards">
+  <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="browse-solutions-promo-group">
+    <div class="nhsuk-u-margin-top-5" data-test-id="solution-cards">
     {% for solution in solutions %}
-      {{ solutionCard(solution, true, false) }}
+      {{ solutionCard(solution) }}
     {% endfor %}
     </div>
   </div>

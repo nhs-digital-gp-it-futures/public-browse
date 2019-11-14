@@ -1,9 +1,6 @@
 import express from 'express';
 import {
-  getShowCardsPageContext,
-  getSolutionPageContext,
-  postCapabilityFilters,
-  getFoundationCapabilitySolutions,
+  getSolutionListPageContext,
 } from './controller';
 
 const router = express.Router();
@@ -18,7 +15,7 @@ router.get('/browse-solutions', async (req, res) => {
 });
 
 router.get('/solutions', async (req, res) => {
-  const context = await getShowCardsPageContext();
+  const context = await getSolutionListPageContext();
   res.render('solutions-list-page', context);
 });
 

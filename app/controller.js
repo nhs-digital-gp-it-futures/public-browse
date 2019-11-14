@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createSolutionPageContext } from './contextCreator/createSolutionPageContext';
 import { createShowCardsPageContext } from './contextCreator/createShowCardsPageContext';
+import { createSolutionListPageContext } from './contextCreator/createSolutionListPageContext';
 import { convertCapabilitiesToArrayIfRequired, determineFoundationCapabilities } from './helpers';
 import { json } from 'graphlib';
 
@@ -19,18 +20,27 @@ const config = {
 
 export const getShowCardsPageContext = async () => {
   const solutionData = await axios.get('http://localhost:8080/api/v1/Solutions');
-
-
+  
+  
   const capabilitiesData = await axios.get('http://localhost:8080/api/v1/Capabilities');
-
+  
   const context = createShowCardsPageContext(
     solutionData.data.solutions, capabilitiesData.data.capabilities, {}, config,
-  );
+    );
+    
+    console.log(JSON.stringify(context));
+    
+    return context;
+  };
+  
+  export const getSolutionListPageContext = async () => {
+    const solutionListResponse = await axios.get('http://localhost:8080/api/v1/Solutions');
 
-  console.log(JSON.stringify(context));
+    const context = createSolutionListPageContext(solutionListResponse.data.solutions);
 
-  return context;
-};
+    return context;
+
+}
 
 export const getSolutionPageContext = async (solutionId) => {
   const solutionData = await axios.get(`http://localhost:8080/api/v1/Solution/${solutionId}`);

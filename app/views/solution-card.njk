@@ -1,42 +1,38 @@
-{% from 'components/panel/macro.njk' import panel %}
-{% from 'components/label/macro.njk' import label %}
-{% from './solution-card-section.njk' import solutionCardSection %}
+{% macro capabilityList(capabilities) %}
+  <div>
+    <h4>Capabilities met</h4> 
+    <ul>
+      {% for capability in capabilities %}
+        <li>{{ capability }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}
 
-{% macro solutionCard(solution, showTitle, showAnchor) %}
 
-  {% macro solutionOrganisation(solution) %}
-    <div data-test-id="solution-card-organisation">
-      {{ solution.organisation }}
-    </div>
-  {% endmacro %}
+{% macro solutionCard(solution) %}
 
-  {% macro solutionName(solution, showTitle) %}
-    {% if showTitle %}
+  <div class="nhsuk-grid-column-full nhsuk-u-padding-bottom-5">
+    <div class="nhsuk-grid-column-two-thirds" data-test-id="solution-cards">
+      <div data-test-id="solution-card-organisation">
+        {{ solution.organisationName }}
+      </div>
+      
       <h3 data-test-id="solution-card-name">
         <a href="./view/{{ solution.id }}">
           {{ solution.name }}
         </a>
       </h3>
-    {% endif %}
-  {% endmacro %}
 
-  {% macro solutionId(solution) %}
-    <div data-test-id="solution-card-id">
-      {{ solution.id }}
+      <div>
+        {{ solution.summary }}
+      </div>
     </div>
-  {% endmacro %}
 
-  {% macro sections(data, showAnchor) %}
-    {% for sectionData in data %}
-      {{ solutionCardSection(sectionData, showAnchor) }}
-    {% endfor %}
-  {% endmacro %}
-
-  <div data-test-id="solution-card">
-    {{ panel({
-      "HTML": solutionOrganisation(solution) + solutionName(solution, showTitle) +
-      "<div data-test-id='solution-sections'>"+ sections(solution.sections, showAnchor) +"</div>" +
-      solutionId(solution)
-    }) }}
+    <div class="nhsuk-grid-column-one-third">
+      {{ capabilityList(solution.capabilities) }}
+    </div>
   </div>
+
+
 {% endmacro %}
