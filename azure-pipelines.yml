@@ -18,6 +18,7 @@ steps:
 - script: |
     npm install -g webpack webpack-cli --save-dev
     npm install
+    npm run test
     npx webpack --config webpack.config.js
   displayName: 'npm install, run webpack'
 
@@ -40,14 +41,3 @@ steps:
     azureContainerRegistry: '{"loginServer":"gpitfutureaksdev.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfuture-aks-dev/providers/Microsoft.ContainerRegistry/registries/gpitfutureaksdev"}'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Push services'
-
-- task: CopyFiles@2
-  inputs:
-    Contents: '**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-    ArtifactName: 'frontend'
-    publishLocation: 'Container'

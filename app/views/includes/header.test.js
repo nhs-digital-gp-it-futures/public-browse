@@ -36,7 +36,7 @@ describe('header', () => {
         expect(termsBanner.hasClass('nhsuk-panel--grey')).toEqual(true);
         expect(termsBanner.hasClass('nhsuk-width-container')).toEqual(true);
 
-        expect(termsBanner.text().trim()).toEqual('By using this website you are agreeing to abide by the terms of use which can be found some link. If you do not agree with these terms you should not use this website');
+        expect(termsBanner.text().trim()).toEqual('By using this site you are accepting the General Terms of Use which can be found here. If you do not agree with these terms you should not use this website');
 
         done();
       });

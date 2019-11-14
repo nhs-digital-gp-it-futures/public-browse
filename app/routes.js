@@ -17,6 +17,10 @@ router.get('/view-solution/:solutionId', async (req, res) => {
   res.render('view-solution-page', {});
 });
 
+router.get('/browse-solutions', async (req, res) => {
+  res.render('browse-solutions-page', {});
+});
+
 // router.get('/', async (req, res) => {
 //   const context = await getShowCardsPageContext();
 
