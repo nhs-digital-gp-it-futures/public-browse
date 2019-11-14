@@ -24,6 +24,22 @@ router.get('/view-solution/:solutionId', async (req, res) => {
           link: 'link.com',
         },
       },
+      'contact-details': {
+        answers: {
+          'contact-1': {
+            'department-name': 'a contact dept',
+            'contact-name': 'jim jones',
+            'phone-number': '0111 111111',
+            'email-address': 'jim@solution.com',
+          },
+          'contact-2': {
+            'department-name': 'a second contact dept',
+            'contact-name': 'jacky johnston',
+            'phone-number': '0222 222222',
+            'email-address': 'jacky@solution.com',
+          },
+        },
+      },
     },
   };
   res.render('view-solution-page', context);
