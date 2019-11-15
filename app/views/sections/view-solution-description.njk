@@ -14,13 +14,13 @@
               {{ viewQuestionTitle('summary', 'Summary') }}
               {{ viewQuestionDataText('summary', section.answers.summary) }}
           </div>
-        {% elseif section.answers.description %}
+        {% endif %}
+        {% if section.answers.description %}
           <div data-test-id="view-section-question-description">
               {{ viewQuestionTitle('description', 'About the solution') }}
               {{ viewQuestionDataText('description', section.answers.description) }}
           </div>
         {% endif %}
-        
         {% if section.answers.link %}
           <div data-test-id="view-section-question-link" class="nhsuk-u-margin-top-4">
             {{ viewQuestionDataLink(section.answers.link) }}
