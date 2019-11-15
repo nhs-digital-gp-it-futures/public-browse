@@ -34,8 +34,8 @@ describe('view-question-link', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        expect($('[data-test-id="view-question-data-link"] a').text().trim()).toEqual('www.somelink.com');
-        expect($('[data-test-id="view-question-data-link"] a').attr('href')).toEqual('www.somelink.com');
+        expect($('[data-test-id="view-question-data-link"]').text().trim()).toEqual('www.somelink.com');
+        expect($('[data-test-id="view-question-data-link"]').attr('href')).toEqual('www.somelink.com');
 
         done();
       });
