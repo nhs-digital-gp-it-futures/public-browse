@@ -76,7 +76,6 @@ describe('view-solution-contact-details', () => {
         const $ = cheerio.load(res.text);
         const contact1component = $('[data-test-id="view-section-question-contact-1"]');
 
-        expect(contact1component.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Contact 1');
         expect(contact1component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact1['department-name']);
         expect(contact1component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact1['contact-name']);
         expect(contact1component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact1['phone-number']);
@@ -107,7 +106,6 @@ describe('view-solution-contact-details', () => {
         const $ = cheerio.load(res.text);
         const contact2component = $('[data-test-id="view-section-question-contact-2"]');
 
-        expect(contact2component.find('[data-test-id="view-question-title"]').text().trim()).toEqual('Contact 2');
         expect(contact2component.find('[data-test-id="view-question-data-text-department-name"]').text().trim()).toEqual(contact2['department-name']);
         expect(contact2component.find('[data-test-id="view-question-data-text-contact-name"]').text().trim()).toEqual(contact2['contact-name']);
         expect(contact2component.find('[data-test-id="view-question-data-text-phone-number"]').text().trim()).toEqual(contact2['phone-number']);
