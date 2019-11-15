@@ -48,7 +48,7 @@ describe('solutions list page', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        const solutionListTitleSummary = $('[data-test-id="solutions-list-description"]');
+        const solutionListTitleSummary = $('div[data-test-id="solutions-list-description"]');
 
         expect(solutionListTitleSummary.length).toEqual(1);
         expect(solutionListTitleSummary.text().trim()).toEqual('some page description');
@@ -69,7 +69,7 @@ describe('solutions list page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const solutionCards = $('[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
+          const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
 
           expect(solutionCards.length).toEqual(0);
 
@@ -93,7 +93,7 @@ describe('solutions list page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const solutionCards = $('[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
+          const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
 
           expect(solutionCards.length).toEqual(1);
 
@@ -125,7 +125,7 @@ describe('solutions list page', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
 
-          const solutionCards = $('[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
+          const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
 
           expect(solutionCards.length).toEqual(3);
 
