@@ -18,8 +18,6 @@ const createDummyApp = (context) => {
 
 
 describe('browse solutions page', () => {
-
-
   it('should render the browse foundation solutions promo', (done) => {
     const context = {};
 
