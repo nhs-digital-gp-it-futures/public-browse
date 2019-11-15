@@ -107,7 +107,7 @@ describe('createSolutionListPageContext', () => {
     expect(context).toEqual(expectedContext);
   });
 
-  it('should create a context for the solution list page with one solution with empty capabilies', () => {
+  it('should create a context for the solution list page with one solution with empty capability list', () => {
     const expectedContext = {
       solutions: [
         {
