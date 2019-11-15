@@ -1,17 +1,14 @@
-export const createSolutionListPageContext = (solutions, pageTitle, pageDescription) => {
-  const context = {
-    pageTitle,
-    pageDescription,
-  };
+const createSolutionsContext = solutions => solutions.map(solution => ({
+  id: solution.id,
+  name: solution.name,
+  summary: solution.summary,
+  organisationName: solution.organisation && solution.organisation.name,
+  capabilities: solution.capabilities && solution.capabilities.map(capability => capability.name),
+  isFoundation: solution.isFoundation,
+}));
 
-  context.solutions = solutions.map(solution => ({
-    id: solution.id,
-    name: solution.name,
-    summary: solution.summary,
-    organisationName: solution.organisation && solution.organisation.name,
-    capabilities: solution.capabilities && solution.capabilities.map(capability => capability.name),
-    isFoundation: solution.isFoundation,
-  }));
-
-  return context;
-};
+export const createSolutionListPageContext = (solutions, pageTitle, pageDescription) => ({
+  pageTitle,
+  pageDescription,
+  solutions: createSolutionsContext(solutions),
+});
