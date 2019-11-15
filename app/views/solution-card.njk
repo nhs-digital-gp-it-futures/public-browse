@@ -13,24 +13,35 @@
 {% macro solutionCard(solution) %}
 
   <div class="nhsuk-grid-column-full nhsuk-u-padding-bottom-5">
-    <div class="nhsuk-grid-column-two-thirds" data-test-id="solution-cards">
-      <div data-test-id="solution-card-organisation">
-        {{ solution.organisationName }}
-      </div>
-      
-      <h3 data-test-id="solution-card-name">
-        <a href="./view/{{ solution.id }}">
-          {{ solution.name }}
-        </a>
-      </h3>
+    <div class="bc-border-top-colour--blue nhsuk-u-padding-top-5">
+      <div class="nhsuk-grid-column-two-thirds" data-test-id="solution-cards">
 
-      <div>
-        {{ solution.summary }}
-      </div>
-    </div>
+        {% if solution.isFoundation %}
+          <div class="nhsuk-u-padding-bottom-4">
+              <strong class="govuk-tag" id="eligibility-completed">
+                Foundation
+              </strong>
+          </div>
+        {% endif %}
 
-    <div class="nhsuk-grid-column-one-third">
-      {{ capabilityList(solution.capabilities) }}
+        <div data-test-id="solution-card-organisation">
+          {{ solution.organisationName }}
+        </div>
+        
+        <h3 data-test-id="solution-card-name">
+          <a href="./view/{{ solution.id }}">
+            {{ solution.name }}
+          </a>
+        </h3>
+
+        <div>
+          {{ solution.summary }}
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-third">
+        {{ capabilityList(solution.capabilities) }}
+      </div>
     </div>
   </div>
 

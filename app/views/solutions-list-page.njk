@@ -3,10 +3,19 @@
 
 {% block body %}
   <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="browse-solutions-promo-group">
+
+    <div class="nhsuk-grid-column-full nhsuk-u-padding-bottom-5">
+      <h2>Browse Solutions - Search Results</h2>
+      <div>
+        A lead paragraph is an introductory paragraph that you can use at the top of the page to summarise the context.
+      </div>
+    </div>
+
     <div class="nhsuk-u-margin-top-5" data-test-id="solution-cards">
     {% for solution in solutions %}
       {{ solutionCard(solution) }}
     {% endfor %}
     </div>
+
   </div>
 {% endblock %}
