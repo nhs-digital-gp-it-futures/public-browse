@@ -40,6 +40,11 @@ router.get('/view-solution/:solutionId', async (req, res) => {
           },
         },
       },
+      capabilities: {
+        answers: {
+          'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
+        },
+      },
     },
   };
   res.render('view-solution-page', context);
