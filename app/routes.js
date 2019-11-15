@@ -17,7 +17,7 @@ router.get('/view-solution/:solutionId', async (req, res) => {
     name: 'Write on Time',
     organisationName: 'Really Kool Corporation',
     isFoundation: true,
-    lastUpdatedAt: 'a date',
+    lastUpdated: 'a date',
     sections: {
       'solution-description': {
         answers: {
