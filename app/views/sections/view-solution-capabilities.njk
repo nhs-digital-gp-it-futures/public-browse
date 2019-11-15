@@ -1,0 +1,12 @@
+{% from '../components/view-question-data-bulletlist.njk' import viewQuestionDataBulletlist %}
+
+{% macro viewSolutionCapabilities(section) %}
+  {% if section %}
+    <div data-test-id="view-solution-capabilities">
+      <div class="nhsuk_title">
+        <h3>Capabilities met</h3>
+      </div>
+      {{ viewQuestionDataBulletlist(section.answers['capabilities-met']) }}
+    </div>
+  {% endif %}
+{% endmacro %}
