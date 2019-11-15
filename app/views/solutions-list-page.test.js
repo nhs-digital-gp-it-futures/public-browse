@@ -18,7 +18,9 @@ const createDummyApp = (context) => {
 
 describe('solutions list page', () => {
   it('should render the solution list page title', (done) => {
-    const context = {};
+    const context = {
+      pageTitle: 'some page title',
+    };
 
     const app = createDummyApp(context);
     request(app)
@@ -29,14 +31,16 @@ describe('solutions list page', () => {
         const solutionListTitle = $('[data-test-id="solutions-list-title"] h2');
 
         expect(solutionListTitle.length).toEqual(1);
-        expect(solutionListTitle.text().trim()).toEqual('Browse Solutions - Search Results');
+        expect(solutionListTitle.text().trim()).toEqual('some page title');
 
         done();
       });
   });
 
-  it('should render the solution list page title summary', (done) => {
-    const context = {};
+  it('should render the solution list page description', (done) => {
+    const context = {
+      pageDescription: 'some page description',
+    };
 
     const app = createDummyApp(context);
     request(app)
@@ -44,28 +48,10 @@ describe('solutions list page', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        const solutionListTitleSummary = $('[data-test-id="solutions-list-title-summary"]');
+        const solutionListTitleSummary = $('[data-test-id="solutions-list-description"]');
 
         expect(solutionListTitleSummary.length).toEqual(1);
-        expect(solutionListTitleSummary.text().trim()).toEqual('A lead paragraph is an introductory paragraph that you can use at the top of the page to summarise the context.');
-
-        done();
-      });
-  });
-
-  it('should render the solution list page title summary', (done) => {
-    const context = {};
-
-    const app = createDummyApp(context);
-    request(app)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        const solutionListTitleSummary = $('[data-test-id="solutions-list-title-summary"]');
-
-        expect(solutionListTitleSummary.length).toEqual(1);
-        expect(solutionListTitleSummary.text().trim()).toEqual('A lead paragraph is an introductory paragraph that you can use at the top of the page to summarise the context.');
+        expect(solutionListTitleSummary.text().trim()).toEqual('some page description');
 
         done();
       });

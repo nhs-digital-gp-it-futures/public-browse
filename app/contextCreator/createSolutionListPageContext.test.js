@@ -60,7 +60,7 @@ describe('createSolutionListPageContext', () => {
           }
         ],
       },
-    ]
+    ];
 
     const context = createSolutionListPageContext(solutions);
 
@@ -206,6 +206,36 @@ describe('createSolutionListPageContext', () => {
     const solutions = [];
 
     const context = createSolutionListPageContext(solutions);
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  it('should create a context for the solution list page with no solutions and a page title', () => {
+    const expectedContext = {
+      pageTitle: 'some page title',
+      solutions: [],
+    };
+
+    const pageTitle = 'some page title';
+    const solutions = [];
+
+    const context = createSolutionListPageContext(solutions, pageTitle);
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  it('should create a context for the solution list page with no solutions and a page description', () => {
+    const expectedContext = {
+      pageTitle: 'some page title',
+      pageDescription: 'some page description',
+      solutions: [],
+    };
+
+    const pageTitle = 'some page title';
+    const pageDescription = 'some page description';
+    const solutions = [];
+
+    const context = createSolutionListPageContext(solutions, pageTitle, pageDescription);
 
     expect(context).toEqual(expectedContext);
   });

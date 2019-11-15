@@ -1,5 +1,8 @@
-export const createSolutionListPageContext = (solutions) => {
-  const context = {};
+export const createSolutionListPageContext = (solutions, pageTitle, pageDescription) => {
+  const context = {
+    pageTitle,
+    pageDescription,
+  };
 
   context.solutions = solutions.map(solution => ({
     id: solution.id,

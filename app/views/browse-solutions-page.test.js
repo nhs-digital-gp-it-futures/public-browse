@@ -36,6 +36,7 @@ describe('browse solutions page', () => {
 
         expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual('Browse Foundation Solutions');
         expect(foundationSolutionsPromo.find('p').text().trim()).toEqual('Brief outline of what browse foundation solutions are');
+        expect(foundationSolutionsPromo.find('a').attr('href')).toEqual('/solutions/foundation');
 
         done();
       });
