@@ -6,7 +6,7 @@ export const createSolutionListPageContext = (solutions) => {
     name: solution.name,
     summary: solution.summary,
     organisationName: solution.organisation && solution.organisation.name,
-    capabilities: solution.capabilities.map(capability => capability.name),
+    capabilities: solution.capabilities && solution.capabilities.map(capability => capability.name),
     isFoundation: solution.isFoundation,
   }));
 

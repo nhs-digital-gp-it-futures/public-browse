@@ -107,7 +107,7 @@ describe('createSolutionListPageContext', () => {
     expect(context).toEqual(expectedContext);
   });
 
-  it('should create a context for the solution list page with one solution with no capabilies', () => {
+  it('should create a context for the solution list page with one solution with empty capabilies', () => {
     const expectedContext = {
       solutions: [
         {
@@ -132,6 +132,37 @@ describe('createSolutionListPageContext', () => {
           name: 'Some organisation',
         },
         capabilities: [],
+      },
+    ]
+
+    const context = createSolutionListPageContext(solutions);
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  it('should create a context for the solution list page with one solution with no capabilies', () => {
+    const expectedContext = {
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          organisationName: 'Some organisation',
+          isFoundation: true,
+        },
+      ],
+    };
+
+    const solutions = [
+      {
+        id: '00001',
+        name: 'The first solution',
+        summary: 'Some solution summary',
+        isFoundation: true,
+        organisation: {
+          id: '1',
+          name: 'Some organisation',
+        },
       },
     ]
 
