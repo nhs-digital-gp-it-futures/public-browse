@@ -5,17 +5,13 @@ import { App } from '../../app';
 
 const createDummyApp = (context) => {
   const app = new App().createApp();
-
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     res.render('view-solution-page.njk', context);
   });
-
   app.use(dummyRouter);
-
   return app;
 };
-
 
 describe('view solution', () => {
   it('should render back-link component', (done) => {
@@ -25,8 +21,7 @@ describe('view solution', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const backLink = $('[data-test-id="view-solution-page-back-link"]');
-        expect(backLink.length).toEqual(1);
+        expect($('[data-test-id="view-solution-page-back-link"]').length).toEqual(1);
         done();
       });
   });
@@ -40,8 +35,7 @@ describe('view solution', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const orgName = $('[data-test-id="solution-foundation-tag"]');
-        expect(orgName.length).toEqual(1);
+        expect($('[data-test-id="solution-foundation-tag"]').length).toEqual(1);
         done();
       });
   });
@@ -55,8 +49,7 @@ describe('view solution', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const orgName = $('[data-test-id="solution-foundation-tag"]');
-        expect(orgName.length).toEqual(0);
+        expect($('[data-test-id="solution-foundation-tag"]').length).toEqual(0);
         done();
       });
   });
@@ -81,7 +74,6 @@ describe('view solution', () => {
     const context = {
       name: 'Write on Time',
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
@@ -98,15 +90,14 @@ describe('view solution', () => {
     const context = {
       lastUpdated: 'some time',
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const solutionName = $('[data-test-id="view-solution-page-last-updated"]');
-        expect(solutionName.length).toEqual(1);
-        expect(solutionName.text().trim()).toEqual(context.lastUpdated);
+        const lastUpdated = $('[data-test-id="view-solution-page-last-updated"]');
+        expect(lastUpdated.length).toEqual(1);
+        expect(lastUpdated.text().trim()).toEqual(context.lastUpdated);
         done();
       });
   });
