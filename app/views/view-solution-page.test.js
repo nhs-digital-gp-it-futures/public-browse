@@ -22,7 +22,6 @@ describe('view solution', () => {
     const context = {
       organisationName: 'Really Kool Corporation',
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
@@ -64,6 +63,22 @@ describe('view solution', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('[data-test-id="view-solution-description"]').length).toEqual(1);
+        done();
+      });
+  });
+
+  it('should render the solution capabilities section', (done) => {
+    const context = {
+      sections: {
+        capabilities: {},
+      },
+    };
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="view-solution-capabilities"]').length).toEqual(1);
         done();
       });
   });

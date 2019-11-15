@@ -1,12 +1,14 @@
 {% extends 'includes/layout.njk' %}
 {% from './sections/view-solution-description.njk' import viewSolutionDescription %}
 {% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
+{% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
 
 {% block body %}
   <div class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
     <h5 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h5>
     <h1 data-test-id="view-solution-page-solution-name">{{ name }}</h1>
     {{ viewSolutionDescription(sections['solution-description']) }}
+    {{ viewSolutionCapabilities(sections['capabilities']) }}
     {{ viewSolutionContactDetails(sections['contact-details']) }}
   </div>
 {% endblock %}
