@@ -1,9 +1,11 @@
 {% macro capabilityList(capabilities) %}
-  <div>
+  <div data-test-id="capability-list">
     <h4>Capabilities met</h4> 
     <ul>
       {% for capability in capabilities %}
-        <li>{{ capability }}</li>
+        <li data-test-id="capability-list-item">
+          {{ capability }}
+        </li>
       {% endfor %}
     </ul>
   </div>
@@ -16,7 +18,7 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       {% if solution.isFoundation %}
-        <div class="nhsuk-u-padding-bottom-4">
+        <div class="nhsuk-u-padding-bottom-4" data-test-id="solution-card-foundation-indicator">
             <strong class="govuk-tag" id="eligibility-completed">
               Foundation Solution
             </strong>
@@ -28,17 +30,17 @@
       </div>
       
       <h3 data-test-id="solution-card-name">
-        <a href="./view/{{ solution.id }}">
+        <a href="./view-solution/{{ solution.id }}">
           {{ solution.name }}
         </a>
       </h3>
 
-      <div>
+      <div data-test-id="solution-card-summary">
         {{ solution.summary }}
       </div>
     </div>
 
-    <div class="nhsuk-grid-column-one-third">
+    <div class="nhsuk-grid-column-one-third" data-test-id="solution-card-capability-list">
       {{ capabilityList(solution.capabilities) }}
     </div>
   </div>
