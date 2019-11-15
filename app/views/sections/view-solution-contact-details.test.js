@@ -54,7 +54,7 @@ describe('view-solution-contact-details', () => {
       });
   });
 
-  it('should render the contact 1 title and contact details', (done) => {
+  it('should render the contact 1 details', (done) => {
     const contact1 = {
       'department-name': 'a contact dept',
       'contact-name': 'jim jones',
@@ -84,7 +84,7 @@ describe('view-solution-contact-details', () => {
       });
   });
 
-  it('should render the contact 2 title and question-contact-details component', (done) => {
+  it('should render the contact 2 details', (done) => {
     const contact2 = {
       'department-name': 'a second contact dept',
       'contact-name': 'jim jones jr',
