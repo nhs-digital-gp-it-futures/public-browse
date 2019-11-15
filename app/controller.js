@@ -63,3 +63,7 @@ export const getFoundationCapabilitySolutions = async () => {
 
   return context;
 };
+
+export const getPublicSolutionById = solutionId => axios.get(`http://localhost:8080/api/v1/Solutions/${solutionId}/Public`)
+  .then(data => data.data)
+  .catch(err => console.log(err));
