@@ -16,6 +16,8 @@ router.get('/view-solution/:solutionId', async (req, res) => {
     id: 'S100000-001',
     name: 'Write on Time',
     organisationName: 'Really Kool Corporation',
+    isFoundation: true,
+    lastUpdatedAt: 'a date',
     sections: {
       'solution-description': {
         answers: {
@@ -42,7 +44,7 @@ router.get('/view-solution/:solutionId', async (req, res) => {
       },
       capabilities: {
         answers: {
-          'capabilities-met': ['capability 1', 'capability 2', 'capability 3']
+          'capabilities-met': ['capability 1', 'capability 2', 'capability 3'],
         },
       },
     },
