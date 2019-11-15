@@ -18,6 +18,49 @@ const createDummyApp = (context) => {
 
 
 describe('view solution', () => {
+  it('should render back-link component', (done) => {
+    const context = {};
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const backLink = $('[data-test-id="view-solution-page-back-link"]');
+        expect(backLink.length).toEqual(1);
+        done();
+      });
+  });
+
+  it('should render the foundation tag if isFoundation is true', (done) => {
+    const context = {
+      isFoundation: true,
+    };
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const orgName = $('[data-test-id="solution-foundation-tag"]');
+        expect(orgName.length).toEqual(1);
+        done();
+      });
+  });
+
+  it('should not render the foundation tag if isFoundation is false', (done) => {
+    const context = {
+      isFoundation: false,
+    };
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const orgName = $('[data-test-id="solution-foundation-tag"]');
+        expect(orgName.length).toEqual(0);
+        done();
+      });
+  });
+
   it('should render the organisation name', (done) => {
     const context = {
       organisationName: 'Really Kool Corporation',
@@ -47,6 +90,23 @@ describe('view solution', () => {
         const solutionName = $('[data-test-id="view-solution-page-solution-name"]');
         expect(solutionName.length).toEqual(1);
         expect(solutionName.text().trim()).toEqual(context.name);
+        done();
+      });
+  });
+
+  it('should render the last updated', (done) => {
+    const context = {
+      lastUpdated: 'some time',
+    };
+
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const solutionName = $('[data-test-id="view-solution-page-last-updated"]');
+        expect(solutionName.length).toEqual(1);
+        expect(solutionName.text().trim()).toEqual(context.lastUpdated);
         done();
       });
   });
@@ -95,6 +155,21 @@ describe('view solution', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('[data-test-id="view-solution-contact-details"]').length).toEqual(1);
+        done();
+      });
+  });
+
+  it('should render the download more information button', (done) => {
+    const context = {};
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const moreInfoButton = $('[data-test-id="view-solution-page-download-info-button"] a');
+        expect(moreInfoButton.length).toEqual(1);
+        expect(moreInfoButton.text().trim()).toEqual('Download more information');
+        expect(moreInfoButton.attr('href')).toEqual('/');
         done();
       });
   });

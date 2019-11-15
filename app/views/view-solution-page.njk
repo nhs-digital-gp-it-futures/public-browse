@@ -1,14 +1,36 @@
+
 {% extends 'includes/layout.njk' %}
+{% from 'components/button/macro.njk' import button %}
+{% from 'components/back-link/macro.njk' import backLink %}
 {% from './sections/view-solution-description.njk' import viewSolutionDescription %}
 {% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
 {% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
 
 {% block body %}
   <div class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
-    <h5 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h5>
-    <h1 data-test-id="view-solution-page-solution-name">{{ name }}</h1>
+    <div data-test-id="view-solution-page-back-link" class="nhsuk-u-margin-bottom-5">
+      {{ backLink({
+        "href": "/",
+        "text": "Go back"
+      }) }}
+    </div>
+    {% if isFoundation %}
+      <div class="nhsuk-u-margin-bottom-6 bc-c-foundation-tag" data-test-id="solution-foundation-tag">Foundation Solution</div>
+    {% endif %}
+    <h6 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h6>
+    <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
+    <h5>{{ id }}</h5>
+    <hr class="nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3">
+    <div data-test-id="view-solution-page-last-updated">{{lastUpdated}}</div>
     {{ viewSolutionDescription(sections['solution-description']) }}
     {{ viewSolutionCapabilities(sections.capabilities) }}
     {{ viewSolutionContactDetails(sections['contact-details']) }}
+    <div data-test-id="view-solution-page-download-info-button" class="nhsuk-u-margin-top-7">
+      {{ button({
+        "text": "Download more information",
+        "classes": "nhsuk-button--secondary",
+        "href": "/"
+      }) }}
+    </div>
   </div>
 {% endblock %}
