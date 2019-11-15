@@ -1,0 +1,17 @@
+.bc-c-tag {
+  color:  $color_nhsuk-white;
+  background-color: $color_nhsuk-blue;
+  padding: nhsuk-spacing(1) nhsuk-spacing(3);
+  font-weight: 600 !important;
+} 
+
+.bc-c-tag-foundation {
+  @extend .bc-c-tag;
+  display: inline-block;
+}
+
+.bc-c-tag-beta {
+  @extend .bc-c-tag;
+  float: left;
+  margin: nhsuk-spacing(2) nhsuk-spacing(3) 0 nhsuk-spacing(3);
+}
