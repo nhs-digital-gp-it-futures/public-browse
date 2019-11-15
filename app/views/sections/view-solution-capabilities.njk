@@ -3,10 +3,12 @@
 {% macro viewSolutionCapabilities(section) %}
   {% if section %}
     <div data-test-id="view-solution-capabilities">
-      <div class="nhsuk_title">
+      <div class="bc-c-title-block">
         <h3>Capabilities met</h3>
       </div>
-      {{ viewQuestionDataBulletlist(section.answers['capabilities-met']) }}
+      <div class="nhsuk-u-padding-left-3">
+        {{ viewQuestionDataBulletlist(section.answers['capabilities-met']) }}
+      </div>
     </div>
   {% endif %}
 {% endmacro %}

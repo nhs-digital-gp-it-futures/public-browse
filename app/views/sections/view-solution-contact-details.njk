@@ -3,10 +3,10 @@
 {% macro viewSolutionContactDetails(section) %}
   {% if section %}
     <div data-test-id="view-solution-contact-details">
-      <div class="nhsuk_title">
+      <div class="bc-c-title-block">
         <h3>Contact details</h3>
       </div>
-    <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4">
+    <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
       {% if section.answers['contact-1'] %}
         <div data-test-id="view-section-question-contact-1" class="nhsuk-grid-column-one-half">
             {{ viewQuestionDataText('department-name', section.answers['contact-1']['department-name']) }}

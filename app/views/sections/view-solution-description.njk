@@ -5,29 +5,30 @@
 {% macro viewSolutionDescription(section) %}
   {% if section %}
     <div data-test-id="view-solution-description">
-      <div class="nhsuk_title">
+      <div class="bc-c-title-block">
         <h3>Solution description</h3>
       </div>
+      <div class="nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
+        {% if section.answers.summary %}
+          <div data-test-id="view-section-question-summary">
+              {{ viewQuestionTitle('summary', 'Summary') }}
+              {{ viewQuestionDataText('summary', section.answers.summary) }}
+          </div>
+        {% endif %}
 
-      {% if section.answers.summary %}
-        <div data-test-id="view-section-question-summary" class="nhsuk-u-margin-bottom-4">
-            {{ viewQuestionTitle('summary', 'Summary') }}
-            {{ viewQuestionDataText('summary', section.answers.summary) }}
-        </div>
-      {% endif %}
-
-      {% if section.answers.description %}
-        <div data-test-id="view-section-question-description" class="nhsuk-u-margin-bottom-4">
-            {{ viewQuestionTitle('description', 'About the solution') }}
-            {{ viewQuestionDataText('description', section.answers.description) }}
-        </div>
-      {% endif %}
-      
-      {% if section.answers.link %}
-        <div data-test-id="view-section-question-link" class="nhsuk-u-margin-bottom-4">
-          {{ viewQuestionDataLink(section.answers.link) }}
-        </div>
-      {% endif %}
+        {% if section.answers.description %}
+          <div data-test-id="view-section-question-description">
+              {{ viewQuestionTitle('description', 'About the solution') }}
+              {{ viewQuestionDataText('description', section.answers.description) }}
+          </div>
+        {% endif %}
+        
+        {% if section.answers.link %}
+          <div data-test-id="view-section-question-link">
+            {{ viewQuestionDataLink(section.answers.link) }}
+          </div>
+        {% endif %}
+      </div>
     </div>
   {% endif %}
 {% endmacro %}
