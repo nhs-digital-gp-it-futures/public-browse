@@ -1,0 +1,20 @@
+{% extends 'includes/layout.njk' %}
+{% from './solution-card.njk' import solutionCard %}
+
+{% block body %}
+  <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="solutions-list-body">
+
+    <div class="nhsuk-u-padding-top-5 nhsuk-u-padding-bottom-5" data-test-id="solutions-list-title">
+      <h2>{{ pageTitle }}</h2>
+      <div data-test-id="solutions-list-description">
+        {{ pageDescription }}
+      </div>
+    </div>
+
+    <div class="nhsuk-u-margin-top-5" data-test-id="solution-cards">
+      {% for solution in solutions %}
+        {{ solutionCard(solution) }}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
