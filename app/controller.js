@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { createSolutionPageContext } from './contextCreator/createSolutionPageContext';
 import { createSolutionListPageContext, createFoundationSolutionListPageContext } from './contextCreator/createSolutionListPageContext';
 
 export const getSolutionFoundationListPageContext = async () => {
@@ -18,14 +17,6 @@ export const getSolutionListPageContext = async () => {
   const context = createSolutionListPageContext(
     solutionListResponse.data.solutions,
   );
-
-  return context;
-};
-
-export const getSolutionPageContext = async (solutionId) => {
-  const solutionData = await axios.get(`http://localhost:8080/api/v1/Solution/${solutionId}`);
-
-  const context = createSolutionPageContext(solutionData.data.solution);
 
   return context;
 };
