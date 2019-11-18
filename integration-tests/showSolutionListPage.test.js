@@ -6,6 +6,9 @@ const mocks = () => {
   nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, aSolutionList);
+  nock('http://localhost:8080')
+    .get('/api/v1/Solutions/S1/Public')
+    .reply(200);
 };
 
 const pageSetup = async (t) => {
