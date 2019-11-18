@@ -85,7 +85,7 @@ describe('solution-card', () => {
 
         expect(solutionName.length).toEqual(1);
         expect(solutionName.text().trim()).toEqual('some solution name');
-        expect(solutionName.find('a').attr('href')).toEqual('./view-solution/0001');
+        expect(solutionName.find('a').attr('href')).toEqual('/view-solution/0001');
 
         done();
       });
