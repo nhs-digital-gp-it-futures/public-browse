@@ -16,7 +16,6 @@ const createDummyApp = (context) => {
   return app;
 };
 
-
 describe('browse solutions page', () => {
   it('should render the browse foundation solutions promo', (done) => {
     const context = {};
@@ -37,6 +36,7 @@ describe('browse solutions page', () => {
 
         expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual('Browse Foundation Solutions');
         expect(foundationSolutionsPromo.find('p').text().trim()).toEqual('Brief outline of what browse foundation solutions are');
+        expect(foundationSolutionsPromo.find('a').attr('href')).toEqual('/solutions/foundation');
 
         done();
       });
@@ -61,6 +61,7 @@ describe('browse solutions page', () => {
 
         expect(allSolutionsPromo.find('h3').text().trim()).toEqual('Browse All Solutions');
         expect(allSolutionsPromo.find('p').text().trim()).toEqual('Brief outline of what all solutions include and can be used for');
+        expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions');
 
         done();
       });

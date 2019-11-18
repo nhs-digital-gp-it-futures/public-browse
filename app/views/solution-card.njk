@@ -1,42 +1,49 @@
-{% from 'components/panel/macro.njk' import panel %}
-{% from 'components/label/macro.njk' import label %}
-{% from './solution-card-section.njk' import solutionCardSection %}
+{% macro capabilityList(capabilities) %}
+  <div data-test-id="capability-list">
+    <h4>Capabilities met</h4> 
+    <ul>
+      {% for capability in capabilities %}
+        <li data-test-id="capability-list-item">
+          {{ capability }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}
 
-{% macro solutionCard(solution, showTitle, showAnchor) %}
 
-  {% macro solutionOrganisation(solution) %}
-    <div data-test-id="solution-card-organisation">
-      {{ solution.organisation }}
-    </div>
-  {% endmacro %}
+{% macro solutionCard(solution) %}
 
-  {% macro solutionName(solution, showTitle) %}
-    {% if showTitle %}
+  <div class="bc-border-top-colour--blue nhsuk-grid-row nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-5" data-test-id="solution-card">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      {% if solution.isFoundation %}
+        <div class="nhsuk-u-padding-bottom-4" data-test-id="solution-card-foundation-indicator">
+            <strong class="govuk-tag" id="eligibility-completed">
+              Foundation Solution
+            </strong>
+        </div>
+      {% endif %}
+
+      <div data-test-id="solution-card-organisation">
+        {{ solution.organisationName }}
+      </div>
+      
       <h3 data-test-id="solution-card-name">
-        <a href="./view/{{ solution.id }}">
+        <a href="./view-solution/{{ solution.id }}">
           {{ solution.name }}
         </a>
       </h3>
-    {% endif %}
-  {% endmacro %}
 
-  {% macro solutionId(solution) %}
-    <div data-test-id="solution-card-id">
-      {{ solution.id }}
+      <div data-test-id="solution-card-summary">
+        {{ solution.summary }}
+      </div>
     </div>
-  {% endmacro %}
 
-  {% macro sections(data, showAnchor) %}
-    {% for sectionData in data %}
-      {{ solutionCardSection(sectionData, showAnchor) }}
-    {% endfor %}
-  {% endmacro %}
-
-  <div data-test-id="solution-card">
-    {{ panel({
-      "HTML": solutionOrganisation(solution) + solutionName(solution, showTitle) +
-      "<div data-test-id='solution-sections'>"+ sections(solution.sections, showAnchor) +"</div>" +
-      solutionId(solution)
-    }) }}
+    <div class="nhsuk-grid-column-one-third" data-test-id="solution-card-capability-list">
+      {{ capabilityList(solution.capabilities) }}
+    </div>
   </div>
+
+
 {% endmacro %}

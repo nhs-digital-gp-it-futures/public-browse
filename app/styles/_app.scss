@@ -12,4 +12,29 @@
   background-color: $color_nhsuk-blue;
   padding: nhsuk-spacing(1) nhsuk-spacing(3);
   font-weight: 600 !important;
+
+.bc-border-top-colour--blue {
+    border-top: 2px solid $color_nhsuk-blue;
+}
+
+.govuk-tag {
+    display: inline-block;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    color: #ffffff;
+    background-color: #1d70b8;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "GDS Transport", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 1;
+    padding-top: 5px;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    padding-left: 8px;
 }

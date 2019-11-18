@@ -18,7 +18,7 @@ const createDummyApp = (context) => {
 
 
 describe('header', () => {
-  it('should render the header panel', (done) => {
+  it('should render the terms banner with beta tag', (done) => {
     const context = {};
 
     const app = createDummyApp(context);
@@ -27,7 +27,6 @@ describe('header', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         const termsBanner = $('[data-test-id="terms-banner"] > div');
-
         expect(termsBanner.hasClass('nhsuk-u-margin-top-0')).toEqual(true);
         expect(termsBanner.hasClass('nhsuk-u-margin-bottom-0')).toEqual(true);
         expect(termsBanner.hasClass('nhsuk-u-padding-top-3')).toEqual(true);
@@ -36,7 +35,11 @@ describe('header', () => {
         expect(termsBanner.hasClass('nhsuk-panel--grey')).toEqual(true);
         expect(termsBanner.hasClass('nhsuk-width-container')).toEqual(true);
 
-        expect(termsBanner.text().trim()).toEqual('By using this site you are accepting the General Terms of Use which can be found here. If you do not agree with these terms you should not use this website');
+        const termsBannerText = $('[data-test-id="terms-banner-text"]');
+        expect(termsBannerText.text().trim()).toEqual('By using this site you are accepting the General Terms of Use which can be found here. If you do not agree with these terms you should not use this website');
+
+        const betaTag = $('[data-test-id="beta-tag"]');
+        expect(betaTag.hasClass('bc-c-tag-beta')).toEqual(true);
 
         done();
       });

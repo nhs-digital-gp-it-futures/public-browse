@@ -4,41 +4,13 @@ import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
 import { App } from '../../app';
 
-const basicSolutionWithNoSectionsContext = {
-  solution: {
-    id: '00001',
-    organisation: 'Some Organisation Name',
-    name: 'This is the title of the solution',
-    sections: [
-    ],
-  },
-};
-
-const aSimpleSection = {
-  name: 'Simple Section',
-  value: 'This is the simple section',
-  showTitle: true,
-  columns: 1,
-};
-
-const aListSection = {
-  name: 'List Section',
-  value: [
-    'value 1',
-    'value 2',
-    'value 3',
-  ],
-  showTitle: true,
-  columns: 1,
-};
-
-const createDummyApp = (context, showTitle = true) => {
+const createDummyApp = (context) => {
   const app = new App().createApp();
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card.njk' import solutionCard %}
-                          {{ solutionCard(solution, ${showTitle}) }}`;
+                          {{ solutionCard(solution) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -50,100 +22,178 @@ const createDummyApp = (context, showTitle = true) => {
   return app;
 };
 
-
 describe('solution-card', () => {
-  it('should render the organisation name of the solution', (done) => {
-    const dummyApp = createDummyApp(basicSolutionWithNoSectionsContext);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('div[data-test-id="solution-card-organisation"]').text().trim()).toEqual('Some Organisation Name');
-
-        done();
-      });
-  });
-
-  it('should render the name of the Solution', (done) => {
-    const dummyApp = createDummyApp(basicSolutionWithNoSectionsContext);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('h3[data-test-id="solution-card-name"]').text().trim()).toEqual('This is the title of the solution');
-        expect($('h3[data-test-id="solution-card-name"] a').attr('href')).toEqual('./view/00001');
-
-        done();
-      });
-  });
-
-  it('should render the id of the Solution', (done) => {
-    const dummyApp = createDummyApp(basicSolutionWithNoSectionsContext);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('div[data-test-id="solution-card-id"]').text().trim()).toEqual('00001');
-
-        done();
-      });
-  });
-
-  it('should not render the name of the Solution if the showTitle flag is false', (done) => {
-    const dummyApp = createDummyApp(basicSolutionWithNoSectionsContext, false);
-    request(dummyApp)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        expect($('h3[data-test-id="solution-card-name"]').length).toEqual(0);
-
-        done();
-      });
-  });
-
-  it('should render just the one section when provided', (done) => {
+  it('should render the foundation indicator', (done) => {
     const context = {
       solution: {
-        ...basicSolutionWithNoSectionsContext.solution,
-        sections: [aSimpleSection],
+        isFoundation: true,
       },
     };
 
-    const dummyApp = createDummyApp(context);
-    request(dummyApp)
+    const app = createDummyApp(context);
+    request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const section = $('[data-test-id="solution-sections"] > label');
 
-        expect(section.length).toEqual(1);
+        const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-indicator"]');
+
+        expect(foundationSolutionIndicator.length).toEqual(1);
+        expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution');
 
         done();
       });
   });
 
-  it('should render multiple sections that are provided in the context', (done) => {
+  it('should render the organisation name', (done) => {
     const context = {
       solution: {
-        ...basicSolutionWithNoSectionsContext.solution,
-        sections: [aSimpleSection, aListSection],
+        organisationName: 'some organisation name',
       },
     };
 
-    const dummyApp = createDummyApp(context);
-    request(dummyApp)
+    const app = createDummyApp(context);
+    request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const section = $('[data-test-id="solution-sections"] > label');
 
-        expect(section.length).toEqual(2);
+        const solutionOrganisationName = $('[data-test-id="solution-card-organisation"]');
+
+        expect(solutionOrganisationName.length).toEqual(1);
+        expect(solutionOrganisationName.text().trim()).toEqual('some organisation name');
 
         done();
       });
+  });
+
+  it('should render the solution name', (done) => {
+    const context = {
+      solution: {
+        id: '0001',
+        name: 'some solution name',
+      },
+    };
+
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const solutionName = $('[data-test-id="solution-card-name"]');
+
+        expect(solutionName.length).toEqual(1);
+        expect(solutionName.text().trim()).toEqual('some solution name');
+        expect(solutionName.find('a').attr('href')).toEqual('./view-solution/0001');
+
+        done();
+      });
+  });
+
+  it('should render the solution summary', (done) => {
+    const context = {
+      solution: {
+        summary: 'some solution summary',
+      },
+    };
+
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const solutionName = $('[data-test-id="solution-card-summary"]');
+
+        expect(solutionName.length).toEqual(1);
+        expect(solutionName.text().trim()).toEqual('some solution summary');
+
+        done();
+      });
+  });
+
+  describe('capability list', () => {
+    it('should render 0 capability names if no capabilities are provided in the context', (done) => {
+      const context = {
+        solution: {
+          capabilities: [],
+        },
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          const solutionCapabilityList = $('[data-test-id="solution-card-capability-list"]');
+          const capabilityList = solutionCapabilityList.find('[data-test-id="capability-list"]');
+
+          expect(solutionCapabilityList.length).toEqual(1);
+          expect(capabilityList.length).toEqual(1);
+          expect(capabilityList.find('[data-test-id="capability-list-item"]').length).toEqual(0);
+
+          done();
+        });
+    });
+
+    it('should render 1 capability name if only 1 capability is provided context', (done) => {
+      const context = {
+        solution: {
+          capabilities: [
+            'some capability name',
+          ],
+        },
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          const solutionCapabilityList = $('[data-test-id="solution-card-capability-list"]');
+          const capabilityList = solutionCapabilityList.find('[data-test-id="capability-list"]');
+
+          expect(solutionCapabilityList.length).toEqual(1);
+          expect(capabilityList.length).toEqual(1);
+          expect(capabilityList.find('[data-test-id="capability-list-item"]').length).toEqual(1);
+          expect(capabilityList.find('[data-test-id="capability-list-item"]:nth-child(1)').text().trim()).toEqual('some capability name');
+
+          done();
+        });
+    });
+
+    it('should render 3 capability names if 3 capabilities are provided in the context', (done) => {
+      const context = {
+        solution: {
+          capabilities: [
+            'first capability',
+            'second capability',
+            'third capability',
+          ],
+        },
+      };
+
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+
+          const solutionCapabilityList = $('[data-test-id="solution-card-capability-list"]');
+          const capabilityList = solutionCapabilityList.find('[data-test-id="capability-list"]');
+
+          expect(solutionCapabilityList.length).toEqual(1);
+          expect(capabilityList.length).toEqual(1);
+          expect(capabilityList.find('[data-test-id="capability-list-item"]').length).toEqual(3);
+          expect(capabilityList.find('[data-test-id="capability-list-item"]:nth-child(1)').text().trim()).toEqual('first capability');
+          expect(capabilityList.find('[data-test-id="capability-list-item"]:nth-child(2)').text().trim()).toEqual('second capability');
+          expect(capabilityList.find('[data-test-id="capability-list-item"]:nth-child(3)').text().trim()).toEqual('third capability');
+
+          done();
+        });
+    });
   });
 });
