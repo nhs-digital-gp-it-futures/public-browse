@@ -16,14 +16,14 @@
 
 {% macro solutionCard(solution) %}
 
-  <div class="bc-border-top-colour--blue nhsuk-grid-row nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-5" data-test-id="solution-card">
+  <div class="bc-t-border-top--blue nhsuk-grid-row nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7" data-test-id="solution-card">
     <div class="nhsuk-grid-column-two-thirds">
 
       {{ foundationTag('solution-card', solution.isFoundation) }}
 
-      <div data-test-id="solution-card-organisation">
+      <h5 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-organisation">
         {{ solution.organisationName }}
-      </div>
+      </h5>
       
       <h3 data-test-id="solution-card-name">
         <a href="/view-solution/{{ solution.id }}">
@@ -33,6 +33,10 @@
 
       <div data-test-id="solution-card-summary">
         {{ solution.summary }}
+      </div>
+
+      <div data-test-id="solution-card-view-link" class="nhsuk-u-margin-top-5">
+        <a href="/view-solution/{{ solution.id }}">View the solution</a>
       </div>
     </div>
 
