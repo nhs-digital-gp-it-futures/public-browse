@@ -96,6 +96,11 @@ test('should display the solution description', async (t) => {
 
 test('should navigate to the link address when clicking on the link in the solution description', async (t) => {
   pageSetup(t);
+
+  nock('http://localhost:8080')
+    .get('/api/v1/Solutions/link.com/Public')
+    .reply(200, {});
+
   const getLocation = ClientFunction(() => document.location.href);
   const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
   await t
@@ -130,7 +135,7 @@ test('should display the solution contact details', async (t) => {
     .expect(contact2.find('div[data-test-id="view-question-data-text-department-name"]').innerText).eql('a second contact dept')
     .expect(contact2.find('div[data-test-id="view-question-data-text-contact-name"]').innerText).eql('jacky johnston')
     .expect(contact2.find('div[data-test-id="view-question-data-text-phone-number"]').innerText).eql('0222 222222')
-    .expect(contact2.find('div[data-test-id="view-question-data-text-email-address"]').innerText).eql('jacky@solution.com')
+    .expect(contact2.find('div[data-test-id="view-question-data-text-email-address"]').innerText).eql('jacky@solution.com');
 });
 
 test('should display the download button', async (t) => {
