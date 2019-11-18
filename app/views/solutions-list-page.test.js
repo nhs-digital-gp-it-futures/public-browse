@@ -37,6 +37,27 @@ describe('solutions list page', () => {
       });
   });
 
+  it('should render go back link', (done) => {
+    const context = {
+      pageTitle: 'some page title',
+    };
+
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const goBackLink = $('[data-test-id="go-back-link"] a');
+
+        expect(goBackLink.length).toEqual(1);
+        expect(goBackLink.text().trim()).toEqual('Go back');
+        expect(goBackLink.attr('href')).toEqual(`/browse-solutions`);
+
+        done();
+      });
+  });
+
   it('should render the solution list page description', (done) => {
     const context = {
       pageDescription: 'some page description',
