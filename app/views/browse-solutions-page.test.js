@@ -17,6 +17,25 @@ const createDummyApp = (context) => {
 };
 
 describe('browse solutions page', () => {
+  it('should render the view solution section', (done) => {
+    const context = {};
+
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const viewSolutions = $('[data-test-id="view-solutions"]');
+
+        expect(viewSolutions.length).toEqual(1);
+        expect(viewSolutions.find('p').length).toEqual(1);
+        expect(viewSolutions.find('p').text().trim()).toEqual('There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.');
+
+        done();
+      });
+  });
+
   it('should render the browse foundation solutions promo', (done) => {
     const context = {};
 
@@ -34,8 +53,8 @@ describe('browse solutions page', () => {
         expect(foundationSolutionsPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(foundationSolutionsPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-        expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual('Browse Foundation Solutions');
-        expect(foundationSolutionsPromo.find('p').text().trim()).toEqual('Brief outline of what browse foundation solutions are');
+        expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual('View Foundation Solutions');
+        expect(foundationSolutionsPromo.find('p').text().trim()).toEqual('Find Solutions that meet the business needs of the Foundation Capabilities mandated by NHS England.');
         expect(foundationSolutionsPromo.find('a').attr('href')).toEqual('/solutions/foundation');
 
         done();
@@ -59,8 +78,8 @@ describe('browse solutions page', () => {
         expect(allSolutionsPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(allSolutionsPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-        expect(allSolutionsPromo.find('h3').text().trim()).toEqual('Browse All Solutions');
-        expect(allSolutionsPromo.find('p').text().trim()).toEqual('Brief outline of what all solutions include and can be used for');
+        expect(allSolutionsPromo.find('h3').text().trim()).toEqual('View all Solutions');
+        expect(allSolutionsPromo.find('p').text().trim()).toEqual('Find out what Solutions the Buying Catalogue has to offer that can meet your needs.');
         expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions');
 
         done();
