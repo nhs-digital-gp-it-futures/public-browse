@@ -11,10 +11,11 @@
       </div>
     </div>
 
-    <div data-test-id="solution-cards" class="bc-t-border-bottom--blue nhsuk-u-margin-bottom-7">
+    <div data-test-id="solution-cards" class="nhsuk-u-margin-bottom-7">
       {% for solution in solutions %}
         {{ solutionCard(solution) }}
       {% endfor %}
+      <div class="bc-t-border-top--blue nhsuk-grid-row" />
     </div>
   </div>
 {% endblock %}
