@@ -36,7 +36,7 @@ describe('solution-card', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-indicator"]');
+        const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-tag"]');
 
         expect(foundationSolutionIndicator.length).toEqual(1);
         expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution');

@@ -5,6 +5,7 @@
 {% from './sections/view-solution-description.njk' import viewSolutionDescription %}
 {% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
 {% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
+{% from './components/foundation-tag.njk' import foundationTag %}
 
 {% block body %}
   <div data-test-id="view-solution-page" class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
@@ -14,9 +15,9 @@
         "text": "Go back"
       }) }}
     </div>
-    {% if isFoundation %}
-      <div class="nhsuk-u-margin-bottom-6 bc-c-tag-foundation" data-test-id="solution-foundation-tag">Foundation Solution</div>
-    {% endif %}
+
+    {{ foundationTag ('solution', isFoundation) }}
+
     <h6 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h6>
     <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
     <h5 data-test-id="view-solution-page-solution-id">{{ id }}</h5>
