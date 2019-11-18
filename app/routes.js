@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  getPublicSolutionById,
   getSolutionFoundationListPageContext,
   getSolutionListPageContext,
 } from './controller';
@@ -8,6 +9,12 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   res.render('home-page', {});
+});
+
+router.get('/view-solution/:solutionId', async (req, res) => {
+  const { solutionId } = req.params;
+  const context = await getPublicSolutionById(solutionId);
+  res.render('view-solution-page', context);
 });
 
 router.get('/browse-solutions', async (req, res) => {

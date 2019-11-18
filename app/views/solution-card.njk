@@ -1,3 +1,5 @@
+{% from './components/foundation-tag.njk' import foundationTag %}
+
 {% macro capabilityList(capabilities) %}
   <div data-test-id="capability-list">
     <h4>Capabilities met</h4> 
@@ -17,13 +19,7 @@
   <div class="bc-border-top-colour--blue nhsuk-grid-row nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-5" data-test-id="solution-card">
     <div class="nhsuk-grid-column-two-thirds">
 
-      {% if solution.isFoundation %}
-        <div class="nhsuk-u-padding-bottom-4" data-test-id="solution-card-foundation-indicator">
-            <strong class="govuk-tag" id="eligibility-completed">
-              Foundation Solution
-            </strong>
-        </div>
-      {% endif %}
+      {{ foundationTag('solution-card', solution.isFoundation) }}
 
       <div data-test-id="solution-card-organisation">
         {{ solution.organisationName }}

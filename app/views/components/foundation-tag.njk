@@ -1,0 +1,5 @@
+{% macro foundationTag(qaIdentifier, isFoundation) %}
+  {% if isFoundation %}
+    <div class="nhsuk-u-margin-bottom-6 bc-c-tag-foundation" data-test-id="{{qaIdentifier}}-foundation-tag">Foundation Solution</div>
+  {% endif %}
+{% endmacro %}
