@@ -3,10 +3,10 @@ import {
   createFoundationSolutionListPageContext,
 } from './createSolutionListPageContext';
 
-const solutionPageTitle = 'All Solutions - results';
+const solutionPageTitle = 'All Solutions results';
 const solutionPageDescription = 'These are the Solutions on the GP IT Futures framework available from the Buying Catalogue.';
 
-const foundationPageTitle = 'Foundation Solutions - results';
+const foundationPageTitle = 'Foundation Solutions results';
 const foundationPageDescription = 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.';
 
 describe('createSolutionListPageContext', () => {
