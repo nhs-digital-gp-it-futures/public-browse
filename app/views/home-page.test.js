@@ -31,8 +31,8 @@ describe('home page', () => {
         const description = homepageSection.find('p');
 
         expect(homepageSection.length).toEqual(1);
-        expect(title.text().trim()).toEqual('Homepage Title');
-        expect(description.text().trim()).toEqual('Brief introduction text to explain a bit about the Buying Catalogue, its aims and its purpose for existance');
+        expect(title.text().trim()).toEqual('Buying Catalogue');
+        expect(description.text().trim()).toEqual('The GP IT Futures procurement framework has replaced GP System of Choice (GPSoC). Use our Buying Catalogue to find out what high-quality IT systems and services are available.');
 
         done();
       });
@@ -73,8 +73,8 @@ describe('home page', () => {
         expect(guidancePromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(guidancePromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-        expect(guidancePromo.find('h3').text().trim()).toEqual('Guidance Title');
-        expect(guidancePromo.find('p').text().trim()).toEqual('Brief outline of what the guidance includes and what it can be used for');
+        expect(guidancePromo.find('h3').text().trim()).toEqual('Buying Catalogue Guide');
+        expect(guidancePromo.find('p').text().trim()).toEqual('Our guide explains how to use the Buying Catalogue to find and procure clinical Solutions.');
 
         done();
       });
@@ -97,8 +97,8 @@ describe('home page', () => {
         expect(browsePromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(browsePromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-        expect(browsePromo.find('h3').text().trim()).toEqual('Browse Solutions');
-        expect(browsePromo.find('p').text().trim()).toEqual('Brief outline of what the solution includes and what it can be used for');
+        expect(browsePromo.find('h3').text().trim()).toEqual('View Solutions');
+        expect(browsePromo.find('p').text().trim()).toEqual('See what’s available on the GP IT Futures procurement framework that can meet your needs.');
 
         done();
       });
