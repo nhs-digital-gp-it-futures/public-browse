@@ -97,7 +97,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const solutionId = $('[data-test-id="view-solution-page-solution-id"]');
         expect(solutionId.length).toEqual(1);
-        expect(solutionId.text().trim()).toEqual(context.id);
+        expect(solutionId.text().trim()).toEqual(`Solution ID: ${context.id}`);
         done();
       });
   });
@@ -113,7 +113,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const lastUpdated = $('[data-test-id="view-solution-page-last-updated"]');
         expect(lastUpdated.length).toEqual(1);
-        expect(lastUpdated.text().trim()).toEqual(context.lastUpdated);
+        expect(lastUpdated.text().trim()).toEqual(`Page last updated: ${context.lastUpdated}`);
         done();
       });
   });

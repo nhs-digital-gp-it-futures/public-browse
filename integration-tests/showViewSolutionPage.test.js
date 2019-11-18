@@ -48,7 +48,7 @@ test('should display the foundation tag', async (t) => {
 
 test('should display the organisation name', async (t) => {
   pageSetup(t);
-  const orgName = Selector('h6[data-test-id="view-solution-page-organisation-name"]');
+  const orgName = Selector('h2[data-test-id="view-solution-page-organisation-name"]');
   await t
     .expect(orgName.exists).ok()
     .expect(orgName.innerText).eql('Really Kool Corporation');
@@ -64,10 +64,10 @@ test('should display the solution name', async (t) => {
 
 test('should display the solution id', async (t) => {
   pageSetup(t);
-  const solutionId = Selector('h5[data-test-id="view-solution-page-solution-id"]');
+  const solutionId = Selector('h4[data-test-id="view-solution-page-solution-id"]');
   await t
     .expect(solutionId.exists).ok()
-    .expect(solutionId.innerText).eql('100000-001');
+    .expect(solutionId.innerText).eql('Solution ID: 100000-001');
 });
 
 test('should display the last updated', async (t) => {
@@ -75,7 +75,7 @@ test('should display the last updated', async (t) => {
   const lastUpdated = Selector('div[data-test-id="view-solution-page-last-updated"]');
   await t
     .expect(lastUpdated.exists).ok()
-    .expect(lastUpdated.innerText).eql('a date');
+    .expect(lastUpdated.innerText).eql('Page last updated: a date');
 });
 
 test('should display the solution description', async (t) => {

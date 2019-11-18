@@ -18,11 +18,10 @@
 
     {{ foundationTag ('solution', isFoundation) }}
 
-    <h6 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h6>
+    <h2 data-test-id="view-solution-page-organisation-name" class="nhsuk-u-margin-bottom-1">{{organisationName}}</h2>
     <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
-    <h5 data-test-id="view-solution-page-solution-id">{{ id }}</h5>
-    <hr class="nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3">
-    <div data-test-id="view-solution-page-last-updated">{{lastUpdated}}</div>
+    <h4 data-test-id="view-solution-page-solution-id">Solution ID: {{ id }}</h4>
+    <div data-test-id="view-solution-page-last-updated" class="nhsuk-body-s">Page last updated: {{lastUpdated}}</div>
     {{ viewSolutionDescription(sections['solution-description']) }}
     {{ viewSolutionCapabilities(sections.capabilities) }}
     {{ viewSolutionContactDetails(sections['contact-details']) }}
