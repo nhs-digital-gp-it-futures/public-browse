@@ -86,6 +86,22 @@ describe('view solution', () => {
       });
   });
 
+  it('should render the solution id', (done) => {
+    const context = {
+      id: '111',
+    };
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const solutionId = $('[data-test-id="view-solution-page-solution-id"]');
+        expect(solutionId.length).toEqual(1);
+        expect(solutionId.text().trim()).toEqual(context.id);
+        done();
+      });
+  });
+
   it('should render the last updated', (done) => {
     const context = {
       lastUpdated: 'some time',
