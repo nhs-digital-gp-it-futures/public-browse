@@ -7,7 +7,7 @@
 {% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
 
 {% block body %}
-  <div class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
+  <div data-test-id="view-solution-page" class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
     <div data-test-id="view-solution-page-back-link" class="nhsuk-u-margin-bottom-5">
       {{ backLink({
         "href": "/",
@@ -15,11 +15,11 @@
       }) }}
     </div>
     {% if isFoundation %}
-      <div class="nhsuk-u-margin-bottom-6 bc-c-foundation-tag" data-test-id="solution-foundation-tag">Foundation Solution</div>
+      <div class="nhsuk-u-margin-bottom-6 bc-c-tag-foundation" data-test-id="solution-foundation-tag">Foundation Solution</div>
     {% endif %}
     <h6 data-test-id="view-solution-page-organisation-name">{{organisationName}}</h6>
     <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
-    <h5>{{ id }}</h5>
+    <h5 data-test-id="view-solution-page-solution-id">{{ id }}</h5>
     <hr class="nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3">
     <div data-test-id="view-solution-page-last-updated">{{lastUpdated}}</div>
     {{ viewSolutionDescription(sections['solution-description']) }}
