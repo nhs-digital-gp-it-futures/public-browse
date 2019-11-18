@@ -61,11 +61,11 @@ test('should display the foundation solution details of a solution card', async 
     .expect(solutionCardsSection.find('div[data-test-id="solution-card"]').count).eql(2);
 
   const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card"]:nth-child(1)');
-  const foundationIndicator = solutionCard.find('div[data-test-id="solution-card-foundation-indicator"]');
+  const foundationTag = solutionCard.find('div[data-test-id="solution-card-foundation-tag"]');
 
   await t
-    .expect(foundationIndicator.exists).ok()
-    .expect(foundationIndicator.find('strong').innerText).eql('FOUNDATION SOLUTION')
+    .expect(foundationTag.exists).ok()
+    .expect(foundationTag.innerText).eql('Foundation Solution')
     .expect(solutionCard.find('div[data-test-id="solution-card-organisation"]').innerText).eql('some organisation name')
     .expect(solutionCard.find('h3').innerText)
     .eql('some foundation solution name')

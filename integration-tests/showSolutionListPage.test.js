@@ -66,7 +66,7 @@ test('should display the solution details of a solution card', async (t) => {
   const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card"]:nth-child(1)');
 
   await t
-    .expect(solutionCard.find('div[data-test-id="solution-card-foundation-indicator"]').exists).notOk()
+    .expect(solutionCard.find('div[data-test-id="solution-card-foundation-tag"]').exists).notOk()
     .expect(solutionCard.find('div[data-test-id="solution-card-organisation"]').innerText).eql('some organisation name')
     .expect(solutionCard.find('h3').innerText)
     .eql('some solution name')
