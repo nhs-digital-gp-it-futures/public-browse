@@ -134,27 +134,6 @@ describe('solution-card', () => {
       });
   });
 
-  it('should render the View the solution link', (done) => {
-    const context = {
-      solution: {
-        organisationName: 'some organisation name',
-      },
-    };
-
-    const app = createDummyApp(context);
-    request(app)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-
-        const solutionOrganisationName = $('[data-test-id="solution-card-organisation"]');
-
-        expect(solutionOrganisationName.length).toEqual(1);
-        expect(solutionOrganisationName.text().trim()).toEqual('some organisation name');
-
-        done();
-      });
-  });
   describe('capability list', () => {
     it('should render 0 capability names if no capabilities are provided in the context', (done) => {
       const context = {
