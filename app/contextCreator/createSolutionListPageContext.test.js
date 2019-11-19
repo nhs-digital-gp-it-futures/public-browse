@@ -14,6 +14,7 @@ describe('createSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkPath: '?browse=all',
       solutions: [
         {
           id: '00001',
@@ -82,6 +83,7 @@ describe('createSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkPath: '?browse=all',
       solutions: [
         {
           id: '00001',
@@ -124,6 +126,7 @@ describe('createSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkPath: '?browse=all',
       solutions: [
         {
           id: '00001',
@@ -159,6 +162,7 @@ describe('createSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkPath: '?browse=all',
       solutions: [
         {
           id: '00001',
@@ -192,6 +196,7 @@ describe('createSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkPath: '?browse=all',
       solutions: [
         {
           id: '00001',
@@ -222,6 +227,7 @@ describe('createSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkPath: '?browse=all',
       solutions: [],
     };
     const solutions = [];
@@ -237,6 +243,7 @@ describe('createFoundationSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkPath: '?browse=foundation',
       solutions: [
         {
           id: '00001',
@@ -305,6 +312,7 @@ describe('createFoundationSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkPath: '?browse=foundation',
       solutions: [
         {
           id: '00001',
@@ -347,6 +355,7 @@ describe('createFoundationSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkPath: '?browse=foundation',
       solutions: [
         {
           id: '00001',
@@ -382,6 +391,7 @@ describe('createFoundationSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkPath: '?browse=foundation',
       solutions: [
         {
           id: '00001',
@@ -415,6 +425,7 @@ describe('createFoundationSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkPath: '?browse=foundation',
       solutions: [
         {
           id: '00001',
@@ -445,6 +456,7 @@ describe('createFoundationSolutionListPageContext', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkPath: '?browse=foundation',
       solutions: [],
     };
     const solutions = [];
