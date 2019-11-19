@@ -10,7 +10,7 @@ const createDummyApp = (context) => {
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card.njk' import solutionCard %}
-                          {{ solutionCard(solution) }}`;
+                          {{ solutionCard(solution, backLinkPath) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -88,28 +88,63 @@ describe('solution-card', () => {
       });
   });
 
-  it('should render the solution name', (done) => {
-    const context = {
-      solution: {
-        id: '0001',
-        name: 'some solution name',
-      },
-    };
+  describe('solution name', () => {
+    it('should render the solution name', (done) => {
+      const context = {
+        solution: {
+          id: '0001',
+          name: 'some solution name',
+        },
+      };
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          const solutionName = $('[data-test-id="solution-card-name"]');
 
-    const app = createDummyApp(context);
-    request(app)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
+          expect(solutionName.length).toEqual(1);
+          expect(solutionName.text().trim()).toEqual('some solution name');
+          done();
+        });
+    });
 
-        const solutionName = $('[data-test-id="solution-card-name"]');
+    it('should have correct href when there is no backLinkPath key in context', (done) => {
+      const context = {
+        solution: {
+          id: '0001',
+          name: 'some solution name',
+        },
+      };
+      const app = createDummyApp(context);
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          const solutionName = $('[data-test-id="solution-card-name"]');
+          expect(solutionName.find('a').attr('href')).toEqual('/view-solution/0001');
+          done();
+        });
+    });
 
-        expect(solutionName.length).toEqual(1);
-        expect(solutionName.text().trim()).toEqual('some solution name');
-        expect(solutionName.find('a').attr('href')).toEqual('/view-solution/0001');
-
-        done();
-      });
+    it('should have correct href when there is backLinkPath key in context', (done) => {
+      const context = {
+        solution: {
+          id: '0001',
+          name: 'some solution name',
+        },
+        backLinkPath: '?backlink=path',
+      };
+      const app = createDummyApp(context, '/solutions');
+      request(app)
+        .get('/')
+        .then((res) => {
+          const $ = cheerio.load(res.text);
+          const solutionName = $('[data-test-id="solution-card-name"]');
+          expect(solutionName.find('a').attr('href')).toEqual('/view-solution/0001?backlink=path');
+          done();
+        });
+    });
   });
 
   it('should render the solution summary', (done) => {
