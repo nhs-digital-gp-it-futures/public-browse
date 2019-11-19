@@ -36,8 +36,8 @@ test('should render Browse Foundation Solutions container', async (t) => {
 
   await t
     .expect(foundationSolutions.exists).ok()
-    .expect(foundationSolutions.find('h3').innerText).eql('Browse Foundation Solutions')
-    .expect(foundationSolutions.find('p').innerText).eql('Brief outline of what browse foundation solutions are');
+    .expect(foundationSolutions.find('h3').innerText).eql('View Foundation Solutions')
+    .expect(foundationSolutions.find('p').innerText).eql('Find Solutions that meet the business needs of the Foundation Capabilities mandated by NHS England.');
 });
 
 test('should render Browse All Solutions container', async (t) => {
@@ -47,8 +47,8 @@ test('should render Browse All Solutions container', async (t) => {
 
   await t
     .expect(allSolutions.exists).ok()
-    .expect(allSolutions.find('h3').innerText).eql('Browse All Solutions')
-    .expect(allSolutions.find('p').innerText).eql('Brief outline of what all solutions include and can be used for');
+    .expect(allSolutions.find('h3').innerText).eql('View all Solutions')
+    .expect(allSolutions.find('p').innerText).eql('Find out what Solutions the Buying Catalogue has to offer that can meet your needs.');
 });
 
 test('should navigate to Browse All Solutions page', async (t) => {
