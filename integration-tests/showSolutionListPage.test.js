@@ -25,7 +25,7 @@ test('should display the page title', async (t) => {
 
   await t
     .expect(pageTitle.exists).ok()
-    .expect(pageTitle.innerText).eql('All Solutions - results');
+    .expect(pageTitle.innerText).eql('All Solutions results');
 });
 
 test('should display the page description', async (t) => {
@@ -67,7 +67,7 @@ test('should display the solution details of a solution card', async (t) => {
 
   await t
     .expect(solutionCard.find('div[data-test-id="solution-card-foundation-tag"]').exists).notOk()
-    .expect(solutionCard.find('div[data-test-id="solution-card-organisation"]').innerText).eql('some organisation name')
+    .expect(solutionCard.find('h5[data-test-id="solution-card-organisation"]').innerText).eql('some organisation name')
     .expect(solutionCard.find('h3').innerText)
     .eql('some solution name')
     .expect(solutionCard.find('div[data-test-id="solution-card-summary"]').innerText)
