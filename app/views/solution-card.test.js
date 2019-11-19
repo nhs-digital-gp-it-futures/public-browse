@@ -45,7 +45,7 @@ describe('solution-card', () => {
       });
   });
 
-  it('should render the view the solution link', (done) => {
+  it('should render the view this solution link', (done) => {
     const context = {
       solution: {
         id: 'S1',
@@ -60,7 +60,7 @@ describe('solution-card', () => {
         const viewSolutionLink = $('[data-test-id="solution-card-view-link"]');
 
         expect(viewSolutionLink.length).toEqual(1);
-        expect(viewSolutionLink.text().trim()).toEqual('View the solution');
+        expect(viewSolutionLink.text().trim()).toEqual('View this solution');
         expect(viewSolutionLink.find('a').attr('href')).toEqual(`/view-solution/${context.solution.id}`);
         done();
       });
