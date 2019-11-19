@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createSolutionListPageContext, createFoundationSolutionListPageContext } from './contextCreator/createSolutionListPageContext';
-import { createViewSolutionContext } from './contextCreator/createViewSolutionContext';
+import { createViewSolutionPageContext } from './contextCreator/createViewSolutionPageContext';
 
 export const getSolutionFoundationListPageContext = async () => {
   const foundationSolutionListResponse = await axios.get('http://localhost:8080/api/v1/Solutions/Foundation');
@@ -24,5 +24,5 @@ export const getSolutionListPageContext = async () => {
 
 export const getPublicSolutionById = async (solutionId, browseSolutionType) => {
   const response = await axios.get(`http://localhost:8080/api/v1/Solutions/${solutionId}/Public`);
-  return createViewSolutionContext(response.data, browseSolutionType);
+  return createViewSolutionPageContext(response.data, browseSolutionType);
 };
