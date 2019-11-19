@@ -16,7 +16,8 @@
 
 {% macro solutionCard(solution) %}
 
-  <div class="bc-t-border-top--blue nhsuk-grid-row nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7" data-test-id="solution-card">
+  <div class="nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7 bc-t-border-top--blue" data-test-id="solution-card">
+    <div <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
       {{ foundationTag('solution-card', solution.isFoundation) }}
@@ -42,6 +43,7 @@
 
     <div class="nhsuk-grid-column-one-third" data-test-id="solution-card-capability-list">
       {{ capabilityList(solution.capabilities) }}
+    </div>
     </div>
   </div>
 
