@@ -133,9 +133,7 @@ describe('solution-card', () => {
         done();
       });
   });
-  {/* <div data-test-id="solution-card-name" class="nhsuk-u-margin-top-5">
-<a href="/view-solution/{{ solution.id }}">View the solution</a>
-</div> */}
+
   it('should render the View the solution link', (done) => {
     const context = {
       solution: {
