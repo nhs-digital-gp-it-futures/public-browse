@@ -29,7 +29,6 @@ class App {
     // Middleware to serve static assets
     this.app.use(express.static(path.join(__dirname, 'public/')));
     this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/node_modules/nhsuk-frontend/packages')));
-    this.app.use('/buying-catalogue-components', express.static(path.join(__dirname, '/node_modules/buying-catalogue-components/app')));
 
     // View engine (Nunjucks)
     this.app.set('view engine', 'njk');
@@ -41,6 +40,7 @@ class App {
     const appViews = [
       path.join(__dirname, 'app/views/'),
       path.join(__dirname, 'node_modules/nhsuk-frontend/packages/'),
+      path.join(__dirname, 'node_modules/buying-catalogue-components/app/'),
     ];
 
     const env = nunjucks.configure(appViews, {
@@ -49,7 +49,7 @@ class App {
       noCache: true,
     });
 
-    env.addFilter('isArray', value => Array.isArray(value))
+    env.addFilter('isArray', value => Array.isArray(value));
 
     return this.app;
   }
