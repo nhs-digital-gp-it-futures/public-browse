@@ -8,6 +8,7 @@ describe('createSolutionPageContext', () => {
       organisation: 'Halls',
       sections: [],
       viewSolutionBackLinkPath: '/solutions',
+      downloadSolutionUrl: 'https://gpitfuturesadev.blob.core.windows.net/$web/content/00001.pdf',
     };
 
     const solution = {
@@ -26,6 +27,7 @@ describe('createSolutionPageContext', () => {
       organisation: 'Halls',
       sections: [],
       viewSolutionBackLinkPath: '/solutions/foundation',
+      downloadSolutionUrl: 'https://gpitfuturesadev.blob.core.windows.net/$web/content/00001.pdf',
     };
 
     const solution = {
@@ -44,6 +46,7 @@ describe('createSolutionPageContext', () => {
       organisation: 'Halls',
       sections: [],
       viewSolutionBackLinkPath: '/browse-solutions',
+      downloadSolutionUrl: 'https://gpitfuturesadev.blob.core.windows.net/$web/content/00001.pdf',
     };
 
     const solution = {
@@ -62,6 +65,7 @@ describe('createSolutionPageContext', () => {
       organisation: 'Halls',
       sections: [],
       viewSolutionBackLinkPath: '/browse-solutions',
+      downloadSolutionUrl: 'https://gpitfuturesadev.blob.core.windows.net/$web/content/00001.pdf',
     };
 
     const solution = {

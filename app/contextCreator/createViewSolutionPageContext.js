@@ -6,7 +6,10 @@ const createBackLink = (browseSolutionType) => {
   return '/browse-solutions';
 };
 
+const createDownloadSolutionUrl = id => `https://gpitfuturesadev.blob.core.windows.net/$web/content/${id}.pdf`;
+
 export const createViewSolutionPageContext = (solution, browseSolutionType) => ({
   ...solution,
   viewSolutionBackLinkPath: createBackLink(browseSolutionType),
+  downloadSolutionUrl: createDownloadSolutionUrl(solution.id),
 });
