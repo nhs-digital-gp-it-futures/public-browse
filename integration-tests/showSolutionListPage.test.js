@@ -13,7 +13,7 @@ const mocks = () => {
 
 const pageSetup = async (t) => {
   mocks();
-  await t.navigateTo('http://localhost:1234/solutions');
+  await t.navigateTo('http://localhost:1234/solutions/all');
 };
 
 fixture('Show Solution List Page');
@@ -98,7 +98,7 @@ test('should navigate to the solution view page when clicking on the title of th
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
     .expect(getLocation())
-    .contains('/view-solution/S1');
+    .contains('/solutions/all/S1');
 });
 
 test('should navigate to browse solutions page when click Go back', async (t) => {
@@ -112,5 +112,5 @@ test('should navigate to browse solutions page when click Go back', async (t) =>
     .expect(goBackLink.exists).ok()
     .click(goBackLink)
     .expect(getLocation())
-    .contains('/browse-solution');
+    .contains('/solutions');
 });

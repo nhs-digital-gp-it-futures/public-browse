@@ -7,7 +7,7 @@
 
     <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link"> 
       {{ backLink({
-        "href": "/browse-solutions",
+        "href": "/solutions",
         "text": "Go back"
       }) }}
     </div>
@@ -21,7 +21,7 @@
 
     <div data-test-id="solution-cards" class="nhsuk-u-margin-bottom-7">
       {% for solution in solutions %}
-        {{ solutionCard(solution, viewSolutionBackLinkPath) }}
+        {{ solutionCard(solution, filterType) }}
       {% endfor %}
       <div class="bc-t-border-top--blue" />
     </div>

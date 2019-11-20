@@ -10,7 +10,7 @@ const mocks = () => {
 
 const pageSetup = async (t) => {
   mocks();
-  await t.navigateTo('http://localhost:1234/browse-solutions');
+  await t.navigateTo('http://localhost:1234/solutions');
 };
 
 fixture('Browse Solutions Page');
@@ -62,5 +62,5 @@ test('should navigate to Browse All Solutions page', async (t) => {
     .expect(browseAllSolutionsLink.exists).ok()
     .click(browseAllSolutionsLink)
     .expect(getLocation())
-    .contains('/solutions');
+    .contains('/all');
 });

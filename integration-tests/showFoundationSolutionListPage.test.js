@@ -101,5 +101,5 @@ test('should navigate to the foundation solution view page when clicking on the 
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
     .expect(getLocation())
-    .contains('/view-solution/S1');
+    .contains('/solutions/foundation/S1');
 });
