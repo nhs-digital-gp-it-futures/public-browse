@@ -28,7 +28,7 @@ test('should display the back link', async (t) => {
 });
 
 test('should navigate to /solutions when clicking on the back link from all solutions', async (t) => {
-  pageSetup(t, '?browse=all');
+  pageSetup(t, '?filterType=all');
   nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, { solutions: [] });
@@ -42,7 +42,7 @@ test('should navigate to /solutions when clicking on the back link from all solu
 });
 
 test('should navigate to /solutions/foundation when clicking on the back link from foundation solutions', async (t) => {
-  pageSetup(t, '?browse=foundation');
+  pageSetup(t, '?filterType=foundation');
   nock('http://localhost:8080')
     .get('/api/v1/Solutions/Foundation')
     .reply(200, { solutions: [] });

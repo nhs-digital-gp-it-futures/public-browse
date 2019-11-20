@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
 
 router.get('/view-solution/:solutionId', async (req, res) => {
   const { solutionId } = req.params;
-  const { browse: browseSolutionType } = req.query;
-  const context = await getPublicSolutionById(solutionId, browseSolutionType);
+  const { filterType } = req.query;
+  const context = await getPublicSolutionById(solutionId, filterType);
   res.render('view-solution-page', context);
 });
 
