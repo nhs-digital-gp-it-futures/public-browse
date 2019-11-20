@@ -8,9 +8,9 @@ const mocks = () => {
     .reply(200, publicSolution);
 };
 
-const pageSetup = async (t) => {
+const pageSetup = async (t, query) => {
   mocks();
-  await t.navigateTo('http://localhost:1234/view-solution/100000-001');
+  await t.navigateTo(`http://localhost:1234/view-solution/100000-001${query || ''}`);
 };
 
 fixture('Show View Solution Page');
@@ -27,15 +27,43 @@ test('should display the back link', async (t) => {
   await t.expect(backLink.exists).ok();
 });
 
-// this link will need changed
-test('should navigate to / when clicking on the back link', async (t) => {
-  pageSetup(t);
+test('should navigate to /solutions when clicking on the back link from all solutions', async (t) => {
+  pageSetup(t, '?filterType=all');
+  nock('http://localhost:8080')
+    .get('/api/v1/Solutions')
+    .reply(200, { solutions: [] });
   const getLocation = ClientFunction(() => document.location.href);
-  const backLink = Selector('div[data-test-id="view-solution-page-back-link"]');
+  const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t
-    .click(backLink)
-    .expect(getLocation())
-    .contains('/');
+    .expect(backLink.getAttribute('href')).eql('/solutions')
+    .click(backLink);
+  await t
+    .expect(getLocation()).contains('/solutions');
+});
+
+test('should navigate to /solutions/foundation when clicking on the back link from foundation solutions', async (t) => {
+  pageSetup(t, '?filterType=foundation');
+  nock('http://localhost:8080')
+    .get('/api/v1/Solutions/Foundation')
+    .reply(200, { solutions: [] });
+  const getLocation = ClientFunction(() => document.location.href);
+  const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
+  await t
+    .expect(backLink.getAttribute('href')).eql('/solutions/foundation')
+    .click(backLink);
+  await t
+    .expect(getLocation()).contains('/solutions/foundation');
+});
+
+test('should navigate to /browse-solutions when clicking on the back link from direct navigation', async (t) => {
+  pageSetup(t, '');
+  const getLocation = ClientFunction(() => document.location.href);
+  const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
+  await t
+    .expect(backLink.getAttribute('href')).eql('/browse-solutions')
+    .click(backLink);
+  await t
+    .expect(getLocation()).contains('/browse-solutions');
 });
 
 test('should display the foundation tag', async (t) => {
