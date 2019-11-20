@@ -35,11 +35,10 @@ describe('footer', () => {
         expect(footerComponent.length).toEqual(1);
 
         expect(footerComponent.find('li:nth-child(1)').text().trim()).toEqual("Buyer's Guide");
-        expect(footerComponent.find('li:nth-child(2)').text().trim()).toEqual('Catalogue Submissions');
-        expect(footerComponent.find('li:nth-child(3)').text().trim()).toEqual('NHS Digital service desk');
-        expect(footerComponent.find('li:nth-child(4)').text().trim()).toEqual('NHS Digital');
-        expect(footerComponent.find('li:nth-child(5)').text().trim()).toEqual('About GPIT Futures');
-        expect(footerComponent.find('li:nth-child(6)').text().trim()).toEqual('Capabilities and Standards Model');
+        expect(footerComponent.find('li:nth-child(2)').text().trim()).toEqual('NHS Digital service desk');
+        expect(footerComponent.find('li:nth-child(3)').text().trim()).toEqual('NHS Digital');
+        expect(footerComponent.find('li:nth-child(4)').text().trim()).toEqual('About GPIT Futures');
+        expect(footerComponent.find('li:nth-child(5)').text().trim()).toEqual('Capabilities and Standards Model');
 
         done();
       });

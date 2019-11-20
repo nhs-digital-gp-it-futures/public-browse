@@ -100,3 +100,17 @@ test('should navigate to the solution view page when clicking on the title of th
     .expect(getLocation())
     .contains('/view-solution/S1');
 });
+
+test('should navigate to browse solutions page when click Go back', async (t) => {
+  pageSetup(t);
+
+  const getLocation = ClientFunction(() => document.location.href);
+
+  const goBackLink = Selector('[data-test-id="go-back-link"] a');
+
+  await t
+    .expect(goBackLink.exists).ok()
+    .click(goBackLink)
+    .expect(getLocation())
+    .contains('/browse-solution');
+});

@@ -1,8 +1,16 @@
 {% extends 'includes/layout.njk' %}
 {% from './solution-card.njk' import solutionCard %}
+{% from 'components/back-link/macro.njk' import backLink %}
 
 {% block body %}
   <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="solutions-list-body">
+
+    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link"> 
+      {{ backLink({
+        "href": "/browse-solutions",
+        "text": "Go back"
+      }) }}
+    </div>
 
     <div class="nhsuk-u-padding-top-5 nhsuk-u-padding-bottom-5" data-test-id="solutions-list-title">
       <h2>{{ pageTitle }}</h2>
