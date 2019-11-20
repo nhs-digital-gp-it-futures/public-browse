@@ -1,6 +1,6 @@
 {% from '../components/view-question-title.njk' import viewQuestionTitle %}
 {% from '../components/view-question-data-text.njk' import viewQuestionDataText %}
-{% from '../components/view-question-data-link.njk' import viewQuestionDataLink %}
+{% from 'components/view-question-data-link/macro' import viewQuestionDataLink %}
 
 {% macro viewSolutionDescription(section) %}
   {% if section %}

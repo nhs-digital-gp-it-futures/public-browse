@@ -29,6 +29,7 @@ class App {
     // Middleware to serve static assets
     this.app.use(express.static(path.join(__dirname, 'public/')));
     this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/node_modules/nhsuk-frontend/packages')));
+    this.app.use('/buying-catalogue-components', express.static(path.join(__dirname, '/node_modules/buying-catalogue-components/app')));
 
     // View engine (Nunjucks)
     this.app.set('view engine', 'njk');
