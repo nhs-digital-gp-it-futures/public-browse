@@ -169,7 +169,7 @@ describe('view solution', () => {
       });
   });
 
-  fit('should render the download more information button', (done) => {
+  it('should render the download more information button', (done) => {
     const context = {
       downloadSolutionUrl: 'www.downloadurl.com',
     };
