@@ -10,7 +10,7 @@ const createDummyApp = (context) => {
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card.njk' import solutionCard %}
-                          {{ solutionCard(solution, backLinkPath) }}`;
+                          {{ solutionCard(solution, viewSolutionBackLinkPath) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -109,7 +109,7 @@ describe('solution-card', () => {
         });
     });
 
-    it('should have correct href when there is no backLinkPath key in context', (done) => {
+    it('should have correct href when there is no viewSolutionBackLinkPath key in context', (done) => {
       const context = {
         solution: {
           id: '0001',
@@ -127,13 +127,13 @@ describe('solution-card', () => {
         });
     });
 
-    it('should have correct href when there is backLinkPath key in context', (done) => {
+    it('should have correct href when there is viewSolutionBackLinkPath key in context', (done) => {
       const context = {
         solution: {
           id: '0001',
           name: 'some solution name',
         },
-        backLinkPath: '?backlink=path',
+        viewSolutionBackLinkPath: '?backlink=path',
       };
       const app = createDummyApp(context, '/solutions');
       request(app)

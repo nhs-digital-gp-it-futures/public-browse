@@ -1,14 +1,13 @@
 import { createViewSolutionPageContext } from './createViewSolutionPageContext';
-import { dummySection, dummySolutionData } from './fixtures/createSolutionData';
 
 describe('createSolutionPageContext', () => {
-  it('should create context with correct backLinkPath for browse=all', () => {
+  it('should create context with correct viewSolutionBackLinkPath for browse=all', () => {
     const expectedContext = {
       id: '00001',
       name: 'The first solution',
       organisation: 'Halls',
       sections: [],
-      backLinkPath: '/solutions',
+      viewSolutionBackLinkPath: '/solutions',
     };
 
     const solution = {
@@ -20,13 +19,13 @@ describe('createSolutionPageContext', () => {
     expect(createViewSolutionPageContext(solution, 'all')).toEqual(expectedContext);
   });
 
-  it('should create context with correct backLinkPath for browse=foundation', () => {
+  it('should create context with correct viewSolutionBackLinkPath for browse=foundation', () => {
     const expectedContext = {
       id: '00001',
       name: 'The first solution',
       organisation: 'Halls',
       sections: [],
-      backLinkPath: '/solutions/foundation',
+      viewSolutionBackLinkPath: '/solutions/foundation',
     };
 
     const solution = {
@@ -38,13 +37,13 @@ describe('createSolutionPageContext', () => {
     expect(createViewSolutionPageContext(solution, 'foundation')).toEqual(expectedContext);
   });
 
-  it('should create context with correct backLinkPath for no browse query', () => {
+  it('should create context with correct viewSolutionBackLinkPath for no browse query', () => {
     const expectedContext = {
       id: '00001',
       name: 'The first solution',
       organisation: 'Halls',
       sections: [],
-      backLinkPath: '/browse-solutions',
+      viewSolutionBackLinkPath: '/browse-solutions',
     };
 
     const solution = {
@@ -56,13 +55,13 @@ describe('createSolutionPageContext', () => {
     expect(createViewSolutionPageContext(solution, undefined)).toEqual(expectedContext);
   });
 
-  it('should create context with correct backLinkPath for browse= anystring', () => {
+  it('should create context with correct viewSolutionBackLinkPath for browse= anystring', () => {
     const expectedContext = {
       id: '00001',
       name: 'The first solution',
       organisation: 'Halls',
       sections: [],
-      backLinkPath: '/browse-solutions',
+      viewSolutionBackLinkPath: '/browse-solutions',
     };
 
     const solution = {

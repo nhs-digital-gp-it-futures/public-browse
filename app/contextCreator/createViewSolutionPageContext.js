@@ -8,5 +8,5 @@ const createBackLink = (browseSolutionType) => {
 
 export const createViewSolutionPageContext = (solution, browseSolutionType) => ({
   ...solution,
-  backLinkPath: createBackLink(browseSolutionType),
+  viewSolutionBackLinkPath: createBackLink(browseSolutionType),
 });

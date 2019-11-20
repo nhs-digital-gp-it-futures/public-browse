@@ -16,7 +16,7 @@ const createDummyApp = (context) => {
 describe('view solution', () => {
   it('should render back-link component with correct href', (done) => {
     const context = {
-      backLinkPath: '/browse-solutions',
+      viewSolutionBackLinkPath: '/browse-solutions',
     };
     const app = createDummyApp(context);
     request(app)
