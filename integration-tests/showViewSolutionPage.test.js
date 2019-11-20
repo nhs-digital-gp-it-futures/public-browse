@@ -4,13 +4,13 @@ import publicSolution from './fixtures/publicSolution.json';
 
 const mocks = () => {
   nock('http://localhost:8080')
-    .get('/api/v1/Solutions/100000-001/Public')
+    .get('/api/v1/Solutions/1234/Public')
     .reply(200, publicSolution);
 };
 
 const pageSetup = async (t, query) => {
   mocks();
-  await t.navigateTo(`http://localhost:1234/view-solution/100000-001${query || ''}`);
+  await t.navigateTo(`http://localhost:1234/view-solution/1234${query || ''}`);
 };
 
 fixture('Show View Solution Page');
@@ -95,7 +95,7 @@ test('should display the solution id', async (t) => {
   const solutionId = Selector('h4[data-test-id="view-solution-page-solution-id"]');
   await t
     .expect(solutionId.exists).ok()
-    .expect(solutionId.innerText).eql('Solution ID: 100000-001');
+    .expect(solutionId.innerText).eql('Solution ID: 1234');
 });
 
 test('should display the last updated', async (t) => {
@@ -173,11 +173,9 @@ test('should display the download button', async (t) => {
   await t.expect(downloadButton.innerText).eql('Download more information');
 });
 
-test('should navigate to the link address when clicking on the download more info button', async (t) => {
+test('should navigate to the downloadSolutionUrl when clicking on the download more info button', async (t) => {
   pageSetup(t);
-  const getLocation = ClientFunction(() => document.location.href);
-  const downloadBoutton = Selector('div[data-test-id="view-solution-page-download-info-button"]');
+  const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"] a');
   await t
-    .click(downloadBoutton)
-    .expect(getLocation()).contains('/');
+    .expect(downloadButton.getAttribute('href')).eql('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf')
 });

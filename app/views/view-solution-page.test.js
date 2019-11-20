@@ -170,7 +170,9 @@ describe('view solution', () => {
   });
 
   it('should render the download more information button', (done) => {
-    const context = {};
+    const context = {
+      downloadSolutionUrl: 'www.downloadurl.com',
+    };
     const app = createDummyApp(context);
     request(app)
       .get('/')
@@ -179,7 +181,7 @@ describe('view solution', () => {
         const moreInfoButton = $('[data-test-id="view-solution-page-download-info-button"] a');
         expect(moreInfoButton.length).toEqual(1);
         expect(moreInfoButton.text().trim()).toEqual('Download more information');
-        expect(moreInfoButton.attr('href')).toEqual('/');
+        expect(moreInfoButton.attr('href')).toEqual('www.downloadurl.com');
         done();
       });
   });
