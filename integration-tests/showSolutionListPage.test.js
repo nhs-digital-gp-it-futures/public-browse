@@ -21,7 +21,7 @@ fixture('Show Solution List Page');
 test('should display the page title', async (t) => {
   pageSetup(t);
 
-  const pageTitle = Selector('div[data-test-id="solutions-list-title"] h2');
+  const pageTitle = Selector('h2[data-test-id="general-page-title"]');
 
   await t
     .expect(pageTitle.exists).ok()
@@ -31,7 +31,7 @@ test('should display the page title', async (t) => {
 test('should display the page description', async (t) => {
   pageSetup(t);
 
-  const pageDescription = Selector('div[data-test-id="solutions-list-description"]');
+  const pageDescription = Selector('div[data-test-id="general-page-description"]');
 
   await t
     .expect(pageDescription.exists).ok()
