@@ -38,7 +38,7 @@ describe('view solution', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="solution-foundation-tag"]').length).toEqual(1);
+        expect($('[data-test-id="view-solution-foundation-tag"]').length).toEqual(1);
         done();
       });
   });

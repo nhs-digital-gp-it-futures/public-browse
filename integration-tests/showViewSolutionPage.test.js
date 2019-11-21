@@ -66,9 +66,9 @@ test('should navigate to /browse-solutions when clicking on the back link from d
     .expect(getLocation()).contains('/browse-solutions');
 });
 
-test('should display the foundation tag', async (t) => {
+test('should display the foundation solution tag', async (t) => {
   pageSetup(t);
-  const foundationTag = Selector('div[data-test-id="solution-foundation-tag"]');
+  const foundationTag = Selector('div[data-test-id="view-solution-foundation-tag"]');
   await t
     .expect(foundationTag.exists).ok()
     .expect(foundationTag.innerText).eql('Foundation Solution');
