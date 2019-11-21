@@ -23,24 +23,36 @@ const createDummyApp = (context) => {
 };
 
 describe('solution-card', () => {
-  it('should render the foundation indicator', (done) => {
+  it('should render the foundation tag if isFoundation is true', (done) => {
     const context = {
       solution: {
         isFoundation: true,
       },
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-
         const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-tag"]');
-
         expect(foundationSolutionIndicator.length).toEqual(1);
         expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution');
+        done();
+      });
+  });
 
+  it('should not render the foundation tag if isFoundation is false', (done) => {
+    const context = {
+      solution: {
+        isFoundation: false,
+      },
+    };
+    const app = createDummyApp(context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="solution-card-foundation-tag"]').length).toEqual(0);
         done();
       });
   });
