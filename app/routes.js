@@ -1,9 +1,9 @@
 import express from 'express';
+import { getPublicSolutionById } from './controller';
 import {
-  getPublicSolutionById,
   getSolutionFoundationListPageContext,
   getSolutionListPageContext,
-} from './controller';
+} from './solutions-list/controller';
 
 const router = express.Router();
 
