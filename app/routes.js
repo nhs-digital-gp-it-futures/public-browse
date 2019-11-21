@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  res.render('home-page', {});
+  res.render('homepage/template.njk', {});
 });
 
 router.get('/view-solution/:solutionId', async (req, res) => {
