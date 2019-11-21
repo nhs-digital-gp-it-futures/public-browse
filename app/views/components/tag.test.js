@@ -33,9 +33,6 @@ describe('tag', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('div[data-test-id="qa-identifier-tag"]').length).toEqual(1);
-        // expect(tag.hasClass('bc-c-tag')).toEqual(true);
-
-        // const tag = $('.bc-c-tag');
         done();
       });
   });
