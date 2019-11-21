@@ -24,12 +24,12 @@ router.get('/browse-solutions', async (req, res) => {
 
 router.get('/solutions/foundation', async (req, res) => {
   const context = await getSolutionFoundationListPageContext();
-  res.render('solutions-list-page', context);
+  res.render('solutions-list/template.njk', context);
 });
 
 router.get('/solutions', async (req, res) => {
   const context = await getSolutionListPageContext();
-  res.render('solutions-list-page', context);
+  res.render('solutions-list/template.njk', context);
 });
 
 module.exports = router;

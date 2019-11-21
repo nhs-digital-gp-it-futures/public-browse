@@ -8,7 +8,7 @@ const createDummyApp = (context) => {
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
-    res.render('solutions-list-page.njk', context);
+    res.render('solutions-list/template.njk', context);
   });
 
   app.use(dummyRouter);
@@ -27,9 +27,7 @@ describe('solutions list page', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-
         const solutionListTitle = $('[data-test-id="general-page-title"]');
-
         expect(solutionListTitle.length).toEqual(1);
         expect(solutionListTitle.text().trim()).toEqual('some page title');
 
