@@ -6,9 +6,6 @@ const mocks = () => {
   nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, aSolutionList);
-  nock('http://localhost:8080')
-    .get('/api/v1/Solutions/S1/Public')
-    .reply(200);
 };
 
 const pageSetup = async (t) => {
@@ -89,6 +86,10 @@ test('should display the capability details of a solution card', async (t) => {
 
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
   pageSetup(t);
+
+  nock('http://localhost:8080')
+    .get('/api/v1/Solutions/S1/Public')
+    .reply(200, {});
 
   const getLocation = ClientFunction(() => document.location.href);
 
