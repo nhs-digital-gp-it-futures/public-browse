@@ -22,7 +22,7 @@ const createDummyApp = (context) => {
   return app;
 };
 
-describe('foundation-tag', () => {
+describe('tag', () => {
   it('should render the tag with the correct data-test-id', (done) => {
     const context = {
       qaIdentifier: 'qa-identifier',
