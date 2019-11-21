@@ -25,13 +25,13 @@ describe('browse solutions page', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+        const viewSolutionsTitle = $('[data-test-id="general-page-title"]');
+        const viewSolutionsDescription = $('[data-test-id="general-page-description"]');
 
-        const viewSolutions = $('[data-test-id="view-solutions"]');
-
-        expect(viewSolutions.length).toEqual(1);
-        expect(viewSolutions.find('p').length).toEqual(1);
-        expect(viewSolutions.find('p').text().trim()).toEqual('There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.');
-
+        expect(viewSolutionsTitle.length).toEqual(1);
+        expect(viewSolutionsTitle.text().trim()).toEqual('View Solutions');
+        expect(viewSolutionsDescription.length).toEqual(1);
+        expect(viewSolutionsDescription.text().trim()).toEqual('There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.');
         done();
       });
   });
