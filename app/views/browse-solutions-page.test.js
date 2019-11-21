@@ -80,7 +80,7 @@ describe('browse solutions page', () => {
 
         expect(allSolutionsPromo.find('h3').text().trim()).toEqual('View all Solutions');
         expect(allSolutionsPromo.find('p').text().trim()).toEqual('Find out what Solutions the Buying Catalogue has to offer that can meet your needs.');
-        expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions');
+        expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions/all');
 
         done();
       });
