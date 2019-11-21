@@ -2,8 +2,8 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/button/macro.njk' import button %}
 {% from 'components/back-link/macro.njk' import backLink %}
-{% from './sections/view-solution-description.njk' import viewSolutionDescription %}
-{% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
+{% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+{% from 'sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
 {% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
 {% from './components/foundation-tag.njk' import foundationTag %}
 
@@ -22,9 +22,13 @@
     <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
     <h4 data-test-id="view-solution-page-solution-id">Solution ID: {{ id }}</h4>
     <div data-test-id="view-solution-page-last-updated" class="nhsuk-body-s">Page last updated: {{lastUpdated}}</div>
-    {{ viewSolutionDescription(sections['solution-description']) }}
+    {{ viewSolutionDescription({
+      section: sections['solution-description']
+    }) }}
     {{ viewSolutionCapabilities(sections.capabilities) }}
-    {{ viewSolutionContactDetails(sections['contact-details']) }}
+    {{ viewSolutionContactDetails({
+      section: sections['contact-details']
+    }) }}
     <div data-test-id="view-solution-page-download-info-button" class="nhsuk-u-margin-top-7">
       {{ button({
         "text": "Download more information",
