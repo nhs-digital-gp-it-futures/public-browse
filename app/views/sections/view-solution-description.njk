@@ -1,6 +1,6 @@
 {% from '../components/view-question-title.njk' import viewQuestionTitle %}
-{% from '../components/view-question-data-text.njk' import viewQuestionDataText %}
 {% from 'components/view-question-data-link/macro.njk' import viewQuestionDataLink %}
+{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
 
 {% macro viewSolutionDescription(section) %}
   {% if section %}
@@ -12,20 +12,28 @@
         {% if section.answers.summary %}
           <div data-test-id="view-section-question-summary">
               {{ viewQuestionTitle('summary', 'Summary') }}
-              {{ viewQuestionDataText('summary', section.answers.summary) }}
+              {{ viewQuestionDataText({
+                questionId: 'summary', 
+                questionData: section.answers.summary
+              }) }}
           </div>
         {% endif %}
 
         {% if section.answers.description %}
           <div data-test-id="view-section-question-description" class="nhsuk-u-margin-top-4">
               {{ viewQuestionTitle('description', 'About the solution') }}
-              {{ viewQuestionDataText('description', section.answers.description) }}
+              {{ viewQuestionDataText({
+                questionId: 'description', 
+                questionData: section.answers.description
+              }) }}
           </div>
         {% endif %}
 
         {% if section.answers.link %}
           <div data-test-id="view-section-question-link" class="nhsuk-u-margin-top-4">
-            {{ viewQuestionDataLink(section.answers.link) }}
+            {{ viewQuestionDataLink({
+              questionData: section.answers.link
+            }) }}
           </div>
         {% endif %}
       </div>

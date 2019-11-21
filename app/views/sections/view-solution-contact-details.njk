@@ -1,4 +1,4 @@
-{% from '../components/view-question-data-text.njk' import viewQuestionDataText %}
+{% from 'components/view-question-data-text/macro.njk' import viewQuestionDataText %}
 
 {% macro viewSolutionContactDetails(section) %}
   {% if section %}
@@ -9,19 +9,43 @@
     <div class="nhsuk-grid-row nhsuk-u-margin-bottom-4 nhsuk-u-padding-left-3">
       {% if section.answers['contact-1'] %}
         <div data-test-id="view-section-question-contact-1" class="nhsuk-grid-column-one-half">
-            {{ viewQuestionDataText('department-name', section.answers['contact-1']['department-name']) }}
-            {{ viewQuestionDataText('contact-name', section.answers['contact-1']['contact-name']) }}
-            {{ viewQuestionDataText('phone-number', section.answers['contact-1']['phone-number']) }}
-            {{ viewQuestionDataText('email-address', section.answers['contact-1']['email-address']) }}
+            {{ viewQuestionDataText({
+              questionId: 'department-name', 
+              questionData: section.answers['contact-1']['department-name']
+            }) }}
+            {{ viewQuestionDataText({
+              questionId: 'contact-name', 
+              questionData: section.answers['contact-1']['contact-name']
+            }) }}
+            {{ viewQuestionDataText({
+              questionId: 'phone-number', 
+              questionData: section.answers['contact-1']['phone-number']
+            }) }}
+            {{ viewQuestionDataText({
+              questionId: 'email-address', 
+              questionData: section.answers['contact-1']['email-address']
+            }) }}
         </div>
       {% endif %}
 
       {% if section.answers['contact-2'] %}
         <div data-test-id="view-section-question-contact-2" class="nhsuk-grid-column-one-half">
-            {{ viewQuestionDataText('department-name', section.answers['contact-2']['department-name']) }}
-            {{ viewQuestionDataText('contact-name', section.answers['contact-2']['contact-name']) }}
-            {{ viewQuestionDataText('phone-number', section.answers['contact-2']['phone-number']) }}
-            {{ viewQuestionDataText('email-address', section.answers['contact-2']['email-address']) }}
+            {{ viewQuestionDataText({
+              questionId: 'department-name', 
+              questionData: section.answers['contact-2']['department-name']
+            }) }}
+            {{ viewQuestionDataText({
+              questionId: 'contact-name', 
+              questionData: section.answers['contact-2']['contact-name']
+            }) }}
+            {{ viewQuestionDataText({
+              questionId: 'phone-number', 
+              questionData: section.answers['contact-2']['phone-number']
+            }) }}
+            {{ viewQuestionDataText({
+              questionId: 'email-address', 
+              questionData: section.answers['contact-2']['email-address']
+            }) }}
         </div>
       {% endif %}
       </div>
