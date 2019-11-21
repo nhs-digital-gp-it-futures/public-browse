@@ -45,7 +45,6 @@ test('should display the capabilities heading', async (t) => {
 
   await t
     .expect(capabilityHeading.exists).ok()
-    .debug()
     .expect(capabilityHeading.innerText).eql('Capabilities met');
 });
 
