@@ -1,4 +1,4 @@
-{% from '../components/view-question-data-bulletlist.njk' import viewQuestionDataBulletlist %}
+{% from 'components/view-question-data-bulletlist/macro.njk' import viewQuestionDataBulletlist %}
 
 {% macro viewSolutionCapabilities(section) %}
   {% if section %}
@@ -7,7 +7,9 @@
         <h3 class="nhsuk-u-margin-bottom-2">Capabilities met</h3>
       </div>
       <div class="nhsuk-u-padding-left-3">
-        {{ viewQuestionDataBulletlist(section.answers['capabilities-met']) }}
+        {{ viewQuestionDataBulletlist({
+          questionData: section.answers['capabilities-met']
+        }) }}
       </div>
     </div>
   {% endif %}
