@@ -10,7 +10,7 @@ const createDummyApp = (context) => {
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
     const macroWrapper = `{% from './solution-card.njk' import solutionCard %}
-                          {{ solutionCard(solution, viewSolutionBackLinkPath) }}`;
+                          {{ solutionCard(solution, filterType) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -50,6 +50,7 @@ describe('solution-card', () => {
       solution: {
         id: 'S1',
       },
+      filterType: 'all',
     };
 
     const app = createDummyApp(context);
@@ -61,7 +62,7 @@ describe('solution-card', () => {
 
         expect(viewSolutionLink.length).toEqual(1);
         expect(viewSolutionLink.text().trim()).toEqual('View this solution');
-        expect(viewSolutionLink.find('a').attr('href')).toEqual(`/view-solution/${context.solution.id}`);
+        expect(viewSolutionLink.find('a').attr('href')).toEqual(`/solutions/all/${context.solution.id}`);
         done();
       });
   });
@@ -109,31 +110,13 @@ describe('solution-card', () => {
         });
     });
 
-    it('should have correct href when there is no viewSolutionBackLinkPath key in context', (done) => {
+    it('should have correct href when there is filterType key in context', (done) => {
       const context = {
         solution: {
           id: '0001',
           name: 'some solution name',
         },
-      };
-      const app = createDummyApp(context);
-      request(app)
-        .get('/')
-        .then((res) => {
-          const $ = cheerio.load(res.text);
-          const solutionName = $('[data-test-id="solution-card-name"]');
-          expect(solutionName.find('a').attr('href')).toEqual('/view-solution/0001');
-          done();
-        });
-    });
-
-    it('should have correct href when there is viewSolutionBackLinkPath key in context', (done) => {
-      const context = {
-        solution: {
-          id: '0001',
-          name: 'some solution name',
-        },
-        viewSolutionBackLinkPath: '?backlink=path',
+        filterType: 'all',
       };
       const app = createDummyApp(context, '/solutions');
       request(app)
@@ -141,7 +124,7 @@ describe('solution-card', () => {
         .then((res) => {
           const $ = cheerio.load(res.text);
           const solutionName = $('[data-test-id="solution-card-name"]');
-          expect(solutionName.find('a').attr('href')).toEqual('/view-solution/0001?backlink=path');
+          expect(solutionName.find('a').attr('href')).toEqual('/solutions/all/0001');
           done();
         });
     });

@@ -67,5 +67,5 @@ test('should navigate to the browse solution page when clicking on the browse pr
     .expect(browsePromoLink.exists).ok()
     .click(browsePromoLink)
     .expect(getLocation())
-    .contains('/browse-solution');
+    .contains('/solutions');
 });
