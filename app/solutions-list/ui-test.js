@@ -85,14 +85,13 @@ test('should display the capability details of a solution card', async (t) => {
 });
 
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
-  pageSetup(t);
-
   nock('http://localhost:8080')
     .get('/api/v1/Solutions/S1/Public')
     .reply(200, {});
 
-  const getLocation = ClientFunction(() => document.location.href);
+  pageSetup(t);
 
+  const getLocation = ClientFunction(() => document.location.href);
   const solutionCardTitleLink = Selector('div[data-test-id="solution-card"]:nth-child(1) a');
 
   await t
@@ -102,11 +101,10 @@ test('should navigate to the solution view page when clicking on the title of th
     .contains('/solutions/all/S1');
 });
 
-test('should navigate to browse solutions page when click Go back', async (t) => {
+test('should navigate to solutions page when click Go back', async (t) => {
   pageSetup(t);
 
   const getLocation = ClientFunction(() => document.location.href);
-
   const goBackLink = Selector('[data-test-id="go-back-link"] a');
 
   await t
