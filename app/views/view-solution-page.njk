@@ -5,7 +5,7 @@
 {% from './sections/view-solution-description.njk' import viewSolutionDescription %}
 {% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
 {% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
-{% from './components/foundation-tag.njk' import foundationTag %}
+{% from './components/tag.njk' import tag %}
 
 {% block body %}
   <div data-test-id="view-solution-page" class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
@@ -16,7 +16,9 @@
       }) }}
     </div>
 
-    {{ foundationTag ('solution', isFoundation) }}
+    {% if isFoundation %}
+      {{ tag('view-solution-foundation', 'Foundation Solution', 'bc-c-tag-foundation nhsuk-u-margin-bottom-6') }}
+    {% endif %}
 
     <h2 data-test-id="view-solution-page-organisation-name" class="nhsuk-u-margin-bottom-1">{{organisationName}}</h2>
     <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>

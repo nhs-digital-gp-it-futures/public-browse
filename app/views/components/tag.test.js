@@ -9,8 +9,8 @@ const createDummyApp = (context) => {
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './components/foundation-tag.njk' import foundationTag %}
-                            {{ foundationTag('qaidentifier', isFoundation) }}`;
+    const macroWrapper = `{% from './components/tag.njk' import tag %}
+                            {{ tag(qaIdentifier, text, classes) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
 
@@ -22,47 +22,49 @@ const createDummyApp = (context) => {
   return app;
 };
 
-describe('foundation-tag', () => {
-  it('should render the foundation tag when isFoundation is true', (done) => {
+describe('tag', () => {
+  it('should render the tag with the correct data-test-id', (done) => {
     const context = {
-      isFoundation: true,
+      qaIdentifier: 'qa-identifier',
     };
     const dummyApp = createDummyApp(context);
     request(dummyApp)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const foundationTag = $('[data-test-id="qaidentifier-foundation-tag"]');
-        expect(foundationTag.length).toEqual(1);
-        expect(foundationTag.hasClass('nhsuk-u-margin-bottom-6')).toEqual(true);
-        expect(foundationTag.hasClass('bc-c-tag-foundation')).toEqual(true);
-        expect(foundationTag.text().trim()).toEqual('Foundation Solution');
+        expect($('div[data-test-id="qa-identifier-tag"]').length).toEqual(1);
         done();
       });
   });
 
-  it('should not render the foundation tag when isFoundation is false', (done) => {
+  it('should render the tag with the correct text', (done) => {
     const context = {
-      isFoundation: false,
+      qaIdentifier: 'qa-identifier',
+      text: 'some tag text',
     };
     const dummyApp = createDummyApp(context);
     request(dummyApp)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="qaidentifier-foundation-tag"]').length).toEqual(0);
+        expect($('div[data-test-id="qa-identifier-tag"]').text().trim()).toEqual('some tag text');
         done();
       });
   });
 
-  it('should not render the foundation tag when isFoundation is missing', (done) => {
-    const context = {};
+  it('should render the tag with the correct classes', (done) => {
+    const context = {
+      qaIdentifier: 'qa-identifier',
+      text: 'some tag text',
+      classes: 'extra-class',
+    };
     const dummyApp = createDummyApp(context);
     request(dummyApp)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="qaidentifier-foundation-tag"]').length).toEqual(0);
+        expect($('div[data-test-id="qa-identifier-tag"]').hasClass('bc-c-tag')).toEqual(true);
+        expect($('div[data-test-id="qa-identifier-tag"]').hasClass('extra-class')).toEqual(true);
         done();
       });
   });
