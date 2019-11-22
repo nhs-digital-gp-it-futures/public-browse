@@ -1,0 +1,43 @@
+{% extends 'includes/layout.njk' %}
+{% from 'components/hero/macro.njk' import hero %}
+{% from 'components/promo/macro.njk' import promo %}
+
+{% block body %}
+  <div data-test-id="homepage-hero">
+    {{ hero({
+    "heading": "Buying Catalogue",
+    "text": "The GP IT Futures procurement framework has replaced GP System of Choice (GPSoC). Use our Buying Catalogue to find out what high-quality IT systems and services are available."
+    }) }}
+  </div>
+  <div class="nhsuk-width-container" data-test-id="about-us">
+    </br>
+    <h3>About us</h3>
+    <p>
+      The NHS Digital Buying Catalogue is an online marketplace platform. It can be used to find out which clinical IT systems are available to buy from the GP IT Futures framework.
+    </p>
+    <p>
+      The GP IT Futures procurement framework, which replaces the GP System of Choice (GPSoC) framework, will make a wider range of systems available. The systems have been assessed against a set of Capabilities and Standards to help improve safety, quality and efficiency in GP surgeries.
+    </p>
+    <p>
+      The functionality of the Buying Catalogue will be enhanced and the number of available products – known as Solutions - will increase over time.
+    </p>
+  </div>
+  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="homepage-promo-group">
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
+      {{ promo({
+        "href": "/",
+        "heading": "Buying Catalogue Guide",
+        "classes": "nhsuk-u-margin-top-5",
+        "description": "Our guide explains how to use the Buying Catalogue to find and procure clinical Solutions."
+      }) }}
+    </div>
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
+      {{ promo({
+        "href": "/solutions",
+        "heading": "View Solutions",
+        "classes": "nhsuk-u-margin-top-5",
+        "description": "See what’s available on the GP IT Futures procurement framework that can meet your needs."
+      }) }}
+    </div>
+  </div>
+{% endblock %}

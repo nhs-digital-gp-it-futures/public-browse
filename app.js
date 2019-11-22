@@ -39,8 +39,9 @@ class App {
     // Nunjucks configuration
     const appViews = [
       path.join(__dirname, 'app/views/'),
-      path.join(__dirname, 'node_modules/nhsuk-frontend/packages/'),
+      path.join(__dirname, 'app/'),
       path.join(__dirname, 'node_modules/buying-catalogue-components/app/'),
+      path.join(__dirname, 'node_modules/nhsuk-frontend/packages/'),
     ];
 
     const env = nunjucks.configure(appViews, {
@@ -50,7 +51,6 @@ class App {
     });
 
     env.addFilter('isArray', value => Array.isArray(value));
-
     return this.app;
   }
 }
