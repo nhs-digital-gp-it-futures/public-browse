@@ -1,4 +1,5 @@
 const browserSync = require('browser-sync');
+const dotenv = require('dotenv');
 const routes = require('./app/routes');
 const config = require('./app/config');
 const { App } = require('./app');
@@ -9,6 +10,7 @@ app.use('/', routes);
 
 // Run application on configured port
 if (config.env === 'development') {
+  dotenv.config();
   app.listen(config.port - 50, () => {
     browserSync({
       files: ['app/views/**/*.*', 'public/**/*.*'],
