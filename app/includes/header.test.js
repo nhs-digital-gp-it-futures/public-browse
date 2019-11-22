@@ -1,7 +1,7 @@
 import request from 'supertest';
 import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { App } from '../../app';
 
 const createDummyApp = (context) => {
   const app = new App().createApp();
