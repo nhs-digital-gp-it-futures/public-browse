@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/solutions', async (req, res) => {
-  res.render('browse-solutions-page', {});
+  res.render('browse-solutions/template.njk', {});
 });
 
 router.get('/solutions/:filterType', async (req, res) => {
