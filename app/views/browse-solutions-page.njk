@@ -1,6 +1,7 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/promo/macro.njk' import promo %}
 {% from 'components/back-link/macro.njk' import backLink %}
+{% from './components/general-page-description.njk' import generalPageDescription %}
 
 {% block body %}
   <div class="nhsuk-width-container" data-test-id="view-solutions">
@@ -11,12 +12,7 @@
         "text": "Go back"
       }) }}
     </div>
-
-    </br>
-    <h3>View Solutions</h3>
-    <p>
-      There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.
-    </p>
+    {{ generalPageDescription('View Solutions', ["There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available."]) }}
   </div>
   <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="browse-solutions-promo-group">
     <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="foundation-solutions-promo">
@@ -29,7 +25,7 @@
     </div>
     <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">
       {{ promo({
-        "href": "/solutions",
+        "href": "/solutions/all",
         "heading": "View all Solutions",
         "classes": "nhsuk-u-margin-top-5",
         "description": "Find out what Solutions the Buying Catalogue has to offer that can meet your needs."

@@ -28,7 +28,7 @@ describe('solutions list page', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        const solutionListTitle = $('[data-test-id="solutions-list-title"] h2');
+        const solutionListTitle = $('[data-test-id="general-page-title"]');
 
         expect(solutionListTitle.length).toEqual(1);
         expect(solutionListTitle.text().trim()).toEqual('some page title');
@@ -52,7 +52,7 @@ describe('solutions list page', () => {
 
         expect(goBackLink.length).toEqual(1);
         expect(goBackLink.text().trim()).toEqual('Go back');
-        expect(goBackLink.attr('href')).toEqual(`/browse-solutions`);
+        expect(goBackLink.attr('href')).toEqual('/solutions');
 
         done();
       });
@@ -69,7 +69,7 @@ describe('solutions list page', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        const solutionListTitleSummary = $('div[data-test-id="solutions-list-description"]');
+        const solutionListTitleSummary = $('div[data-test-id="general-page-description"]');
 
         expect(solutionListTitleSummary.length).toEqual(1);
         expect(solutionListTitleSummary.text().trim()).toEqual('some page description');

@@ -1,4 +1,4 @@
-{% from './components/foundation-tag.njk' import foundationTag %}
+{% from './components/tag.njk' import tag %}
 
 {% macro capabilityList(capabilities) %}
   <div data-test-id="capability-list">
@@ -14,20 +14,22 @@
 {% endmacro %}
 
 
-{% macro solutionCard(solution, viewSolutionBackLinkPath) %}
+{% macro solutionCard(solution, filterType) %}
 
   <div class="nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7 bc-t-border-top--blue" data-test-id="solution-card">
     <div <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      {{ foundationTag('solution-card', solution.isFoundation) }}
+    {% if solution.isFoundation %}
+      {{ tag('solution-card-foundation', 'Foundation Solution', 'bc-c-tag-foundation nhsuk-u-margin-bottom-6') }}
+    {% endif %}
 
       <h5 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-organisation">
         {{ solution.organisationName }}
       </h5>
       
       <h3 data-test-id="solution-card-name">
-        <a href="/view-solution/{{ solution.id }}{{viewSolutionBackLinkPath}}">
+        <a href="/solutions/{{ filterType }}/{{ solution.id }}">
           {{ solution.name }}
         </a>
       </h3>
@@ -37,7 +39,7 @@
       </div>
 
       <div data-test-id="solution-card-view-link" class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
-        <a href="/view-solution/{{ solution.id }}{{viewSolutionBackLinkPath}}">View this solution</a>
+        <a href="/solutions/{{ filterType }}/{{ solution.id }}">View this solution</a>
       </div>
     </div>
 

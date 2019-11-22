@@ -6,14 +6,11 @@ const mocks = () => {
   nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, aSolutionList);
-  nock('http://localhost:8080')
-    .get('/api/v1/Solutions/S1/Public')
-    .reply(200);
 };
 
 const pageSetup = async (t) => {
   mocks();
-  await t.navigateTo('http://localhost:1234/solutions');
+  await t.navigateTo('http://localhost:1234/solutions/all');
 };
 
 fixture('Show Solution List Page');
@@ -21,7 +18,7 @@ fixture('Show Solution List Page');
 test('should display the page title', async (t) => {
   pageSetup(t);
 
-  const pageTitle = Selector('div[data-test-id="solutions-list-title"] h2');
+  const pageTitle = Selector('h2[data-test-id="general-page-title"]');
 
   await t
     .expect(pageTitle.exists).ok()
@@ -31,7 +28,7 @@ test('should display the page title', async (t) => {
 test('should display the page description', async (t) => {
   pageSetup(t);
 
-  const pageDescription = Selector('div[data-test-id="solutions-list-description"]');
+  const pageDescription = Selector('div[data-test-id="general-page-description"]');
 
   await t
     .expect(pageDescription.exists).ok()
@@ -90,6 +87,10 @@ test('should display the capability details of a solution card', async (t) => {
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
   pageSetup(t);
 
+  nock('http://localhost:8080')
+    .get('/api/v1/Solutions/S1/Public')
+    .reply(200, {});
+
   const getLocation = ClientFunction(() => document.location.href);
 
   const solutionCardTitleLink = Selector('div[data-test-id="solution-card"]:nth-child(1) a');
@@ -98,7 +99,7 @@ test('should navigate to the solution view page when clicking on the title of th
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
     .expect(getLocation())
-    .contains('/view-solution/S1');
+    .contains('/solutions/all/S1');
 });
 
 test('should navigate to browse solutions page when click Go back', async (t) => {
@@ -112,5 +113,5 @@ test('should navigate to browse solutions page when click Go back', async (t) =>
     .expect(goBackLink.exists).ok()
     .click(goBackLink)
     .expect(getLocation())
-    .contains('/browse-solution');
+    .contains('/solutions');
 });

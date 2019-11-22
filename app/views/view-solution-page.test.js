@@ -15,16 +15,14 @@ const createDummyApp = (context) => {
 
 describe('view solution', () => {
   it('should render back-link component with correct href', (done) => {
-    const context = {
-      viewSolutionBackLinkPath: '/browse-solutions',
-    };
+    const context = {};
     const app = createDummyApp(context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('[data-test-id="view-solution-page-back-link"]').length).toEqual(1);
-        expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual('/browse-solutions');
+        expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual('./');
         done();
       });
   });
@@ -38,7 +36,7 @@ describe('view solution', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="solution-foundation-tag"]').length).toEqual(1);
+        expect($('[data-test-id="view-solution-foundation-tag"]').length).toEqual(1);
         done();
       });
   });

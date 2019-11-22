@@ -25,13 +25,13 @@ describe('browse solutions page', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+        const viewSolutionsTitle = $('[data-test-id="general-page-title"]');
+        const viewSolutionsDescription = $('[data-test-id="general-page-description"]');
 
-        const viewSolutions = $('[data-test-id="view-solutions"]');
-
-        expect(viewSolutions.length).toEqual(1);
-        expect(viewSolutions.find('p').length).toEqual(1);
-        expect(viewSolutions.find('p').text().trim()).toEqual('There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.');
-
+        expect(viewSolutionsTitle.length).toEqual(1);
+        expect(viewSolutionsTitle.text().trim()).toEqual('View Solutions');
+        expect(viewSolutionsDescription.length).toEqual(1);
+        expect(viewSolutionsDescription.text().trim()).toEqual('There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.');
         done();
       });
   });
@@ -80,7 +80,7 @@ describe('browse solutions page', () => {
 
         expect(allSolutionsPromo.find('h3').text().trim()).toEqual('View all Solutions');
         expect(allSolutionsPromo.find('p').text().trim()).toEqual('Find out what Solutions the Buying Catalogue has to offer that can meet your needs.');
-        expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions');
+        expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions/all');
 
         done();
       });
@@ -101,7 +101,7 @@ describe('browse solutions page', () => {
 
         expect(goBackLink.length).toEqual(1);
         expect(goBackLink.text().trim()).toEqual('Go back');
-        expect(goBackLink.attr('href')).toEqual(`/`);
+        expect(goBackLink.attr('href')).toEqual('/');
 
         done();
       });
