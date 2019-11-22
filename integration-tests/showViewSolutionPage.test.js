@@ -8,66 +8,55 @@ const mocks = () => {
     .reply(200, publicSolution);
 };
 
-const pageSetup = async (t, query) => {
+const pageSetup = async (t, filterType) => {
   mocks();
-  await t.navigateTo(`http://localhost:1234/view-solution/1234${query || ''}`);
+  await t.navigateTo(`http://localhost:1234/solutions/${filterType}/1234`);
 };
 
 fixture('Show View Solution Page');
 
 test('should display the view solutions page', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const soultionPage = Selector('div[data-test-id="view-solution-page"]');
   await t.expect(soultionPage.count).eql(1);
 });
 
 test('should display the back link', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"]');
   await t.expect(backLink.exists).ok();
 });
 
-test('should navigate to /solutions when clicking on the back link from all solutions', async (t) => {
-  pageSetup(t, '?filterType=all');
+test('should navigate to /solutions/all when clicking on the back link from all solutions', async (t) => {
+  pageSetup(t, 'all');
   nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, { solutions: [] });
   const getLocation = ClientFunction(() => document.location.href);
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t
-    .expect(backLink.getAttribute('href')).eql('/solutions')
+    .expect(backLink.getAttribute('href')).eql('./')
     .click(backLink);
   await t
-    .expect(getLocation()).contains('/solutions');
+    .expect(getLocation()).contains('/solutions/all');
 });
 
-test('should navigate to /solutions/foundation when clicking on the back link from foundation solutions', async (t) => {
-  pageSetup(t, '?filterType=foundation');
+test('should navigate to /solutions/foundation when clicking on the back link from a foundation solution', async (t) => {
+  pageSetup(t, 'foundation');
   nock('http://localhost:8080')
     .get('/api/v1/Solutions/Foundation')
     .reply(200, { solutions: [] });
   const getLocation = ClientFunction(() => document.location.href);
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t
-    .expect(backLink.getAttribute('href')).eql('/solutions/foundation')
+    .expect(backLink.getAttribute('href')).eql('./')
     .click(backLink);
   await t
     .expect(getLocation()).contains('/solutions/foundation');
 });
 
-test('should navigate to /browse-solutions when clicking on the back link from direct navigation', async (t) => {
-  pageSetup(t, '');
-  const getLocation = ClientFunction(() => document.location.href);
-  const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
-  await t
-    .expect(backLink.getAttribute('href')).eql('/browse-solutions')
-    .click(backLink);
-  await t
-    .expect(getLocation()).contains('/browse-solutions');
-});
-
 test('should display the foundation tag', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const foundationTag = Selector('div[data-test-id="solution-foundation-tag"]');
   await t
     .expect(foundationTag.exists).ok()
@@ -75,7 +64,7 @@ test('should display the foundation tag', async (t) => {
 });
 
 test('should display the organisation name', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const orgName = Selector('h2[data-test-id="view-solution-page-organisation-name"]');
   await t
     .expect(orgName.exists).ok()
@@ -83,7 +72,7 @@ test('should display the organisation name', async (t) => {
 });
 
 test('should display the solution name', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const solutionName = Selector('h1[data-test-id="view-solution-page-solution-name"]');
   await t
     .expect(solutionName.exists).ok()
@@ -91,7 +80,7 @@ test('should display the solution name', async (t) => {
 });
 
 test('should display the solution id', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const solutionId = Selector('h4[data-test-id="view-solution-page-solution-id"]');
   await t
     .expect(solutionId.exists).ok()
@@ -99,7 +88,7 @@ test('should display the solution id', async (t) => {
 });
 
 test('should display the last updated', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const lastUpdated = Selector('div[data-test-id="view-solution-page-last-updated"]');
   await t
     .expect(lastUpdated.exists).ok()
@@ -107,7 +96,7 @@ test('should display the last updated', async (t) => {
 });
 
 test('should display the solution description', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const solutionDescription = Selector('div[data-test-id="view-solution-description"]');
   const solutionDescriptionSummary = Selector('div[data-test-id="view-section-question-summary"]');
   const solutionDescriptionDescription = Selector('div[data-test-id="view-section-question-description"]');
@@ -123,7 +112,7 @@ test('should display the solution description', async (t) => {
 });
 
 test('should navigate to the link address when clicking on the link in the solution description', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
 
   nock('http://localhost:8080')
     .get('/api/v1/Solutions/link.com/Public')
@@ -138,7 +127,7 @@ test('should navigate to the link address when clicking on the link in the solut
 });
 
 test('should display the solution capabilities met', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const capabilitiesMet = Selector('div[data-test-id="view-solution-capabilities"]');
   await t
     .expect(capabilitiesMet.exists).ok()
@@ -149,7 +138,7 @@ test('should display the solution capabilities met', async (t) => {
 });
 
 test('should display the solution contact details', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const contactDetails = Selector('div[data-test-id="view-solution-contact-details"]');
   const contact1 = Selector('div[data-test-id="view-section-question-contact-1"]');
   const contact2 = Selector('div[data-test-id="view-section-question-contact-2"]');
@@ -167,15 +156,15 @@ test('should display the solution contact details', async (t) => {
 });
 
 test('should display the download button', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"]');
   await t.expect(downloadButton.exists).ok();
   await t.expect(downloadButton.innerText).eql('Download more information');
 });
 
 test('should navigate to the downloadSolutionUrl when clicking on the download more info button', async (t) => {
-  pageSetup(t);
+  pageSetup(t, 'all');
   const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"] a');
   await t
-    .expect(downloadButton.getAttribute('href')).eql('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf')
+    .expect(downloadButton.getAttribute('href')).eql('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
 });

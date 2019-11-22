@@ -50,7 +50,7 @@ describe('solutions list page', () => {
 
         expect(goBackLink.length).toEqual(1);
         expect(goBackLink.text().trim()).toEqual('Go back');
-        expect(goBackLink.attr('href')).toEqual(`/browse-solutions`);
+        expect(goBackLink.attr('href')).toEqual(`/solutions`);
 
         done();
       });
