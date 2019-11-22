@@ -9,7 +9,7 @@ const createDummyApp = (context) => {
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
+    const macroWrapper = `{% from 'view-solution/sections/contact-details.njk' import viewSolutionContactDetails %}
                             {{ viewSolutionContactDetails(section) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
@@ -22,7 +22,7 @@ const createDummyApp = (context) => {
   return app;
 };
 
-describe('view-solution-contact-details', () => {
+describe('contact-details', () => {
   it('should render the title of the section', (done) => {
     const context = {
       section: {},

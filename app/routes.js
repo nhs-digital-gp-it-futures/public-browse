@@ -1,8 +1,6 @@
 import express from 'express';
-import {
-  getPublicSolutionById,
-  getSolutionListPageContext,
-} from './controller';
+import { getSolutionListPageContext } from './controller';
+import { getPublicSolutionById } from './view-solution/controller';
 
 const router = express.Router();
 
@@ -23,7 +21,7 @@ router.get('/solutions/:filterType', async (req, res) => {
 router.get('/solutions/:filterType/:solutionId', async (req, res) => {
   const { solutionId } = req.params;
   const context = await getPublicSolutionById(solutionId);
-  res.render('view-solution-page', context);
+  res.render('view-solution/template.njk', context);
 });
 
 module.exports = router;
