@@ -101,7 +101,7 @@ describe('browse solutions page', () => {
 
         expect(goBackLink.length).toEqual(1);
         expect(goBackLink.text().trim()).toEqual('Go back');
-        expect(goBackLink.attr('href')).toEqual(`/`);
+        expect(goBackLink.attr('href')).toEqual('/');
 
         done();
       });
