@@ -15,7 +15,7 @@ createTestcafe('localhost')
     server = app.listen('1234');
 
     return tc.createRunner()
-      .src(['integration-tests/*.test.js', '**/*.ui.test.js'])
+      .src(['integration-tests/*.test.js', '**/ui-test.js'])
       .browsers('chrome')
       .concurrency(2)
       .run();

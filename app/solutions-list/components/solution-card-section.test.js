@@ -2,7 +2,7 @@ import request from 'supertest';
 import express from 'express';
 import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { App } from '../../../app';
 
 const aSimpleSection = (showTitle = true) => ({
   section: {
@@ -45,7 +45,7 @@ const createDummyApp = (context, showAnchor = false) => {
 
   const router = express.Router();
   const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from './solution-card-section.njk' import solutionCardSection %}
+    const macroWrapper = `{% from 'solutions-list/components/solution-card-section.njk' import solutionCardSection %}
                           {{ solutionCardSection(section, ${showAnchor}) }}`;
 
     const viewToTest = nunjucks.renderString(macroWrapper, context);
