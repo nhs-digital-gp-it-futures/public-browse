@@ -2,10 +2,10 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/button/macro.njk' import button %}
 {% from 'components/back-link/macro.njk' import backLink %}
-{% from './sections/view-solution-description.njk' import viewSolutionDescription %}
-{% from './sections/view-solution-contact-details.njk' import viewSolutionContactDetails %}
-{% from './sections/view-solution-capabilities.njk' import viewSolutionCapabilities %}
-{% from './components/tag.njk' import tag %}
+{% from './sections/description.njk' import viewSolutionDescription %}
+{% from './sections/contact-details.njk' import viewSolutionContactDetails %}
+{% from './sections/capabilities.njk' import viewSolutionCapabilities %}
+{% from '../views/components/tag.njk' import tag %}
 
 {% block body %}
   <div data-test-id="view-solution-page" class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">

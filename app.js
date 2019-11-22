@@ -50,7 +50,6 @@ class App {
     });
 
     env.addFilter('isArray', value => Array.isArray(value));
-
     return this.app;
   }
 }

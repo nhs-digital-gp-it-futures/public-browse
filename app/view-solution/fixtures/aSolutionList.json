@@ -1,0 +1,36 @@
+{
+  "solutions": [
+    {
+      "id": "S1",
+      "name": "some solution name",
+      "summary": "some solution summary",
+      "isFoundation": false,
+      "organisation": {
+        "id": "O1",
+        "name": "some organisation name"
+      },
+      "capabilities": [
+        {
+          "id": "C1",
+          "name": "some capability name"
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "some other solution name",
+      "summary": "some other solution summary",
+      "isFoundation": false,
+      "organisation": {
+        "id": "O2",
+        "name": "some other organisation name"
+      },
+      "capabilities": [
+        {
+          "id": "C2",
+          "name": "some other capability name"
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { createViewSolutionPageContext } from './createViewSolutionPageContext';
+import { createViewSolutionPageContext } from './context';
 
 describe('createSolutionPageContext', () => {
   it('should create correct context with a solution', () => {
