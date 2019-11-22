@@ -5,7 +5,7 @@ import { getPublicSolutionById } from './view-solution/controller';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  res.render('home-page', {});
+  res.render('homepage/template.njk', {});
 });
 
 router.get('/solutions', async (req, res) => {
