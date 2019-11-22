@@ -2,10 +2,10 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/button/macro.njk' import button %}
 {% from 'components/back-link/macro.njk' import backLink %}
-{% from './sections/description.njk' import viewSolutionDescription %}
-{% from './sections/contact-details.njk' import viewSolutionContactDetails %}
-{% from './sections/capabilities.njk' import viewSolutionCapabilities %}
-{% from '../views/components/tag.njk' import tag %}
+{% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
+{% from 'sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
+{% from 'sections/view-solution-capabilities/macro.njk' import viewSolutionCapabilities %}
+{% from 'components/tag/macro.njk' import tag %}
 
 {% block body %}
   <div data-test-id="view-solution-page" class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-9">
@@ -17,16 +17,26 @@
     </div>
 
     {% if isFoundation %}
-      {{ tag('view-solution-foundation', 'Foundation Solution', 'bc-c-tag-foundation nhsuk-u-margin-bottom-6') }}
+      {{ tag({
+        dataTestIdIdentifier: 'view-solution-foundation', 
+        text: 'Foundation Solution', 
+        classes: 'bc-c-tag-foundation nhsuk-u-margin-bottom-6'
+      }) }}
     {% endif %}
 
     <h2 data-test-id="view-solution-page-organisation-name" class="nhsuk-u-margin-bottom-1">{{organisationName}}</h2>
     <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
     <h4 data-test-id="view-solution-page-solution-id">Solution ID: {{ id }}</h4>
     <div data-test-id="view-solution-page-last-updated" class="nhsuk-body-s">Page last updated: {{lastUpdated}}</div>
-    {{ viewSolutionDescription(sections['solution-description']) }}
-    {{ viewSolutionCapabilities(sections.capabilities) }}
-    {{ viewSolutionContactDetails(sections['contact-details']) }}
+    {{ viewSolutionDescription({
+      section: sections['solution-description']
+    }) }}
+    {{ viewSolutionCapabilities({
+      section: sections.capabilities
+    }) }}
+    {{ viewSolutionContactDetails({
+      section: sections['contact-details']
+    }) }}
     <div data-test-id="view-solution-page-download-info-button" class="nhsuk-u-margin-top-7">
       {{ button({
         "text": "Download more information",

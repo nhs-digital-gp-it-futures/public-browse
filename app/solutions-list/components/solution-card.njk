@@ -1,4 +1,4 @@
-{% from '../../views/components/tag.njk' import tag %}
+{% from 'components/tag/macro.njk' import tag %}
 
 {% macro capabilityList(capabilities) %}
   <div data-test-id="capability-list">
@@ -21,7 +21,11 @@
     <div class="nhsuk-grid-column-two-thirds">
 
     {% if solution.isFoundation %}
-      {{ tag('solution-card-foundation', 'Foundation Solution', 'bc-c-tag-foundation nhsuk-u-margin-bottom-6') }}
+      {{ tag({
+        dataTestIdIdentifier: 'solution-card-foundation', 
+        text: 'Foundation Solution', 
+        classes: 'bc-c-tag-foundation nhsuk-u-margin-bottom-6'
+      }) }}
     {% endif %}
 
       <h5 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-organisation">
