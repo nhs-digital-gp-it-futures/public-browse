@@ -1,6 +1,8 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import publicSolution from './fixtures/publicSolution.json';
+import aSolutionList from './fixtures/aSolutionList.json';
+import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
 
 const mocks = () => {
   nock('http://localhost:8080')
@@ -31,7 +33,7 @@ test('should navigate to /solutions/all when clicking on the back link from all 
   pageSetup(t, 'all');
   nock('http://localhost:8080')
     .get('/api/v1/Solutions')
-    .reply(200, { solutions: [] });
+    .reply(200, aSolutionList);
   const getLocation = ClientFunction(() => document.location.href);
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t
@@ -45,7 +47,7 @@ test('should navigate to /solutions/foundation when clicking on the back link fr
   pageSetup(t, 'foundation');
   nock('http://localhost:8080')
     .get('/api/v1/Solutions/Foundation')
-    .reply(200, { solutions: [] });
+    .reply(200, aFoundationSolutionList);
   const getLocation = ClientFunction(() => document.location.href);
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t

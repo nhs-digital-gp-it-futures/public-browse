@@ -1,7 +1,7 @@
 import {
   createSolutionListPageContext,
   createFoundationSolutionListPageContext,
-} from './createSolutionListPageContext';
+} from './context';
 
 const solutionPageTitle = 'All Solutions results';
 const solutionPageDescription = 'These are the Solutions on the GP IT Futures framework available from the Buying Catalogue.';
