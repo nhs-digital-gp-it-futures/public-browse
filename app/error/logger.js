@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
       logFormat,
     ),
   }));
-// } else {
+} else {
   logger.add(
     new transports.File({ filename: 'error.log', level: 'error', format: logFormat }),
     new transports.File({ filename: 'combined.log', format: logFormat }),
