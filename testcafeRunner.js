@@ -16,8 +16,12 @@ createTestcafe('localhost')
 
     return tc.createRunner()
       .src(['integration-tests/*.test.js', '**/*ui-test.js'])
-      .browsers('chrome')
+      .browsers('chrome:headless')
       .concurrency(2)
+      .reporter(['spec', {
+          name: 'nunit',
+          output: 'integration-test-report.xml'
+      }])
       .run();
   })
   .then((failCount) => {
