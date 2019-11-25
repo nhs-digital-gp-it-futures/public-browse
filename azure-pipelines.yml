@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- integration-test-2
+- master
 
 # no PR builds on this file
 pr: none
@@ -45,11 +45,14 @@ steps:
     azureContainerRegistry: '{"loginServer":"gpitfutureaksdev.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfuture-aks-dev/providers/Microsoft.ContainerRegistry/registries/gpitfutureaksdev"}'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Build services'
+    displayName: 'Build docker image'
 
-#- task: DockerCompose@0
-#  inputs:
-#    containerregistrytype: 'Azure Container Registry'
-#    azureSubscription: 'NHSAPP-BuyingCatalogue'
-#    azureContainerRegistry: '{"loginServer":"gpitfutureaksdev.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfuture-aks-dev/providers/Microsoft.ContainerRegistry/registries/gpitfutureaksdev"}'
-#    dockerComposeFile: '**/docker-compose.yml'
-#    action: 'Push services'
+
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'NHSAPP-BuyingCatalogue'
+    azureContainerRegistry: '{"loginServer":"gpitfutureaksdev.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfuture-aks-dev/providers/Microsoft.ContainerRegistry/registries/gpitfutureaksdev"}'
+    dockerComposeFile: '**/docker-compose.yml'
+    action: 'Push services'
+    displayName: 'Publish docker image'
