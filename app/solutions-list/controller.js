@@ -9,11 +9,12 @@ export const getSolutionListPageContext = async (filterType) => {
       solutionListResponse.data.solutions,
     );
   }
+
   if (filterType === 'foundation') {
     const foundationSolutionListResponse = await axios.get(`${apiHost}/Solutions/Foundation`);
     return createFoundationSolutionListPageContext(
       foundationSolutionListResponse.data.solutions,
     );
   }
-  return undefined;
+  throw new Error('Invalid filter type applied');
 };
