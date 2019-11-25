@@ -20,7 +20,7 @@ router.get('/solutions/:filterType', async (req, res, next) => {
   const { filterType } = req.params;
   logger.info(`filter type '${filterType}' applied`);
   try {
-    const context = await getSolutionListPageContext(filterType, next);
+    const context = await getSolutionListPageContext(filterType);
     res.render('solutions-list/template.njk', context);
   } catch (err) {
     next(err);
