@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- unit-test-reporter
 
 # no PR builds on this file
 pr: none
@@ -27,10 +27,10 @@ steps:
   displayName: 'npm install, test, run webpack'
 
 - task: PublishTestResults@2
-  displayName: Publish integration test results
+  displayName: Publish test results
   inputs:
     testResultsFormat: NUnit
-    testResultsFiles: '$(System.DefaultWorkingDirectory)/integration-test-report.xml'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/*-test-report.xml'
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
@@ -48,11 +48,11 @@ steps:
     displayName: 'Build docker image'
 
 
-- task: DockerCompose@0
-  inputs:
-    containerregistrytype: 'Azure Container Registry'
-    azureSubscription: 'NHSAPP-BuyingCatalogue'
-    azureContainerRegistry: '{"loginServer":"gpitfutureaksdev.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfuture-aks-dev/providers/Microsoft.ContainerRegistry/registries/gpitfutureaksdev"}'
-    dockerComposeFile: '**/docker-compose.yml'
-    action: 'Push services'
-    displayName: 'Publish docker image'
+# - task: DockerCompose@0
+#   inputs:
+#     containerregistrytype: 'Azure Container Registry'
+#     azureSubscription: 'NHSAPP-BuyingCatalogue'
+#     azureContainerRegistry: '{"loginServer":"gpitfutureaksdev.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfuture-aks-dev/providers/Microsoft.ContainerRegistry/registries/gpitfutureaksdev"}'
+#     dockerComposeFile: '**/docker-compose.yml'
+#     action: 'Push services'
+#     displayName: 'Publish docker image'

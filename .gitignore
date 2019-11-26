@@ -64,3 +64,4 @@ jspm_packages/
 .DS_Store
 Thumbs.db
 /.vs
+/*test-report.xml
