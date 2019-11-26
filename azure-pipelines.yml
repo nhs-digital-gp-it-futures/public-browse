@@ -27,10 +27,20 @@ steps:
   displayName: 'npm install, test, run webpack'
 
 - task: PublishTestResults@2
-  displayName: Publish test results
+  displayName: Publish unit test results
   inputs:
     testResultsFormat: NUnit
-    testResultsFiles: '$(System.DefaultWorkingDirectory)/*-test-report.xml'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/unit-test-report.xml'
+    testRunTitle: Unit test results
+    failTaskOnFailedTests: true
+  condition: succeededOrFailed()
+
+- task: PublishTestResults@2
+  displayName: Publish integration test results
+  inputs:
+    testResultsFormat: NUnit
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/integration-test-report.xml'
+    testRunTitle: Integration test results
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
