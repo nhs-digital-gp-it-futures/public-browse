@@ -11,7 +11,7 @@ app.use('/', routes);
 if (config.env === 'development') {
   app.listen(config.port - 50, () => {
     browserSync({
-      files: ['app/views/**/*.*', 'public/**/*.*'],
+      files: ['app/**/*.*', 'public/**/*.*'],
       notify: true,
       open: false,
       port: config.port,
