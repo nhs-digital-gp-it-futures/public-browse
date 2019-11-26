@@ -12,23 +12,23 @@
         "text": "Go back"
       }) }}
     </div>
-    {{ generalPageDescription('View Solutions', ["There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available."]) }}
+    {{ generalPageDescription(title, description) }}
   </div>
   <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="browse-solutions-promo-group">
     <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="foundation-solutions-promo">
       {{ promo({
         "href": "/solutions/foundation",
-        "heading": "View Foundation Solutions",
+        "heading": foundationPromoHeading,
         "classes": "nhsuk-u-margin-top-5",
-        "description": "Find Solutions that meet the business needs of the Foundation Capabilities mandated by NHS England."
+        "description": foundationPromoDescription
       }) }}
     </div>
     <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">
       {{ promo({
         "href": "/solutions/all",
-        "heading": "View all Solutions",
+        "heading": allPromoHeading,
         "classes": "nhsuk-u-margin-top-5",
-        "description": "Find out what Solutions the Buying Catalogue has to offer that can meet your needs."
+        "description": allPromoDescription
       }) }}
     </div>
   </div>

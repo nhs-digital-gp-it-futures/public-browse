@@ -1,15 +1,17 @@
 import express from 'express';
 import { getPublicSolutionById } from './view-solution/controller';
 import { getSolutionListPageContext } from './solutions-list/controller';
+import { getBrowseSolutionsPageContext } from './browse-solutions/context';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   res.render('homepage/template.njk', {});
 });
 
-router.get('/solutions', async (req, res) => {
-  res.render('browse-solutions/template.njk', {});
+router.get('/solutions', (req, res) => {
+  const context = getBrowseSolutionsPageContext();
+  res.render('browse-solutions/template.njk', context);
 });
 
 router.get('/solutions/:filterType', async (req, res) => {
