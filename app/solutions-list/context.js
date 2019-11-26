@@ -1,4 +1,4 @@
-const content = require('./manifest.json');
+import content from './manifest.json';
 
 const createSolutionsContext = solutions => solutions.map(solution => ({
   id: solution.id,

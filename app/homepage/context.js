@@ -1,3 +1,3 @@
-const content = require('./manifest.json');
+import content from './manifest.json';
 
 export const getHomepageContext = () => content;
