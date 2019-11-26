@@ -1,3 +1,5 @@
+const content = require('./manifest.json');
+
 const createSolutionsContext = solutions => solutions.map(solution => ({
   id: solution.id,
   name: solution.name,
@@ -8,15 +10,15 @@ const createSolutionsContext = solutions => solutions.map(solution => ({
 }));
 
 export const createSolutionListPageContext = solutions => ({
-  pageTitle: 'All Solutions results',
-  pageDescription: 'These are the Solutions on the GP IT Futures framework available from the Buying Catalogue.',
+  pageTitle: content.allSolutionsTitle,
+  pageDescription: content.allSolutionsDescription,
   solutions: createSolutionsContext(solutions),
   filterType: 'all',
 });
 
 export const createFoundationSolutionListPageContext = solutions => ({
-  pageTitle: 'Foundation Solutions results',
-  pageDescription: 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.',
+  pageTitle: content.foundationSolutionsTitle,
+  pageDescription: content.foundationSolutionsDescription,
   solutions: createSolutionsContext(solutions),
   filterType: 'foundation',
 });

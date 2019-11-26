@@ -21,7 +21,6 @@ describe('solutions list page', () => {
     const context = {
       pageTitle: 'some page title',
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
@@ -29,8 +28,7 @@ describe('solutions list page', () => {
         const $ = cheerio.load(res.text);
         const solutionListTitle = $('[data-test-id="general-page-title"]');
         expect(solutionListTitle.length).toEqual(1);
-        expect(solutionListTitle.text().trim()).toEqual('some page title');
-
+        expect(solutionListTitle.text().trim()).toEqual(context.pageTitle);
         done();
       });
   });
@@ -39,15 +37,12 @@ describe('solutions list page', () => {
     const context = {
       pageTitle: 'some page title',
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-
         const goBackLink = $('[data-test-id="go-back-link"] a');
-
         expect(goBackLink.length).toEqual(1);
         expect(goBackLink.text().trim()).toEqual('Go back');
         expect(goBackLink.attr('href')).toEqual('/solutions');
@@ -60,18 +55,14 @@ describe('solutions list page', () => {
     const context = {
       pageDescription: 'some page description',
     };
-
     const app = createDummyApp(context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-
         const solutionListTitleSummary = $('div[data-test-id="general-page-description"]');
-
         expect(solutionListTitleSummary.length).toEqual(1);
-        expect(solutionListTitleSummary.text().trim()).toEqual('some page description');
-
+        expect(solutionListTitleSummary.text().trim()).toEqual(context.pageDescription);
         done();
       });
   });
@@ -81,17 +72,13 @@ describe('solutions list page', () => {
       const context = {
         solutions: [],
       };
-
       const app = createDummyApp(context);
       request(app)
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-
           const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
-
           expect(solutionCards.length).toEqual(0);
-
           done();
         });
     });
@@ -105,17 +92,13 @@ describe('solutions list page', () => {
           },
         ],
       };
-
       const app = createDummyApp(context);
       request(app)
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-
           const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
-
           expect(solutionCards.length).toEqual(1);
-
           done();
         });
     });
@@ -137,15 +120,12 @@ describe('solutions list page', () => {
           },
         ],
       };
-
       const app = createDummyApp(context);
       request(app)
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-
           const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
-
           expect(solutionCards.length).toEqual(3);
 
           done();
