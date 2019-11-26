@@ -68,7 +68,7 @@
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "<rootDir>/integration-tests"
+      "((\\.|/)(ui.test))\\.js$"
     ]
   },
   "husky": {
