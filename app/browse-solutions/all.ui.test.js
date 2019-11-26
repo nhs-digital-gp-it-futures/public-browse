@@ -1,3 +1,4 @@
+/* eslint-disable newline-per-chained-call */
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import aSolutionList from './fixtures/aSolutionList.json';
@@ -25,8 +26,7 @@ test('should navigate to home page when click Go back', async (t) => {
   await t
     .expect(goBackLink.exists).ok()
     .click(goBackLink)
-    .expect(getLocation())
-    .eql('http://localhost:1234/');
+    .expect(getLocation()).eql('http://localhost:1234/');
 });
 
 test('should render Browse Foundation Solutions container', async (t) => {
@@ -61,6 +61,5 @@ test('should navigate to Browse All Solutions page', async (t) => {
   await t
     .expect(browseAllSolutionsLink.exists).ok()
     .click(browseAllSolutionsLink)
-    .expect(getLocation())
-    .contains('/all');
+    .expect(getLocation()).contains('/all');
 });
