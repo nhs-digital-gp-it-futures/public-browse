@@ -24,6 +24,10 @@ steps:
   displayName: 'npm install'
 
 - script: |
+    npx webpack --config webpack.config.js
+  displayName: 'webpack'
+
+- script: |
     npm run test
     npm run test:integration
     npx webpack --config webpack.config.js
@@ -51,10 +55,6 @@ steps:
     testRunTitle: Integration test results
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
-
-- script: |
-    npx webpack --config webpack.config.js
-  displayName: 'webpack'
 
 - task: DockerInstaller@0
   inputs:
