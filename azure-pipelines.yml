@@ -21,10 +21,13 @@ steps:
 - script: |
     npm install -g webpack webpack-cli --save-dev
     npm install
+  displayName: 'npm install'
+
+- script: |
     npm run test
     npm run test:integration
     npx webpack --config webpack.config.js
-  displayName: 'npm install, test, run webpack'
+  displayName: 'unit test'
 
 - task: PublishTestResults@2
   displayName: Publish unit test results
@@ -35,6 +38,11 @@ steps:
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
 
+- script: |
+    npm run test:integration
+    npx webpack --config webpack.config.js
+  displayName: 'integration test'
+
 - task: PublishTestResults@2
   displayName: Publish integration test results
   inputs:
@@ -43,6 +51,10 @@ steps:
     testRunTitle: Integration test results
     failTaskOnFailedTests: true
   condition: succeededOrFailed()
+
+- script: |
+    npx webpack --config webpack.config.js
+  displayName: 'webpack'
 
 - task: DockerInstaller@0
   inputs:
