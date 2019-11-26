@@ -1,20 +1,8 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('solutions-list/template.njk', context);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const template = 'solutions-list/template.njk';
 
 describe('solutions list page', () => {
   it('should render the solution list page title', (done) => {
@@ -22,7 +10,7 @@ describe('solutions list page', () => {
       pageTitle: 'some page title',
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -40,7 +28,7 @@ describe('solutions list page', () => {
       pageTitle: 'some page title',
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -61,7 +49,7 @@ describe('solutions list page', () => {
       pageDescription: 'some page description',
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -82,7 +70,7 @@ describe('solutions list page', () => {
         solutions: [],
       };
 
-      const app = createDummyApp(context);
+      const app = testHarness().createComponentDummyApp(template, context);
       request(app)
         .get('/')
         .then((res) => {
@@ -106,7 +94,7 @@ describe('solutions list page', () => {
         ],
       };
 
-      const app = createDummyApp(context);
+      const app = testHarness().createComponentDummyApp(template, context);
       request(app)
         .get('/')
         .then((res) => {
@@ -138,7 +126,7 @@ describe('solutions list page', () => {
         ],
       };
 
-      const app = createDummyApp(context);
+      const app = testHarness().createComponentDummyApp(template, context);
       request(app)
         .get('/')
         .then((res) => {
