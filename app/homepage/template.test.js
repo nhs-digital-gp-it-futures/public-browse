@@ -1,24 +1,14 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
 import content from './manifest.json';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('homepage/template.njk', context);
-  });
-  app.use(dummyRouter);
-  return app;
-};
-
+const template = 'homepage/template.njk';
 
 describe('home page', () => {
   it('should render the homepage hero', (done) => {
     const context = content;
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -35,7 +25,7 @@ describe('home page', () => {
 
   it('should render the about us section', (done) => {
     const context = content;
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -49,7 +39,7 @@ describe('home page', () => {
 
   it('should render the guidance promo', (done) => {
     const context = content;
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -70,7 +60,7 @@ describe('home page', () => {
 
   it('should render the browse promo', (done) => {
     const context = content;
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {

@@ -1,27 +1,15 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
 import content from './manifest.json';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('browse-solutions/template.njk', context);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const template = 'browse-solutions/template.njk';
 
 describe('browse solutions page', () => {
   it('should render the view solution section', (done) => {
     const context = content;
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -40,7 +28,7 @@ describe('browse solutions page', () => {
   it('should render the browse foundation solutions promo', (done) => {
     const context = content;
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -65,7 +53,7 @@ describe('browse solutions page', () => {
   it('should render the browse all solutions promo', (done) => {
     const context = content;
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -93,7 +81,7 @@ describe('browse solutions page', () => {
       pageTitle: 'some page title',
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {

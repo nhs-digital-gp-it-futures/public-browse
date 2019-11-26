@@ -1,22 +1,13 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness'; 
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('view-solution/template.njk', context);
-  });
-  app.use(dummyRouter);
-  return app;
-};
+const template = 'view-solution/template.njk';
 
 describe('view solution', () => {
   it('should render back-link component with correct href', (done) => {
     const context = {};
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -31,7 +22,7 @@ describe('view solution', () => {
     const context = {
       isFoundation: true,
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -45,7 +36,7 @@ describe('view solution', () => {
     const context = {
       isFoundation: false,
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -59,7 +50,7 @@ describe('view solution', () => {
     const context = {
       organisationName: 'Really Kool Corporation',
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -75,7 +66,7 @@ describe('view solution', () => {
     const context = {
       name: 'Write on Time',
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -91,7 +82,7 @@ describe('view solution', () => {
     const context = {
       id: '111',
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -107,7 +98,7 @@ describe('view solution', () => {
     const context = {
       lastUpdated: 'some time',
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -125,7 +116,7 @@ describe('view solution', () => {
         'solution-description': {},
       },
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -141,7 +132,7 @@ describe('view solution', () => {
         capabilities: {},
       },
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -157,7 +148,7 @@ describe('view solution', () => {
         'contact-details': {},
       },
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -171,7 +162,7 @@ describe('view solution', () => {
     const context = {
       downloadSolutionUrl: 'www.downloadurl.com',
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
