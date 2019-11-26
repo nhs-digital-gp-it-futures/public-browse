@@ -8,23 +8,23 @@ const content = {
   footerLinks: [
     {
       label: 'Buyer\'s Guide',
-      URL: '/'
+      URL: '/',
     },
     {
       label: 'NHS Digital service desk',
-      URL: '/'
+      URL: '/',
     },
     {
       label: 'NHS Digital',
-      URL: 'https://digital.nhs.uk/'
+      URL: 'https://digital.nhs.uk/',
     },
     {
       label: 'About GPIT Futures',
-      URL: 'https://digital.nhs.uk/services/future-gp-it-systems-and-services'
+      URL: 'https://digital.nhs.uk/services/future-gp-it-systems-and-services',
     },
     {
       label: 'Capabilities and Standards Model',
-      URL: 'https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview'
+      URL: 'https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview',
     },
   ],
 };
