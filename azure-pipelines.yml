@@ -29,8 +29,6 @@ steps:
 
 - script: |
     npm run test
-    npm run test:integration
-    npx webpack --config webpack.config.js
   displayName: 'unit test'
 
 - task: PublishTestResults@2
@@ -44,7 +42,6 @@ steps:
 
 - script: |
     npm run test:integration
-    npx webpack --config webpack.config.js
   displayName: 'integration test'
 
 - task: PublishTestResults@2
