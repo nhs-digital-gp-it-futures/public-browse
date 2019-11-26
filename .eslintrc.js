@@ -9,7 +9,8 @@ module.exports = {
   "rules": {
     "import/prefer-default-export": "off",
     "array-callback-return": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-console": 1,
   },
   "globals": {
     "fixture": "readonly"
