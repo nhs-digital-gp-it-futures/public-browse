@@ -40,9 +40,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "nunjucks": "^3.2.0",
-    "path": "^0.12.7",
-    "testcafe": "^1.6.1",
-    "testcafe-reporter-nunit": "^0.1.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -56,6 +54,7 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "jest-nunit-reporter": "^1.3.1",
     "nhsuk-frontend": "^3.0.2",
@@ -63,17 +62,20 @@
     "node-sass": "^4.13.0",
     "sass-lint": "^1.13.1",
     "supertest": "^4.0.2",
+    "testcafe": "^1.6.1",
+    "testcafe-reporter-nunit": "^0.1.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "<rootDir>/integration-tests"
-    ],
-    "testResultsProcessor": "./node_modules/jest-nunit-reporter"
+      "((\\.|/)(ui.test))\\.js$"
+    ]
   },
-  "jestNunitReporter": {
-    "outputFilename": "unit-test-report.xml"
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint:js && npm run lint:css"
+    }
   }
 }

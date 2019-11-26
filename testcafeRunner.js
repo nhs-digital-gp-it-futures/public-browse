@@ -15,12 +15,12 @@ createTestcafe('localhost')
     server = app.listen('1234');
 
     return tc.createRunner()
-      .src(['integration-tests/*.test.js', '**/*ui-test.js'])
+      .src(['**/*ui.test.js'])
       .browsers('chrome:headless')
       .concurrency(2)
       .reporter(['spec', {
-          name: 'nunit',
-          output: 'integration-test-report.xml'
+        name: 'nunit',
+        output: 'integration-test-report.xml',
       }])
       .run();
   })
