@@ -2,11 +2,13 @@ import express from 'express';
 import { getPublicSolutionById } from './view-solution/controller';
 import { getSolutionListPageContext } from './solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './browse-solutions/context';
+import { getHomepageContext } from './homepage/context';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('homepage/template.njk', {});
+  const context = getHomepageContext();
+  res.render('homepage/template.njk', context);
 });
 
 router.get('/solutions', (req, res) => {

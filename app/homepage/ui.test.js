@@ -1,4 +1,5 @@
 import { Selector, ClientFunction } from 'testcafe';
+import content from './manifest.json';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/');
@@ -14,18 +15,18 @@ test('should render the homepage hero', async (t) => {
 
   await t
     .expect(homepageSection.count).eql(1)
-    .expect(title.innerText).eql('Buying Catalogue')
-    .expect(description.innerText).eql('The GP IT Futures procurement framework has replaced GP System of Choice (GPSoC). Use our Buying Catalogue to find out what high-quality IT systems and services are available.');
+    .expect(title.innerText).eql(content.heroHeading)
+    .expect(description.innerText).eql(content.heroText);
 });
 
 test('should render the about us section', async (t) => {
   pageSetup(t);
   const aboutUsSection = Selector('[data-test-id="about-us"]');
   await t
-    .expect(aboutUsSection.find('h3').innerText).eql('About us')
-    .expect(aboutUsSection.find('p').innerText).eql('The NHS Digital Buying Catalogue is an online marketplace platform. It can be used to find out which clinical IT systems are available to buy from the GP IT Futures framework.')
-    .expect(aboutUsSection.find('p').nth(1).innerText).eql('The GP IT Futures procurement framework, which replaces the GP System of Choice (GPSoC) framework, will make a wider range of systems available. The systems have been assessed against a set of Capabilities and Standards to help improve safety, quality and efficiency in GP surgeries.')
-    .expect(aboutUsSection.find('p').nth(2).innerText).eql('The functionality of the Buying Catalogue will be enhanced and the number of available products – known as Solutions - will increase over time.');
+    .expect(aboutUsSection.find('h3').innerText).eql(content.title)
+    .expect(aboutUsSection.find('p').innerText).eql(content.description[0])
+    .expect(aboutUsSection.find('p').nth(1).innerText).eql(content.description[1])
+    .expect(aboutUsSection.find('p').nth(2).innerText).eql(content.description[2]);
 });
 
 test('should render the guidance promo', async (t) => {
@@ -33,8 +34,8 @@ test('should render the guidance promo', async (t) => {
   const guidancePromo = Selector('[data-test-id="guidance-promo"]');
   await t
     .expect(guidancePromo.count).eql(1)
-    .expect(guidancePromo.find('h3').innerText).eql('Buying Catalogue Guide')
-    .expect(guidancePromo.find('p').innerText).eql('Our guide explains how to use the Buying Catalogue to find and procure clinical Solutions.');
+    .expect(guidancePromo.find('h3').innerText).eql(content.guidePromoHeading)
+    .expect(guidancePromo.find('p').innerText).eql(content.guidePromoDescription);
 });
 
 test('should render the browse promo', async (t) => {
@@ -42,8 +43,8 @@ test('should render the browse promo', async (t) => {
   const browsePromo = Selector('[data-test-id="browse-promo"]');
   await t
     .expect(browsePromo.count).eql(1)
-    .expect(browsePromo.find('h3').innerText).eql('View Solutions')
-    .expect(browsePromo.find('p').innerText).eql('See what’s available on the GP IT Futures procurement framework that can meet your needs.');
+    .expect(browsePromo.find('h3').innerText).eql(content.viewSolutionsPromoHeading)
+    .expect(browsePromo.find('p').innerText).eql(content.viewSolutionsPromoDescription);
 });
 
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
