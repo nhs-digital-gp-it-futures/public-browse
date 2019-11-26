@@ -1,27 +1,14 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('includes/footer.njk', context);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
-
+const template = 'includes/footer.njk';
 
 describe('footer', () => {
   it('should render the footer panel', (done) => {
     const context = {};
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -47,7 +34,7 @@ describe('footer', () => {
   it('should render the footer legal panel', (done) => {
     const context = {};
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {

@@ -1,27 +1,14 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('includes/header.njk', context);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
-
+const template = 'includes/header.njk';
 
 describe('header', () => {
   it('should render the terms banner with beta tag', (done) => {
     const context = {};
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -49,7 +36,7 @@ describe('header', () => {
   it('should render the general terms link', (done) => {
     const context = {};
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -68,7 +55,7 @@ describe('header', () => {
   it('should render the header banner', (done) => {
     const context = {};
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
