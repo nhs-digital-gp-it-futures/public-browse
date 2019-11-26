@@ -14,5 +14,13 @@ module.exports = {
   },
   "globals": {
     "fixture": "readonly"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*ui.test.js"],
+        "rules": {
+          "newline-per-chained-call": 0
+        }
+      }
+    ]
 };

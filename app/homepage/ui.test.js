@@ -1,4 +1,3 @@
-/* eslint-disable newline-per-chained-call */
 import { Selector, ClientFunction } from 'testcafe';
 
 const pageSetup = async (t) => {

@@ -1,4 +1,3 @@
-/* eslint-disable newline-per-chained-call */
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
