@@ -1,6 +1,7 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import aSolutionList from './fixtures/aSolutionList.json';
+import content from './manifest.json';
 
 const mocks = () => {
   nock('http://localhost:8080')
@@ -35,8 +36,8 @@ test('should render Browse Foundation Solutions container', async (t) => {
 
   await t
     .expect(foundationSolutions.exists).ok()
-    .expect(foundationSolutions.find('h3').innerText).eql('View Foundation Solutions')
-    .expect(foundationSolutions.find('p').innerText).eql('Find Solutions that meet the business needs of the Foundation Capabilities mandated by NHS England.');
+    .expect(foundationSolutions.find('h3').innerText).eql(content.foundationPromoHeading)
+    .expect(foundationSolutions.find('p').innerText).eql(content.foundationPromoDescription);
 });
 
 test('should render Browse All Solutions container', async (t) => {
@@ -46,8 +47,8 @@ test('should render Browse All Solutions container', async (t) => {
 
   await t
     .expect(allSolutions.exists).ok()
-    .expect(allSolutions.find('h3').innerText).eql('View all Solutions')
-    .expect(allSolutions.find('p').innerText).eql('Find out what Solutions the Buying Catalogue has to offer that can meet your needs.');
+    .expect(allSolutions.find('h3').innerText).eql(content.allPromoHeading)
+    .expect(allSolutions.find('p').innerText).eql(content.allPromoDescription);
 });
 
 test('should navigate to Browse All Solutions page', async (t) => {

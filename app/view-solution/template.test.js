@@ -1,6 +1,6 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../test-utils/testHarness'; 
+import { testHarness } from '../test-utils/testHarness';
 
 const template = 'view-solution/template.njk';
 
@@ -170,7 +170,7 @@ describe('view solution', () => {
         const moreInfoButton = $('[data-test-id="view-solution-page-download-info-button"] a');
         expect(moreInfoButton.length).toEqual(1);
         expect(moreInfoButton.text().trim()).toEqual('Download more information');
-        expect(moreInfoButton.attr('href')).toEqual('www.downloadurl.com');
+        expect(moreInfoButton.attr('href')).toEqual(context.downloadSolutionUrl);
         done();
       });
   });
