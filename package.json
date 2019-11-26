@@ -71,7 +71,11 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "((\\.|/)(ui.test))\\.js$"
-    ]
+    ],
+    "testResultsProcessor": "./node_modules/jest-nunit-reporter"
+  },
+  "jestNunitReporter": {
+    "outputFilename": "unit-test-report.xml"
   },
   "husky": {
     "hooks": {
