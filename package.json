@@ -62,6 +62,7 @@
     "sass-lint": "^1.13.1",
     "supertest": "^4.0.2",
     "testcafe": "^1.6.1",
+    "testcafe-reporter-nunit": "^0.1.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
