@@ -66,4 +66,4 @@ Thumbs.db
 /.vs
 
 # UI test report
-integration-test-report.xml
+/*test-report.xml
