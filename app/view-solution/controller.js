@@ -6,6 +6,9 @@ import logger from '../error/logger';
 export const getPublicSolutionById = async (solutionId) => {
   logger.info(`api called: /Solutions/${solutionId}/Public`);
   const response = await axios.get(`${apiHost}/Solutions/${solutionId}/Public`);
-  logger.info(`Solution ${solutionId}: ${response.data.name} returned`);
-  return createViewSolutionPageContext(response.data);
+  if (response.data) {
+    logger.info(`Solution ${solutionId}: ${response.data.name} returned`);
+    return createViewSolutionPageContext(response.data);
+  }
+  throw new Error('No data returned');
 };
