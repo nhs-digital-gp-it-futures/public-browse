@@ -1,28 +1,9 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
-import { testHarness } from '../../test-utils/testHarness'
+import { testHarness } from '../../test-utils/testHarness';
 
 const macroWrapper = `{% from 'solutions-list/components/solution-card.njk' import solutionCard %}
                       {{ solutionCard(solution, filterType) }}`;
-
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
 
 describe('solution-card', () => {
   it('should render the foundation tag if isFoundation is true', (done) => {
