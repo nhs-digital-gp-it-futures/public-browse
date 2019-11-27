@@ -1,36 +1,22 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('solutions-list/template.njk', context);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const template = 'solutions-list/template.njk';
 
 describe('solutions list page', () => {
   it('should render the solution list page title', (done) => {
     const context = {
       pageTitle: 'some page title',
     };
-
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
         const solutionListTitle = $('[data-test-id="general-page-title"]');
         expect(solutionListTitle.length).toEqual(1);
-        expect(solutionListTitle.text().trim()).toEqual('some page title');
-
+        expect(solutionListTitle.text().trim()).toEqual(context.pageTitle);
         done();
       });
   });
@@ -39,15 +25,12 @@ describe('solutions list page', () => {
     const context = {
       pageTitle: 'some page title',
     };
-
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-
         const goBackLink = $('[data-test-id="go-back-link"] a');
-
         expect(goBackLink.length).toEqual(1);
         expect(goBackLink.text().trim()).toEqual('Go back');
         expect(goBackLink.attr('href')).toEqual('/solutions');
@@ -60,18 +43,14 @@ describe('solutions list page', () => {
     const context = {
       pageDescription: 'some page description',
     };
-
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-
         const solutionListTitleSummary = $('div[data-test-id="general-page-description"]');
-
         expect(solutionListTitleSummary.length).toEqual(1);
-        expect(solutionListTitleSummary.text().trim()).toEqual('some page description');
-
+        expect(solutionListTitleSummary.text().trim()).toEqual(context.pageDescription);
         done();
       });
   });
@@ -81,17 +60,13 @@ describe('solutions list page', () => {
       const context = {
         solutions: [],
       };
-
-      const app = createDummyApp(context);
+      const app = testHarness().createComponentDummyApp(template, context);
       request(app)
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-
           const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
-
           expect(solutionCards.length).toEqual(0);
-
           done();
         });
     });
@@ -105,17 +80,13 @@ describe('solutions list page', () => {
           },
         ],
       };
-
-      const app = createDummyApp(context);
+      const app = testHarness().createComponentDummyApp(template, context);
       request(app)
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-
           const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
-
           expect(solutionCards.length).toEqual(1);
-
           done();
         });
     });
@@ -137,17 +108,13 @@ describe('solutions list page', () => {
           },
         ],
       };
-
-      const app = createDummyApp(context);
+      const app = testHarness().createComponentDummyApp(template, context);
       request(app)
         .get('/')
         .then((res) => {
           const $ = cheerio.load(res.text);
-
           const solutionCards = $('div[data-test-id="solution-cards"]').find('[data-test-id="solution-card"]');
-
           expect(solutionCards.length).toEqual(3);
-
           done();
         });
     });

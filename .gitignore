@@ -63,3 +63,7 @@ jspm_packages/
 # System Files
 .DS_Store
 Thumbs.db
+/.vs
+
+# UI test report
+integration-test-report.xml

@@ -1,26 +1,15 @@
 import request from 'supertest';
-import express from 'express';
 import cheerio from 'cheerio';
-import { App } from '../../app';
+import { testHarness } from '../test-utils/testHarness';
+import content from './manifest.json';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    res.render('browse-solutions/template.njk', context);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const template = 'browse-solutions/template.njk';
 
 describe('browse solutions page', () => {
   it('should render the view solution section', (done) => {
-    const context = {};
+    const context = content;
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -29,17 +18,17 @@ describe('browse solutions page', () => {
         const viewSolutionsDescription = $('[data-test-id="general-page-description"]');
 
         expect(viewSolutionsTitle.length).toEqual(1);
-        expect(viewSolutionsTitle.text().trim()).toEqual('View Solutions');
+        expect(viewSolutionsTitle.text().trim()).toEqual(content.title);
         expect(viewSolutionsDescription.length).toEqual(1);
-        expect(viewSolutionsDescription.text().trim()).toEqual('There are two types of Solution on the Buying Catalogue. You can choose to view Foundation Solutions only, or all that are available.');
+        expect(viewSolutionsDescription.text().trim()).toEqual(content.description[0]);
         done();
       });
   });
 
   it('should render the browse foundation solutions promo', (done) => {
-    const context = {};
+    const context = content;
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -53,8 +42,8 @@ describe('browse solutions page', () => {
         expect(foundationSolutionsPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(foundationSolutionsPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-        expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual('View Foundation Solutions');
-        expect(foundationSolutionsPromo.find('p').text().trim()).toEqual('Find Solutions that meet the business needs of the Foundation Capabilities mandated by NHS England.');
+        expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual(content.foundationPromoHeading);
+        expect(foundationSolutionsPromo.find('p').text().trim()).toEqual(content.foundationPromoDescription);
         expect(foundationSolutionsPromo.find('a').attr('href')).toEqual('/solutions/foundation');
 
         done();
@@ -62,9 +51,9 @@ describe('browse solutions page', () => {
   });
 
   it('should render the browse all solutions promo', (done) => {
-    const context = {};
+    const context = content;
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -78,8 +67,8 @@ describe('browse solutions page', () => {
         expect(allSolutionsPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
         expect(allSolutionsPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-        expect(allSolutionsPromo.find('h3').text().trim()).toEqual('View all Solutions');
-        expect(allSolutionsPromo.find('p').text().trim()).toEqual('Find out what Solutions the Buying Catalogue has to offer that can meet your needs.');
+        expect(allSolutionsPromo.find('h3').text().trim()).toEqual(content.allPromoHeading);
+        expect(allSolutionsPromo.find('p').text().trim()).toEqual(content.allPromoDescription);
         expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions/all');
 
         done();
@@ -88,10 +77,11 @@ describe('browse solutions page', () => {
 
   it('should render go back link', (done) => {
     const context = {
+      ...content,
       pageTitle: 'some page title',
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {

@@ -124,8 +124,7 @@ test('should navigate to the link address when clicking on the link in the solut
   const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
   await t
     .click(solutionDescriptionLink)
-    .expect(getLocation())
-    .contains('link.com');
+    .expect(getLocation()).contains('link.com');
 });
 
 test('should display the solution capabilities met', async (t) => {
