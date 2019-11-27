@@ -1,7 +1,8 @@
-// NHS.UK frontend styles
-@import 'node_modules/nhsuk-frontend/packages/nhsuk';
+// buying-catalogue-components styles which brings in NHS.UK frontend styles
+@import 'node_modules/buying-catalogue-components/app/styles/main';
 
 // Application styles
 @import 'app';
 @import 'colors';
 @import 'tag';
+@import '../error/error';

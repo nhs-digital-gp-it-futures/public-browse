@@ -23,7 +23,6 @@ describe('header', () => {
         expect(termsBanner.hasClass('nhsuk-width-container')).toEqual(true);
 
         const termsBannerText = $('[data-test-id="terms-banner-text"]');
-        expect(termsBannerText.hasClass('bc-c-header-terms')).toEqual(true);
         expect(termsBannerText.text().trim()).toEqual('By using this site you are accepting the General Terms of Use and the Cookies Policy and Privacy Policy, each of which can be accessed through the links at the bottom of the page');
 
         const betaTag = $('[data-test-id="beta-tag"]');
