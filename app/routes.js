@@ -4,7 +4,7 @@ import { getSolutionListPageContext } from './solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './browse-solutions/context';
 import { getHomepageContext } from './homepage/context';
 import { errorHandler } from './error/errorHandler';
-import logger from './error/logger';
+import logger from './logger';
 
 const router = express.Router();
 
