@@ -1,8 +1,6 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { testHarness } from '../../test-utils/testHarness';
 
 const aSimpleSection = (showTitle = true) => ({
   section: {
@@ -39,29 +37,13 @@ const aColumnSection = {
   },
 };
 
-
-const createDummyApp = (context, showAnchor = false) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from 'solutions-list/components/solution-card-section.njk' import solutionCardSection %}
-                          {{ solutionCardSection(section, ${showAnchor}) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
-
+const createMacroWrapper = (showAnchor = false) => `{% from 'solutions-list/components/solution-card-section.njk' import solutionCardSection %}
+{{ solutionCardSection(section, ${showAnchor}) }}`;
 
 describe('solution-card', () => {
   it('should render the title of the section', (done) => {
-    const dummyApp = createDummyApp(aSimpleSection());
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(), aSimpleSection());
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -74,7 +56,8 @@ describe('solution-card', () => {
   });
 
   it('should not render the title of the section if the showTitle flag is false', (done) => {
-    const dummyApp = createDummyApp(aSimpleSection(false));
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(), aSimpleSection(false));
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -87,7 +70,8 @@ describe('solution-card', () => {
   });
 
   it('should render the title of the section as an anchor', (done) => {
-    const dummyApp = createDummyApp(aSimpleSection(), true);
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(true), aSimpleSection());
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -100,7 +84,8 @@ describe('solution-card', () => {
   });
 
   it('should not render the title of the section as an anchor if showAnchor is false', (done) => {
-    const dummyApp = createDummyApp(aSimpleSection(), false);
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(), aSimpleSection());
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -113,7 +98,8 @@ describe('solution-card', () => {
   });
 
   it('should render the value of the section', (done) => {
-    const dummyApp = createDummyApp(aSimpleSection());
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(), aSimpleSection());
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -127,7 +113,8 @@ describe('solution-card', () => {
   });
 
   it('should render all the values of the section when it is an array', (done) => {
-    const dummyApp = createDummyApp(aListSection);
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(), aListSection);
     request(dummyApp)
       .get('/')
       .then((res) => {
@@ -145,7 +132,8 @@ describe('solution-card', () => {
   });
 
   it('should render the values in columns if the displayType of the section is config', (done) => {
-    const dummyApp = createDummyApp(aColumnSection);
+    const dummyApp = testHarness()
+      .createTemplateDummyApp(createMacroWrapper(), aColumnSection);
     request(dummyApp)
       .get('/')
       .then((res) => {

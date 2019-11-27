@@ -1,26 +1,9 @@
 import request from 'supertest';
-import express from 'express';
-import nunjucks from 'nunjucks';
 import cheerio from 'cheerio';
-import { App } from '../../../app';
+import { testHarness } from '../../test-utils/testHarness';
 
-const createDummyApp = (context) => {
-  const app = new App().createApp();
-
-  const router = express.Router();
-  const dummyRouter = router.get('/', (req, res) => {
-    const macroWrapper = `{% from 'solutions-list/components/solution-card.njk' import solutionCard %}
-                          {{ solutionCard(solution, filterType) }}`;
-
-    const viewToTest = nunjucks.renderString(macroWrapper, context);
-
-    res.send(viewToTest);
-  });
-
-  app.use(dummyRouter);
-
-  return app;
-};
+const macroWrapper = `{% from 'solutions-list/components/solution-card.njk' import solutionCard %}
+                      {{ solutionCard(solution, filterType) }}`;
 
 describe('solution-card', () => {
   it('should render the foundation tag if isFoundation is true', (done) => {
@@ -29,7 +12,8 @@ describe('solution-card', () => {
         isFoundation: true,
       },
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
+
     request(app)
       .get('/')
       .then((res) => {
@@ -47,7 +31,7 @@ describe('solution-card', () => {
         isFoundation: false,
       },
     };
-    const app = createDummyApp(context);
+    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -65,7 +49,7 @@ describe('solution-card', () => {
       filterType: 'all',
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -86,7 +70,7 @@ describe('solution-card', () => {
       },
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -109,7 +93,7 @@ describe('solution-card', () => {
           name: 'some solution name',
         },
       };
-      const app = createDummyApp(context);
+      const app = testHarness().createTemplateDummyApp(macroWrapper, context);
       request(app)
         .get('/')
         .then((res) => {
@@ -130,7 +114,7 @@ describe('solution-card', () => {
         },
         filterType: 'all',
       };
-      const app = createDummyApp(context, '/solutions');
+      const app = testHarness().createTemplateDummyApp(macroWrapper, context);
       request(app)
         .get('/')
         .then((res) => {
@@ -149,7 +133,7 @@ describe('solution-card', () => {
       },
     };
 
-    const app = createDummyApp(context);
+    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
     request(app)
       .get('/')
       .then((res) => {
@@ -172,7 +156,7 @@ describe('solution-card', () => {
         },
       };
 
-      const app = createDummyApp(context);
+      const app = testHarness().createTemplateDummyApp(macroWrapper, context);
       request(app)
         .get('/')
         .then((res) => {
@@ -198,7 +182,7 @@ describe('solution-card', () => {
         },
       };
 
-      const app = createDummyApp(context);
+      const app = testHarness().createTemplateDummyApp(macroWrapper, context);
       request(app)
         .get('/')
         .then((res) => {
@@ -227,7 +211,7 @@ describe('solution-card', () => {
         },
       };
 
-      const app = createDummyApp(context);
+      const app = testHarness().createTemplateDummyApp(macroWrapper, context);
       request(app)
         .get('/')
         .then((res) => {
