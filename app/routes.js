@@ -3,6 +3,7 @@ import { getPublicSolutionById } from './view-solution/controller';
 import { getSolutionListPageContext } from './solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './browse-solutions/context';
 import { getHomepageContext } from './homepage/context';
+import { getGuidePageContext } from './guide/context';
 import { errorHandler } from './error/errorHandler';
 import logger from './logger';
 
@@ -12,6 +13,12 @@ router.get('/', (req, res) => {
   const context = getHomepageContext();
   logger.info('navigating to home page');
   res.render('homepage/template.njk', context);
+});
+
+router.get('/guide', (req, res) => {
+  const context = getGuidePageContext();
+  logger.info('navigating to guide');
+  res.render('guide/template.njk', context);
 });
 
 router.get('/solutions', (req, res) => {
