@@ -1,0 +1,41 @@
+{% from 'components/button/macro.njk' import button %}
+
+{% macro subsection(params) %}
+  {% if params.title %}
+    <h4 class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0" data-test-id="subsection-title">{{ params.title }}</h4>
+  {% endif %}
+
+  {% if params.description %}
+    <div  data-test-id="subsection-description">
+      {% for descriptionText in params.description %}
+        <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if params.bulletlist %}
+    <ul class="nhsuk-u-margin-top-2" data-test-id="subsection-bullet-list">
+      {% for text in params.bulletlist %}
+        <li class="nhsuk-u-font-size-19">{{text}}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if params.footerDescription%}
+    <div data-test-id="subsection-footer-description">
+      {% for descriptionText in params.footerDescription %}
+        <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if params.button %}
+    <div class="nhsuk-u-margin-top-4" data-test-id="subsection-button">
+      {{ button({
+        "text": params.button.text,
+        "classes": "nhsuk-button--secondary nhsuk-u-margin-bottom-0",
+        "href": ""
+      }) }}
+    </div>
+  {% endif %}
+{% endmacro %}
