@@ -1,0 +1,81 @@
+{
+  "title": "Buyer’s Guide",
+  "description": "Read the following information before using the Buying Catalogue. It’ll help you find the information you need to make an informed decision when procuring.",
+  "subtext": [
+    "All products and services listed on the Buying Catalogue are known as Catalogue Solutions. Each Solution has a certain number of Capabilities which can address business needs in primary care.",
+    "To prove these Capabilities, Suppliers must demonstrate that their Solution can satisfy Epics which detail the functions required to successfully achieve a Capability.",
+    "There is a link to the full Catalogue Buyer’s Guide at the bottom of this page.",
+    "These are the key terms you need to understand to use the Buying Catalogue effectively:"
+  ],
+  "sections": [
+    {
+      "title": "Catalogue Solution1",
+      "description": "1 This is a product or service that has successfully demonstrated compliance with the Capabilities defined by the Supplier and Standards assured by the NHS. The Solution is then made available on the Buying Catalogue.",
+      "contents": [
+        {
+          "title": "Associated Services",
+          "description": ["These services help you to implement or optimise the live operation of a Catalogue Solution and/or Additional Services, for example, training."]
+        },
+        {
+          "title": "Additional Services",
+          "description": [
+            "These are add-ons that provide additional Capabilities to a Catalogue Solution for an extra cost.",
+            "When you view Solutions on the Buying Catalogue, if there are Additional Services available, information about their Capabilities and price will be presented to you.",
+            "Additional Services may also have Associated Services"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Catalogue Solution2",
+      "description": "2 This is a product or service that has successfully demonstrated compliance with the Capabilities defined by the Supplier and Standards assured by the NHS. The Solution is then made available on the Buying Catalogue.",
+      "contents": [
+        {
+          "title": "Associated Services",
+          "description": ["These services help you to implement or optimise the live operation of a Catalogue Solution and/or Additional Services, for example, training."]
+        },
+        {
+          "title": "Additional Services",
+          "description": [
+            "These are add-ons that provide additional Capabilities to a Catalogue Solution for an extra cost.",
+            "When you view Solutions on the Buying Catalogue, if there are Additional Services available, information about their Capabilities and price will be presented to you.",
+            "Additional Services may also have Associated Services"
+          ],
+          "bulletlist": [
+            "bullet 1",
+            "bullet 2",
+            "bullet 3"
+          ],
+          "footerDescription": [
+            "These are add-ons that provide additional Capabilities to a Catalogue Solution for an extra cost.",
+            "When you view Solutions on the Buying Catalogue, if there are Additional Services available, information about their Capabilities and price will be presented to you.",
+            "Additional Services may also have Associated Services"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Catalogue Solution3",
+      "description": "3 This is a product or service that has successfully demonstrated compliance with the Capabilities defined by the Supplier and Standards assured by the NHS. The Solution is then made available on the Buying Catalogue.",
+      "contents": [
+        {
+          "title": "Associated Services",
+          "description": ["These services help you to implement or optimise the live operation of a Catalogue Solution and/or Additional Services, for example, training."]
+        },
+        {
+          "description": [
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget ligula in diam condimentum gravida. Aliquam placerat risus lorem, vitae luctus odio ultrices in.",
+            "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam congue lacus mi, id accumsan mauris egestas ac."
+          ],
+          "button": {
+            "text": "Download Buyer’s Guide PDF"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Catalogue Solution4",
+      "description": "4 This is a product or service that has successfully demonstrated compliance with the Capabilities defined by the Supplier and Standards assured by the NHS. The Solution is then made available on the Buying Catalogue."
+    }
+  ]
+}
