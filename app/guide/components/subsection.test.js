@@ -1,7 +1,6 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
 import { testHarness } from '../../test-utils/testHarness';
-import { newExpression } from '@babel/types';
 
 const context = {
   subSection: {
