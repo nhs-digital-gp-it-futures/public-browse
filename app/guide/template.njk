@@ -22,7 +22,19 @@
           <h2 class='nhsuk-u-margin-bottom-3' data-test-id="guide-section-title">{{ section.title }}</h2>
         </div>
         <div class="nhsuk-grid-column-two-thirds nhsuk-u-font-size-19 nhsuk-u-margin-left-3">
-          <div data-test-id="guide-section-description">{{ section.description }}</div>
+          
+            {% if section.description.href %}
+              <div data-test-id="guide-section-description-with-link">
+                <span>{{ section.description.startText }}</span>
+                <a data-test-id="guide-link" href="{{ section.description.href }}">{{ section.description.linkText }}</a>
+                <span>{{ section.description.endText }}</span>
+              </div>
+            {% else %}
+              <div data-test-id="guide-section-description">
+                {{ section.description }}
+              </div>
+            {% endif %}
+
           <div data-test-id="guide-section-subsection">
             {% for content in section.contents %}
               {{ subsection(content) }}

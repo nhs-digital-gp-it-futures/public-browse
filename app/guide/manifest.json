@@ -75,7 +75,12 @@
     },
     {
       "title": "Catalogue Solution4",
-      "description": "4 This is a product or service that has successfully demonstrated compliance with the Capabilities defined by the Supplier and Standards assured by the NHS. The Solution is then made available on the Buying Catalogue."
+      "description": {
+        "startText": "If you experience any technical issues when using this website, please contact NHS Digital’s Exeter Helpdesk at",
+        "linkText": "exeter.helpdesk@nhs.net",
+        "href": "mailto:exeter.helpdesk@nhs.net",
+        "endText": "or call 0300 303 4034."
+      }
     }
   ]
 }
