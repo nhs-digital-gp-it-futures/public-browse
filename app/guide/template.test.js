@@ -6,6 +6,21 @@ import content from './manifest.json';
 const template = 'guide/template.njk';
 
 describe('guide', () => {
+  it('should render a backLink to the home page', (done) => {
+    const context = content;
+    const app = testHarness().createComponentDummyApp(template, context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        const homepageBackLink = $('[data-test-id="go-back-link"]');
+        expect(homepageBackLink.length).toEqual(1);
+        expect(homepageBackLink.text().trim()).toEqual('Go back to previous page');
+        expect($(homepageBackLink).find('a').attr('href')).toEqual('/');
+        done();
+      });
+  });
+
   it('should render the guide title, description and subtext', (done) => {
     const context = content;
     const app = testHarness().createComponentDummyApp(template, context);
