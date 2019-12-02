@@ -37,26 +37,26 @@ test('should catalogue solution header', async (t) => {
   pageSetup(t);
   const subText = Selector('[data-test-id="guide-section-title"]');
   await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].title)
+    .expect(subText.nth(0).innerText).eql(content.sections[0].title);
 });
 
 test('should catalogue solution description', async (t) => {
   pageSetup(t);
   const subText = Selector('[data-test-id="guide-section-description"]');
   await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].description)
+    .expect(subText.nth(0).innerText).eql(content.sections[0].description);
 });
 
 test('should catalogue solution description', async (t) => {
   pageSetup(t);
   const subText = Selector('[data-test-id="guide-section-description"]');
   await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].description)
+    .expect(subText.nth(0).innerText).eql(content.sections[0].description);
 });
 
 test('should catalogue solution subsection 1 title', async (t) => {
   pageSetup(t);
   const subText = Selector('[data-test-id="subsection-title"]');
   await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].contents[0].title)
+    .expect(subText.nth(0).innerText).eql(content.sections[0].contents[0].title);
 });
