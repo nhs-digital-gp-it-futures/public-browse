@@ -56,7 +56,7 @@ router.get('*', (req, res, next) => {
   });
 });
 
-router.use((err, req, res, next) => {
+router.use((err, req, res) => {
   if (err) {
     const context = errorHandler(err);
     logger.error(context.message);

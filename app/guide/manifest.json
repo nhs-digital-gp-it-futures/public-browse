@@ -51,7 +51,12 @@
         {
           "title": "",
           "description": [
-            "You can learn more about the Capability Model [link]."
+            {
+              "startText": "You can learn more about the Capability Model",
+              "linkText": "[link]",
+              "href": "https://www.nhs.uk/",
+              "endText": ""
+            }
           ]
         },
         {

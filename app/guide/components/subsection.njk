@@ -8,10 +8,19 @@
   {% if params.description %}
     <div  data-test-id="subsection-description">
       {% for descriptionText in params.description %}
-        <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
+          {% if descriptionText.href %}
+            <div class="nhsuk-u-margin-top-4" data-test-id="guide-section-description-with-link">
+              <span>{{ descriptionText.startText }}</span>
+                <a data-test-id="guide-link" href="{{ descriptionText.href }}">{{descriptionText.linkText }}</a>
+              <span>{{ descriptionText.endText }}</span>
+            </div>
+          {% else %}
+                <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
+          {% endif %}
       {% endfor %}
     </div>
   {% endif %}
+
 
   {% if params.bulletlist %}
     <ul class="nhsuk-u-margin-top-2" data-test-id="subsection-bullet-list">
