@@ -92,10 +92,14 @@ describe('subsection', () => {
         const endText = description.find('span:nth-child(3)');
         const link = description.find('a');
 
-        expect(endText.text().trim()).toEqual(testCaseContext.subSection.description[0].endText.trim());
-        expect(startText.text().trim()).toEqual(testCaseContext.subSection.description[0].startText.trim());
-        expect(link.text().trim()).toEqual(testCaseContext.subSection.description[0].linkText.trim());
-        expect(link.attr('href')).toEqual(testCaseContext.subSection.description[0].href.trim());
+        expect(endText.text().trim())
+          .toEqual(testCaseContext.subSection.description[0].endText.trim());
+        expect(startText.text().trim())
+          .toEqual(testCaseContext.subSection.description[0].startText.trim());
+        expect(link.text().trim())
+          .toEqual(testCaseContext.subSection.description[0].linkText.trim());
+        expect(link.attr('href'))
+          .toEqual(testCaseContext.subSection.description[0].href.trim());
 
         done();
       });
