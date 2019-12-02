@@ -4,8 +4,9 @@ import { apiHost } from '../config';
 import logger from '../logger';
 
 export const getPublicSolutionById = async (solutionId) => {
-  logger.info(`api called: /Solutions/${solutionId}/Public`);
-  const response = await axios.get(`${apiHost}/Solutions/${solutionId}/Public`);
+  const endpoint = `${apiHost}/Solutions/${solutionId}/Public`;
+  logger.info(`api called: ${endpoint}`);
+  const response = await axios.get(endpoint);
   if (response.data) {
     logger.info(`Solution ${solutionId}: ${response.data.name} returned`);
     return createViewSolutionPageContext(response.data);
