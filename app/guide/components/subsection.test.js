@@ -69,20 +69,20 @@ describe('subsection', () => {
   });
 
   it('should render a link within description if provided', (done) => {
-    const context = {
+    const testCaseContext = {
       subSection: {
         title: 'Additional Services',
         description: [
           {
-            "startText": "You can learn more about the Capability Model",
-            "linkText": "[link]",
-            "href": "https://www.nhs.uk/",
-            "endText": ""
-          }
-        ]
+            startText: 'You can learn more about the Capability Model',
+            linkText: '[link]',
+            href: 'https://www.nhs.uk/',
+            endText: '',
+          },
+        ],
       },
     };
-    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
+    const app = testHarness().createTemplateDummyApp(macroWrapper, testCaseContext);
     request(app)
       .get('/')
       .then((res) => {
@@ -92,10 +92,10 @@ describe('subsection', () => {
         const endText = description.find('span:nth-child(3)');
         const link = description.find('a');
 
-        expect(endText.text().trim()).toEqual(context.subSection.description[0].endText.trim());
-        expect(startText.text().trim()).toEqual(context.subSection.description[0].startText.trim());
-        expect(link.text().trim()).toEqual(context.subSection.description[0].linkText.trim());
-        expect(link.attr('href')).toEqual(context.subSection.description[0].href.trim());
+        expect(endText.text().trim()).toEqual(testCaseContext.subSection.description[0].endText.trim());
+        expect(startText.text().trim()).toEqual(testCaseContext.subSection.description[0].startText.trim());
+        expect(link.text().trim()).toEqual(testCaseContext.subSection.description[0].linkText.trim());
+        expect(link.attr('href')).toEqual(testCaseContext.subSection.description[0].href.trim());
 
         done();
       });
