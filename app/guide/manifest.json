@@ -9,14 +9,24 @@
   ],
   "sections": [
     {
+      "id": "catalogue-solution",
       "title": "Catalogue Solution",
-      "description": "A Catalogue Solution is a product or service that has successfully demonstrated compliance with Capabilities and Standards that apply to it. The Catalogue Solution will only be made available on the Buying Catalogue once it has demonstrated its compliance.",
-      "contents": [
+      "subsections": [
         {
-          "title": "Associated Services",
-          "description": ["Associated Services help you to implement or optimise the live operation of a Catalogue Solution and/or Additional Services, for example, training."]
+          "id": "description",
+          "description": [
+            "A Catalogue Solution is a product or service that has successfully demonstrated compliance with Capabilities and Standards that apply to it. The Catalogue Solution will only be made available on the Buying Catalogue once it has demonstrated its compliance."
+          ]
         },
         {
+          "id": "associated-services",
+          "title": "Associated Services",
+          "description": [
+            "Associated Services help you to implement or optimise the live operation of a Catalogue Solution and/or Additional Services, for example, training."
+          ]
+        },
+        {
+          "id": "additional-services",
           "title": "Additional Services",
           "description": [
             "Additional Services are add-ons that provide additional Capabilities to a Catalogue Solution for an extra cost.",
@@ -27,39 +37,30 @@
       ]
     },
     {
+      "id": "capabilities",
       "title": "Capabilities",
-      "description": "",
-      "contents": [
+      "subsections": [
         {
-          "title": "",
+          "id": "capabilities-description",
           "description": [
-            "Capabilities are how you can match a Catalogue Solution to a business need."
-          ]
-        },
-        {
-          "title": "",
-          "description": [
-            "For example, you may want to enable GP staff to make a digital record of any consultation with a patient. You can therefore identify Catalogue Solutions on the Buying Catalogue which offer the 'Recording Consultations' Capability."
-          ]
-        },
-        {
-          "title": "",
-          "description": [
+            "Capabilities are how you can match a Catalogue Solution to a business need.",
+            "For example, you may want to enable GP staff to make a digital record of any consultation with a patient. You can therefore identify Catalogue Solutions on the Buying Catalogue which offer the 'Recording Consultations' Capability.",
             "There are a number of pre-defined Capabilities, but there is also the Productivity Capability. This is defined by the Supplier when their Catalogue Solution does not map to a pre-defined Capability."
           ]
         },
         {
-          "title": "",
+          "id": "learn-more",
           "description": [
             {
-              "startText": "You can learn more about the Capability Model",
-              "linkText": "[link]",
-              "href": "https://www.nhs.uk/",
+              "startText": "",
+              "linkText": "You can learn more about the Capability Model",
+              "href": "https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview",
               "endText": ""
             }
           ]
         },
         {
+          "id": "epics",
           "title": "Epics",
           "description": [
             "Epics precisely describe the functions of a Capability.",
@@ -68,10 +69,20 @@
           ]
         },
         {
+          "id": "foundation-solution-set",
           "title": "Foundation Solution Set",
           "description": [
             "6 Foundation Capabilities are the minimum requirement to enable a GP practice to operate. All 6 Capabilities must be fulfilled to achieve Foundation Solution Set status. They are:"
-          ],
+          ]
+        },
+        {
+          "id": "they-are",
+          "description": [
+            "They are:"
+          ]
+        },
+        {
+          "id": "bullet-list",
           "bulletlist": [
             "Appointments Management – GP",
             "Referral Management",
@@ -79,49 +90,50 @@
             "Patient Information Maintenance",
             "Prescribing",
             "Recording Consultations"
-          ],
-          "footerDescription": [
+          ]
+        },
+        {
+          "id": "view-only-catalogue-solutions",
+          "description": [
             "You can use the Buying Catalogue to only view Catalogue Solutions that offer the Foundation Solution Set (which meet the 6 Foundation Capabilities), or to view all the Catalogue Solutions available."
           ]
         }
       ]
     },
     {
+      "id": "standards",
       "title": "Standards",
-      "description": "",
-      "contents": [
+      "subsections": [
         {
+          "id": "standards-describe",
+          "description": [
+            "Standards describe the technical or operating levels a Catalogue Solution must meet. Each Catalogue Solution must meet all Standards relevant to the Capabilities it offers.",
+            "Therefore, if a Catalogue Solution is listed on the Buying Catalogue, a Buyer can be certain the standards have been met."
+          ]
+        },
+        {
+          "id": "compliance-work-off-plan",
           "title": "Compliance Work-Off Plan",
           "description": [
             "A Catalogue Solution close to meeting a required Capability or Standard can be given a Compliance Work-Off Plan. This means the Supplier has agreed to complete any outstanding work in an agreed timeframe.",
             "Any such Catalogue Solution on the Buying Catalogue will have the details of its Compliance Work-Off Plan included on its information page. Buyers can take this in to consideration when using the Catalogue."
           ]
-        },
-        {
-          "title": "",
-          "description": [
-            "Standards describe the technical or operating levels a Catalogue Solution must meet. Each Catalogue Solution must meet all Standards relevant to the Capabilities it offers."
-          ]
-        },
-        {
-          "title": "",
-          "description": [
-            "Therefore, if a Catalogue Solution is listed on the Buying Catalogue, a Buyer can be certain the standards have been met."
-          ]
         }
       ]
     },
     {
+      "id": "integrations",
       "title": "Integrations",
-      "description": "",
-      "contents": [
+      "subsections": [
         {
+          "id": "nhs-assured-integrations",
           "title": "NHS Assured Integrations",
           "description": [
             "NHS Assured Integrations are the interoperability integrations specified and assured by the NHS: GP Connect, which allows GP practices to share and view clinical information, and IM1, which helps Catalogue Solutions integrate with other clinical systems."
           ]
         },
         {
+          "id": "supplier-assured-integrations",
           "title": "Supplier Assured Integrations",
           "description": [
             "Supplier Assured Integrations are interoperability interfaces prepared by a Supplier and are not specified or assured by the NHS."
@@ -131,19 +143,16 @@
     },
     {
       "title": "Learn More",
-      "description": "",
-      "contents": [
+      "subsections": [
         {
-          "title": "",
+          "id": "learn-more",
           "description": [
-            "You can refer to this guidance at any time using the Buyer’s Guide link in the footer of every page."
+            "You can refer to this guidance at any time using the Buyer’s Guide link in the footer of every page.",
+            "See our full Buyer’s Guide for step-by-step help when procuring IT systems, information about our assurance process and more about the key concepts of the Buying Catalogue."
           ]
         },
         {
-          "title": "",
-          "description": [
-            "See our full Buyer’s Guide for step-by-step help when procuring IT systems, information about our assurance process and more about the key concepts of the Buying Catalogue."
-          ],
+          "id": "button",
           "button": {
             "text": "Download Buyer’s Guide PDF"
           }
@@ -151,13 +160,21 @@
       ]
     },
     {
+      "id": "contact-us",
       "title": "Contact us",
-      "description": {
-        "startText": "If you experience any technical issues when using this website, please contact NHS Digital’s Exeter Helpdesk at",
-        "linkText": "exeter.helpdesk@nhs.net",
-        "href": "mailto:exeter.helpdesk@nhs.net",
-        "endText": "or call 0300 303 4034."
-      }
+      "subsections": [
+        {
+          "id": "contact-us-paragrpath",
+          "description": [
+            {
+              "startText": "If you experience any technical issues when using this website, please contact NHS Digital’s Exeter Helpdesk at",
+              "linkText": "exeter.helpdesk@nhs.net",
+              "href": "mailto:exeter.helpdesk@nhs.net",
+              "endText": "or call 0300 303 4034."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

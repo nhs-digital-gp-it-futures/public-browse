@@ -2,11 +2,11 @@
 
 {% macro subsection(params) %}
   {% if params.title %}
-    <h4 class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0" data-test-id="subsection-title">{{ params.title }}</h4>
+    <h4 class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0" data-test-id="subsection-title-{{params.id}}">{{ params.title }}</h4>
   {% endif %}
 
   {% if params.description %}
-    <div  data-test-id="subsection-description">
+    <div data-test-id="subsection-{{params.id}}">
       {% for descriptionText in params.description %}
           {% if descriptionText.href %}
             <div class="nhsuk-u-margin-top-4" data-test-id="guide-section-description-with-link">
@@ -28,14 +28,6 @@
         <li class="nhsuk-u-font-size-19">{{text}}</li>
       {% endfor %}
     </ul>
-  {% endif %}
-
-  {% if params.footerDescription%}
-    <div data-test-id="subsection-footer-description">
-      {% for descriptionText in params.footerDescription %}
-        <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
-      {% endfor %}
-    </div>
   {% endif %}
 
   {% if params.button %}

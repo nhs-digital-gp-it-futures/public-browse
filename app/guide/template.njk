@@ -15,32 +15,23 @@
       <div class="nhsuk-grid-column-two-thirds">
         <div class="nhsuk-u-font-size-24" data-test-id="guide-page-description">{{ description }}</div>
         <div class="nhsuk-u-font-size-19" data-test-id="guide-page-subtext">{{ subsection({ description: subtext }) }}</div>
-      </div
+      </div>
     </div>
     {% for section in sections %}
+    <div class="nhsuk-grid-row" data-test-id="guide-section-{{section.id}}">
+
+
         <div class='bc-c-title-block nhsuk-grid-column-full nhsuk-u-margin-left-3'>
           <h2 class='nhsuk-u-margin-bottom-3' data-test-id="guide-section-title">{{ section.title }}</h2>
         </div>
-        <div class="nhsuk-grid-column-two-thirds nhsuk-u-font-size-19 nhsuk-u-margin-left-3">
-          
-            {% if section.description.href %}
-              <div data-test-id="guide-section-description-with-link">
-                <span>{{ section.description.startText }}</span>
-                  <a data-test-id="guide-link" href="{{ section.description.href }}">{{ section.description.linkText }}</a>
-                <span>{{ section.description.endText }}</span>
-              </div>
-            {% else %}
-              <div data-test-id="guide-section-description">
-                {{ section.description }}
-              </div>
-            {% endif %}
 
-          <div data-test-id="guide-section-subsection">
-            {% for content in section.contents %}
-              {{ subsection(content) }}
-            {% endfor %}
-          </div>
+        <div class="nhsuk-grid-column-two-thirds nhsuk-u-font-size-19 nhsuk-u-margin-left-3" data-test-id="guide-section-subsection">
+          {% for sectionDetails in section.subsections %}
+            {{ subsection(sectionDetails) }}
+          {% endfor %}
         </div>
+
+    </div>
     {% endfor %}
   </div>
 {% endblock %}

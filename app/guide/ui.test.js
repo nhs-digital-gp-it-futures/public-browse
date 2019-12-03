@@ -33,30 +33,42 @@ test('should render the subtext', async (t) => {
     .expect(subText.find('div').nth(3).innerText).eql(content.subtext[3]);
 });
 
-test('should catalogue solution header', async (t) => {
+test('should render Catalogue Solution subsections', async (t) => {
   pageSetup(t);
-  const subText = Selector('[data-test-id="guide-section-title"]');
+  const subText = Selector('[data-test-id="guide-section-catalogue-solution"]');
   await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].title);
-});
+    .expect(subText.find('[data-test-id="guide-section-title"]').innerText).eql(content.sections[0].title)
+    .expect(subText.find('[data-test-id="subsection-title-associated-services"]').innerText).eql(content.sections[0].subsections[1].title)
+    .expect(subText.find('[data-test-id="subsection-associated-services"]').innerText).eql(content.sections[0].subsections[1].description[0])
+    .expect(subText.find('[data-test-id="subsection-title-additional-services"]').innerText).eql(content.sections[0].subsections[2].title)
+    .expect(subText.find('[data-test-id="subsection-additional-services"] > div:nth-child(1)').innerText).eql(content.sections[0].subsections[2].description[0])
+    .expect(subText.find('[data-test-id="subsection-additional-services"] > div:nth-child(2)').innerText).eql(content.sections[0].subsections[2].description[1])
+    .expect(subText.find('[data-test-id="subsection-additional-services"] > div:nth-child(3)').innerText).eql(content.sections[0].subsections[2].description[2])
+  });
 
-test('should catalogue solution description', async (t) => {
+test('should render Capabilities subsections', async (t) => {
   pageSetup(t);
-  const subText = Selector('[data-test-id="guide-section-description"]');
+  const subText = Selector('[data-test-id="guide-section-capabilities"]');
   await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].description);
-});
+    .expect(subText.find('[data-test-id="guide-section-title"]').innerText).eql(content.sections[1].title)
+    .expect(subText.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(1)').innerText).eql(content.sections[1].subsections[0].description[0])
+    .expect(subText.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(2)').innerText).eql(content.sections[1].subsections[0].description[1])
+    .expect(subText.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(3)').innerText).eql(content.sections[1].subsections[0].description[2])
+    .expect(subText.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(3)').innerText).eql(content.sections[1].subsections[0].description[2])
+    .expect(subText.find('[data-test-id="guide-section-description-with-link"] > a').innerText).eql(content.sections[1].subsections[1].description[0].linkText)
+    .expect(subText.find('[data-test-id="subsection-title-epics"]').innerText).eql(content.sections[1].subsections[2].title)
+    .expect(subText.find('[data-test-id="subsection-epics"] > div:nth-child(1)').innerText).eql(content.sections[1].subsections[2].description[0])
+    .expect(subText.find('[data-test-id="subsection-epics"] > div:nth-child(2)').innerText).eql(content.sections[1].subsections[2].description[1])
+    .expect(subText.find('[data-test-id="subsection-epics"] > div:nth-child(3)').innerText).eql(content.sections[1].subsections[2].description[2])
+    .expect(subText.find('[data-test-id="subsection-title-foundation-solution-set"]').innerText).eql(content.sections[1].subsections[3].title)
+    .expect(subText.find('[data-test-id="subsection-foundation-solution-set"] > div:nth-child(1)').innerText).eql(content.sections[1].subsections[3].description[0])
+    .expect(subText.find('[data-test-id="subsection-they-are"] > div:nth-child(1)').innerText).eql(content.sections[1].subsections[4].description[0])
+    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(1)').innerText).eql(content.sections[1].subsections[5].bulletlist[0])
+    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(2)').innerText).eql(content.sections[1].subsections[5].bulletlist[1])
+    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(3)').innerText).eql(content.sections[1].subsections[5].bulletlist[2])
+    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(4)').innerText).eql(content.sections[1].subsections[5].bulletlist[3])
+    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(5)').innerText).eql(content.sections[1].subsections[5].bulletlist[4])
+    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(6)').innerText).eql(content.sections[1].subsections[5].bulletlist[5])
+    .expect(subText.find('[data-test-id="subsection-view-only-catalogue-solutions"] > div:nth-child(1)').innerText).eql(content.sections[1].subsections[5].description[0])
+  });
 
-test('should catalogue solution description', async (t) => {
-  pageSetup(t);
-  const subText = Selector('[data-test-id="guide-section-description"]');
-  await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].description);
-});
-
-test('should catalogue solution subsection 1 title', async (t) => {
-  pageSetup(t);
-  const subText = Selector('[data-test-id="subsection-title"]');
-  await t
-    .expect(subText.nth(0).innerText).eql(content.sections[0].contents[0].title);
-});

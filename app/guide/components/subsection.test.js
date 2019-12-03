@@ -4,6 +4,7 @@ import { testHarness } from '../../test-utils/testHarness';
 
 const context = {
   subSection: {
+    id: "1",
     title: 'Additional Services',
     description: [
       'Description sentence 1.',
@@ -14,11 +15,6 @@ const context = {
       'bullet 1',
       'bullet 2',
       'bullet 3',
-    ],
-    footerDescription: [
-      'Footer description sentence 1.',
-      'Footer description sentence 2.',
-      'Footer description sentence 3.',
     ],
     button: {
       text: 'Download Buyer’s Guide PDF',
@@ -36,7 +32,7 @@ describe('subsection', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="subsection-title"]').text().trim()).toEqual(context.subSection.title);
+        expect($('[data-test-id="subsection-title-1"]').text().trim()).toEqual(context.subSection.title);
         done();
       });
   });
@@ -60,7 +56,7 @@ describe('subsection', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const description = $('[data-test-id="subsection-description"]');
+        const description = $('[data-test-id="subsection-1"]');
         context.subSection.description.forEach((descriptionText, i) => {
           expect(description.find(`div:nth-child(${i + 1})`).text().trim()).toEqual(descriptionText);
         });
@@ -71,6 +67,7 @@ describe('subsection', () => {
   it('should render a link within description if provided', (done) => {
     const testCaseContext = {
       subSection: {
+        id: "1",
         title: 'Additional Services',
         description: [
           {
@@ -87,7 +84,7 @@ describe('subsection', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const description = $('[data-test-id="subsection-description"]');
+        const description = $('[data-test-id="subsection-1"]');
         const startText = description.find('span:nth-child(1)');
         const endText = description.find('span:nth-child(3)');
         const link = description.find('a');
@@ -145,32 +142,6 @@ describe('subsection', () => {
       });
   });
 
-  it('should render a footerDescription if provided', (done) => {
-    const app = testHarness().createTemplateDummyApp(macroWrapper, context);
-    request(app)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        const footerDescription = $('[data-test-id="subsection-footer-description"]');
-        context.subSection.footerDescription.forEach((footerDescriptionText, i) => {
-          expect(footerDescription.find(`div:nth-child(${i + 1})`).text().trim()).toEqual(footerDescriptionText);
-        });
-        done();
-      });
-  });
-
-  it('should not render a footerDescription if not provided', (done) => {
-    const newContext = { ...context };
-    delete newContext.subSection.footerDescription;
-    const app = testHarness().createTemplateDummyApp(macroWrapper, newContext);
-    request(app)
-      .get('/')
-      .then((res) => {
-        const $ = cheerio.load(res.text);
-        expect($('[data-test-id="subsection-footer-description"]').length).toEqual(0);
-        done();
-      });
-  });
 
   it('should render a button if provided', (done) => {
     const app = testHarness().createTemplateDummyApp(macroWrapper, context);
