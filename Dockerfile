@@ -9,9 +9,11 @@ COPY package*.json ./
 # RUN npm install
 RUN npm install
 
+CMD [ "npm run build" ]
+
 # Copy app files to source
 COPY . .
 
 # Expose port 
 EXPOSE 3000
-CMD [ "npm run build", "npm run start" ]
+CMD [ "npm run build; npm run start" ]
