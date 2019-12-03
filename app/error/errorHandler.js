@@ -4,7 +4,7 @@ export const errorHandler = (err) => {
     message: err && err.message ? err.message : 'Something went wrong',
   };
 
-  if (err && err.response) {
+  if (err && err.response && err.response.data && err.response.data.errors) {
     formattedError.status = err.response.status;
     formattedError.message = `${err.response.data.errors[0]} ${err.response.statusText}`;
     if (err.response.status === 404) {

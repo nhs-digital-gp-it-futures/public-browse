@@ -1,3 +1,4 @@
+import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 
@@ -5,10 +6,18 @@ const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/');
 };
 
-fixture('Show Home Page');
+fixture('Show Home Page')
+  .afterEach(async (t) => {
+    const isDone = nock.isDone();
+    if (!isDone) {
+      nock.cleanAll();
+    }
+
+    await t.expect(isDone).ok('Not all nock interceptors were used!');
+  });
 
 test('should render the homepage hero', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const homepageSection = Selector('[data-test-id="homepage-hero"] > section');
   const title = homepageSection.find('h1');
   const description = homepageSection.find('p');
@@ -20,7 +29,7 @@ test('should render the homepage hero', async (t) => {
 });
 
 test('should render the about us section', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const aboutUsSection = Selector('[data-test-id="about-us"]');
   await t
     .expect(aboutUsSection.find('h3').innerText).eql(content.title)
@@ -30,7 +39,7 @@ test('should render the about us section', async (t) => {
 });
 
 test('should render the guidance promo', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const guidancePromo = Selector('[data-test-id="guidance-promo"]');
   await t
     .expect(guidancePromo.count).eql(1)
@@ -39,7 +48,7 @@ test('should render the guidance promo', async (t) => {
 });
 
 test('should render the browse promo', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const browsePromo = Selector('[data-test-id="browse-promo"]');
   await t
     .expect(browsePromo.count).eql(1)
@@ -48,7 +57,7 @@ test('should render the browse promo', async (t) => {
 });
 
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const getLocation = ClientFunction(() => document.location.href);
   const browsePromoLink = Selector('[data-test-id="browse-promo"] a');
   await t
