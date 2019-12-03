@@ -33,7 +33,7 @@
       </h5>
       
       <h3 data-test-id="solution-card-name">
-        <a href="/solutions/{{ filterType }}/{{ solution.id }}">
+        <a href="{{ solution.viewSolutionUrl }}">
           {{ solution.name }}
         </a>
       </h3>
@@ -43,7 +43,7 @@
       </div>
 
       <div data-test-id="solution-card-view-link" class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
-        <a href="/solutions/{{ filterType }}/{{ solution.id }}">View this solution</a>
+        <a href="{{ solution.viewSolutionUrl }}">View this solution</a>
       </div>
     </div>
 
