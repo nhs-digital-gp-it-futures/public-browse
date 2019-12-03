@@ -1,5 +1,8 @@
 .bc-c-tag-foundation {
   @extend .bc-c-tag;
+  background: none;
+  border: solid 2px $color_nhsuk-blue;
+  color: $color_nhsuk-blue;
   display: inline-block;
 }
 
