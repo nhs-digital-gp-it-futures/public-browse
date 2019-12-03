@@ -4,7 +4,7 @@ import { createSolutionListPageContext } from './context';
 import { apiHost } from '../config';
 import logger from '../logger';
 
-const getSolutionListDataEndpoint = async (filterType) => {
+const getSolutionListDataEndpoint = (filterType) => {
   if (filterType === 'all') {
     return `${apiHost}/Solutions`;
   }
@@ -32,7 +32,7 @@ const getSolutionListData = async (filterType) => {
 
 export const getSolutionListPageContext = async (filterType) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
-  const solutionsData = getSolutionListData(filterType);
+  const solutionsData = await getSolutionListData(filterType);
 
   return createSolutionListPageContext(filterType, solutionListManifest, solutionsData);
 };
