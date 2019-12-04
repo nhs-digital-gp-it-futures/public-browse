@@ -65,3 +65,54 @@ test('should navigate to the browse solution page when clicking on the browse pr
     .click(browsePromoLink)
     .expect(getLocation()).contains('/solutions');
 });
+
+fixture('Footer')
+  .afterEach(async (t) => {
+    const isDone = nock.isDone();
+    if (!isDone) {
+      nock.cleanAll();
+    }
+
+    await t.expect(isDone).ok('Not all nock interceptors were used!');
+  });
+
+
+test('should navigate guide page', async (t) => {
+  await pageSetup(t);
+  const getLocation = ClientFunction(() => document.location.href);
+  const buyersGuideLink = Selector('[data-test-id="footer-component"] li:nth-child(1) > a');
+  await t
+    .expect(buyersGuideLink.exists).ok()
+    .click(buyersGuideLink)
+    .expect(getLocation()).contains('/guide');
+});
+
+test('should navigate guide page contact us section', async (t) => {
+  await pageSetup(t);
+  const getLocation = ClientFunction(() => document.location.href);
+  const guideContactUsLink = Selector('[data-test-id="footer-component"] li:nth-child(2) > a');
+  await t
+    .expect(guideContactUsLink.exists).ok()
+    .click(guideContactUsLink)
+    .expect(getLocation()).contains('/guide#contact-us');
+});
+
+test('should navigate nhs digital page', async (t) => {
+  await pageSetup(t);
+  const getLocation = ClientFunction(() => document.location.href);
+  const nhsDigitalLink = Selector('[data-test-id="footer-component"] li:nth-child(3) > a');
+  await t
+    .expect(nhsDigitalLink.exists).ok()
+    .click(nhsDigitalLink)
+    .expect(getLocation()).contains('https://digital.nhs.uk/');
+});
+
+test('should navigate to about GPIT futures page', async (t) => {
+  await pageSetup(t);
+  const getLocation = ClientFunction(() => document.location.href);
+  const aboutGpitLink = Selector('[data-test-id="footer-component"] li:nth-child(4) > a');
+  await t
+    .expect(aboutGpitLink.exists).ok()
+    .click(aboutGpitLink)
+    .expect(getLocation()).contains('https://digital.nhs.uk/services/future-gp-it-systems-and-services');
+});
