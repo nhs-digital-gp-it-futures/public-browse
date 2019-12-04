@@ -4,7 +4,7 @@ import { testHarness } from '../../test-utils/testHarness';
 
 const context = {
   subSection: {
-    id: "1",
+    id: '1',
     title: 'Additional Services',
     description: [
       'Description sentence 1.',
@@ -67,7 +67,7 @@ describe('subsection', () => {
   it('should render a link within description if provided', (done) => {
     const testCaseContext = {
       subSection: {
-        id: "1",
+        id: '1',
         title: 'Additional Services',
         description: [
           {
