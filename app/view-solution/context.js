@@ -1,4 +1,4 @@
-const createDownloadSolutionUrl = id => `https://gpitfuturesadev.blob.core.windows.net/$web/content/${id}.pdf?${Date.now()}`;
+const createDownloadSolutionUrl = id => `https://gpitfuturesadev.blob.core.windows.net/$web/content/${id}.pdf?timestamp=${Date.now()}`;
 
 export const createViewSolutionPageContext = solution => ({
   ...solution,
