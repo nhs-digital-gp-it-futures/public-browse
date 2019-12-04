@@ -4,32 +4,36 @@
 {% from '../views/components/general-page-description.njk' import generalPageDescription %}
 
 {% block body %}
-  <div class="nhsuk-width-container" data-test-id="view-solutions">
-
+  <div class="nhsuk-width-container" data-test-id="browse-solutions">
     <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link"> 
       {{ backLink({
         "href": "/",
-        "text": "Go back"
+        "text": "Go back to previous page"
       }) }}
     </div>
-    {{ generalPageDescription(title, description) }}
-  </div>
-  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="browse-solutions-promo-group">
-    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="foundation-solutions-promo">
-      {{ promo({
-        "href": "/solutions/foundation",
-        "heading": foundationPromoHeading,
-        "classes": "nhsuk-u-margin-top-5",
-        "description": foundationPromoDescription
-      }) }}
+    <div data-test-id="browse-solutions-heading">
+      {{ generalPageDescription(title, description) }}
     </div>
-    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">
-      {{ promo({
-        "href": "/solutions/all",
-        "heading": allPromoHeading,
-        "classes": "nhsuk-u-margin-top-5",
-        "description": allPromoDescription
-      }) }}
+    <div class="nhsuk-grid-row nhsuk-promo-group" data-test-id="browse-solutions-promo-group">
+      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">
+        {{ promo({
+          "href": "/solutions/all",
+          "heading": allPromoHeading,
+          "classes": "nhsuk-u-margin-top-5",
+          "description": allPromoDescription
+        }) }}
+      </div>
+      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="foundation-solutions-promo">
+        {{ promo({
+          "href": "/solutions/foundation",
+          "heading": foundationPromoHeading,
+          "classes": "nhsuk-u-margin-top-5",
+          "description": foundationPromoDescription
+        }) }}
+      </div>
+    </div>
+    <div class="nhsuk-u-padding-bottom-2" data-test-id="browse-solutions-buyers-guide-information">
+      <p>Find more information in our <a data-test-id='buyers-guide-link' target='_blank' href='/guide'>Buyer's Guide</a>.</p>
     </div>
   </div>
 {% endblock %}
