@@ -175,7 +175,7 @@ test('should navigate to the downloadSolutionUrl when clicking on the download m
   await pageSetup(t, 'all');
   const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"] a');
   await t
-    .expect(downloadButton.getAttribute('href')).eql('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
+    .expect(downloadButton.getAttribute('href')).contains('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
 });
 
 test('should render the error page when receiving an error from the solution public api endpoint', async (t) => {
