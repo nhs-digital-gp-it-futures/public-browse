@@ -23,7 +23,7 @@ describe('header', () => {
         expect(termsBanner.hasClass('nhsuk-width-container')).toEqual(true);
 
         const termsBannerText = $('[data-test-id="terms-banner-text"]');
-        expect(termsBannerText.text().trim()).toEqual('By using this site you are accepting the General Terms of Use and the Cookies Policy and Privacy Policy, each of which can be accessed through the links at the bottom of the page');
+        expect(termsBannerText.text().trim()).toEqual('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
 
         const betaTag = $('[data-test-id="beta-tag"]');
         expect(betaTag.hasClass('bc-c-tag-beta')).toEqual(true);
@@ -43,7 +43,7 @@ describe('header', () => {
 
         const generalTermsLink = $('[data-test-id="general-terms-link"]');
 
-        expect(generalTermsLink.text().trim()).toEqual('General Terms of Use');
+        expect(generalTermsLink.text().trim()).toEqual('downloading this PDF');
         expect(generalTermsLink.attr('href')).toEqual('https://gpitfuturesadev.blob.core.windows.net/$web/terms-of-use.pdf');
 
         done();
