@@ -60,8 +60,8 @@ test('should render buyers guide information', async (t) => {
 
   await t
     .expect(buyersGuideInformation.exists).ok()
-    .expect(buyersGuideInformation.find('p').innerText).eql('Find more information in our Buyer\'s Guide.')
-    .expect(buyersGuideInformation.find('a').innerText).eql('Buyer\'s Guide')
+    .expect(buyersGuideInformation.find('p').innerText).eql("Find more information in our Buyer's Guide.")
+    .expect(buyersGuideInformation.find('a').innerText).eql("Buyer's Guide")
     .expect(buyersGuideInformation.find('a').getAttribute('href')).eql('/guide');
 });
 
