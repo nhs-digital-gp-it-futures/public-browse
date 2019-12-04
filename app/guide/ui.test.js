@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { Selector } from 'testcafe';
 import content from './manifest.json';
 
 const pageSetup = async (t) => {
@@ -65,23 +65,20 @@ test('should render Capabilities subsections', async (t) => {
     .expect(subText.find('[data-test-id="subsection-title-foundation-solution-set"]').innerText).eql(capabilitiesSection.subsections[3].title)
     .expect(subText.find('[data-test-id="subsection-foundation-solution-set"] > div:nth-child(1)').innerText).eql(capabilitiesSection.subsections[3].description[0])
     .expect(subText.find('[data-test-id="subsection-they-are"] > div:nth-child(1)').innerText).eql(capabilitiesSection.subsections[4].description[0])
-    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(1)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[0])
-    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(2)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[1])
-    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(3)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[2])
-    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(4)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[3])
-    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(5)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[4])
-    .expect(subText.find('[data-test-id="subsection-bullet-list"] > li:nth-child(6)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[5])
+    .expect(subText.find('[data-test-id="subsection-bulletlist"] > li:nth-child(1)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[0])
+    .expect(subText.find('[data-test-id="subsection-bulletlist"] > li:nth-child(2)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[1])
+    .expect(subText.find('[data-test-id="subsection-bulletlist"] > li:nth-child(3)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[2])
+    .expect(subText.find('[data-test-id="subsection-bulletlist"] > li:nth-child(4)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[3])
+    .expect(subText.find('[data-test-id="subsection-bulletlist"] > li:nth-child(5)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[4])
+    .expect(subText.find('[data-test-id="subsection-bulletlist"] > li:nth-child(6)').innerText).eql(capabilitiesSection.subsections[5].bulletlist[5])
     .expect(subText.find('[data-test-id="subsection-view-only-catalogue-solutions"] > div:nth-child(1)').innerText).eql(capabilitiesSection.subsections[6].description[0]);
 });
 
 test('should render learn more about the Capability Model link', async (t) => {
   pageSetup(t);
-  const getLocation = ClientFunction(() => document.location.href);
   const link = Selector('[data-test-id="guide-section-description-with-link"] > a');
   await t
-    .expect(link.exists).ok()
-    .click(link)
-    .expect(getLocation()).contains('https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview');
+    .expect(link.exists).ok();
 });
 
 test('should render Standards subsections', async (t) => {

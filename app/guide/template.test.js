@@ -13,10 +13,10 @@ describe('guide', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const homepageBackLink = $('[data-test-id="go-back-link"]');
-        expect(homepageBackLink.length).toEqual(1);
-        expect(homepageBackLink.text().trim()).toEqual('Go back to previous page');
-        expect($(homepageBackLink).find('a').attr('href')).toEqual('/');
+        const goBaclLink = $('[data-test-id="go-back-link"]');
+        expect(goBaclLink.length).toEqual(1);
+        expect(goBaclLink.text().trim()).toEqual('Go back to previous page');
+        expect($(goBaclLink).find('a').attr('href')).toEqual('/');
         done();
       });
   });

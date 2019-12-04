@@ -2,30 +2,29 @@
 
 {% macro subsection(params) %}
   {% if params.title %}
-    <h4 class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0" data-test-id="subsection-title-{{params.id}}">{{ params.title }}</h4>
+    <h4 class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0" data-test-id="subsection-title-{{ params.id }}">{{ params.title }}</h4>
   {% endif %}
 
   {% if params.description %}
-    <div data-test-id="subsection-{{params.id}}">
+    <div data-test-id="subsection-{{ params.id }}">
       {% for descriptionText in params.description %}
           {% if descriptionText.href %}
             <div class="nhsuk-u-margin-top-4" data-test-id="guide-section-description-with-link">
               <span>{{ descriptionText.startText }}</span>
-                <a data-test-id="guide-link" href="{{ descriptionText.href }}">{{descriptionText.linkText }}</a>
+                <a data-test-id="guide-link" href="{{ descriptionText.href }}">{{ descriptionText.linkText }}</a>
               <span>{{ descriptionText.endText }}</span>
             </div>
           {% else %}
-                <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
+            <div class="nhsuk-u-margin-top-4">{{ descriptionText }}</div>
           {% endif %}
       {% endfor %}
     </div>
   {% endif %}
 
-
   {% if params.bulletlist %}
-    <ul class="nhsuk-u-margin-top-2" data-test-id="subsection-bullet-list">
+    <ul class="nhsuk-u-margin-top-2" data-test-id="subsection-bulletlist">
       {% for text in params.bulletlist %}
-        <li class="nhsuk-u-font-size-19">{{text}}</li>
+        <li class="nhsuk-u-font-size-19">{{ text }}</li>
       {% endfor %}
     </ul>
   {% endif %}

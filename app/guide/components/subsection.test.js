@@ -23,7 +23,7 @@ const context = {
 };
 
 const macroWrapper = `{% from 'guide/components/subsection.njk' import subsection %}
-{{ subsection(subSection) }}`;
+                      {{ subsection(subSection) }}`;
 
 describe('subsection', () => {
   it('should render a title if provided', (done) => {
@@ -121,7 +121,7 @@ describe('subsection', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const bulletList = $('ul[data-test-id="subsection-bullet-list"]');
+        const bulletList = $('ul[data-test-id="subsection-bulletlist"]');
         context.subSection.bulletlist.map((bulletListText, i) => {
           expect(bulletList.find(`li:nth-child(${i + 1})`).text().trim()).toEqual(bulletListText);
         });
@@ -137,7 +137,7 @@ describe('subsection', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        expect($('[data-test-id="subsection-bullet-list"]').length).toEqual(0);
+        expect($('[data-test-id="subsection-bulletlist"]').length).toEqual(0);
         done();
       });
   });
