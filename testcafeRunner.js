@@ -15,7 +15,7 @@ createTestcafe('localhost')
     server = app.listen('1234');
 
     return tc.createRunner()
-      .src(['**/guide/*ui.test.js'])
+      .src(['**/*ui.test.js'])
       .browsers('chrome:headless')
       .concurrency(2)
       .reporter(['spec', {
