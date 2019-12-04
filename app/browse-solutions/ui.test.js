@@ -31,6 +31,17 @@ test('should navigate to home page when click Go back', async (t) => {
     .expect(getLocation()).eql('http://localhost:1234/');
 });
 
+test('should render Browse All Solutions container', async (t) => {
+  await pageSetup(t);
+
+  const allSolutions = Selector('[data-test-id="all-solutions-promo"]');
+
+  await t
+    .expect(allSolutions.exists).ok()
+    .expect(allSolutions.find('h3').innerText).eql(content.allPromoHeading)
+    .expect(allSolutions.find('p').innerText).eql(content.allPromoDescription);
+});
+
 test('should render Browse Foundation Solutions container', async (t) => {
   await pageSetup(t);
 
@@ -42,15 +53,16 @@ test('should render Browse Foundation Solutions container', async (t) => {
     .expect(foundationSolutions.find('p').innerText).eql(content.foundationPromoDescription);
 });
 
-test('should render Browse All Solutions container', async (t) => {
+test('should render buyers guide information', async (t) => {
   await pageSetup(t);
 
-  const allSolutions = Selector('[data-test-id="all-solutions-promo"]');
+  const buyersGuideInformation = Selector('[data-test-id="browse-solutions-buyers-guide-information"]');
 
   await t
-    .expect(allSolutions.exists).ok()
-    .expect(allSolutions.find('h3').innerText).eql(content.allPromoHeading)
-    .expect(allSolutions.find('p').innerText).eql(content.allPromoDescription);
+    .expect(buyersGuideInformation.exists).ok()
+    .expect(buyersGuideInformation.find('p').innerText).eql("Find more information in our Buyer's Guide.")
+    .expect(buyersGuideInformation.find('a').innerText).eql("Buyer's Guide")
+    .expect(buyersGuideInformation.find('a').getAttribute('href')).eql('/guide');
 });
 
 test('should navigate to browse all solutions page', async (t) => {

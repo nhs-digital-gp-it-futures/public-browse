@@ -90,8 +90,49 @@ describe('browse solutions page', () => {
         const goBackLink = $('[data-test-id="go-back-link"] a');
 
         expect(goBackLink.length).toEqual(1);
-        expect(goBackLink.text().trim()).toEqual('Go back');
+        expect(goBackLink.text().trim()).toEqual('Go back to previous page');
         expect(goBackLink.attr('href')).toEqual('/');
+
+        done();
+      });
+  });
+
+  it('should render buyers guide information', (done) => {
+    const context = {
+      ...content,
+    };
+
+    const app = testHarness().createComponentDummyApp(template, context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const moreInformation = $('div[data-test-id="browse-solutions-buyers-guide-information"] p');
+
+        expect(moreInformation.length).toEqual(1);
+        expect(moreInformation.text().trim()).toEqual("Find more information in our Buyer's Guide.");
+
+        done();
+      });
+  });
+
+  it('should render buyers guide link', (done) => {
+    const context = {
+      ...content,
+    };
+
+    const app = testHarness().createComponentDummyApp(template, context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+
+        const buyersGuideLink = $('a[data-test-id="buyers-guide-link"]');
+
+        expect(buyersGuideLink.length).toEqual(1);
+        expect(buyersGuideLink.text().trim()).toEqual("Buyer's Guide");
+        expect(buyersGuideLink.attr('href')).toEqual('/guide');
 
         done();
       });
