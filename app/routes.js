@@ -54,6 +54,7 @@ router.use((err, req, res, next) => {
     const context = errorHandler(err);
     logger.error(context.message);
     res.render('error/template.njk', context);
+  } else {
     next();
   }
 });

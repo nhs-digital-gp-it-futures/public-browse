@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import { testHarness } from '../../test-utils/testHarness';
 
 const macroWrapper = `{% from 'solutions-list/components/solution-card.njk' import solutionCard %}
-                      {{ solutionCard(solution, filterType) }}`;
+                      {{ solutionCard(solution) }}`;
 
 describe('solution-card', () => {
   it('should render the foundation tag if isFoundation is true', (done) => {
@@ -45,8 +45,8 @@ describe('solution-card', () => {
     const context = {
       solution: {
         id: 'S1',
+        viewSolutionUrl: '/solutions/all/S1',
       },
-      filterType: 'all',
     };
 
     const app = testHarness().createTemplateDummyApp(macroWrapper, context);
@@ -111,8 +111,8 @@ describe('solution-card', () => {
         solution: {
           id: '0001',
           name: 'some solution name',
+          viewSolutionUrl: '/solutions/all/0001',
         },
-        filterType: 'all',
       };
       const app = testHarness().createTemplateDummyApp(macroWrapper, context);
       request(app)

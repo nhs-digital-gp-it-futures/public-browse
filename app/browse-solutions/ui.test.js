@@ -86,37 +86,3 @@ test('should navigate to browse foundation solutions page', async (t) => {
     .click(foundationSolutionsLink)
     .expect(getLocation()).contains('/foundation');
 });
-
-test('should render the error page after navigating to browse all solutions page when receiving an error from the solutions api endpoint', async (t) => {
-  nock('http://localhost:8080')
-    .get('/api/v1/Solutions')
-    .reply(500, {});
-
-  await pageSetup(t);
-
-  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"]').find('a');
-
-  await t.click(browseAllSolutionsLink);
-
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
-
-  await t
-    .expect(errorTitle.exists).ok();
-});
-
-test('should render the error page after navigating to browse foundation solutions page when receiving an error from the solutions foundation api endpoint', async (t) => {
-  nock('http://localhost:8080')
-    .get('/api/v1/Solutions/Foundation')
-    .reply(500, {});
-
-  await pageSetup(t);
-
-  const foundationAllSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"]').find('a');
-
-  await t.click(foundationAllSolutionsLink);
-
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
-
-  await t
-    .expect(errorTitle.exists).ok();
-});

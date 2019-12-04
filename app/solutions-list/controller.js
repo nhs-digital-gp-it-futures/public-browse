@@ -1,33 +1,38 @@
 import axios from 'axios';
-import { createSolutionListPageContext, createFoundationSolutionListPageContext } from './context';
+import { ManifestProvider } from './filterType/manifestProvider';
+import { createSolutionListPageContext } from './context';
 import { apiHost } from '../config';
 import logger from '../logger';
 
-export const getSolutionListPageContext = async (filterType) => {
+const getSolutionListDataEndpoint = (filterType) => {
   if (filterType === 'all') {
-    const endpoint = `${apiHost}/Solutions`;
-    logger.info(`api called: ${endpoint}`);
-    const solutionListResponse = await axios.get(endpoint);
-    if (solutionListResponse.data && solutionListResponse.data.solutions) {
-      logger.info(`${solutionListResponse.data.solutions.length} solutions returned`);
-      return createSolutionListPageContext(
-        solutionListResponse.data.solutions,
-      );
-    }
-    throw new Error('No solutions returned');
+    return `${apiHost}/Solutions`;
   }
 
   if (filterType === 'foundation') {
-    const endpoint = `${apiHost}/Solutions/Foundation`;
-    logger.info(`api called: ${endpoint}`);
-    const foundationSolutionListResponse = await axios.get(endpoint);
-    if (foundationSolutionListResponse.data && foundationSolutionListResponse.data.solutions) {
-      logger.info(`${foundationSolutionListResponse.data.solutions.length} foundation solutions returned`);
-      return createFoundationSolutionListPageContext(
-        foundationSolutionListResponse.data.solutions,
-      );
-    }
-    throw new Error('No foundation solutions returned');
+    return `${apiHost}/Solutions/Foundation`;
   }
-  throw new Error('Invalid filter type applied');
+
+  return undefined;
+};
+
+const getSolutionListData = async (filterType) => {
+  const endpoint = getSolutionListDataEndpoint(filterType);
+  if (endpoint) {
+    logger.info(`api called: ${endpoint}`);
+    const solutionListResponse = await axios.get(endpoint);
+    if (solutionListResponse && solutionListResponse.data && solutionListResponse.data.solutions) {
+      logger.info(`${solutionListResponse.data.solutions.length} solutions returned for type ${filterType}`);
+      return solutionListResponse.data.solutions;
+    }
+  }
+
+  throw new Error(`No endpoint found for filter type: ${filterType}`);
+};
+
+export const getSolutionListPageContext = async (filterType) => {
+  const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
+  const solutionsData = await getSolutionListData(filterType);
+
+  return createSolutionListPageContext(filterType, solutionListManifest, solutionsData);
 };
