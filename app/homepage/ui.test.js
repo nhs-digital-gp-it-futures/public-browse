@@ -146,9 +146,9 @@ fixture('Header')
 
 test('should display BETA banner', async (t) => {
   await pageSetup(t);
-  const legalText = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(1)');
+  const betaBanner = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(1)');
   await t
-    .expect(legalText.innerText).eql('BETA');
+    .expect(betaBanner.innerText).eql('BETA');
 });
 
 test('should display General Terms of Use text', async (t) => {
