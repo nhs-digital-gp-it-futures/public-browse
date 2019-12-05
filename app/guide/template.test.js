@@ -15,7 +15,7 @@ describe('guide', () => {
         const $ = cheerio.load(res.text);
         const goBaclLink = $('[data-test-id="go-back-link"]');
         expect(goBaclLink.length).toEqual(1);
-        expect(goBaclLink.text().trim()).toEqual('Go back to previous page');
+        expect(goBaclLink.text().trim()).toEqual('Go back to homepage');
         expect($(goBaclLink).find('a').attr('href')).toEqual('/');
         done();
       });
