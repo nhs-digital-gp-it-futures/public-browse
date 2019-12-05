@@ -25,7 +25,7 @@ fixture('Show All Solution List Page')
 
 test('should display the page title', async (t) => {
   await pageSetup(t);
-  const pageTitle = Selector('h2[data-test-id="general-page-title"]');
+  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
   await t
     .expect(pageTitle.exists).ok()
     .expect(pageTitle.innerText).eql('All Catalogue Solutions – results');
