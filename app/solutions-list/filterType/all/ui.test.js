@@ -28,7 +28,7 @@ test('should display the page title', async (t) => {
   const pageTitle = Selector('h2[data-test-id="general-page-title"]');
   await t
     .expect(pageTitle.exists).ok()
-    .expect(pageTitle.innerText).eql('All Solutions results');
+    .expect(pageTitle.innerText).eql('All Catalogue Solutions – results');
 });
 
 test('should display the page description', async (t) => {
@@ -36,7 +36,7 @@ test('should display the page description', async (t) => {
   const pageDescription = Selector('div[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
-    .expect(pageDescription.innerText).eql('These are the Solutions on the GP IT Futures framework available from the Buying Catalogue.');
+    .expect(pageDescription.innerText).eql('These are the Catalogue Solutions currently available from the Buying Catalogue. The number will increase over time.');
 });
 
 test('should display the capabilities heading', async (t) => {
@@ -62,7 +62,7 @@ test('should display the solution details of a solution card', async (t) => {
   await t
     .expect(solutionCard.find('div[data-test-id="solution-card-foundation-tag"]').exists).notOk()
     .expect(solutionCard.find('h5[data-test-id="solution-card-organisation"]').innerText).eql('some organisation name')
-    .expect(solutionCard.find('h3').innerText).eql('some solution name')
+    .expect(solutionCard.find('h2').innerText).eql('some solution name')
     .expect(solutionCard.find('div[data-test-id="solution-card-summary"]').innerText).eql('some solution summary');
 });
 

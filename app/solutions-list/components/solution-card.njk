@@ -5,7 +5,7 @@
     <h4>Capabilities met</h4> 
     <ul>
       {% for capability in capabilities %}
-        <li data-test-id="capability-list-item">
+        <li data-test-id="capability-list-item" class="nhsuk-u-font-size-16">
           {{ capability }}
         </li>
       {% endfor %}
@@ -23,20 +23,20 @@
     {% if solution.isFoundation %}
       {{ tag({
         dataTestIdIdentifier: 'solution-card-foundation', 
-        text: 'Foundation Solution', 
-        classes: 'bc-c-tag-foundation nhsuk-u-margin-bottom-6'
+        text: 'Foundation Solution Set', 
+        classes: 'bc-c-tag-foundation nhsuk-u-margin-bottom-4'
       }) }}
     {% endif %}
 
-      <h5 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-organisation">
-        {{ solution.organisationName }}
-      </h5>
-      
-      <h3 data-test-id="solution-card-name">
+      <h2 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-name">
         <a href="{{ solution.viewSolutionUrl }}">
           {{ solution.name }}
         </a>
-      </h3>
+      </h2>
+
+      <h5 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-organisation">
+        {{ solution.organisationName }}
+      </h5>
 
       <div data-test-id="solution-card-summary">
         {{ solution.summary }}
