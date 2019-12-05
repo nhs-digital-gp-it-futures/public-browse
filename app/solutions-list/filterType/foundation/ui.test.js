@@ -30,7 +30,7 @@ test('should display the page title', async (t) => {
   const pageTitle = Selector('h1[data-test-id="general-page-title"]');
   await t
     .expect(pageTitle.exists).ok()
-    .expect(pageTitle.innerText).eql('Foundation Solutions results');
+    .expect(pageTitle.innerText).eql('Foundation Solution Sets – results');
 });
 
 test('should display the page description', async (t) => {
@@ -38,7 +38,7 @@ test('should display the page description', async (t) => {
   const pageDescription = Selector('div[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
-    .expect(pageDescription.innerText).eql('These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.');
+    .expect(pageDescription.innerText).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');
 });
 
 test('should display the capabilities heading', async (t) => {
