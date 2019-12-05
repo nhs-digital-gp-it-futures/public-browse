@@ -155,9 +155,7 @@ test('should display General Terms of Use text', async (t) => {
   await pageSetup(t);
   const termsOfUseText = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(2)');
   await t
-    .expect(termsOfUseText.innerText).eql('By using this site you are accepting the General Terms \
-      of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be \
-      accessed using the links at the bottom of the page.');
+    .expect(termsOfUseText.innerText).eql('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
 });
 
 test('should navigate to home page header banner', async (t) => {
