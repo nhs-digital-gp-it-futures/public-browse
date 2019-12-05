@@ -20,7 +20,7 @@ module.exports = {
       "files": ["**/*ui.test.js"],
         "rules": {
           "newline-per-chained-call": 0,
-          "max-len": 0
+          "no-multi-str": 0
         }
       }
     ]
