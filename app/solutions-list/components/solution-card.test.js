@@ -20,7 +20,7 @@ describe('solution-card', () => {
         const $ = cheerio.load(res.text);
         const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-tag"]');
         expect(foundationSolutionIndicator.length).toEqual(1);
-        expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution');
+        expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution Set');
         done();
       });
   });
