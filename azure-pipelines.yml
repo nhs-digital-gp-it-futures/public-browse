@@ -35,7 +35,3 @@ steps:
   - script: |
       npm run test:integration
     displayName: 'Integration test'
-
-  - task: DockerInstaller@0
-    inputs:
-      dockerVersion: '18.09.9'
