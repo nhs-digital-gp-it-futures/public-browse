@@ -18,6 +18,7 @@ const context = {
     ],
     button: {
       text: 'Download Buyer’s Guide PDF',
+      href: 'some-link.com',
     },
   },
 };
@@ -150,6 +151,7 @@ describe('subsection', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('[data-test-id="subsection-button"]').text().trim()).toEqual(context.subSection.button.text);
+        expect($('[data-test-id="subsection-button"] a').attr('href')).toEqual('some-link.com');
         done();
       });
   });
