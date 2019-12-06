@@ -8,22 +8,22 @@ const content = {
   footerLinks: [
     {
       label: 'Buyer\'s Guide',
-      URL: '/',
+      URL: '/guide',
     },
     {
-      label: 'NHS Digital service desk',
-      URL: '/',
+      label: 'NHS Digital Helpdesk',
+      URL: '/guide#contact-us',
     },
     {
       label: 'NHS Digital',
       URL: 'https://digital.nhs.uk/',
     },
     {
-      label: 'About GPIT Futures',
+      label: 'About GP IT Futures',
       URL: 'https://digital.nhs.uk/services/future-gp-it-systems-and-services',
     },
     {
-      label: 'Capabilities and Standards Model',
+      label: 'Capabilities & Standards Model',
       URL: 'https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview',
     },
   ],
@@ -37,10 +37,13 @@ describe('footer', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+
         const footer = $('[data-test-id="footer"]');
-        expect(footer.length).toEqual(1);
         const footerComponent = footer.find('[data-test-id="footer-component"]');
+
+        expect(footer.length).toEqual(1);
         expect(footerComponent.length).toEqual(1);
+
         content.footerLinks.map((link, i) => {
           expect(footerComponent.find(`li:nth-child(${i + 1})`).text().trim()).toEqual(link.label);
         });
@@ -60,7 +63,8 @@ describe('footer', () => {
         expect(footer.length).toEqual(1);
         expect(legalPanel.length).toEqual(1);
         expect(legalPanel.find('span:nth-child(1)').text().trim()).toEqual('Legal');
-        expect(legalPanel.find('span:nth-child(2)').text().trim()).toEqual('Privacy and cookies');
+        expect(legalPanel.find('span:nth-child(2)').text().trim()).toEqual('Privacy and Cookies');
+        expect(legalPanel.find('span:nth-child(2) > a').attr('href')).toEqual('https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies');
         done();
       });
   });
