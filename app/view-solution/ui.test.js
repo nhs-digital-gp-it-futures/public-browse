@@ -167,15 +167,10 @@ test('should display the solution contact details', async (t) => {
 test('should display the download button', async (t) => {
   await pageSetup(t, 'all');
   const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"]');
-  await t.expect(downloadButton.exists).ok();
-  await t.expect(downloadButton.innerText).eql('Download more information');
-});
-
-test('should navigate to the downloadSolutionUrl when clicking on the download more info button', async (t) => {
-  await pageSetup(t, 'all');
-  const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"] a');
   await t
-    .expect(downloadButton.getAttribute('href')).contains('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
+    .expect(downloadButton.exists).ok()
+    .expect(downloadButton.innerText).eql('Download more information')
+    .expect(downloadButton.find('a').getAttribute('href')).contains('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
 });
 
 test('should render the error page when receiving an error from the solution public api endpoint', async (t) => {
