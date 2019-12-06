@@ -22,7 +22,9 @@ createTestcafe('localhost')
         name: 'nunit',
         output: 'integration-test-report.xml',
       }])
-      .run();
+      .run({
+        skipJsErrors: true,
+      });
   })
   .then((failCount) => {
     server.close();
