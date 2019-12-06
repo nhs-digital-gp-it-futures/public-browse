@@ -35,3 +35,14 @@ steps:
   - script: |
       npm run test:integration
     displayName: 'Integration test'
+
+  - task: CopyFiles@2
+    inputs:
+      Contents: '**'
+      TargetFolder: '$(build.artifactstagingdirectory)/publicbrowse'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/publicbrowse'
+      ArtifactName: 'publicbrowse'
+      publishLocation: 'Container'
