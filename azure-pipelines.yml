@@ -39,19 +39,3 @@ steps:
   - task: DockerInstaller@0
     inputs:
       dockerVersion: '18.09.9'
-  
-  - task: DockerCompose@0
-    inputs:
-      containerregistrytype: 'Azure Container Registry'
-      azureSubscription: 'NHSAPP-BuyingCatalogue'
-      azureContainerRegistry: '{"loginServer":"gpitfuturesdevacr.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfutures-dev-rg-acr/providers/Microsoft.ContainerRegistry/registries/gpitfuturesdevacr"}'
-      dockerComposeFile: '**/docker-compose.yml'
-      action: 'Build services'
-
-  - task: DockerCompose@0
-    inputs:
-      containerregistrytype: 'Azure Container Registry'
-      azureSubscription: 'NHSAPP-BuyingCatalogue'
-      azureContainerRegistry: '{"loginServer":"gpitfuturesdevacr.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfutures-dev-rg-acr/providers/Microsoft.ContainerRegistry/registries/gpitfuturesdevacr"}'
-      dockerComposeFile: '**/docker-compose.yml'
-      action: 'Push services'
