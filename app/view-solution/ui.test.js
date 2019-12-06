@@ -170,7 +170,7 @@ test('should display the download button', async (t) => {
   await t
     .expect(downloadButton.exists).ok()
     .expect(downloadButton.innerText).eql('Download more information')
-    .expect(downloadButton.find('a').getAttribute('href')).contains('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
+    .expect(downloadButton.find('a').getAttribute('href')).contains('https://gpitfuturessadev.blob.core.windows.net/$web/content/1234.pdf');
 });
 
 test('should render the error page when receiving an error from the solution public api endpoint', async (t) => {

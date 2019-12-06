@@ -9,7 +9,7 @@ describe('createSolutionPageContext', () => {
       name: 'The first solution',
       organisation: 'Halls',
       sections: [],
-      downloadSolutionUrl: 'https://gpitfuturesadev.blob.core.windows.net/$web/content/00001.pdf?timestamp=some-date',
+      downloadSolutionUrl: 'https://gpitfuturessadev.blob.core.windows.net/$web/content/00001.pdf?timestamp=some-date',
     };
 
     const solution = {
