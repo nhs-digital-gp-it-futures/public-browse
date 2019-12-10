@@ -5,6 +5,7 @@
 {% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
 {% from 'sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
 {% from 'sections/view-solution-capabilities/macro.njk' import viewSolutionCapabilities %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from 'components/tag/macro.njk' import tag %}
 
 {% block body %}
@@ -12,37 +13,52 @@
     <div data-test-id="view-solution-page-back-link" class="nhsuk-u-margin-bottom-5">
       {{ backLink({
         "href": "./",
-        "text": "Go back"
+        "text": "Go back to previous page"
       }) }}
     </div>
 
     {% if isFoundation %}
       {{ tag({
         dataTestIdIdentifier: 'view-solution-foundation', 
-        text: 'Foundation Solution', 
+        text: 'Foundation Solution Set', 
         classes: 'bc-c-tag-foundation nhsuk-u-margin-bottom-6'
       }) }}
     {% endif %}
 
-    <h2 data-test-id="view-solution-page-organisation-name" class="nhsuk-u-margin-bottom-1">{{organisationName}}</h2>
-    <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-4">{{ name }}</h1>
-    <h4 data-test-id="view-solution-page-solution-id">Solution ID: {{ id }}</h4>
-    <div data-test-id="view-solution-page-last-updated" class="nhsuk-body-s">Page last updated: {{lastUpdated}}</div>
+    <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">{{ name }}</h1>
+    <h2 data-test-id="view-solution-page-organisation-name" class="nhsuk-u-margin-bottom-2">{{ organisationName }}</h2>
+    <p data-test-id="view-solution-page-solution-id">Solution ID: {{ id }}</p4>
+    <div data-test-id="view-solution-page-last-updated" class="bc-t-font-color--grey">Solution information last updated: {{lastUpdated}}</div>
     {{ viewSolutionDescription({
       section: sections['solution-description']
     }) }}
     {{ viewSolutionCapabilities({
+      description: "This Catalogue Solution has demonstrated it meets the necessary requirements for the following Capabilities:",
       section: sections.capabilities
     }) }}
+
+    <div data-test-id="learn-more">
+      {{ viewSectionHeading({text: 'Learn more'}) }}
+      <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row nhsuk-u-padding-left-3">
+          <p class="nhsuk-grid-column-two-thirds">
+            Find out more about this Catalogue Solution by downloading the full details.
+          </p>
+          <div data-test-id="view-solution-page-download-info-button" class="nhsuk-grid-column-two-thirds">
+             {{ button({
+              "text": "Download this PDF",
+              "classes": "nhsuk-button--secondary",
+              "href": downloadSolutionUrl
+              }) }}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
     {{ viewSolutionContactDetails({
       section: sections['contact-details']
     }) }}
-    <div data-test-id="view-solution-page-download-info-button" class="nhsuk-u-margin-top-7">
-      {{ button({
-        "text": "Download more information",
-        "classes": "nhsuk-button--secondary",
-        "href": downloadSolutionUrl
-      }) }}
-    </div>
+
   </div>
 {% endblock %}
