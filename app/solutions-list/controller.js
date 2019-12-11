@@ -6,11 +6,11 @@ import logger from '../logger';
 
 const getSolutionListDataEndpoint = (filterType) => {
   if (filterType === 'all') {
-    return `${apiHost}/Solutions`;
+    return `${apiHost}/api/v1/Solutions`;
   }
 
   if (filterType === 'foundation') {
-    return `${apiHost}/Solutions/Foundation`;
+    return `${apiHost}/api/v1/Solutions/Foundation`;
   }
 
   return undefined;

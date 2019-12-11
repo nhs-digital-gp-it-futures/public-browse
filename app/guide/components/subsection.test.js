@@ -18,13 +18,14 @@ const context = {
     ],
     button: {
       text: 'Download Buyer’s Guide PDF',
-      href: 'some-link.com',
+      href: '/path-to-blob',
     },
   },
+  blobstoreHost: 'www.someblobstore.com',
 };
 
 const macroWrapper = `{% from 'guide/components/subsection.njk' import subsection %}
-                      {{ subsection(subSection) }}`;
+                      {{ subsection(subSection, blobstoreHost) }}`;
 
 describe('subsection', () => {
   it('should render a title if provided', (done) => {
@@ -151,7 +152,7 @@ describe('subsection', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('[data-test-id="subsection-button"]').text().trim()).toEqual(context.subSection.button.text);
-        expect($('[data-test-id="subsection-button"] a').attr('href')).toEqual('some-link.com');
+        expect($('[data-test-id="subsection-button"] a').attr('href')).toEqual('www.someblobstore.com/path-to-blob');
         done();
       });
   });

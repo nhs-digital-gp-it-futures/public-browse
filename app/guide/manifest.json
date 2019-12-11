@@ -156,7 +156,7 @@
           "id": "button",
           "button": {
             "text": "Download Buyer’s Guide PDF",
-            "href": "https://gpitfuturessadev.blob.core.windows.net/$web/content/buyers-guide.pdf"
+            "href": "/$web/content/buyers-guide.pdf"
           }
         }
       ]

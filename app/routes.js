@@ -6,25 +6,31 @@ import { getHomepageContext } from './homepage/context';
 import { getGuidePageContext } from './guide/context';
 import { errorHandler } from './error/errorHandler';
 import logger from './logger';
+import config from './config';
 
 const router = express.Router();
+
+const addConfig = context => ({
+  ...context,
+  config,
+});
 
 router.get('/', (req, res) => {
   const context = getHomepageContext();
   logger.info('navigating to home page');
-  res.render('homepage/template.njk', context);
+  res.render('homepage/template.njk', addConfig(context));
 });
 
 router.get('/guide', (req, res) => {
   const context = getGuidePageContext();
   logger.info('navigating to guide');
-  res.render('guide/template.njk', context);
+  res.render('guide/template.njk', addConfig(context));
 });
 
 router.get('/solutions', (req, res) => {
   const context = getBrowseSolutionsPageContext();
   logger.info('navigating to browse solutions');
-  res.render('browse-solutions/template.njk', context);
+  res.render('browse-solutions/template.njk', addConfig(context));
 });
 
 router.get('/solutions/:filterType', async (req, res, next) => {
@@ -32,7 +38,7 @@ router.get('/solutions/:filterType', async (req, res, next) => {
   logger.info(`filter type '${filterType}' applied`);
   try {
     const context = await getSolutionListPageContext(filterType);
-    res.render('solutions-list/template.njk', context);
+    res.render('solutions-list/template.njk', addConfig(context));
   } catch (err) {
     next(err);
   }
@@ -43,7 +49,7 @@ router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
   logger.info(`navigating to Solution ${solutionId} page`);
   try {
     const context = await getPublicSolutionById(solutionId);
-    res.render('view-solution/template.njk', context);
+    res.render('view-solution/template.njk', addConfig(context));
   } catch (err) {
     next(err);
   }
@@ -60,7 +66,7 @@ router.use((err, req, res, next) => {
   if (err) {
     const context = errorHandler(err);
     logger.error(context.message);
-    res.render('error/template.njk', context);
+    res.render('error/template.njk', addConfig(context));
   } else {
     next();
   }
