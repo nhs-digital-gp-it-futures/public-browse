@@ -180,7 +180,7 @@ test('should display learn more', async (t) => {
   await t
     .expect(contactDetails.exists).ok()
     .expect(contactDetails.find('h3').innerText).eql('Learn more')
-    .expect(contactDetails.find('p').innerText).eql('Find out more about this Catalogue Solution by downloading the full details.')
+    .expect(contactDetails.find('p').innerText).eql('Find out more about this Catalogue Solution by downloading the full details.');
 });
 
 test('should render the error page when receiving an error from the solution public api endpoint', async (t) => {
