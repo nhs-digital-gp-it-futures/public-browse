@@ -176,7 +176,10 @@ describe('view solution', () => {
 
   it('should render the download more information button', (done) => {
     const context = {
-      downloadSolutionUrl: 'www.downloadurl.com',
+      downloadSolutionUrl: '/path-to-blob',
+      config: {
+        blobstoreHost: 'www.some-blob-store.com',
+      },
     };
     const app = testHarness().createComponentDummyApp(template, context);
     request(app)
@@ -185,8 +188,8 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const moreInfoButton = $('[data-test-id="view-solution-page-download-info-button"] a');
         expect(moreInfoButton.length).toEqual(1);
-        expect(moreInfoButton.text().trim()).toEqual('Download more information');
-        expect(moreInfoButton.attr('href')).toEqual(context.downloadSolutionUrl);
+        expect(moreInfoButton.text().trim()).toEqual('Download this PDF');
+        expect(moreInfoButton.attr('href')).toEqual('www.some-blob-store.com/path-to-blob');
         done();
       });
   });

@@ -44,7 +44,7 @@ describe('header', () => {
         const generalTermsLink = $('[data-test-id="general-terms-link"]');
 
         expect(generalTermsLink.text().trim()).toEqual('downloading this PDF');
-        expect(generalTermsLink.attr('href')).toEqual('https://gpitfuturessadev.blob.core.windows.net/$web/content/terms-of-use.pdf');
+        expect(generalTermsLink.attr('href')).toEqual('/$web/content/terms-of-use.pdf');
 
         done();
       });

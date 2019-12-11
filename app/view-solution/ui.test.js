@@ -171,7 +171,7 @@ test('should display the download button', async (t) => {
   await t
     .expect(downloadButton.exists).ok()
     .expect(downloadButton.innerText).eql('Download this PDF')
-    .expect(downloadButton.find('a').getAttribute('href')).contains('https://gpitfuturessadev.blob.core.windows.net/$web/content/1234.pdf');
+    .expect(downloadButton.find('a').getAttribute('href')).contains('https://gpitfuturesdevsa.blob.core.windows.net/$web/content/1234.pdf');
 });
 
 test('should display learn more', async (t) => {

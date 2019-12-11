@@ -1,6 +1,6 @@
 {% from 'components/button/macro.njk' import button %}
 
-{% macro subsection(params) %}
+{% macro subsection(params, blobstoreHost) %}
   {% if params.title %}
     <h4 class="nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-0" data-test-id="subsection-title-{{ params.id }}">{{ params.title }}</h4>
   {% endif %}
@@ -34,7 +34,7 @@
       {{ button({
         "text": params.button.text,
         "classes": "nhsuk-button--secondary nhsuk-u-margin-bottom-0",
-        "href": params.button.href
+        "href": blobstoreHost + params.button.href
       }) }}
     </div>
   {% endif %}
