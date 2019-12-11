@@ -6,7 +6,7 @@ const compression = require('compression');
 const express = require('express');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
-var dateFilter = require('nunjucks-date-filter');
+const dateFilter = require('nunjucks-date-filter');
 
 // Local dependencies
 const config = require('./app/config');
