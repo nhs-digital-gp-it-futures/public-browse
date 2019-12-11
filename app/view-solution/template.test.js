@@ -105,7 +105,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const lastUpdated = $('[data-test-id="view-solution-page-last-updated"]');
         expect(lastUpdated.length).toEqual(1);
-        expect(lastUpdated.text().trim()).toEqual(`Solution information last updated: 11 December 2019`);
+        expect(lastUpdated.text().trim()).toEqual('Solution information last updated: 11 December 2019');
         done();
       });
   });
