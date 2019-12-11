@@ -105,7 +105,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const lastUpdated = $('[data-test-id="view-solution-page-last-updated"]');
         expect(lastUpdated.length).toEqual(1);
-        expect(lastUpdated.text().trim()).toEqual(`Page last updated: ${context.lastUpdated}`);
+        expect(lastUpdated.text().trim()).toEqual(`Solution information last updated: ${context.lastUpdated}`);
         done();
       });
   });
@@ -138,6 +138,22 @@ describe('view solution', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
         expect($('[data-test-id="view-solution-capabilities"]').length).toEqual(1);
+        done();
+      });
+  });
+
+  it('should render the learn more section', (done) => {
+    const context = {
+      sections: {
+        capabilities: {},
+      },
+    };
+    const app = testHarness().createComponentDummyApp(template, context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="learn-more"]').length).toEqual(1);
         done();
       });
   });
