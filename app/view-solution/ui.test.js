@@ -3,6 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 import publicSolution from './fixtures/publicSolution.json';
 import aSolutionList from './fixtures/aSolutionList.json';
 import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
+import { blobstoreHost } from '../config';
 
 const mocks = (responseStatus, responseBody) => {
   nock('http://localhost:8080')
@@ -70,7 +71,7 @@ test('should display the foundation solution tag', async (t) => {
   const foundationTag = Selector('div[data-test-id="view-solution-foundation-tag"]');
   await t
     .expect(foundationTag.exists).ok()
-    .expect(foundationTag.innerText).eql('Foundation Solution');
+    .expect(foundationTag.innerText).eql('Foundation Solution Set');
 });
 
 test('should display the organisation name', async (t) => {
@@ -91,7 +92,7 @@ test('should display the solution name', async (t) => {
 
 test('should display the solution id', async (t) => {
   await pageSetup(t, 'all');
-  const solutionId = Selector('h4[data-test-id="view-solution-page-solution-id"]');
+  const solutionId = Selector('p[data-test-id="view-solution-page-solution-id"]');
   await t
     .expect(solutionId.exists).ok()
     .expect(solutionId.innerText).eql('Solution ID: 1234');
@@ -102,7 +103,7 @@ test('should display the last updated', async (t) => {
   const lastUpdated = Selector('div[data-test-id="view-solution-page-last-updated"]');
   await t
     .expect(lastUpdated.exists).ok()
-    .expect(lastUpdated.innerText).eql('Page last updated: a date');
+    .expect(lastUpdated.innerText).eql('Solution information last updated: 11 December 2019');
 });
 
 test('should display the solution description', async (t) => {
@@ -142,6 +143,7 @@ test('should display the solution capabilities met', async (t) => {
     .expect(capabilitiesMet.exists).ok()
     .expect(capabilitiesMet.find('h3').innerText).eql('Capabilities met')
     .expect(capabilitiesMet.find('li').innerText).eql('capability 1')
+    .expect(capabilitiesMet.find('p').innerText).eql('This Catalogue Solution has demonstrated it meets the necessary requirements for the following Capabilities:')
     .expect(capabilitiesMet.find('li:nth-child(2)').innerText).eql('capability 2')
     .expect(capabilitiesMet.find('li:nth-child(3)').innerText).eql('capability 3');
 });
@@ -167,15 +169,19 @@ test('should display the solution contact details', async (t) => {
 test('should display the download button', async (t) => {
   await pageSetup(t, 'all');
   const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"]');
-  await t.expect(downloadButton.exists).ok();
-  await t.expect(downloadButton.innerText).eql('Download more information');
+  await t
+    .expect(downloadButton.exists).ok()
+    .expect(downloadButton.innerText).eql('Download this PDF')
+    .expect(downloadButton.find('a').getAttribute('href')).contains(`${blobstoreHost}/$web/content/1234.pdf`);
 });
 
-test('should navigate to the downloadSolutionUrl when clicking on the download more info button', async (t) => {
+test('should display learn more', async (t) => {
   await pageSetup(t, 'all');
-  const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"] a');
+  const contactDetails = Selector('div[data-test-id="learn-more"]');
   await t
-    .expect(downloadButton.getAttribute('href')).contains('https://gpitfuturesadev.blob.core.windows.net/$web/content/1234.pdf');
+    .expect(contactDetails.exists).ok()
+    .expect(contactDetails.find('h3').innerText).eql('Learn more')
+    .expect(contactDetails.find('p').innerText).eql('Find out more about this Catalogue Solution by downloading the full details.');
 });
 
 test('should render the error page when receiving an error from the solution public api endpoint', async (t) => {

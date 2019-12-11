@@ -1,5 +1,6 @@
 import { Selector } from 'testcafe';
 import content from './manifest.json';
+import { blobstoreHost } from '../config';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/guide');
@@ -113,7 +114,8 @@ test('should render Learn More subsections', async (t) => {
   await t
     .expect(learnMoreSelector.find('[data-test-id="guide-section-title"]').innerText).eql(learnMoreSection.title)
     .expect(learnMoreSelector.find('[data-test-id="subsection-learn-more"] > div:nth-child(1)').innerText).eql(learnMoreSection.subsections[0].description[0])
-    .expect(learnMoreSelector.find('[data-test-id="subsection-button"] > button').innerText).eql(learnMoreSection.subsections[1].button.text);
+    .expect(learnMoreSelector.find('[data-test-id="subsection-button"] > a').innerText).eql(learnMoreSection.subsections[1].button.text)
+    .expect(learnMoreSelector.find('[data-test-id="subsection-button"] > a').getAttribute('href')).eql(`${blobstoreHost}${learnMoreSection.subsections[1].button.href}`);
 });
 
 test('should render Contact Us subsections', async (t) => {

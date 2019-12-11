@@ -1,10 +1,19 @@
 {% from 'components/header/macro.njk' import header %}
 {% from 'components/panel/macro.njk' import panel %}
 
+{% macro termBanner(config) %}
+  <div class='nhsuk-grid-row'>
+    <div class='bc-c-tag-beta' data-test-id='beta-tag'>BETA</div>
+    <div data-test-id='terms-banner-text'>
+      By using this site you are accepting the General Terms of Use which you can view by <a data-test-id='general-terms-link' target='_blank' href='{{ config.blobstoreHost }}/$web/content/terms-of-use.pdf'>downloading this PDF</a>. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.
+    </div>
+  </div>
+{% endmacro %}
+
 <span data-test-id="terms-banner">
   {{ panel({
     "colour": "grey",
-    "HTML": "<div class='nhsuk-grid-row'><div class='bc-c-tag-beta' data-test-id='beta-tag'>BETA</div><div data-test-id='terms-banner-text'>By using this site you are accepting the General Terms of Use which you can view by <a data-test-id='general-terms-link' target='_blank' href='https://gpitfuturessadev.blob.core.windows.net/$web/content/terms-of-use.pdf'>downloading this PDF</a>. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.</div></div>",
+    "HTML": termBanner(config),
     "classes": "nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-0 nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 nhsuk-width-container"
   }) }}
 </div>

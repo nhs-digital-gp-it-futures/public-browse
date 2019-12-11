@@ -96,7 +96,7 @@ describe('view solution', () => {
 
   it('should render the last updated', (done) => {
     const context = {
-      lastUpdated: 'some time',
+      lastUpdated: '2019-12-11T11:28:24.701Z',
     };
     const app = testHarness().createComponentDummyApp(template, context);
     request(app)
@@ -105,7 +105,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const lastUpdated = $('[data-test-id="view-solution-page-last-updated"]');
         expect(lastUpdated.length).toEqual(1);
-        expect(lastUpdated.text().trim()).toEqual(`Page last updated: ${context.lastUpdated}`);
+        expect(lastUpdated.text().trim()).toEqual('Solution information last updated: 11 December 2019');
         done();
       });
   });
@@ -142,6 +142,22 @@ describe('view solution', () => {
       });
   });
 
+  it('should render the learn more section', (done) => {
+    const context = {
+      sections: {
+        capabilities: {},
+      },
+    };
+    const app = testHarness().createComponentDummyApp(template, context);
+    request(app)
+      .get('/')
+      .then((res) => {
+        const $ = cheerio.load(res.text);
+        expect($('[data-test-id="learn-more"]').length).toEqual(1);
+        done();
+      });
+  });
+
   it('should render the solution contact details section', (done) => {
     const context = {
       sections: {
@@ -160,7 +176,10 @@ describe('view solution', () => {
 
   it('should render the download more information button', (done) => {
     const context = {
-      downloadSolutionUrl: 'www.downloadurl.com',
+      downloadSolutionUrl: '/path-to-blob',
+      config: {
+        blobstoreHost: 'www.some-blob-store.com',
+      },
     };
     const app = testHarness().createComponentDummyApp(template, context);
     request(app)
@@ -169,8 +188,8 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const moreInfoButton = $('[data-test-id="view-solution-page-download-info-button"] a');
         expect(moreInfoButton.length).toEqual(1);
-        expect(moreInfoButton.text().trim()).toEqual('Download more information');
-        expect(moreInfoButton.attr('href')).toEqual(context.downloadSolutionUrl);
+        expect(moreInfoButton.text().trim()).toEqual('Download this PDF');
+        expect(moreInfoButton.attr('href')).toEqual('www.some-blob-store.com/path-to-blob');
         done();
       });
   });

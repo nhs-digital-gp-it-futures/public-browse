@@ -155,7 +155,8 @@
         {
           "id": "button",
           "button": {
-            "text": "Download Buyer’s Guide PDF"
+            "text": "Download Buyer’s Guide PDF",
+            "href": "/$web/content/buyers-guide.pdf"
           }
         }
       ]

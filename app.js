@@ -6,6 +6,7 @@ const compression = require('compression');
 const express = require('express');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
+const dateFilter = require('nunjucks-date-filter');
 
 // Local dependencies
 const config = require('./app/config');
@@ -51,6 +52,7 @@ class App {
     });
 
     env.addFilter('isArray', value => Array.isArray(value));
+    env.addFilter('dateTime', dateFilter);
     return this.app;
   }
 }

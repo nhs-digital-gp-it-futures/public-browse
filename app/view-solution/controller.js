@@ -4,7 +4,7 @@ import { apiHost } from '../config';
 import logger from '../logger';
 
 export const getPublicSolutionById = async (solutionId) => {
-  const endpoint = `${apiHost}/Solutions/${solutionId}/Public`;
+  const endpoint = `${apiHost}/api/v1/Solutions/${solutionId}/Public`;
   logger.info(`api called: ${endpoint}`);
   const response = await axios.get(endpoint);
   if (response.data) {
