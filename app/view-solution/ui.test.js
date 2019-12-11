@@ -103,7 +103,7 @@ test('should display the last updated', async (t) => {
   const lastUpdated = Selector('div[data-test-id="view-solution-page-last-updated"]');
   await t
     .expect(lastUpdated.exists).ok()
-    .expect(lastUpdated.innerText).eql('Solution information last updated: a date');
+    .expect(lastUpdated.innerText).eql('Solution information last updated: 11 December 2019');
 });
 
 test('should display the solution description', async (t) => {
