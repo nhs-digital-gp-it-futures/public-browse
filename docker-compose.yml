@@ -4,7 +4,7 @@ version: '3.5'
 services:
 
   nhsd.public-browse:
-    image: nhsd/buying-catalogue-publicbrowse
+    image: nhsd/buying-catalogue/publicbrowse
     container_name: nhsd_buyingcatalogue-publicbrowse
     build:
       context: .
