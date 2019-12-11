@@ -3,6 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 import publicSolution from './fixtures/publicSolution.json';
 import aSolutionList from './fixtures/aSolutionList.json';
 import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
+import { blobstoreHost } from '../config';
 
 const mocks = (responseStatus, responseBody) => {
   nock('http://localhost:8080')
@@ -171,7 +172,7 @@ test('should display the download button', async (t) => {
   await t
     .expect(downloadButton.exists).ok()
     .expect(downloadButton.innerText).eql('Download this PDF')
-    .expect(downloadButton.find('a').getAttribute('href')).contains('https://gpitfuturesdevsa.blob.core.windows.net/$web/content/1234.pdf');
+    .expect(downloadButton.find('a').getAttribute('href')).contains(`${blobstoreHost}/$web/content/1234.pdf`);
 });
 
 test('should display learn more', async (t) => {

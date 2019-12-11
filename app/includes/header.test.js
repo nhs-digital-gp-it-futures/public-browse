@@ -33,7 +33,11 @@ describe('header', () => {
   });
 
   it('should render the general terms link', (done) => {
-    const context = {};
+    const context = {
+      config: {
+        blobstoreHost: 'www.some-blob-store.com',
+      },
+    };
 
     const app = testHarness().createComponentDummyApp(template, context);
     request(app)
@@ -44,7 +48,7 @@ describe('header', () => {
         const generalTermsLink = $('[data-test-id="general-terms-link"]');
 
         expect(generalTermsLink.text().trim()).toEqual('downloading this PDF');
-        expect(generalTermsLink.attr('href')).toEqual('/$web/content/terms-of-use.pdf');
+        expect(generalTermsLink.attr('href')).toEqual('www.some-blob-store.com/$web/content/terms-of-use.pdf');
 
         done();
       });
