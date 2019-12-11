@@ -96,7 +96,7 @@ describe('view solution', () => {
 
   it('should render the last updated', (done) => {
     const context = {
-      lastUpdated: 'some time',
+      lastUpdated: '2019-12-11T11:28:24.701Z',
     };
     const app = testHarness().createComponentDummyApp(template, context);
     request(app)
@@ -105,7 +105,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const lastUpdated = $('[data-test-id="view-solution-page-last-updated"]');
         expect(lastUpdated.length).toEqual(1);
-        expect(lastUpdated.text().trim()).toEqual(`Solution information last updated: ${context.lastUpdated}`);
+        expect(lastUpdated.text().trim()).toEqual(`Solution information last updated: 11 December 2019`);
         done();
       });
   });
@@ -185,7 +185,7 @@ describe('view solution', () => {
         const $ = cheerio.load(res.text);
         const moreInfoButton = $('[data-test-id="view-solution-page-download-info-button"] a');
         expect(moreInfoButton.length).toEqual(1);
-        expect(moreInfoButton.text().trim()).toEqual('Download more information');
+        expect(moreInfoButton.text().trim()).toEqual('Download this PDF');
         expect(moreInfoButton.attr('href')).toEqual(context.downloadSolutionUrl);
         done();
       });
