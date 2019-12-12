@@ -13,4 +13,7 @@ module.exports = {
 
   // BLOBSTORE_HOST
   blobstoreHost: process.env.BLOBSTORE_HOST || 'https://gpitfuturesdevsa.blob.core.windows.net',
+
+  // LOGGER_LEVEL options are info, warn, error, off
+  loggerLevel: process.env.LOGGER_LEVEL || 'error',
 };

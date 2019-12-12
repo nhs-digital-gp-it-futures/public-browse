@@ -1,4 +1,5 @@
 const { createLogger, format, transports } = require('winston');
+const { loggerLevel } = require('./config');
 
 const logFormat = format.printf(({
   level,
@@ -30,7 +31,19 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
 }
 
 export default {
-  info: message => logger.log('info', message),
-  warn: message => logger.log('warn', message),
-  error: message => logger.log('error', message),
+  info: (message) => {
+    if (loggerLevel === 'info') {
+      logger.log('info', message);
+    }
+  },
+  warn: (message) => {
+    if (loggerLevel === 'info' || loggerLevel === 'warn') {
+      logger.log('warn', message);
+    }
+  },
+  error: (message) => {
+    if (loggerLevel !== 'off') {
+      logger.log('error', message);
+    }
+  },
 };
