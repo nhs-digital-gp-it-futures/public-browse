@@ -19,7 +19,7 @@ const getSolutionListDataEndpoint = (filterType) => {
 const getSolutionListData = async (filterType) => {
   const endpoint = getSolutionListDataEndpoint(filterType);
   if (endpoint) {
-    logger.info(`api called: ${endpoint}`);
+    logger.info(`api called: [GET] ${endpoint}`);
     const solutionListResponse = await axios.get(endpoint);
     if (solutionListResponse && solutionListResponse.data && solutionListResponse.data.solutions) {
       logger.info(`${solutionListResponse.data.solutions.length} solutions returned for type ${filterType}`);
