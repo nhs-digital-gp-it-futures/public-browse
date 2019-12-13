@@ -1,17 +1,27 @@
 # Public Browse 
 
-Allows the public to browse the buying catalogue for solutions.
+Allows the public to browse the buying catalogue.
 
-## Prerequisite
+## Requirements
+- Node 10
 
 Install the long-term support (LTS) version of <a href="https://nodejs.org/en/">Node.js</a>, which includes NPM.
 
-## Running the application
-Install - `npm install`
-Run - `npm run start`
-Unit Tests - `npm run test`
-Integration Tests - `npm run test:integration`
+## Setting up
+```
+git clone https://github.com/nhs-digital-gp-it-futures/public-browse.git
+cd public-browse
+npm install
+```
 
-Application should run on <a href="http://localhost:3000">http://localhost:3000</a>.
-# public-browse
-# buyer-browse
+## Running the application
+- Run - `npm run start`
+- Unit Tests - `npm run test`
+- Integration Tests On Linux - `npm run test:integration`
+- Integration Tests On Windows - `npm run test:integration_win`
+
+Application should now be running on <a href="http://localhost:3000">http://localhost:3000</a>.
+
+## Dependencies
+### Buying Catalogue API
+In order to experience the full functionality, make sure you have an instance of the Buying Catalogue API in dev. environment running. How to set up the [Buying Catalogue API](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueService/blob/master/README.md "Buying Catalogue API setup").
