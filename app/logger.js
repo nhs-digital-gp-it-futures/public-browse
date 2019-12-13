@@ -25,8 +25,23 @@ if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
   }));
 } else {
   logger.add(
-    new transports.File({ filename: 'error.log', level: 'error', format: logFormat }),
-    new transports.File({ filename: 'combined.log', format: logFormat }),
+    new transports.File({
+      filename: 'error.log',
+      level: 'error',
+      format: format.combine(
+        format.label({ label: 'marketing-pages' }),
+        format.timestamp({ format: 'D/M/YY HH:mm:ss' }),
+        logFormat,
+      ),
+    }),
+    new transports.File({
+      filename: 'combined.log',
+      format: format.combine(
+        format.label({ label: 'marketing-pages' }),
+        format.timestamp({ format: 'D/M/YY HH:mm:ss' }),
+        logFormat,
+      ),
+    }),
   );
 }
 
