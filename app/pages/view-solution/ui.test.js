@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 import publicSolution from './fixtures/publicSolution.json';
 import aSolutionList from './fixtures/aSolutionList.json';
 import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
-import { blobstoreHost } from '../config';
+import { blobstoreHost } from '../../config';
 
 const mocks = (responseStatus, responseBody) => {
   nock('http://localhost:8080')

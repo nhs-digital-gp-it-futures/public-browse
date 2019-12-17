@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createViewSolutionPageContext } from './context';
-import { apiHost } from '../config';
-import logger from '../logger';
+import { apiHost } from '../../config';
+import logger from '../../logger';
 
 export const getPublicSolutionById = async (solutionId) => {
   const endpoint = `${apiHost}/api/v1/Solutions/${solutionId}/Public`;
