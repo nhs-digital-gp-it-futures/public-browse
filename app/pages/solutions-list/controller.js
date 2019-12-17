@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { ManifestProvider } from './filterType/manifestProvider';
 import { createSolutionListPageContext } from './context';
-import { apiHost } from '../config';
-import logger from '../logger';
+import { apiHost } from '../../config';
+import logger from '../../logger';
 
 const getSolutionListDataEndpoint = (filterType) => {
   if (filterType === 'all') {

@@ -1,8 +1,8 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../test-utils/testHarness';
+import { testHarness } from '../../test-utils/testHarness';
 
-const template = 'solutions-list/template.njk';
+const template = 'pages/solutions-list/template.njk';
 
 describe('solutions list page', () => {
   it('should render the solution list page title', (done) => {
@@ -14,6 +14,7 @@ describe('solutions list page', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+
         const solutionListTitle = $('[data-test-id="general-page-title"]');
         expect(solutionListTitle.length).toEqual(1);
         expect(solutionListTitle.text().trim()).toEqual(context.pageTitle);

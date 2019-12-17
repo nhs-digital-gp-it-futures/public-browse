@@ -1,6 +1,6 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../../test-utils/testHarness';
+import { testHarness } from '../../../test-utils/testHarness';
 
 const aSimpleSection = (showTitle = true) => ({
   section: {
@@ -37,7 +37,7 @@ const aColumnSection = {
   },
 };
 
-const createMacroWrapper = (showAnchor = false) => `{% from 'solutions-list/components/solution-card-section.njk' import solutionCardSection %}
+const createMacroWrapper = (showAnchor = false) => `{% from 'pages/solutions-list/components/solution-card-section.njk' import solutionCardSection %}
 {{ solutionCardSection(section, ${showAnchor}) }}`;
 
 describe('solution-card', () => {

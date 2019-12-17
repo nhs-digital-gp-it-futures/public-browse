@@ -1,9 +1,9 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../test-utils/testHarness';
+import { testHarness } from '../../test-utils/testHarness';
 import content from './manifest.json';
 
-const template = 'guide/template.njk';
+const template = 'pages/guide/template.njk';
 
 describe('guide', () => {
   it('should render a backLink to the home page', (done) => {

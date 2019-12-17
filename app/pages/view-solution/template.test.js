@@ -1,8 +1,8 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../test-utils/testHarness';
+import { testHarness } from '../../test-utils/testHarness';
 
-const template = 'view-solution/template.njk';
+const template = 'pages/view-solution/template.njk';
 
 describe('view solution', () => {
   it('should render back-link component with correct href', (done) => {

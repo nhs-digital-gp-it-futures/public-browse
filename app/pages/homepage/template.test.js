@@ -1,9 +1,9 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../test-utils/testHarness';
+import { testHarness } from '../../test-utils/testHarness';
 import content from './manifest.json';
 
-const template = 'homepage/template.njk';
+const template = 'pages/homepage/template.njk';
 
 describe('home page', () => {
   it('should render the homepage hero', (done) => {

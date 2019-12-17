@@ -1,8 +1,8 @@
 import request from 'supertest';
 import cheerio from 'cheerio';
-import { testHarness } from '../../test-utils/testHarness';
+import { testHarness } from '../../../test-utils/testHarness';
 
-const macroWrapper = `{% from 'solutions-list/components/solution-card.njk' import solutionCard %}
+const macroWrapper = `{% from 'pages/solutions-list/components/solution-card.njk' import solutionCard %}
                       {{ solutionCard(solution) }}`;
 
 describe('solution-card', () => {
@@ -18,6 +18,7 @@ describe('solution-card', () => {
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
+
         const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-tag"]');
         expect(foundationSolutionIndicator.length).toEqual(1);
         expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution Set');

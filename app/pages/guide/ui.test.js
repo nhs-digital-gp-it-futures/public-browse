@@ -1,6 +1,6 @@
 import { Selector } from 'testcafe';
 import content from './manifest.json';
-import { blobstoreHost } from '../config';
+import { blobstoreHost } from '../../config';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/guide');
