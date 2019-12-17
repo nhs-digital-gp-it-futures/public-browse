@@ -188,40 +188,32 @@ test('should navigate guide page contact us section', async (t) => {
 
 test('should navigate nhs digital page', async (t) => {
   await pageSetup(t);
-  const getLocation = ClientFunction(() => document.location.href);
   const nhsDigitalLink = Selector('[data-test-id="footer-component"] li:nth-child(3) > a');
   await t
     .expect(nhsDigitalLink.exists).ok()
-    .click(nhsDigitalLink)
-    .expect(getLocation()).contains('https://digital.nhs.uk/');
+    .expect(nhsDigitalLink.getAttribute('href')).eql('https://digital.nhs.uk/');
 });
 
 test('should navigate to about GP IT futures page', async (t) => {
   await pageSetup(t);
-  const getLocation = ClientFunction(() => document.location.href);
   const aboutGpitLink = Selector('[data-test-id="footer-component"] li:nth-child(4) > a');
   await t
     .expect(aboutGpitLink.exists).ok()
-    .click(aboutGpitLink)
-    .expect(getLocation()).contains('https://digital.nhs.uk/services/future-gp-it-systems-and-services');
+    .expect(aboutGpitLink.getAttribute('href')).eql('https://digital.nhs.uk/services/future-gp-it-systems-and-services');
 });
 
 test('should navigate to capabilities & standards page', async (t) => {
   await pageSetup(t);
-  const getLocation = ClientFunction(() => document.location.href);
   const capabilitiesAndStandardsLink = Selector('[data-test-id="footer-component"] li:nth-child(5) > a');
   await t
     .expect(capabilitiesAndStandardsLink.exists).ok()
-    .click(capabilitiesAndStandardsLink)
-    .expect(getLocation()).contains('https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview');
+    .expect(capabilitiesAndStandardsLink.getAttribute('href')).eql('https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview');
 });
 
 test('should navigate to privacy and cookies page', async (t) => {
   await pageSetup(t);
-  const getLocation = ClientFunction(() => document.location.href);
   const privacyAndCookiesLink = Selector('[data-test-id="legal-panel"] span:nth-child(2) > a');
   await t
     .expect(privacyAndCookiesLink.exists).ok()
-    .click(privacyAndCookiesLink)
-    .expect(getLocation()).contains('https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies');
+    .expect(privacyAndCookiesLink.getAttribute('href')).eql('https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies');
 });
