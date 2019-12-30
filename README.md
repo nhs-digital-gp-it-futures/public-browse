@@ -17,8 +17,7 @@ npm install
 ## Running the application
 - Run - `npm run start`
 - Unit Tests - `npm run test`
-- Integration Tests On Linux - `npm run test:integration`
-- Integration Tests On Windows - `npm run test:integration_win`
+- Integration Tests - `npm run test:integration`
 
 Application should now be running on <a href="http://localhost:3000">http://localhost:3000</a>.
 
