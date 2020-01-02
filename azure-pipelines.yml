@@ -38,7 +38,7 @@ steps:
       testResultsFormat: NUnit
       testResultsFiles: '$(System.DefaultWorkingDirectory)/unit-test-report.xml'
       testRunTitle: Unit test results
-      failTaskOnFailedTests: false
+      failTaskOnFailedTests: true
     condition: succeededOrFailed()
 
   - script: |
@@ -57,7 +57,7 @@ steps:
   - task: DockerInstaller@0
     inputs:
       dockerVersion: '18.09.9'
-  
+
   - task: DockerCompose@0
     displayName: 'Build: Dev'
     inputs:
