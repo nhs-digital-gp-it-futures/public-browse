@@ -119,16 +119,11 @@ test('should display the solution description', async (t) => {
     .expect(solutionDescriptionSummary.find('div[data-test-id="view-question-data-text-summary"]').innerText).eql('Write on Time is a Citizen-facing Appointments Management system specifically designed to reduce the number of DNAs in your practice.')
     .expect(solutionDescriptionDescription.find('div').innerText).eql('About the solution')
     .expect(solutionDescriptionDescription.find('div[data-test-id="view-question-data-text-description"]').innerText).eql('a description')
-    .expect(solutionDescriptionLink.innerText).eql('link.com');
+    .expect(solutionDescriptionLink.innerText).eql('//www.link.com');
 });
 
 test('should navigate to the link address when clicking on the link in the solution description', async (t) => {
   await pageSetup(t, 'all');
-
-  await nock('http://localhost:8080')
-    .get('/api/v1/Solutions/link.com/Public')
-    .reply(200, {});
-
   const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
   await t
     .click(solutionDescriptionLink)
