@@ -2,14 +2,14 @@ import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import aSolutionList from '../../fixtures/aSolutionList.json';
 
-const mocks = (responseStatus, responseBody) => {
-  nock('http://localhost:8080')
+const mocks = async (responseStatus, responseBody) => {
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(responseStatus, responseBody);
 };
 
 const pageSetup = async (t, responseStatus = 200, responseBody = aSolutionList) => {
-  mocks(responseStatus, responseBody);
+  await mocks(responseStatus, responseBody);
   await t.navigateTo('http://localhost:1234/solutions/all');
 };
 
@@ -77,7 +77,7 @@ test('should display the capability details of a solution card', async (t) => {
 });
 
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
-  nock('http://localhost:8080')
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions/S1/Public')
     .reply(200, {});
   await pageSetup(t);

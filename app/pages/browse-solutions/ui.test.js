@@ -8,6 +8,8 @@ const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/solutions');
 };
 
+const getLocation = ClientFunction(() => document.location.href);
+
 fixture('Browse Solutions Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
@@ -20,8 +22,6 @@ fixture('Browse Solutions Page')
 
 test('should navigate to home page when click Go back', async (t) => {
   await pageSetup(t);
-
-  const getLocation = ClientFunction(() => document.location.href);
 
   const goBackLink = Selector('[data-test-id="go-back-link"] a');
 
@@ -66,15 +66,13 @@ test('should render buyers guide information', async (t) => {
 });
 
 test('should navigate to browse all solutions page', async (t) => {
-  nock('http://localhost:8080')
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, aSolutionList);
 
   await pageSetup(t);
 
-  const getLocation = ClientFunction(() => document.location.href);
-
-  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"]').find('a');
+  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] a');
 
   await t
     .expect(browseAllSolutionsLink.exists).ok()
@@ -83,15 +81,13 @@ test('should navigate to browse all solutions page', async (t) => {
 });
 
 test('should navigate to browse foundation solutions page', async (t) => {
-  nock('http://localhost:8080')
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions/Foundation')
     .reply(200, aFoundationSolutionList);
 
   await pageSetup(t);
 
-  const getLocation = ClientFunction(() => document.location.href);
-
-  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"]').find('a');
+  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] a');
 
   await t
     .expect(foundationSolutionsLink.exists).ok()
