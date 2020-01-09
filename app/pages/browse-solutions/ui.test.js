@@ -72,10 +72,11 @@ test('should navigate to browse all solutions page', async (t) => {
 
   await pageSetup(t);
 
-  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] a');
+  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] > div > a');
 
   await t
     .expect(browseAllSolutionsLink.exists).ok()
+    .expect(browseAllSolutionsLink.visible).ok()
     .click(browseAllSolutionsLink)
     .expect(getLocation()).contains('/all');
 });
@@ -87,7 +88,7 @@ test('should navigate to browse foundation solutions page', async (t) => {
 
   await pageSetup(t);
 
-  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] a');
+  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] > div > a');
 
   await t
     .expect(foundationSolutionsLink.exists).ok()
