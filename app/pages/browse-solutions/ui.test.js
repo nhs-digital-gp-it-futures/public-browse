@@ -72,7 +72,7 @@ test('should navigate to browse all solutions page', async (t) => {
 
   await pageSetup(t);
 
-  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] h3');
+  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] a h3');
 
   await t
     .expect(browseAllSolutionsLink.exists).ok()
