@@ -32,7 +32,7 @@ createTestcafe('localhost')
         skipJsErrors: true,
       });
   })
-  .then((failCount) => {
+  .then(() => {
     server.close();
     testcafe.close();
   });

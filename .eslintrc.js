@@ -11,6 +11,7 @@ module.exports = {
     "array-callback-return": "off",
     "linebreak-style": "off",
     "no-console": 1,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ['**/*test.js', '**/testcafeRunner.js'] }]
   },
   "globals": {
     "fixture": "readonly"
