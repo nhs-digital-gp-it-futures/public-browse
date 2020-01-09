@@ -88,7 +88,7 @@ test('should navigate to browse foundation solutions page', async (t) => {
 
   await pageSetup(t);
 
-  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] h3');
+  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] a h3');
 
   await t
     .expect(foundationSolutionsLink.exists).ok()

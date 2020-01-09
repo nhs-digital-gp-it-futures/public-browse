@@ -51,7 +51,7 @@ steps:
       testResultsFormat: NUnit
       testResultsFiles: '$(System.DefaultWorkingDirectory)/integration-test-report.xml'
       testRunTitle: Integration test results
-      failTaskOnFailedTests: false
+      failTaskOnFailedTests: true
     condition: succeededOrFailed()
 
   - task: DockerInstaller@0
