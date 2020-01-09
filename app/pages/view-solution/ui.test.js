@@ -5,16 +5,18 @@ import aSolutionList from './fixtures/aSolutionList.json';
 import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
 import { blobstoreHost } from '../../config';
 
-const mocks = (responseStatus, responseBody) => {
-  nock('http://localhost:8080')
+const mocks = async (responseStatus, responseBody) => {
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions/1234/Public')
     .reply(responseStatus, responseBody);
 };
 
 const pageSetup = async (t, filterType, responseStatus = 200, responseBody = publicSolution) => {
-  mocks(responseStatus, responseBody);
+  await mocks(responseStatus, responseBody);
   await t.navigateTo(`http://localhost:1234/solutions/${filterType}/1234`);
 };
+
+const getLocation = ClientFunction(() => document.location.href);
 
 fixture('Show View Solution Page')
   .afterEach(async (t) => {
@@ -40,10 +42,9 @@ test('should display the back link', async (t) => {
 
 test('should navigate to /solutions/all when clicking on the back link from all solutions', async (t) => {
   await pageSetup(t, 'all');
-  nock('http://localhost:8080')
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions')
     .reply(200, aSolutionList);
-  const getLocation = ClientFunction(() => document.location.href);
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t
     .expect(backLink.getAttribute('href')).eql('./')
@@ -54,10 +55,9 @@ test('should navigate to /solutions/all when clicking on the back link from all 
 
 test('should navigate to /solutions/foundation when clicking on the back link from a foundation solution', async (t) => {
   await pageSetup(t, 'foundation');
-  nock('http://localhost:8080')
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions/Foundation')
     .reply(200, aFoundationSolutionList);
-  const getLocation = ClientFunction(() => document.location.href);
   const backLink = Selector('div[data-test-id="view-solution-page-back-link"] a');
   await t
     .expect(backLink.getAttribute('href')).eql('./')
@@ -125,11 +125,10 @@ test('should display the solution description', async (t) => {
 test('should navigate to the link address when clicking on the link in the solution description', async (t) => {
   await pageSetup(t, 'all');
 
-  nock('http://localhost:8080')
+  await nock('http://localhost:8080')
     .get('/api/v1/Solutions/link.com/Public')
     .reply(200, {});
 
-  const getLocation = ClientFunction(() => document.location.href);
   const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
   await t
     .click(solutionDescriptionLink)
