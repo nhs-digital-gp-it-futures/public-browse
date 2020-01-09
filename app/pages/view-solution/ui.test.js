@@ -115,19 +115,19 @@ test('should display the solution description', async (t) => {
   await t
     .expect(solutionDescription.exists).ok()
     .expect(solutionDescription.find('h3').innerText).eql('Solution description')
-    .expect(solutionDescriptionSummary.find('div').innerText).eql('Summary')
+    .expect(solutionDescriptionSummary.find('h4').innerText).eql('Summary')
     .expect(solutionDescriptionSummary.find('div[data-test-id="view-question-data-text-summary"]').innerText).eql('Write on Time is a Citizen-facing Appointments Management system specifically designed to reduce the number of DNAs in your practice.')
-    .expect(solutionDescriptionDescription.find('div').innerText).eql('About the solution')
+    .expect(solutionDescriptionDescription.find('h4').innerText).eql('About the solution')
     .expect(solutionDescriptionDescription.find('div[data-test-id="view-question-data-text-description"]').innerText).eql('a description')
     .expect(solutionDescriptionLink.innerText).eql('//www.link.com');
 });
 
-test('should navigate to the link address when clicking on the link in the solution description', async (t) => {
+test('should have the correct href for the link in the solution description', async (t) => {
   await pageSetup(t, 'all');
-  const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
+  const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"] a');
   await t
-    .click(solutionDescriptionLink)
-    .expect(getLocation()).contains('link.com');
+    .expect(solutionDescriptionLink.exists).ok()
+    .expect(solutionDescriptionLink.getAttribute('href')).contains('//www.link.com');
 });
 
 test('should display the solution capabilities met', async (t) => {
