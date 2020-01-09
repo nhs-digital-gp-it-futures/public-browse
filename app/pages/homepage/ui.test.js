@@ -93,7 +93,7 @@ test('should render the browse promo', async (t) => {
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
   await pageSetup(t);
   const getLocation = ClientFunction(() => document.location.href);
-  const browsePromoLink = Selector('[data-test-id="browse-promo"] a');
+  const browsePromoLink = Selector('[data-test-id="browse-promo"] a h3');
   await t
     .expect(browsePromoLink.exists).ok()
     .click(browsePromoLink)
