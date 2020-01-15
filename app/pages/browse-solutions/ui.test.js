@@ -1,8 +1,8 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
-import aSolutionList from './fixtures/aSolutionList.json';
-import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
+import aSolutionList from '../../test-utils/fixtures/aSolutionList.json';
+import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/solutions');

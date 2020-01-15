@@ -16,7 +16,7 @@ describe('createSolutionListPageContext - All', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
           ],
@@ -27,7 +27,7 @@ describe('createSolutionListPageContext - All', () => {
           id: '00002',
           name: 'The second solution',
           summary: 'Some other solution summary',
-          organisationName: 'Some other organisation',
+          supplierName: 'Some other supplier',
           capabilities: [
             'Some other capability',
           ],
@@ -43,9 +43,9 @@ describe('createSolutionListPageContext - All', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
         capabilities: [
           {
@@ -59,9 +59,9 @@ describe('createSolutionListPageContext - All', () => {
         name: 'The second solution',
         summary: 'Some other solution summary',
         isFoundation: false,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some other organisation',
+          name: 'Some other supplier',
         },
         capabilities: [
           {
@@ -91,7 +91,7 @@ describe('createSolutionListPageContext - All', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
           ],
@@ -107,9 +107,9 @@ describe('createSolutionListPageContext - All', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
         capabilities: [
           {
@@ -139,7 +139,7 @@ describe('createSolutionListPageContext - All', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
           viewSolutionUrl: '/solutions/all/00001',
@@ -153,9 +153,9 @@ describe('createSolutionListPageContext - All', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
         capabilities: [],
       },
@@ -180,7 +180,7 @@ describe('createSolutionListPageContext - All', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           isFoundation: true,
           viewSolutionUrl: '/solutions/all/00001',
         },
@@ -193,9 +193,9 @@ describe('createSolutionListPageContext - All', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
       },
     ];
@@ -210,7 +210,7 @@ describe('createSolutionListPageContext - All', () => {
     expect(context).toEqual(expectedContext);
   });
 
-  it('should create a context for the solution list page with one solution with no organisation', () => {
+  it('should create a context for the solution list page with one solution with no supplier', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
@@ -275,7 +275,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
           ],
@@ -286,7 +286,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           id: '00002',
           name: 'The second solution',
           summary: 'Some other solution summary',
-          organisationName: 'Some other organisation',
+          supplierName: 'Some other supplier',
           capabilities: [
             'Some other capability',
           ],
@@ -302,9 +302,9 @@ describe('createSolutionListPageContext - Foundation', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
         capabilities: [
           {
@@ -318,9 +318,9 @@ describe('createSolutionListPageContext - Foundation', () => {
         name: 'The second solution',
         summary: 'Some other solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some other organisation',
+          name: 'Some other supplier',
         },
         capabilities: [
           {
@@ -350,7 +350,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
           ],
@@ -366,9 +366,9 @@ describe('createSolutionListPageContext - Foundation', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
         capabilities: [
           {
@@ -398,7 +398,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
           viewSolutionUrl: '/solutions/foundation/00001',
@@ -412,9 +412,9 @@ describe('createSolutionListPageContext - Foundation', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
         capabilities: [],
       },
@@ -439,7 +439,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           id: '00001',
           name: 'The first solution',
           summary: 'Some solution summary',
-          organisationName: 'Some organisation',
+          supplierName: 'Some supplier',
           isFoundation: true,
           viewSolutionUrl: '/solutions/foundation/00001',
         },
@@ -452,9 +452,9 @@ describe('createSolutionListPageContext - Foundation', () => {
         name: 'The first solution',
         summary: 'Some solution summary',
         isFoundation: true,
-        organisation: {
+        supplier: {
           id: '1',
-          name: 'Some organisation',
+          name: 'Some supplier',
         },
       },
     ];
@@ -469,7 +469,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     expect(context).toEqual(expectedContext);
   });
 
-  it('should create a context for the solution list page with one solution with no organisation', () => {
+  it('should create a context for the solution list page with one solution with no supplier', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,

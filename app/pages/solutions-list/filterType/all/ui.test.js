@@ -1,6 +1,6 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
-import aSolutionList from '../../fixtures/aSolutionList.json';
+import aSolutionList from '../../../../test-utils/fixtures/aSolutionList.json';
 
 const mocks = async (responseStatus, responseBody) => {
   await nock('http://localhost:8080')
@@ -61,7 +61,7 @@ test('should display the solution details of a solution card', async (t) => {
   const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card"]:nth-child(1)');
   await t
     .expect(solutionCard.find('div[data-test-id="solution-card-foundation-tag"]').exists).notOk()
-    .expect(solutionCard.find('h5[data-test-id="solution-card-organisation"]').innerText).eql('some organisation name')
+    .expect(solutionCard.find('h5[data-test-id="solution-card-supplier"]').innerText).eql('some supplier name')
     .expect(solutionCard.find('h2').innerText).eql('some solution name')
     .expect(solutionCard.find('div[data-test-id="solution-card-summary"]').innerText).eql('some solution summary');
 });
