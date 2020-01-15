@@ -5,9 +5,9 @@
       "name": "some foundation solution name",
       "summary": "some foundation solution summary",
       "isFoundation": true,
-      "organisation": {
+      "supplier": {
         "id": "O1",
-        "name": "some organisation name"
+        "name": "some supplier name"
       },
       "capabilities": [
         {
@@ -21,9 +21,9 @@
       "name": "some other foundation solution name",
       "summary": "some other foundation solution summary",
       "isFoundation": true,
-      "organisation": {
+      "supplier": {
         "id": "O2",
-        "name": "some other organisation name"
+        "name": "some other supplier name"
       },
       "capabilities": [
         {
