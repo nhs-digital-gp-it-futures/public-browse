@@ -64,10 +64,10 @@ describe('solution-card', () => {
       });
   });
 
-  it('should render the organisation name', (done) => {
+  it('should render the supplier name', (done) => {
     const context = {
       solution: {
-        organisationName: 'some organisation name',
+        supplierName: 'some supplier name',
       },
     };
 
@@ -77,10 +77,10 @@ describe('solution-card', () => {
       .then((res) => {
         const $ = cheerio.load(res.text);
 
-        const solutionOrganisationName = $('[data-test-id="solution-card-organisation"]');
+        const solutionsupplierName = $('[data-test-id="solution-card-supplier"]');
 
-        expect(solutionOrganisationName.length).toEqual(1);
-        expect(solutionOrganisationName.text().trim()).toEqual('some organisation name');
+        expect(solutionsupplierName.length).toEqual(1);
+        expect(solutionsupplierName.text().trim()).toEqual('some supplier name');
 
         done();
       });

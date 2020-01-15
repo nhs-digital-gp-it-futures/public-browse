@@ -1,8 +1,8 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
-import publicSolution from './fixtures/publicSolution.json';
-import aSolutionList from './fixtures/aSolutionList.json';
-import aFoundationSolutionList from './fixtures/aFoundationSolutionList.json';
+import publicSolution from '../../test-utils/fixtures/publicSolution.json';
+import aSolutionList from '../../test-utils/fixtures/aSolutionList.json';
+import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
 import { blobstoreHost } from '../../config';
 
 const mocks = async (responseStatus, responseBody) => {
@@ -74,9 +74,9 @@ test('should display the foundation solution tag', async (t) => {
     .expect(foundationTag.innerText).eql('Foundation Solution Set');
 });
 
-test('should display the organisation name', async (t) => {
+test('should display the supplier name', async (t) => {
   await pageSetup(t, 'all');
-  const orgName = Selector('h2[data-test-id="view-solution-page-organisation-name"]');
+  const orgName = Selector('h2[data-test-id="view-solution-page-supplier-name"]');
   await t
     .expect(orgName.exists).ok()
     .expect(orgName.innerText).eql('Really Kool Corporation');

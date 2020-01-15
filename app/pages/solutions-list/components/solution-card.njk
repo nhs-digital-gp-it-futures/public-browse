@@ -17,7 +17,7 @@
 {% macro solutionCard(solution) %}
 
   <div class="nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7 bc-t-border-top--blue" data-test-id="solution-card">
-    <div <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
     {% if solution.isFoundation %}
@@ -34,8 +34,8 @@
         </a>
       </h2>
 
-      <h5 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-organisation">
-        {{ solution.organisationName }}
+      <h5 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-supplier">
+        {{ solution.supplierName }}
       </h5>
 
       <div data-test-id="solution-card-summary">

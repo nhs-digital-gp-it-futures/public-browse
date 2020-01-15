@@ -46,18 +46,18 @@ describe('view solution', () => {
       });
   });
 
-  it('should render the organisation name', (done) => {
+  it('should render the debug name', (done) => {
     const context = {
-      organisationName: 'Really Kool Corporation',
+      supplierName: 'Really Kool Corporation',
     };
     const app = testHarness().createComponentDummyApp(template, context);
     request(app)
       .get('/')
       .then((res) => {
         const $ = cheerio.load(res.text);
-        const orgName = $('[data-test-id="view-solution-page-organisation-name"]');
+        const orgName = $('[data-test-id="view-solution-page-supplier-name"]');
         expect(orgName.length).toEqual(1);
-        expect(orgName.text().trim()).toEqual(context.organisationName);
+        expect(orgName.text().trim()).toEqual(context.supplierName);
         done();
       });
   });

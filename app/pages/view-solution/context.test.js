@@ -7,7 +7,7 @@ describe('createSolutionPageContext', () => {
     const expectedContext = {
       id: '00001',
       name: 'The first solution',
-      organisation: 'Halls',
+      supplier: 'Halls',
       sections: [],
       downloadSolutionUrl: '/$web/content/00001.pdf?timestamp=some-date',
     };
@@ -15,7 +15,7 @@ describe('createSolutionPageContext', () => {
     const solution = {
       id: '00001',
       name: 'The first solution',
-      organisation: 'Halls',
+      supplier: 'Halls',
       sections: [],
     };
     expect(createViewSolutionPageContext(solution)).toEqual(expectedContext);
