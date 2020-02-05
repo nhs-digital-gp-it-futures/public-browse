@@ -10,7 +10,7 @@ const pageSetup = async (t) => {
 fixture('Show Buyers Guide Page');
 
 test('should render the title', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const title = Selector('[data-test-id="guide-page-title"]');
   await t
     .expect(title.count).eql(1)
@@ -18,7 +18,7 @@ test('should render the title', async (t) => {
 });
 
 test('should render the description', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const description = Selector('[data-test-id="guide-page-description"]');
   await t
     .expect(description.count).eql(1)
@@ -26,7 +26,7 @@ test('should render the description', async (t) => {
 });
 
 test('should render the subtext', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const subText = Selector('[data-test-id="guide-page-subtext"] > div');
   await t
     .expect(await extractInnerText(subText.find('div').nth(0))).eql(content.subtext[0])
@@ -36,7 +36,7 @@ test('should render the subtext', async (t) => {
 });
 
 test('should render Catalogue Solution subsections', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const catalogueSolutionSelector = Selector('[data-test-id="guide-section-catalogue-solution"]');
   const catalogueSolution = content.sections[0];
   await t
@@ -50,7 +50,7 @@ test('should render Catalogue Solution subsections', async (t) => {
 });
 
 test('should render Capabilities subsections', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const capabilitiesSelector = Selector('[data-test-id="guide-section-capabilities"]');
   const capabilitiesSection = content.sections[1];
   await t
@@ -77,14 +77,14 @@ test('should render Capabilities subsections', async (t) => {
 });
 
 test('should render learn more about the Capability Model link', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const link = Selector('[data-test-id="guide-section-description-with-link"] > a');
   await t
     .expect(link.exists).ok();
 });
 
 test('should render Standards subsections', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const standardsSelector = Selector('[data-test-id="guide-section-standards"]');
   const standardsSection = content.sections[2];
   await t
@@ -97,7 +97,7 @@ test('should render Standards subsections', async (t) => {
 });
 
 test('should render Integrations subsections', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const integrationSelector = Selector('[data-test-id="guide-section-integrations"]');
   const integrationSection = content.sections[3];
   await t
@@ -109,7 +109,7 @@ test('should render Integrations subsections', async (t) => {
 });
 
 test('should render Learn More subsections', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const learnMoreSelector = Selector('[data-test-id="guide-section-learn-more"]');
   const learnMoreSection = content.sections[4];
   await t
@@ -120,7 +120,7 @@ test('should render Learn More subsections', async (t) => {
 });
 
 test('should render Contact Us subsections', async (t) => {
-  pageSetup(t);
+  await pageSetup(t);
   const contactUsSelector = Selector('[data-test-id="guide-section-contact-us"]');
   const contactUsSection = content.sections[5];
   await t
