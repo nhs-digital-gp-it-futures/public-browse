@@ -4,6 +4,7 @@ import publicSolution from '../../test-utils/fixtures/publicSolution.json';
 import aSolutionList from '../../test-utils/fixtures/aSolutionList.json';
 import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
 import { blobstoreHost } from '../../config';
+import { extractInnerText } from '../../test-utils/helper';
 
 const mocks = async (responseStatus, responseBody) => {
   await nock('http://localhost:8080')
@@ -71,7 +72,7 @@ test('should display the foundation solution tag', async (t) => {
   const foundationTag = Selector('div[data-test-id="view-solution-foundation-tag"]');
   await t
     .expect(foundationTag.exists).ok()
-    .expect(foundationTag.innerText).eql('Foundation Solution Set');
+    .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set');
 });
 
 test('should display the supplier name', async (t) => {
@@ -79,7 +80,7 @@ test('should display the supplier name', async (t) => {
   const orgName = Selector('h2[data-test-id="view-solution-page-supplier-name"]');
   await t
     .expect(orgName.exists).ok()
-    .expect(orgName.innerText).eql('Really Kool Corporation');
+    .expect(await extractInnerText(orgName)).eql('Really Kool Corporation');
 });
 
 test('should display the solution name', async (t) => {
@@ -87,7 +88,7 @@ test('should display the solution name', async (t) => {
   const solutionName = Selector('h1[data-test-id="view-solution-page-solution-name"]');
   await t
     .expect(solutionName.exists).ok()
-    .expect(solutionName.innerText).eql('Write on Time');
+    .expect(await extractInnerText(solutionName)).eql('Write on Time');
 });
 
 test('should display the solution id', async (t) => {
@@ -95,7 +96,7 @@ test('should display the solution id', async (t) => {
   const solutionId = Selector('p[data-test-id="view-solution-page-solution-id"]');
   await t
     .expect(solutionId.exists).ok()
-    .expect(solutionId.innerText).eql('Solution ID: 1234');
+    .expect(await extractInnerText(solutionId)).eql('Solution ID: 1234');
 });
 
 test('should display the last updated', async (t) => {
@@ -103,7 +104,7 @@ test('should display the last updated', async (t) => {
   const lastUpdated = Selector('div[data-test-id="view-solution-page-last-updated"]');
   await t
     .expect(lastUpdated.exists).ok()
-    .expect(lastUpdated.innerText).eql('Solution information last updated: 11 December 2019');
+    .expect(await extractInnerText(lastUpdated)).eql('Solution information last updated: 11 December 2019');
 });
 
 test('should display the solution description', async (t) => {
@@ -114,12 +115,12 @@ test('should display the solution description', async (t) => {
   const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
   await t
     .expect(solutionDescription.exists).ok()
-    .expect(solutionDescription.find('h3').innerText).eql('Solution description')
-    .expect(solutionDescriptionSummary.find('h4').innerText).eql('Summary')
-    .expect(solutionDescriptionSummary.find('div[data-test-id="view-question-data-text-summary"]').innerText).eql('Write on Time is a Citizen-facing Appointments Management system specifically designed to reduce the number of DNAs in your practice.')
-    .expect(solutionDescriptionDescription.find('h4').innerText).eql('About the solution')
-    .expect(solutionDescriptionDescription.find('div[data-test-id="view-question-data-text-description"]').innerText).eql('a description')
-    .expect(solutionDescriptionLink.innerText).eql('//www.link.com');
+    .expect(await extractInnerText(solutionDescription.find('h3'))).eql('Solution description')
+    .expect(await extractInnerText(solutionDescriptionSummary.find('h4'))).eql('Summary')
+    .expect(await extractInnerText(solutionDescriptionSummary.find('div[data-test-id="view-question-data-text-summary"]'))).eql('Write on Time is a Citizen-facing Appointments Management system specifically designed to reduce the number of DNAs in your practice.')
+    .expect(await extractInnerText(solutionDescriptionDescription.find('h4'))).eql('About the solution')
+    .expect(await extractInnerText(solutionDescriptionDescription.find('div[data-test-id="view-question-data-text-description"]'))).eql('a description')
+    .expect(await extractInnerText(solutionDescriptionLink)).eql('//www.link.com');
 });
 
 test('should have the correct href for the link in the solution description', async (t) => {
@@ -135,11 +136,11 @@ test('should display the solution capabilities met', async (t) => {
   const capabilitiesMet = Selector('div[data-test-id="view-solution-capabilities"]');
   await t
     .expect(capabilitiesMet.exists).ok()
-    .expect(capabilitiesMet.find('h3').innerText).eql('Capabilities met')
-    .expect(capabilitiesMet.find('li').innerText).eql('capability 1')
-    .expect(capabilitiesMet.find('p').innerText).eql('This Catalogue Solution has demonstrated it meets the necessary requirements for the following Capabilities:')
-    .expect(capabilitiesMet.find('li:nth-child(2)').innerText).eql('capability 2')
-    .expect(capabilitiesMet.find('li:nth-child(3)').innerText).eql('capability 3');
+    .expect(await extractInnerText(capabilitiesMet.find('h3'))).eql('Capabilities met')
+    .expect(await extractInnerText(capabilitiesMet.find('li'))).eql('capability 1')
+    .expect(await extractInnerText(capabilitiesMet.find('p'))).eql('This Catalogue Solution has demonstrated it meets the necessary requirements for the following Capabilities:')
+    .expect(await extractInnerText(capabilitiesMet.find('li:nth-child(2)'))).eql('capability 2')
+    .expect(await extractInnerText(capabilitiesMet.find('li:nth-child(3)'))).eql('capability 3');
 });
 
 test('should display the solution contact details', async (t) => {
@@ -149,15 +150,15 @@ test('should display the solution contact details', async (t) => {
   const contact2 = Selector('div[data-test-id="view-section-question-contact-2"]');
   await t
     .expect(contactDetails.exists).ok()
-    .expect(contactDetails.find('h3').innerText).eql('Contact details')
-    .expect(contact1.find('div[data-test-id="view-question-data-text-department-name"]').innerText).eql('a contact dept')
-    .expect(contact1.find('div[data-test-id="view-question-data-text-contact-name"]').innerText).eql('jim jones')
-    .expect(contact1.find('div[data-test-id="view-question-data-text-phone-number"]').innerText).eql('0111 111111')
-    .expect(contact1.find('div[data-test-id="view-question-data-text-email-address"]').innerText).eql('jim@solution.com')
-    .expect(contact2.find('div[data-test-id="view-question-data-text-department-name"]').innerText).eql('a second contact dept')
-    .expect(contact2.find('div[data-test-id="view-question-data-text-contact-name"]').innerText).eql('jacky johnston')
-    .expect(contact2.find('div[data-test-id="view-question-data-text-phone-number"]').innerText).eql('0222 222222')
-    .expect(contact2.find('div[data-test-id="view-question-data-text-email-address"]').innerText).eql('jacky@solution.com');
+    .expect(await extractInnerText(contactDetails.find('h3'))).eql('Contact details')
+    .expect(await extractInnerText(contact1.find('div[data-test-id="view-question-data-text-department-name"]'))).eql('a contact dept')
+    .expect(await extractInnerText(contact1.find('div[data-test-id="view-question-data-text-contact-name"]'))).eql('jim jones')
+    .expect(await extractInnerText(contact1.find('div[data-test-id="view-question-data-text-phone-number"]'))).eql('0111 111111')
+    .expect(await extractInnerText(contact1.find('div[data-test-id="view-question-data-text-email-address"]'))).eql('jim@solution.com')
+    .expect(await extractInnerText(contact2.find('div[data-test-id="view-question-data-text-department-name"]'))).eql('a second contact dept')
+    .expect(await extractInnerText(contact2.find('div[data-test-id="view-question-data-text-contact-name"]'))).eql('jacky johnston')
+    .expect(await extractInnerText(contact2.find('div[data-test-id="view-question-data-text-phone-number"]'))).eql('0222 222222')
+    .expect(await extractInnerText(contact2.find('div[data-test-id="view-question-data-text-email-address"]'))).eql('jacky@solution.com');
 });
 
 test('should display the download button', async (t) => {
@@ -165,7 +166,7 @@ test('should display the download button', async (t) => {
   const downloadButton = Selector('div[data-test-id="view-solution-page-download-info-button"]');
   await t
     .expect(downloadButton.exists).ok()
-    .expect(downloadButton.innerText).eql('Download this PDF')
+    .expect(await extractInnerText(downloadButton)).eql('Download this PDF')
     .expect(downloadButton.find('a').getAttribute('href')).contains(`${blobstoreHost}/$web/content/1234.pdf`);
 });
 
@@ -174,8 +175,8 @@ test('should display learn more', async (t) => {
   const contactDetails = Selector('div[data-test-id="learn-more"]');
   await t
     .expect(contactDetails.exists).ok()
-    .expect(contactDetails.find('h3').innerText).eql('Learn more')
-    .expect(contactDetails.find('p').innerText).eql('Find out more about this Catalogue Solution by downloading the full details.');
+    .expect(await extractInnerText(contactDetails.find('h3'))).eql('Learn more')
+    .expect(await extractInnerText(contactDetails.find('p'))).eql('Find out more about this Catalogue Solution by downloading the full details.');
 });
 
 test('should render the error page when receiving an error from the solution public api endpoint', async (t) => {

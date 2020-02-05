@@ -3,6 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 import aSolutionList from '../../test-utils/fixtures/aSolutionList.json';
 import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
+import { extractInnerText } from '../../test-utils/helper';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/solutions');
@@ -38,8 +39,8 @@ test('should render Browse All Solutions container', async (t) => {
 
   await t
     .expect(allSolutions.exists).ok()
-    .expect(allSolutions.find('h3').innerText).eql(content.allPromoHeading)
-    .expect(allSolutions.find('p').innerText).eql(content.allPromoDescription);
+    .expect(await extractInnerText(allSolutions.find('h3'))).eql(content.allPromoHeading)
+    .expect(await extractInnerText(allSolutions.find('p'))).eql(content.allPromoDescription);
 });
 
 test('should render Browse Foundation Solutions container', async (t) => {
@@ -49,8 +50,8 @@ test('should render Browse Foundation Solutions container', async (t) => {
 
   await t
     .expect(foundationSolutions.exists).ok()
-    .expect(foundationSolutions.find('h3').innerText).eql(content.foundationPromoHeading)
-    .expect(foundationSolutions.find('p').innerText).eql(content.foundationPromoDescription);
+    .expect(await extractInnerText(foundationSolutions.find('h3'))).eql(content.foundationPromoHeading)
+    .expect(await extractInnerText(foundationSolutions.find('p'))).eql(content.foundationPromoDescription);
 });
 
 test('should render buyers guide information', async (t) => {
@@ -60,8 +61,8 @@ test('should render buyers guide information', async (t) => {
 
   await t
     .expect(buyersGuideInformation.exists).ok()
-    .expect(buyersGuideInformation.find('p').innerText).eql("Find more information in our Buyer's Guide.")
-    .expect(buyersGuideInformation.find('a').innerText).eql("Buyer's Guide")
+    .expect(await extractInnerText(buyersGuideInformation.find('p'))).eql("Find more information in our Buyer's Guide.")
+    .expect(await extractInnerText(buyersGuideInformation.find('a'))).eql("Buyer's Guide")
     .expect(buyersGuideInformation.find('a').getAttribute('href')).eql('/guide');
 });
 
