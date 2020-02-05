@@ -1,6 +1,7 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import aFoundationSolutionList from '../../../../test-utils/fixtures/aFoundationSolutionList.json';
+import { extractInnerText } from '../../../../test-utils/helper';
 
 const mocks = async (responseStatus, responseBody) => {
   await nock('http://localhost:8080')
@@ -30,7 +31,7 @@ test('should display the page title', async (t) => {
   const pageTitle = Selector('h1[data-test-id="general-page-title"]');
   await t
     .expect(pageTitle.exists).ok()
-    .expect(pageTitle.innerText).eql('Foundation Solution Sets – results');
+    .expect(await extractInnerText(pageTitle)).eql('Foundation Solution Sets – results');
 });
 
 test('should display the page description', async (t) => {
@@ -38,7 +39,7 @@ test('should display the page description', async (t) => {
   const pageDescription = Selector('div[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
-    .expect(pageDescription.innerText).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');
+    .expect(await extractInnerText(pageDescription)).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');
 });
 
 test('should display the capabilities heading', async (t) => {
@@ -46,7 +47,7 @@ test('should display the capabilities heading', async (t) => {
   const capabilityHeading = Selector('div[data-test-id="capability-list"] h4');
   await t
     .expect(capabilityHeading.exists).ok()
-    .expect(capabilityHeading.innerText).eql('Capabilities met');
+    .expect(await extractInnerText(capabilityHeading)).eql('Capabilities met');
 });
 
 test('should display the foundation solution cards', async (t) => {
@@ -65,10 +66,10 @@ test('should display the foundation solution details of a solution card', async 
   const foundationTag = solutionCard.find('div[data-test-id="solution-card-foundation-tag"]');
   await t
     .expect(foundationTag.exists).ok()
-    .expect(foundationTag.innerText).eql('Foundation Solution Set')
-    .expect(solutionCard.find('h5[data-test-id="solution-card-supplier"]').innerText).eql('some supplier name')
-    .expect(solutionCard.find('h2').innerText).eql('some foundation solution name')
-    .expect(solutionCard.find('div[data-test-id="solution-card-summary"]').innerText).eql('some foundation solution summary');
+    .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set')
+    .expect(await extractInnerText(solutionCard.find('h5[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
+    .expect(await extractInnerText(solutionCard.find('h2'))).eql('some foundation solution name')
+    .expect(await extractInnerText(solutionCard.find('div[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
 });
 
 test('should display the capability details of a foundation solution card', async (t) => {
@@ -78,7 +79,7 @@ test('should display the capability details of a foundation solution card', asyn
   await t
     .expect(capabilityList.exists).ok()
     .expect(capabilityList.find('li').count).eql(1)
-    .expect(capabilityList.find('li:nth-child(1)').innerText).eql('some capability name');
+    .expect(await extractInnerText(capabilityList.find('li:nth-child(1)'))).eql('some capability name');
 });
 
 test('should navigate to the foundation solution view page when clicking on the title of the solution', async (t) => {
