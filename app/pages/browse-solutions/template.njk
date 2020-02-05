@@ -5,14 +5,17 @@
 
 {% block body %}
   <div class="nhsuk-width-container" data-test-id="browse-solutions">
-    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link"> 
+    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link">
       {{ backLink({
         "href": "/",
         "text": "Go back to previous page"
       }) }}
     </div>
     <div data-test-id="browse-solutions-heading">
-      {{ generalPageDescription(title, description) }}
+      {{ generalPageDescription({
+          titleText: title,
+          descriptionText: description
+      }) }}
     </div>
     <div class="nhsuk-grid-row nhsuk-promo-group" data-test-id="browse-solutions-promo-group">
       <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">

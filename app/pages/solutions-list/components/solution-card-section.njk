@@ -1,13 +1,13 @@
 {% from 'components/label/macro.njk' import label %}
 
-{% macro sectionHeader(section, showAnchor) %}
-  {% if section.showTitle %}
-    {% if showAnchor %}
-      <a name="{{ section.id }}" style="color:inherit" >
+{% macro sectionHeader(params) %}
+  {% if params.section.showTitle %}
+    {% if params.showAnchor %}
+      <a name="{{ params.section.id }}" style="color:inherit" >
         {{
           label({
             "classes": "nhsuk-label--s",
-            "text": section.name
+            "text": params.section.name
           })
         }}
       </a>
@@ -15,42 +15,42 @@
       {{
         label({
           "classes": "nhsuk-label--s",
-          "text": section.name
+          "text": params.section.name
         })
       }}
     {% endif %}
   {% endif %}
 {% endmacro %}
 
-{% macro sectionValue(section) %}
+{% macro sectionValue(params) %}
   <div class="nhsuk-grid-row">
-    {% if section.displayType === "columns" %}
+    {% if params.section.displayType === "columns" %}
       <div data-test-id="section-column1" class="nhsuk-grid-column-one-half">
-        {% for v in section.value.column1 %}
-          <p data-test-id="{{section.id}}-value">- {{ v }}</p>
+        {% for v in params.section.value.column1 %}
+          <p data-test-id="{{params.section.id}}-value">- {{ v }}</p>
         {% endfor %}
       </div>
       <div data-test-id="section-column2" class="nhsuk-grid-column-one-half">
-        {% for v in section.value.column2 %}
-          <p data-test-id="{{section.id}}-value">- {{ v }}</p>
+        {% for v in params.section.value.column2 %}
+          <p data-test-id="{{params.section.id}}-value">- {{ v }}</p>
         {% endfor %}
       </div>
     {% else %}
       <div class="nhsuk-grid-column-full">
-        {% if section.value | isArray %}
-          {% for v in section.value %}
-            <p data-test-id="{{section.id}}-value">- {{ v }}</p>
+        {% if params.section.value | isArray %}
+          {% for v in params.section.value %}
+            <p data-test-id="{{params.section.id}}-value">- {{ v }}</p>
           {% endfor %}
         {% else %}
-          <p data-test-id="{{section.id}}-value">{{ section.value }}</p>
+          <p data-test-id="{{params.section.id}}-value">{{ params.section.value }}</p>
         {% endif %}
       </div>
     {% endif %}
   </div>
 {% endmacro %}
 
-{% macro solutionCardSection(section, showAnchor) %}
+{% macro solutionCardSection(params) %}
   {{ label({
-    "html": sectionHeader(section, showAnchor)+sectionValue(section) 
+    "html": sectionHeader(params) + sectionValue(params)
   }) }}
 {% endmacro %}
