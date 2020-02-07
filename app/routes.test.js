@@ -20,15 +20,7 @@ const mockGetPublicSolutionById = {
   name: 'Write on Time',
   supplierName: 'Really Kool Corporation',
   isFoundation: true,
-  lastUpdated: '2020-02-07T13:32:49.3066667',
-  sections: {
-    'solution-description': { answers: [Object] },
-    features: { answers: [Object] },
-    'contact-details': { answers: [Object] },
-    capabilities: { answers: [Object] },
-    'about-supplier': { answers: [Object] }
-  },
-  downloadSolutionUrl: '/$web/content/100000-001.pdf?timestamp=1581089014349'
+  sections: {},
 };
 
 describe('GET /healthcheck', () => {
@@ -183,7 +175,6 @@ describe('Error handler', () => {
         expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
       });
   });
-
 });
 
 describe('GET *', () => {
