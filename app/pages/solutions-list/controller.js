@@ -1,32 +1,14 @@
-import axios from 'axios';
 import { ManifestProvider } from './filterType/manifestProvider';
 import { createSolutionListPageContext } from './context';
-import { apiHost } from '../../config';
+import { ApiProvider } from '../../apiProvider';
 import logger from '../../logger';
 
-const getSolutionListDataEndpoint = (filterType) => {
-  if (filterType === 'all') {
-    return `${apiHost}/api/v1/Solutions`;
-  }
-
-  if (filterType === 'foundation') {
-    return `${apiHost}/api/v1/Solutions/Foundation`;
-  }
-
-  return undefined;
-};
-
 const getSolutionListData = async (filterType) => {
-  const endpoint = getSolutionListDataEndpoint(filterType);
-  if (endpoint) {
-    logger.info(`api called: [GET] ${endpoint}`);
-    const solutionListResponse = await axios.get(endpoint);
-    if (solutionListResponse && solutionListResponse.data && solutionListResponse.data.solutions) {
-      logger.info(`${solutionListResponse.data.solutions.length} solutions returned for type ${filterType}`);
-      return solutionListResponse.data.solutions;
-    }
+  const solutionListResponse = await new ApiProvider().getSolutionListData(filterType);
+  if (solutionListResponse && solutionListResponse.data && solutionListResponse.data.solutions) {
+    logger.info(`${solutionListResponse.data.solutions.length} solutions returned for type ${filterType}`);
+    return solutionListResponse.data.solutions;
   }
-
   throw new Error(`No endpoint found for filter type: ${filterType}`);
 };
 
