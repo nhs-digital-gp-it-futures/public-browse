@@ -18,7 +18,7 @@ describe('solution-card', () => {
     };
 
     harness.request(context, ($) => {
-      const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation-tag"]');
+      const foundationSolutionIndicator = $('[data-test-id="solution-card-foundation"]');
       expect(foundationSolutionIndicator.length).toEqual(1);
       expect(foundationSolutionIndicator.text().trim()).toEqual('Foundation Solution Set');
     });

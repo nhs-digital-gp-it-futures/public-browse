@@ -2,6 +2,7 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/button/macro.njk' import button %}
 {% from 'components/back-link/macro.njk' import backLink %}
+{% from 'sections/view-solution-header/macro.njk' import viewSolutionHeader %}
 {% from 'sections/view-solution-description/macro.njk' import viewSolutionDescription %}
 {% from 'sections/view-solution-contact-details/macro.njk' import viewSolutionContactDetails %}
 {% from 'sections/view-solution-capabilities/macro.njk' import viewSolutionCapabilities %}
@@ -17,18 +18,14 @@
       }) }}
     </div>
 
-    {% if isFoundation %}
-      {{ tag({
-        dataTestId: 'view-solution-foundation',
-        text: 'Foundation Solution Set',
-        classes: 'bc-c-tag-foundation nhsuk-u-margin-bottom-6'
-      }) }}
-    {% endif %}
+    {{ viewSolutionHeader({
+      id: id,
+      name: name,
+      supplierName: supplierName,
+      isFoundation: isFoundation,
+      lastUpdated: lastUpdated
+    }) }}
 
-    <h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">{{ name }}</h1>
-    <h2 data-test-id="view-solution-page-supplier-name" class="nhsuk-u-margin-bottom-2">{{ supplierName }}</h2>
-    <p data-test-id="view-solution-page-solution-id">Solution ID: {{ id }}</p>
-    <div data-test-id="view-solution-page-last-updated" class="bc-t-font-color--grey">Solution information last updated: {{ lastUpdated | dateTime('D MMMM YYYY') }}</div>
     {{ viewSolutionDescription({
       section: sections['solution-description']
     }) }}

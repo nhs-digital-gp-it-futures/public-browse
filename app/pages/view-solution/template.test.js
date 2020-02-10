@@ -22,7 +22,7 @@ describe('view solution', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('[data-test-id="view-solution-foundation-tag"]').length).toEqual(1);
+      expect($('[data-test-id="view-solution-foundation"]').length).toEqual(1);
     });
   }));
 

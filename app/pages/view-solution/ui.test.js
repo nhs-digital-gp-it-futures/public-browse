@@ -69,7 +69,7 @@ test('should navigate to /solutions/foundation when clicking on the back link fr
 
 test('should display the foundation solution tag', async (t) => {
   await pageSetup(t, 'all');
-  const foundationTag = Selector('div[data-test-id="view-solution-foundation-tag"]');
+  const foundationTag = Selector('div[data-test-id="view-solution-foundation"]');
   await t
     .expect(foundationTag.exists).ok()
     .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set');
@@ -115,10 +115,10 @@ test('should display the solution description', async (t) => {
   const solutionDescriptionLink = Selector('div[data-test-id="view-section-question-link"]');
   await t
     .expect(solutionDescription.exists).ok()
-    .expect(await extractInnerText(solutionDescription.find('h3'))).eql('Solution description')
+    .expect(await extractInnerText(solutionDescription.find('h3'))).eql('Description')
     .expect(await extractInnerText(solutionDescriptionSummary.find('h4'))).eql('Summary')
     .expect(await extractInnerText(solutionDescriptionSummary.find('div[data-test-id="view-question-data-text-summary"]'))).eql('Write on Time is a Citizen-facing Appointments Management system specifically designed to reduce the number of DNAs in your practice.')
-    .expect(await extractInnerText(solutionDescriptionDescription.find('h4'))).eql('About the solution')
+    .expect(await extractInnerText(solutionDescriptionDescription.find('h4'))).eql('Full description')
     .expect(await extractInnerText(solutionDescriptionDescription.find('div[data-test-id="view-question-data-text-description"]'))).eql('a description')
     .expect(await extractInnerText(solutionDescriptionLink)).eql('//www.link.com');
 });
