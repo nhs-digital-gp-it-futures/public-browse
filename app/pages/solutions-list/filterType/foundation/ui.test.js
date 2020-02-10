@@ -63,7 +63,7 @@ test('should display the foundation solution details of a solution card', async 
     .expect(solutionCardsSection.find('div[data-test-id="solution-card"]').count).eql(2);
 
   const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card"]:nth-child(1)');
-  const foundationTag = solutionCard.find('div[data-test-id="solution-card-foundation-tag"]');
+  const foundationTag = solutionCard.find('div[data-test-id="solution-card-foundation"]');
   await t
     .expect(foundationTag.exists).ok()
     .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set')
