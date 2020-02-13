@@ -1,5 +1,4 @@
 import request from 'supertest';
-import { Readable } from 'stream';
 import { App } from '../app';
 import routes from './routes';
 import * as homepageContext from './pages/homepage/context';
