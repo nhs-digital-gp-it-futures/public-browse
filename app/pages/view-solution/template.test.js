@@ -28,7 +28,7 @@ describe('view solution', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('h1').text().trim()).toEqual('Write on Time');
+      expect($('[data-test-id="view-solution-header"]').length).toBe(1);
     });
   }));
 });
