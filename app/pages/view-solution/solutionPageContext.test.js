@@ -10,7 +10,7 @@ const expectedContext = {
   },
 };
 
-const previewData = {
+const solutionData = {
   id: '100000-001',
   name: 'Write on Time',
   supplierName: 'Really Kool Corporation',
@@ -19,7 +19,7 @@ const previewData = {
 };
 
 describe('createViewSolutionPageContext', () => {
-  it('should return the sections provided in the previewData', () => {
+  it('should return the sections provided in the solutionData', () => {
     const newExpectedContext = {
       ...expectedContext,
       sections: {
@@ -29,7 +29,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
     const newSolutionData = {
-      ...previewData,
+      ...solutionData,
       sections: {
         'some-section': {
           answers: {},
@@ -55,7 +55,7 @@ describe('createViewSolutionPageContext', () => {
     };
 
     const newSolutionData = {
-      ...previewData,
+      ...solutionData,
       sections: {
         'some-section': {
           answers: {
@@ -84,7 +84,7 @@ describe('createViewSolutionPageContext', () => {
     };
 
     const newSolutionData = {
-      ...previewData,
+      ...solutionData,
       sections: {
         'some-section': {
           answers: {
@@ -127,7 +127,7 @@ describe('createViewSolutionPageContext', () => {
     };
 
     const newSolutionData = {
-      ...previewData,
+      ...solutionData,
       sections: {
         'first-section': {
           answers: {
