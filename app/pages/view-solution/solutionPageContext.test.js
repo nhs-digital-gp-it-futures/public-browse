@@ -28,7 +28,7 @@ describe('createViewSolutionPageContext', () => {
         },
       },
     };
-    const newPreviewData = {
+    const newSolutionData = {
       ...previewData,
       sections: {
         'some-section': {
@@ -37,7 +37,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newSolutionData });
 
     expect(context).toEqual(newExpectedContext);
   });
@@ -54,7 +54,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const newPreviewData = {
+    const newSolutionData = {
       ...previewData,
       sections: {
         'some-section': {
@@ -65,7 +65,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newSolutionData });
 
     expect(context).toEqual(newExpectedContext);
   });
@@ -83,7 +83,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const newPreviewData = {
+    const newSolutionData = {
       ...previewData,
       sections: {
         'some-section': {
@@ -95,7 +95,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newSolutionData });
 
     expect(context).toEqual(newExpectedContext);
   });
@@ -151,7 +151,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newSolutionData });
 
     expect(context).toEqual(newExpectedContext);
   });
