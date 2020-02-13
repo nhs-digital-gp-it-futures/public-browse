@@ -126,7 +126,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const newPreviewData = {
+    const newSolutionData = {
       ...previewData,
       sections: {
         'first-section': {
