@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPublicSolutionById } from './pages/view-solution/controller';
+import { getPublicSolutionById, getDocument } from './pages/view-solution/controller';
 import { getSolutionListPageContext } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
@@ -58,6 +58,13 @@ router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.get('/solutions/:filterType/:solutionId/document/:documentName', async (req, res) => {
+  const { solutionId, documentName } = req.params;
+  logger.info(`downloading Solution ${solutionId} document ${documentName}`);
+  const response = await getDocument({ solutionId, documentName });
+  response.data.pipe(res);
 });
 
 router.get('*', (req, res, next) => {
