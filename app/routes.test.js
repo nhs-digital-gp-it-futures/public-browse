@@ -9,13 +9,19 @@ import * as guidePageContext from './pages/guide/context';
 
 jest.mock('./logger');
 
-const mockFoundationSoluionsContext = {
+const mockFoundationSolutionsContext = {
   pageTitle: 'Foundation',
   pageDescription: 'These foundation solutions',
   solutions: [],
 };
 
 const mockGetPublicSolutionById = {
+  solutionHeader: {
+    id: '100000-001',
+    name: 'Write on Time',
+    supplierName: 'Really Kool Corporation',
+    isFoundation: true,
+  },
   id: '100000-001',
   name: 'Write on Time',
   supplierName: 'Really Kool Corporation',
@@ -107,7 +113,7 @@ describe('GET /solutions/:filterType', () => {
 
   it('should return the correct status and text if there is no error', () => {
     solutionListPageContext.getSolutionListPageContext = jest.fn()
-      .mockImplementation(() => Promise.resolve(mockFoundationSoluionsContext));
+      .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
     const app = new App().createApp();
     app.use('/', routes);
 

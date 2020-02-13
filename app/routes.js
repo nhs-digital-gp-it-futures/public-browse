@@ -42,7 +42,7 @@ router.get('/solutions/:filterType', async (req, res, next) => {
   const { filterType } = req.params;
   logger.info(`filter type '${filterType}' applied`);
   try {
-    const context = await getSolutionListPageContext(filterType);
+    const context = await getSolutionListPageContext({ filterType });
     res.render('pages/solutions-list/template.njk', addConfig(context));
   } catch (err) {
     next(err);
@@ -53,7 +53,7 @@ router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
   const { solutionId } = req.params;
   logger.info(`navigating to Solution ${solutionId} page`);
   try {
-    const context = await getPublicSolutionById(solutionId);
+    const context = await getPublicSolutionById({ solutionId });
     res.render('pages/view-solution/template.njk', addConfig(context));
   } catch (err) {
     next(err);

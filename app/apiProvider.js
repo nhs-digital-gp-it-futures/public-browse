@@ -26,7 +26,7 @@ export class ApiProvider {
     return false;
   }
 
-  async getPublicSolutionById(solutionId) {
+  async getPublicSolutionById({ solutionId }) {
     const endpoint = `${this.apiHost}/api/v1/Solutions/${solutionId}/Public`;
     logger.info(`api called: [GET] ${endpoint}`);
     return axios.get(endpoint);
