@@ -151,7 +151,8 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ solutionData: newSolutionData });
+    const context = createViewSolutionPageContext({ solutionData: 
+      newSolutionData });
 
     expect(context).toEqual(newExpectedContext);
   });
