@@ -148,27 +148,6 @@ describe('GET /solutions/:filterType/:solutionId', () => {
   });
 });
 
-// describe.only('GET /solutions/:filterType/:solutionId/document/:documentName', () => {
-//   afterEach(() => {
-//     viewSolutionController.getDocument.mockReset();
-//   });
-
-//   it('should return the correct status and text if there is no error', (done) => {
-//     viewSolutionController.getDocument = jest.fn()
-//       .mockImplementation(() => Promise.resolve({ response: { data: 'some data' } }));
-//     const app = new App().createApp();
-//     app.use('/', routes);
-
-//     return request(app)
-//       .get('/solutions/foundation/1/document/solution.pdf')
-//       .expect(200)
-//       .end((err, res) => {
-//         console.log(`res ${res}`);
-//         return done();
-//       });
-//   });
-// });
-
 describe('Error handler', () => {
   afterEach(() => {
     solutionListPageContext.getSolutionListPageContext.mockReset();

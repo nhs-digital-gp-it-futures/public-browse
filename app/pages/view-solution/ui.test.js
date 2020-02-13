@@ -22,9 +22,9 @@ const pageSetup = async (t, existingData = false) => {
   await t.navigateTo(`${clientLocalhost}/solutions/foundation/100000-001`);
 };
 
-fixture('Show marketing preview page - heading components');
+fixture('Show view solution page - heading components');
 
-test('should render the marketing preview page back link', async (t) => {
+test('should render the view solution page back link', async (t) => {
   await pageSetup(t);
 
   const backLink = Selector('[data-test-id="view-solution-page-back-link"]');
@@ -33,7 +33,7 @@ test('should render the marketing preview page back link', async (t) => {
     .expect(await extractInnerText(backLink)).eql('Go back to previous page');
 });
 
-test('should render the marketing preview page foundation tag', async (t) => {
+test('should render the view solution page foundation tag', async (t) => {
   await pageSetup(t);
 
   const foundationTag = Selector('[data-test-id="view-solution-foundation"]');
@@ -42,7 +42,7 @@ test('should render the marketing preview page foundation tag', async (t) => {
     .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set');
 });
 
-test('should render the marketing preview page solution name', async (t) => {
+test('should render the view solution page solution name', async (t) => {
   await pageSetup(t);
 
   const solutionName = Selector('[data-test-id="view-solution-page-solution-name"]');
@@ -51,7 +51,7 @@ test('should render the marketing preview page solution name', async (t) => {
     .expect(await extractInnerText(solutionName)).eql('Write on Time');
 });
 
-test('should render the marketing preview page supplier name', async (t) => {
+test('should render the view solution page supplier name', async (t) => {
   await pageSetup(t);
 
   const supplierName = Selector('[data-test-id="view-solution-page-supplier-name"]');
@@ -60,7 +60,7 @@ test('should render the marketing preview page supplier name', async (t) => {
     .expect(await extractInnerText(supplierName)).eql('Really Kool Corporation');
 });
 
-test('should render the marketing preview page supplier name', async (t) => {
+test('should render the view solution page supplier name', async (t) => {
   await pageSetup(t);
 
   const solutionId = Selector('[data-test-id="view-solution-page-solution-id"]');
@@ -69,7 +69,7 @@ test('should render the marketing preview page supplier name', async (t) => {
     .expect(await extractInnerText(solutionId)).eql('Solution ID: 100000-001');
 });
 
-test('should render the marketing preview page last updated date', async (t) => {
+test('should render the view solution page last updated date', async (t) => {
   await pageSetup(t);
 
   const lastUpdated = Selector('[data-test-id="view-solution-page-last-updated"]');
@@ -79,7 +79,7 @@ test('should render the marketing preview page last updated date', async (t) => 
 });
 
 
-fixture('Show marketing preview page - no existing marketing data');
+fixture('Show view solution page - no existing marketing data');
 
 test('Solution description section should not be rendered', async (t) => {
   await pageSetup(t);
@@ -204,7 +204,7 @@ test('Learn More section should not be rendered', async (t) => {
 });
 
 
-fixture('Show marketing preview page - with existing marketing data');
+fixture('Show view solution page - with existing marketing data');
 
 test('Solution description section and all questions should be rendered', async (t) => {
   await pageSetup(t, true);
@@ -723,6 +723,6 @@ test('Learn More section should be rendered', async (t) => {
     .expect(await extractInnerText(learnMoreSection.find('h3'))).eql('Learn more')
 
     .expect(documentLink.exists).ok()
-    .expect(await extractInnerText(documentLink)).eql('Download this PDF')
+    .expect(await extractInnerText(documentLink)).eql('Download PDF')
     .expect(documentLink.getAttribute('href')).eql('document/solution.pdf');
 });
