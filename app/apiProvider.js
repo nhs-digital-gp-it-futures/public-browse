@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiHost } from './config';
+import { apiHost, documentHost } from './config';
 import logger from './logger';
 
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
@@ -15,6 +15,7 @@ const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
 export class ApiProvider {
   constructor() {
     this.apiHost = apiHost;
+    this.documentHost = documentHost;
   }
 
   async getSolutionListData(filterType) {
@@ -30,5 +31,11 @@ export class ApiProvider {
     const endpoint = `${this.apiHost}/api/v1/Solutions/${solutionId}/Public`;
     logger.info(`api called: [GET] ${endpoint}`);
     return axios.get(endpoint);
+  }
+
+  async getDocument({ solutionId, documentName }) {
+    const endpoint = `${this.documentHost}/api/v1/Solutions/${solutionId}/documents/${documentName}`;
+    logger.info(`api called: [GET] ${endpoint}`);
+    return axios.get(endpoint, { responseType: 'stream' });
   }
 }
