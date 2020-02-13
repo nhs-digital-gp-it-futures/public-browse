@@ -1,13 +1,13 @@
-export const createViewSolutionPageContext = ({ previewData }) => ({
+export const createViewSolutionPageContext = ({ solutionData }) => ({
   solutionHeader: {
-    id: previewData.id,
-    name: previewData.name,
-    supplierName: previewData.supplierName,
-    isFoundation: previewData.isFoundation,
-    lastUpdated: previewData.lastUpdated,
+    id: solutionData.id,
+    name: solutionData.name,
+    supplierName: solutionData.supplierName,
+    isFoundation: solutionData.isFoundation,
+    lastUpdated: solutionData.lastUpdated,
   },
   sections: Object.fromEntries(
-    Object.entries(previewData.sections).map(([key, sectionValue]) => {
+    Object.entries(solutionData.sections).map(([key, sectionValue]) => {
       if (sectionValue.answers && sectionValue.answers['document-name']) {
         const answerSection = {
           answers: {

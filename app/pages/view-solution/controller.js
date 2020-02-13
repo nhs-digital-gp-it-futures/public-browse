@@ -7,7 +7,7 @@ export const getPublicSolutionById = async ({ solutionId }) => {
 
   if (response.data) {
     logger.info(`Solution ${solutionId}: ${response.data.name} returned`);
-    return createViewSolutionPageContext({ previewData: response.data });
+    return createViewSolutionPageContext({ solutionData: response.data });
   }
   throw new Error('No data returned');
 };

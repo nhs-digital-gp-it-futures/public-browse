@@ -37,7 +37,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ previewData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
 
     expect(context).toEqual(newExpectedContext);
   });
@@ -65,7 +65,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ previewData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
 
     expect(context).toEqual(newExpectedContext);
   });
@@ -95,7 +95,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ previewData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
 
     expect(context).toEqual(newExpectedContext);
   });
@@ -151,7 +151,7 @@ describe('createViewSolutionPageContext', () => {
       },
     };
 
-    const context = createViewSolutionPageContext({ previewData: newPreviewData });
+    const context = createViewSolutionPageContext({ solutionData: newPreviewData });
 
     expect(context).toEqual(newExpectedContext);
   });
