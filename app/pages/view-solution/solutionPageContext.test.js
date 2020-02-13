@@ -156,4 +156,3 @@ describe('createViewSolutionPageContext', () => {
     expect(context).toEqual(newExpectedContext);
   });
 });
-

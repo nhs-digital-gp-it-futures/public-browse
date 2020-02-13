@@ -1,4 +1,4 @@
-import { createViewSolutionPageContext } from './getViewSolutionContext';
+import { createViewSolutionPageContext } from './solutionPageContext';
 import { ApiProvider } from '../../apiProvider';
 import logger from '../../logger';
 
