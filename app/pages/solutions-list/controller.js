@@ -12,7 +12,7 @@ const getSolutionListData = async (filterType) => {
   throw new Error(`No endpoint found for filter type: ${filterType}`);
 };
 
-export const getSolutionListPageContext = async (filterType) => {
+export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
   const solutionsData = await getSolutionListData(filterType);
 

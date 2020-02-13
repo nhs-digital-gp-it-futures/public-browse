@@ -7,6 +7,13 @@ describe('view-solution controller', () => {
   describe('getPublicSolutionById', () => {
     it('should return the context when preview data is returned by the ApiProvider', async () => {
       const expectedContext = {
+        solutionHeader: {
+          id: '100000-001',
+          name: 'Write on Time',
+          supplierName: 'Really Kool Corporation',
+          isFoundation: true,
+          lastUpdated: '1996-03-15T10:00:00',
+        },
         sections: {
           'some-section': {
             answers: {},
@@ -16,6 +23,11 @@ describe('view-solution controller', () => {
 
       const mockedSolutionData = {
         data: {
+          id: '100000-001',
+          name: 'Write on Time',
+          supplierName: 'Really Kool Corporation',
+          isFoundation: true,
+          lastUpdated: '1996-03-15T10:00:00',
           sections: {
             'some-section': {
               answers: {},
