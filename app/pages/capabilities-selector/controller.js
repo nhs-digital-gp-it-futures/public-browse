@@ -1,4 +1,4 @@
-import { createCapabilitySelectorPageContext } from './capabilitySelectorPageContext';
+import { createCapabilitiesSelectorPageContext } from './capabilitiesSelectorPageContext';
 import { ApiProvider } from '../../apiProvider';
 import logger from '../../logger';
 
@@ -8,7 +8,7 @@ export const getCapabilitiesContext = async () => {
   if (response.data) {
     logger.info('Solution capabilities returned');
     const { capabilities } = response.data;
-    return createCapabilitySelectorPageContext({ capabilities });
+    return createCapabilitiesSelectorPageContext({ capabilities });
   }
   throw new Error('No data returned');
 };

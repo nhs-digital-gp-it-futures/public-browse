@@ -18,7 +18,7 @@ const pageSetup = async (t, existingData = false) => {
 
 const getLocation = ClientFunction(() => document.location.href);
 
-fixture('Capability Selector Page')
+fixture('Capabilities Selector Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -39,25 +39,25 @@ test('should navigate to solutions when click Go back to previous page', async (
     .expect(getLocation()).eql('http://localhost:1234/solutions');
 });
 
-test('should render capability-selector title', async (t) => {
+test('should render capabilities-selector title', async (t) => {
   await pageSetup(t);
 
-  const title = Selector('[data-test-id="capability-selector-page-title"]');
+  const title = Selector('[data-test-id="capabilities-selector-page-title"]');
 
   await t
     .expect(title.exists).ok()
     .expect(await extractInnerText(title)).eql(content.title);
 });
 
-test('should render capability-selector component', async (t) => {
+test('should render capabilities-selector component', async (t) => {
   await pageSetup(t);
 
-  const capabilitySelectorComponent = Selector('[data-test-id="capability-selector"]');
-  const column1 = capabilitySelectorComponent.find('[data-test-id="capability-checkbox-column-1"]');
-  const column2 = capabilitySelectorComponent.find('[data-test-id="capability-checkbox-column-2"]');
+  const capabilitiesSelectorComponent = Selector('[data-test-id="capabilities-selector"]');
+  const column1 = capabilitiesSelectorComponent.find('[data-test-id="capabilities-checkbox-column-1"]');
+  const column2 = capabilitiesSelectorComponent.find('[data-test-id="capabilities-checkbox-column-2"]');
 
   await t
-    .expect(capabilitySelectorComponent.exists).ok()
+    .expect(capabilitiesSelectorComponent.exists).ok()
     .expect(column1.exists).ok()
     .expect(column1.find('label').count).eql(2)
     .expect(await extractInnerText(column1.find('label').nth(0))).eql(capabilitiesData.capabilities[0].name)
@@ -69,7 +69,7 @@ test('should render capability-selector component', async (t) => {
 test('should render continue button', async (t) => {
   await pageSetup(t);
 
-  const continueButton = Selector('[data-test-id="capability-selector-continue-button"]');
+  const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"]');
 
   await t
     .expect(continueButton.exists).ok()

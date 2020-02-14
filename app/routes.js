@@ -4,7 +4,7 @@ import { getSolutionListPageContext } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
-import { getCapabilitiesContext } from './pages/capability-selector/controller';
+import { getCapabilitiesContext } from './pages/capabilities-selector/controller';
 import { errorHandler } from './pages/error/errorHandler';
 import logger from './logger';
 import config from './config';
@@ -40,10 +40,10 @@ router.get('/solutions', (req, res) => {
 });
 
 router.get('/solutions/capabilities', async (req, res, next) => {
-  logger.info('navigating to capability-selector page');
+  logger.info('navigating to capabilities-selector page');
   try {
     const context = await getCapabilitiesContext();
-    res.render('pages/capability-selector/template.njk', addConfig(context));
+    res.render('pages/capabilities-selector/template.njk', addConfig(context));
   } catch (err) {
     next(err);
   }

@@ -3,11 +3,11 @@ import manifest from './manifest.json';
 
 const setup = {
   template: {
-    path: 'pages/capability-selector/template.njk',
+    path: 'pages/capabilities-selector/template.njk',
   },
 };
 
-describe('capability-selector page', () => {
+describe('capabilities-selector page', () => {
   it('should render a backLink to the solutions page', createTestHarness(setup, (harness) => {
     const context = {};
 
@@ -23,7 +23,7 @@ describe('capability-selector page', () => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {
-      const title = $('[data-test-id="capability-selector-page-title"]');
+      const title = $('[data-test-id="capabilities-selector-page-title"]');
       expect(title.length).toEqual(1);
       expect(title.text().trim()).toEqual(manifest.title);
     });
@@ -33,7 +33,7 @@ describe('capability-selector page', () => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {
-      const description = $('[data-test-id="capability-selector-page-description"]');
+      const description = $('[data-test-id="capabilities-selector-page-description"]');
       expect(description.length).toEqual(1);
       expect(description.text().trim()).toEqual(manifest.description);
     });
@@ -51,8 +51,8 @@ describe('capability-selector page', () => {
     };
 
     harness.request(context, ($) => {
-      const capabilitySelectorComponent = $('[data-test-id="capability-selector"]');
-      expect(capabilitySelectorComponent.length).toEqual(1);
+      const capabilitiesSelectorComponent = $('[data-test-id="capabilities-selector"]');
+      expect(capabilitiesSelectorComponent.length).toEqual(1);
     });
   }));
 
@@ -60,10 +60,10 @@ describe('capability-selector page', () => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {
-      const capabilitySelectorButton = $('[data-test-id="capability-selector-continue-button"] a');
-      expect(capabilitySelectorButton.length).toEqual(1);
-      expect(capabilitySelectorButton.text().trim()).toEqual('Continue');
-      expect(capabilitySelectorButton.attr('href')).toEqual('/');
+      const capabilitiesSelectorButton = $('[data-test-id="capabilities-selector-continue-button"] a');
+      expect(capabilitiesSelectorButton.length).toEqual(1);
+      expect(capabilitiesSelectorButton.text().trim()).toEqual('Continue');
+      expect(capabilitiesSelectorButton.attr('href')).toEqual('/');
     });
   }));
 });

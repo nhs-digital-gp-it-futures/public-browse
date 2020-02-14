@@ -4,7 +4,7 @@ import routes from './routes';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
 import * as solutionListPageContext from './pages/solutions-list/controller';
-import * as capabilitiesContext from './pages/capability-selector/controller';
+import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 
@@ -32,7 +32,7 @@ const mockGetPublicSolutionById = {
 
 const mockCapabilitiesContext = {
   capabilities: {
-    title: 'Catalogue Solutions – Capability selector',
+    title: 'Catalogue Solutions – Capabilities selector',
     description: 'Description of selector',
     column1: [{
       text: 'Appointments Management - GP',
@@ -175,7 +175,8 @@ describe('routes', () => {
         .get('/solutions/capabilities')
         .expect(200)
         .then((res) => {
-          expect(res.text.includes('data-test-id="capability-selector"')).toEqual(true);
+          console.log(res.text)
+          expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });
     });

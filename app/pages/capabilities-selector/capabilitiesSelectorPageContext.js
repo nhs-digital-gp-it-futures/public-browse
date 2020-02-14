@@ -1,6 +1,6 @@
 import content from './manifest.json';
 
-export const createCapabilitySelectorPageContext = ({ capabilities }) => (
+export const createCapabilitiesSelectorPageContext = ({ capabilities }) => (
   {
     ...content,
     capabilities: capabilities ? capabilities.reduce((acc, capability, i) => {

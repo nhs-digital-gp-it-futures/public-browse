@@ -1,19 +1,19 @@
-import { createCapabilitySelectorPageContext } from './capabilitySelectorPageContext';
+import { createCapabilitiesSelectorPageContext } from './capabilitiesSelectorPageContext';
 import manifest from './manifest.json';
 
-describe('createCapabilitySelectorPageContext', () => {
+describe('createCapabilitiesSelectorPageContext', () => {
   it('should add the contents of the manifest to the context', () => {
     const expectedContext = {
       ...manifest,
       capabilities: {},
     };
 
-    const context = createCapabilitySelectorPageContext({});
+    const context = createCapabilitiesSelectorPageContext({});
 
     expect(context).toEqual(expectedContext);
   });
 
-  it('should create a context for the capability-selector page with one capability', () => {
+  it('should create a context for the capabilities-selector page with one capability', () => {
     const expectedContext = {
       ...manifest,
       capabilities: {
@@ -32,12 +32,12 @@ describe('createCapabilitySelectorPageContext', () => {
       isFoundation: true,
     }];
 
-    const context = createCapabilitySelectorPageContext({ capabilities });
+    const context = createCapabilitiesSelectorPageContext({ capabilities });
 
     expect(context).toEqual(expectedContext);
   });
 
-  it('should create a context for the capability-selector page with same number of capabilities in each column when even number passed in', () => {
+  it('should create a context for the capabilities-selector page with same number of capabilities in each column when even number passed in', () => {
     const capabilities = [{
       reference: 'C5',
       version: '1.0.1',
@@ -59,12 +59,12 @@ describe('createCapabilitySelectorPageContext', () => {
       name: 'Prescribing2',
       isFoundation: true,
     }];
-    const context = createCapabilitySelectorPageContext({ capabilities });
+    const context = createCapabilitiesSelectorPageContext({ capabilities });
 
     expect(context.capabilities.column1.length).toEqual(context.capabilities.column2.length);
   });
 
-  it('should create a context for the capability-selector page with an extra one in column 1 when an odd number passed in', () => {
+  it('should create a context for the capabilities-selector page with an extra one in column 1 when an odd number passed in', () => {
     const capabilities = [{
       reference: 'C5',
       version: '1.0.1',
@@ -92,7 +92,7 @@ describe('createCapabilitySelectorPageContext', () => {
       isFoundation: true,
     }];
 
-    const context = createCapabilitySelectorPageContext({ capabilities });
+    const context = createCapabilitiesSelectorPageContext({ capabilities });
     expect(context.capabilities.column1.length - 1).toEqual(context.capabilities.column2.length);
   });
 });

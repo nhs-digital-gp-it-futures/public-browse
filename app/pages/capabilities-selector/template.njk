@@ -1,5 +1,5 @@
 {% extends 'includes/layout.njk' %}
-{% from './components/macro.njk' import capabilitySelector %}
+{% from './components/macro.njk' import capabilitiesSelector %}
 {% from 'components/back-link/macro.njk' import backLink %}
 {% from 'components/button/macro.njk' import button %}
 
@@ -11,14 +11,14 @@
         "text": "Go back to previous page"
       }) }}
     </div>
-    <h1 class="nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-4" data-test-id="capability-selector-page-title">{{ title }}</h1>
+    <h1 class="nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-4" data-test-id="capabilities-selector-page-title">{{ title }}</h1>
     <div class="nhsuk-grid-row">
-      <h2 class="nhsuk-u-font-size-22 nhsuk-u-padding-bottom-5 nhsuk-grid-column-two-thirds" data-test-id="capability-selector-page-description">{{ description }}</h2>
-      {{ capabilitySelector({
+      <h2 class="nhsuk-u-font-size-22 nhsuk-u-padding-bottom-5 nhsuk-grid-column-two-thirds" data-test-id="capabilities-selector-page-description">{{ description }}</h2>
+      {{ capabilitiesSelector({
         capabilities: capabilities
       }) }}
     </div>
-    <div data-test-id="capability-selector-continue-button">
+    <div data-test-id="capabilities-selector-continue-button">
       {# TODO: change href of button #}
       {{ button({
         "text": "Continue",
