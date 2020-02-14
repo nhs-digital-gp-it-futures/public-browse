@@ -2,42 +2,13 @@ import { createCapabilitySelectorPageContext } from './capabilitySelectorPageCon
 import manifest from './manifest.json';
 
 describe('createCapabilitySelectorPageContext', () => {
-  it('should create a context for the capability selector page', () => {
+  it('should add the contents of the manifest to the context', () => {
     const expectedContext = {
       ...manifest,
-      capabilities: {
-        column1: [{
-          text: 'Appointments Management - GP',
-          value: 'C5',
-        }, {
-          text: 'Patient Information Maintenance',
-          value: 'C13',
-        }],
-        column2: [{
-          text: 'Prescribing',
-          value: 'C14',
-        }],
-      },
+      capabilities: {},
     };
 
-    const capabilities = [{
-      reference: 'C5',
-      version: '1.0.1',
-      name: 'Appointments Management - GP',
-      isFoundation: true,
-    }, {
-      reference: 'C13',
-      version: '1.0.1',
-      name: 'Patient Information Maintenance',
-      isFoundation: true,
-    }, {
-      reference: 'C14',
-      version: '1.0.1',
-      name: 'Prescribing',
-      isFoundation: true,
-    }];
-
-    const context = createCapabilitySelectorPageContext({ capabilities });
+    const context = createCapabilitySelectorPageContext({});
 
     expect(context).toEqual(expectedContext);
   });

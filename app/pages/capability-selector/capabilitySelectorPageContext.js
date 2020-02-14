@@ -3,7 +3,7 @@ import content from './manifest.json';
 export const createCapabilitySelectorPageContext = ({ capabilities }) => (
   {
     ...content,
-    capabilities: capabilities.reduce((acc, capability, i) => {
+    capabilities: capabilities ? capabilities.reduce((acc, capability, i) => {
       const option = {
         value: capability.reference,
         text: capability.name,
@@ -15,6 +15,6 @@ export const createCapabilitySelectorPageContext = ({ capabilities }) => (
     }, {
       column1: [],
       column2: [],
-    }),
+    }) : {},
   }
 );
