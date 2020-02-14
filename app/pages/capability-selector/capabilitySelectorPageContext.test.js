@@ -93,7 +93,7 @@ describe('createCapabilitySelectorPageContext', () => {
     expect(context.capabilities.column1.length).toEqual(context.capabilities.column2.length);
   });
 
-  it('should create a context for the capability-selector page with an extra one in coluumn 1 when an odd number passed in', () => {
+  it('should create a context for the capability-selector page with an extra one in column 1 when an odd number passed in', () => {
     const capabilities = [{
       reference: 'C5',
       version: '1.0.1',
