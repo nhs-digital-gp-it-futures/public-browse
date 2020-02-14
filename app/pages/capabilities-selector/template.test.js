@@ -63,7 +63,6 @@ describe('capabilities-selector page', () => {
       const capabilitiesSelectorButton = $('[data-test-id="capabilities-selector-continue-button"] a');
       expect(capabilitiesSelectorButton.length).toEqual(1);
       expect(capabilitiesSelectorButton.text().trim()).toEqual('Continue');
-      expect(capabilitiesSelectorButton.attr('href')).toEqual('/');
     });
   }));
 });

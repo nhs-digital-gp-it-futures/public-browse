@@ -1,6 +1,6 @@
 import express from 'express';
 import { getPublicSolutionById, getDocument } from './pages/view-solution/controller';
-import { getSolutionListPageContext } from './pages/solutions-list/controller';
+import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
@@ -49,11 +49,23 @@ router.get('/solutions/capabilities-selector', async (req, res, next) => {
   }
 });
 
+
+
 router.get('/solutions/:filterType', async (req, res, next) => {
   const { filterType } = req.params;
   logger.info(`filter type '${filterType}' applied`);
   try {
     const context = await getSolutionListPageContext({ filterType });
+    res.render('pages/solutions-list/template.njk', addConfig(context));
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/solutions/custom', async (req, res, next) => {
+  const capabilitiesSelected = req.body.capabilities;
+  try {
+    const context = await getSolutionsForSelectedCapabilities({ capabilitiesSelected });
     res.render('pages/solutions-list/template.njk', addConfig(context));
   } catch (err) {
     next(err);
