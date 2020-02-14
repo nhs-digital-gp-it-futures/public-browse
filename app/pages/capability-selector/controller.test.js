@@ -6,7 +6,7 @@ jest.mock('../../apiProvider');
 
 describe('capability-selector controller', () => {
   describe('getCapabilitiesContext', () => {
-    it('should return the context when preview data is returned by the ApiProvider', async () => {
+    it('should return the context when capabilities data is returned by the ApiProvider', async () => {
       const expectedContext = {
         ...manifest,
         capabilities: {
