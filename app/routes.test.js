@@ -175,7 +175,6 @@ describe('routes', () => {
         .get('/solutions/capabilities')
         .expect(200)
         .then((res) => {
-          console.log(res.text)
           expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });
