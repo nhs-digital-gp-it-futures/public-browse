@@ -49,8 +49,6 @@ router.get('/solutions/capabilities-selector', async (req, res, next) => {
   }
 });
 
-
-
 router.get('/solutions/:filterType', async (req, res, next) => {
   const { filterType } = req.params;
   logger.info(`filter type '${filterType}' applied`);
