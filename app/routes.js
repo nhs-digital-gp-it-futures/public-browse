@@ -4,6 +4,7 @@ import { getSolutionListPageContext } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
+import { getCapabilitiesContext } from './pages/capability-selector/controller';
 import { errorHandler } from './pages/error/errorHandler';
 import logger from './logger';
 import config from './config';
@@ -36,6 +37,16 @@ router.get('/solutions', (req, res) => {
   const context = getBrowseSolutionsPageContext();
   logger.info('navigating to browse solutions');
   res.render('pages/browse-solutions/template.njk', addConfig(context));
+});
+
+router.get('/solutions/capability-selector', async (req, res, next) => {
+  logger.info('navigating to capability-selector page');
+  try {
+    const context = await getCapabilitiesContext();
+    res.render('pages/capability-selector/template.njk', addConfig(context));
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get('/solutions/:filterType', async (req, res, next) => {
