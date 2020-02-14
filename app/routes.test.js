@@ -165,14 +165,14 @@ describe('routes', () => {
     });
   });
 
-  describe('GET /solutions/capabilities', () => {
+  describe('GET /solutions/capabilities-selector', () => {
     it('should return the correct status and text if there is no error', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
       const app = new App().createApp();
       app.use('/', routes);
       return request(app)
-        .get('/solutions/capabilities')
+        .get('/solutions/capabilities-selector')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);

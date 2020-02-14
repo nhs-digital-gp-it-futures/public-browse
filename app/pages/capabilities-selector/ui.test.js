@@ -13,7 +13,7 @@ const mocks = () => {
 
 const pageSetup = async (t, existingData = false) => {
   mocks(existingData);
-  await t.navigateTo('http://localhost:1234/solutions/capabilities');
+  await t.navigateTo('http://localhost:1234/solutions/capabilities-selector');
 };
 
 const getLocation = ClientFunction(() => document.location.href);
