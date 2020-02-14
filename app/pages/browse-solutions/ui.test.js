@@ -79,7 +79,7 @@ test('should navigate to browse all solutions page', async (t) => {
     .expect(browseAllSolutionsLink.exists).ok()
     .expect(browseAllSolutionsLink.visible).ok()
     .click(browseAllSolutionsLink)
-    .expect(getLocation()).contains('/capability-selector');
+    .expect(getLocation()).contains('/capabilities');
 });
 
 test('should navigate to browse foundation solutions page', async (t) => {
