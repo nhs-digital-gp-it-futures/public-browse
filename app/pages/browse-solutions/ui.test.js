@@ -68,7 +68,7 @@ test('should render buyers guide information', async (t) => {
 
 test('should navigate to browse all solutions page', async (t) => {
   await nock('http://localhost:8080')
-    .get('/api/v1/Solutions')
+    .get('/api/v1/Capabilities')
     .reply(200, aSolutionList);
 
   await pageSetup(t);
@@ -79,7 +79,7 @@ test('should navigate to browse all solutions page', async (t) => {
     .expect(browseAllSolutionsLink.exists).ok()
     .expect(browseAllSolutionsLink.visible).ok()
     .click(browseAllSolutionsLink)
-    .expect(getLocation()).contains('/all');
+    .expect(getLocation()).contains('/capabilities');
 });
 
 test('should navigate to browse foundation solutions page', async (t) => {

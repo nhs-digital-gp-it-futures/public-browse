@@ -38,4 +38,10 @@ export class ApiProvider {
     logger.info(`api called: [GET] ${endpoint}`);
     return axios.get(endpoint, { responseType: 'stream' });
   }
+
+  async getCapabilities() {
+    const endpoint = `${this.apiHost}/api/v1/Capabilities`;
+    logger.info(`api called: [GET] ${endpoint}`);
+    return axios.get(endpoint);
+  }
 }
