@@ -3,12 +3,12 @@ import content from './manifest.json';
 export const createCapabilitySelectorPageContext = ({ capabilities }) => (
   {
     ...content,
-    capabilities: capabilities.capabilities.reduce((acc, capability, i) => {
+    capabilities: capabilities.reduce((acc, capability, i) => {
       const option = {
         value: capability.reference,
         text: capability.name,
       };
-      if (i < (capabilities.capabilities.length / 2)) {
+      if (i < (capabilities.length / 2)) {
         acc.column1.push(option);
       } else acc.column2.push(option);
       return acc;

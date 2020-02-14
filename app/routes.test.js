@@ -4,6 +4,7 @@ import routes from './routes';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
 import * as solutionListPageContext from './pages/solutions-list/controller';
+import * as capabilitiesContext from './pages/capability-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 
@@ -27,6 +28,21 @@ const mockGetPublicSolutionById = {
   supplierName: 'Really Kool Corporation',
   isFoundation: true,
   sections: {},
+};
+
+const mockCapabilitiesContext = {
+  capabilities: {
+    title: 'Catalogue Solutions – Capability selector',
+    description: 'Description of selector',
+    column1: [{
+      text: 'Appointments Management - GP',
+      value: 'C5',
+    }],
+    column2: [{
+      text: 'Prescribing',
+      value: 'C14',
+    }],
+  },
 };
 
 describe('routes', () => {
@@ -149,14 +165,17 @@ describe('routes', () => {
     });
   });
 
-  describe('GET /solutions/capability-selector', () => {
+  describe('GET /solutions/capabilities', () => {
     it('should return the correct status and text if there is no error', () => {
+      capabilitiesContext.getCapabilitiesContext = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
       const app = new App().createApp();
       app.use('/', routes);
       return request(app)
-        .get('/solutions/capability-selector')
+        .get('/solutions/capabilities')
         .expect(200)
         .then((res) => {
+          console.log(res.text)
           expect(res.text.includes('data-test-id="capability-selector"')).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });

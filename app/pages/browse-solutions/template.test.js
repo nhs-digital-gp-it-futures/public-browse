@@ -55,7 +55,7 @@ describe('browse solutions page', () => {
 
       expect(allSolutionsPromo.find('h3').text().trim()).toEqual(content.allPromoHeading);
       expect(allSolutionsPromo.find('p').text().trim()).toEqual(content.allPromoDescription);
-      expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions/capability-selector');
+      expect(allSolutionsPromo.find('a').attr('href')).toEqual('/solutions/capabilities');
     });
   }));
 

@@ -39,7 +39,7 @@ router.get('/solutions', (req, res) => {
   res.render('pages/browse-solutions/template.njk', addConfig(context));
 });
 
-router.get('/solutions/capability-selector', async (req, res, next) => {
+router.get('/solutions/capabilities', async (req, res, next) => {
   logger.info('navigating to capability-selector page');
   try {
     const context = await getCapabilitiesContext();

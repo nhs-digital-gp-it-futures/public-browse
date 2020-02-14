@@ -7,7 +7,8 @@ export const getCapabilitiesContext = async () => {
 
   if (response.data) {
     logger.info('Solution capabilities returned');
-    return createCapabilitySelectorPageContext({ capabilities: response.data });
+    const { capabilities } = response.data;
+    return createCapabilitySelectorPageContext({ capabilities });
   }
   throw new Error('No data returned');
 };
