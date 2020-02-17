@@ -60,7 +60,8 @@ describe('capabilities-selector page', () => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {
-      const capabilitiesSelectorButton = $('[data-test-id="capabilities-selector-continue-button"] a');
+      const capabilitiesSelectorButton = $('[data-test-id="capabilities-selector-continue-button"]');
+
       expect(capabilitiesSelectorButton.length).toEqual(1);
       expect(capabilitiesSelectorButton.text().trim()).toEqual('Continue');
     });
