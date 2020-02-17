@@ -16,6 +16,12 @@ const mockFoundationSolutionsContext = {
   solutions: [],
 };
 
+const mockFilteredSolutions = {
+  pageTitle: 'Custom',
+  pageDescription: 'These are solutions which match the selected capabilities',
+  solutions: [],
+};
+
 const mockGetPublicSolutionById = {
   solutionHeader: {
     id: '100000-001',
@@ -181,12 +187,25 @@ describe('routes', () => {
     });
   });
 
-  describe('Error handler', () => {
-    afterEach(() => {
-      solutionListPageContext.getSolutionListPageContext.mockReset();
-      viewSolutionController.getPublicSolutionById.mockReset();
+  describe('POST /solutions/custom', () => {
+    it('should return the correct status and text if there is no error', () => {
+      solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
+      const capabilities = ['C5', 'C21', 'C28'];
+      const app = new App().createApp();
+      app.use('/', routes);
+      return request(app)
+        .post('/solutions/custom')
+        .send(capabilities)
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="general-page-title')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+        });
     });
+  });
 
+  describe('Error handler', () => {
     it('should return error page if there is an error from /solutions/:filterType route', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
         .mockImplementation(() => Promise.reject());
@@ -198,6 +217,7 @@ describe('routes', () => {
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          solutionListPageContext.getSolutionListPageContext.mockReset();
         });
     });
 
@@ -212,6 +232,24 @@ describe('routes', () => {
         .then((res) => {
           expect(res.text.includes('data-test-id="dashboard"')).toEqual(false);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          viewSolutionController.getPublicSolutionById.mockReset();
+        });
+    });
+
+    it('should return error page if there is an error from the post to /solutions/custom route', () => {
+      solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
+        .mockImplementation(() => Promise.reject(new Error('Error has occurred')));
+      const capabilities = ['C5', 'C21', 'C28'];
+      const app = new App().createApp();
+      app.use('/', routes);
+      return request(app)
+        .post('/solutions/custom')
+        .send({ capabilities })
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="general-page-title')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          solutionListPageContext.getSolutionsForSelectedCapabilities.mockReset();
         });
     });
   });

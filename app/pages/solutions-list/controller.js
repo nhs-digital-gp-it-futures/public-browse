@@ -12,9 +12,28 @@ const getSolutionListData = async (filterType) => {
   throw new Error(`No endpoint found for filter type: ${filterType}`);
 };
 
+const transformCapabilities = ({ capabilitiesSelected }) => {
+  const transformed = capabilitiesSelected.reduce((acc, capabilityId) => {
+    acc.push({ reference: capabilityId });
+    return acc;
+  }, []);
+  return {
+    capabilities: transformed,
+  };
+};
+
 export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
   const solutionsData = await getSolutionListData(filterType);
 
-  return createSolutionListPageContext(filterType, solutionListManifest, solutionsData);
+  return createSolutionListPageContext({ filterType, solutionListManifest, solutionsData });
+};
+
+export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
+  const solutionListManifest = new ManifestProvider().getSolutionListManifest('custom');
+  const transformedCapabilities = transformCapabilities({ capabilitiesSelected });
+  const solutionsData = await new ApiProvider()
+    .postSelectedCapabilities({ transformedCapabilities });
+
+  return createSolutionListPageContext({ filterType: 'custom', solutionListManifest, solutionsData: solutionsData.data.solutions });
 };
