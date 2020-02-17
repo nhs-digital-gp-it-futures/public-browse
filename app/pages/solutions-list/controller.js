@@ -33,7 +33,7 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
   const solutionListManifest = new ManifestProvider().getSolutionListManifest('custom');
   const transformedCapabilities = transformCapabilities({ capabilitiesSelected });
   const solutionsData = await new ApiProvider()
-    .postSelectedCapabilities(transformedCapabilities);
+    .postSelectedCapabilities({ transformedCapabilities });
 
   return createSolutionListPageContext({ filterType: 'custom', solutionListManifest, solutionsData: solutionsData.data.solutions });
 };
