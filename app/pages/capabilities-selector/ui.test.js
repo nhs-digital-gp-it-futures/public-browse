@@ -69,7 +69,7 @@ test('should render capabilities-selector component', async (t) => {
 test('should render continue button', async (t) => {
   await pageSetup(t);
 
-  const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"]');
+  const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"] button');
 
   await t
     .expect(continueButton.exists).ok()
