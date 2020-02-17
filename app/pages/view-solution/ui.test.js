@@ -281,7 +281,7 @@ test('Integrations section should be rendered', async (t) => {
     .expect(integrationsSection.exists).ok()
     .expect(await extractInnerText(integrationsSection.find('h3'))).eql('Integrations')
     .expect(await extractInnerText(documentLink)).eql('View NHS assured integrations')
-    .expect(await documentLink.find('a').getAttribute('href')).eql('document/integration.pdf')
+    .expect(await documentLink.find('a').getAttribute('href')).eql(`${publicSolutionWithData.id}/document/integration.pdf`)
     .expect(await extractInnerText(integrationsSection.find('[data-test-id="view-question-data-text-link-supplier-integrations"]'))).eql('http://www.link.com');
 });
 
@@ -706,7 +706,7 @@ test('Roadmap section should be rendered', async (t) => {
 
     .expect(documentLink.exists).ok()
     .expect(await extractInnerText(documentLink.find('[data-test-id="view-question-data-link-document-link"]'))).eql('View roadmap')
-    .expect(documentLink.find('[data-test-id="view-question-data-link-document-link"] > a').getAttribute('href')).eql('document/roadmap.pdf');
+    .expect(documentLink.find('[data-test-id="view-question-data-link-document-link"] > a').getAttribute('href')).eql(`${publicSolutionWithData.id}/document/roadmap.pdf`);
 });
 
 test('Learn More section should be rendered', async (t) => {
@@ -721,5 +721,5 @@ test('Learn More section should be rendered', async (t) => {
 
     .expect(documentLink.exists).ok()
     .expect(await extractInnerText(documentLink)).eql('Download PDF')
-    .expect(documentLink.getAttribute('href')).eql('document/solution.pdf');
+    .expect(documentLink.getAttribute('href')).eql(`${publicSolutionWithData.id}/document/solution.pdf`);
 });

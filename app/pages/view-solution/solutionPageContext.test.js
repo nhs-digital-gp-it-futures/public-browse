@@ -48,7 +48,7 @@ describe('createViewSolutionPageContext', () => {
       sections: {
         'some-section': {
           answers: {
-            'document-link': 'document/document.pdf',
+            'document-link': '100000-001/document/document.pdf',
           },
         },
       },
@@ -77,7 +77,7 @@ describe('createViewSolutionPageContext', () => {
         'some-section': {
           answers: {
             'an-answer': true,
-            'document-link': 'document/document.pdf',
+            'document-link': '100000-001/document/document.pdf',
           },
         },
       },
@@ -107,7 +107,7 @@ describe('createViewSolutionPageContext', () => {
         'first-section': {
           answers: {
             'an-answer': true,
-            'document-link': 'document/document.pdf',
+            'document-link': '100000-001/document/document.pdf',
           },
         },
         'second-section': {
@@ -120,7 +120,7 @@ describe('createViewSolutionPageContext', () => {
         },
         'fourth-section': {
           answers: {
-            'document-link': 'document/document.pdf',
+            'document-link': '100000-001/document/document.pdf',
           },
         },
       },
