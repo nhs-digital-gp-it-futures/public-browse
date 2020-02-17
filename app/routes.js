@@ -81,7 +81,7 @@ router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
   }
 });
 
-router.get('/solutions/:filterType/:solutionId/document/:documentName', async (req, res) => {
+router.get('/solution/:solutionId/document/:documentName', async (req, res) => {
   const { solutionId, documentName } = req.params;
   logger.info(`downloading Solution ${solutionId} document ${documentName}`);
   const response = await getDocument({ solutionId, documentName });
