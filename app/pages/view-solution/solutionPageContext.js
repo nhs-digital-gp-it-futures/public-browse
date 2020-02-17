@@ -12,7 +12,7 @@ export const createViewSolutionPageContext = ({ solutionData }) => ({
         const answerSection = {
           answers: {
             ...sectionValue.answers,
-            'document-link': `document/${sectionValue.answers['document-name']}`,
+            'document-link': `${solutionData.id}/document/${sectionValue.answers['document-name']}`,
           },
         };
         delete answerSection.answers['document-name'];
