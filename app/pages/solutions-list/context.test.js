@@ -265,7 +265,7 @@ describe('createSolutionListPageContext - All', () => {
   });
 });
 
-describe('createSolutionListPageContext { filterType: - Foundation', () => {
+describe('createSolutionListPageContext - Foundation', () => {
   it('should create a context for the solution list page', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
