@@ -27,7 +27,7 @@ export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
   const solutionsData = await getSolutionListData(filterType);
 
-  return createSolutionListPageContext(filterType, solutionListManifest, solutionsData);
+  return createSolutionListPageContext({ filterType, solutionListManifest, solutionsData });
 };
 
 export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
@@ -38,3 +38,4 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
 
   return createSolutionListPageContext({ filterType: 'custom', solutionListManifest, solutionsData: solutionsData.data.solutions });
 };
+

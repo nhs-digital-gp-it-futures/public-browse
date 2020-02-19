@@ -77,7 +77,7 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext('all', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -125,7 +125,7 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext('all', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -166,7 +166,7 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext('all', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -205,7 +205,7 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext('all', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -241,7 +241,7 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext('all', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -259,7 +259,7 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext('all', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -336,7 +336,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       description: foundationPageDescription,
     };
 
-    const context = createSolutionListPageContext('foundation', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -384,7 +384,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       description: foundationPageDescription,
     };
 
-    const context = createSolutionListPageContext('foundation', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -425,7 +425,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       description: foundationPageDescription,
     };
 
-    const context = createSolutionListPageContext('foundation', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -464,7 +464,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       description: foundationPageDescription,
     };
 
-    const context = createSolutionListPageContext('foundation', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -500,7 +500,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       description: foundationPageDescription,
     };
 
-    const context = createSolutionListPageContext('foundation', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
@@ -518,7 +518,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       description: foundationPageDescription,
     };
 
-    const context = createSolutionListPageContext('foundation', solutionListManifest, solutionsData);
+    const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
   });
