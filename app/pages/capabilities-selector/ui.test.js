@@ -69,11 +69,10 @@ test('should render capabilities-selector component', async (t) => {
 test('should render continue button', async (t) => {
   await pageSetup(t);
 
-  const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"]');
+  const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"] button');
 
   await t
     .expect(continueButton.exists).ok()
-    .expect(await extractInnerText(continueButton.find('a'))).eql('Continue')
-    .expect(continueButton.find('a').hasClass('nhsuk-button--secondary')).ok()
-    .expect(continueButton.find('a').getAttribute('href')).eql('/');
+    .expect(await extractInnerText(continueButton)).eql('Continue')
+    .expect(continueButton.hasClass('nhsuk-button--secondary')).ok();
 });

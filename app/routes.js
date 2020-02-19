@@ -1,6 +1,6 @@
 import express from 'express';
 import { getPublicSolutionById, getDocument } from './pages/view-solution/controller';
-import { getSolutionListPageContext } from './pages/solutions-list/controller';
+import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
@@ -53,7 +53,13 @@ router.get('/solutions/:filterType', withCatch(async (req, res) => {
   res.render('pages/solutions-list/template.njk', addConfig(context));
 }));
 
-router.get('/solutions/:filterType/:solutionId', withCatch(async (req, res) => {
+router.post('/solutions/custom', withCatch(async (req, res, next) => {
+  const capabilitiesSelected = req.body.capabilities;
+  const context = await getSolutionsForSelectedCapabilities({ capabilitiesSelected });
+  res.render('pages/solutions-list/template.njk', addConfig(context));
+}));
+
+router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
   const { solutionId } = req.params;
   logger.info(`navigating to Solution ${solutionId} page`);
   const context = await getPublicSolutionById({ solutionId });
