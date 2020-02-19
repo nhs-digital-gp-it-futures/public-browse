@@ -53,13 +53,13 @@ router.get('/solutions/:filterType', withCatch(async (req, res) => {
   res.render('pages/solutions-list/template.njk', addConfig(context));
 }));
 
-router.post('/solutions/custom', withCatch(async (req, res, next) => {
+router.post('/solutions/custom', withCatch(async (req, res) => {
   const capabilitiesSelected = req.body.capabilities;
   const context = await getSolutionsForSelectedCapabilities({ capabilitiesSelected });
   res.render('pages/solutions-list/template.njk', addConfig(context));
 }));
 
-router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
+router.get('/solutions/:filterType/:solutionId', withCatch(async (req, res) => {
   const { solutionId } = req.params;
   logger.info(`navigating to Solution ${solutionId} page`);
   const context = await getPublicSolutionById({ solutionId });
