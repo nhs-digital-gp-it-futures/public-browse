@@ -8,6 +8,7 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { errorHandler } from './pages/error/errorHandler';
 import logger from './logger';
 import config from './config';
+import { withCatch } from './helpers/routerHelper';
 
 const router = express.Router();
 
@@ -39,37 +40,25 @@ router.get('/solutions', (req, res) => {
   res.render('pages/browse-solutions/template.njk', addConfig(context));
 });
 
-router.get('/solutions/capabilities-selector', async (req, res, next) => {
+router.get('/solutions/capabilities-selector', withCatch(async (req, res) => {
   logger.info('navigating to capabilities-selector page');
-  try {
-    const context = await getCapabilitiesContext();
-    res.render('pages/capabilities-selector/template.njk', addConfig(context));
-  } catch (err) {
-    next(err);
-  }
-});
+  const context = await getCapabilitiesContext();
+  res.render('pages/capabilities-selector/template.njk', addConfig(context));
+}));
 
-router.get('/solutions/:filterType', async (req, res, next) => {
+router.get('/solutions/:filterType', withCatch(async (req, res) => {
   const { filterType } = req.params;
   logger.info(`filter type '${filterType}' applied`);
-  try {
-    const context = await getSolutionListPageContext({ filterType });
-    res.render('pages/solutions-list/template.njk', addConfig(context));
-  } catch (err) {
-    next(err);
-  }
-});
+  const context = await getSolutionListPageContext({ filterType });
+  res.render('pages/solutions-list/template.njk', addConfig(context));
+}));
 
-router.get('/solutions/:filterType/:solutionId', async (req, res, next) => {
+router.get('/solutions/:filterType/:solutionId', withCatch(async (req, res) => {
   const { solutionId } = req.params;
   logger.info(`navigating to Solution ${solutionId} page`);
-  try {
-    const context = await getPublicSolutionById({ solutionId });
-    res.render('pages/view-solution/template.njk', addConfig(context));
-  } catch (err) {
-    next(err);
-  }
-});
+  const context = await getPublicSolutionById({ solutionId });
+  res.render('pages/view-solution/template.njk', addConfig(context));
+}));
 
 router.get('/solutions/:filterType/:solutionId/document/:documentName', async (req, res) => {
   const { solutionId, documentName } = req.params;
