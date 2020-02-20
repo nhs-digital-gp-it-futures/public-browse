@@ -13,7 +13,7 @@ const pageSetup = async (
   t, responseStatus = 200, responseBody = aFoundationSolutionList,
 ) => {
   await mocks(responseStatus, responseBody);
-  await t.navigateTo('http://localhost:1234/solutions/foundation');
+  await t.navigateTo('http://localhost:1234/solutions/foundation/selected');
 };
 
 fixture('Show Foundation Solution List Page')
@@ -92,7 +92,7 @@ test('should navigate to the foundation solution view page when clicking on the 
   await t
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
-    .expect(getLocation()).contains('/solutions/foundation/S1');
+    .expect(getLocation()).contains('/solutions/foundation/selected/S1');
 });
 
 test('should render the error page when receiving an error from the foundation solution list api endpoint', async (t) => {
