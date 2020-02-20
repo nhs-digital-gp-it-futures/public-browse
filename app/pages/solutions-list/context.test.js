@@ -6,11 +6,12 @@ const solutionPageDescription = 'These are the Solutions on the GP IT Futures fr
 const foundationPageTitle = 'Foundation Solutions results';
 const foundationPageDescription = 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.';
 
-describe('createSolutionListPageContext - All', () => {
+describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkUrl: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -21,7 +22,7 @@ describe('createSolutionListPageContext - All', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/all/00001',
+          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
         },
         {
           id: '00002',
@@ -32,7 +33,7 @@ describe('createSolutionListPageContext - All', () => {
             'Some other capability',
           ],
           isFoundation: false,
-          viewSolutionUrl: '/solutions/all/00002',
+          viewSolutionUrl: '/solutions/capabilities-selector/selected/00002?capabilities=C1',
         },
       ],
     };
@@ -77,7 +78,12 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      query: 'capabilities=C1',
+    });
 
     expect(context).toEqual(expectedContext);
   });
@@ -86,6 +92,7 @@ describe('createSolutionListPageContext - All', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkUrl: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -96,7 +103,7 @@ describe('createSolutionListPageContext - All', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/all/00001',
+          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
         },
       ],
     };
@@ -125,7 +132,12 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      query: 'capabilities=C1',
+    });
 
     expect(context).toEqual(expectedContext);
   });
@@ -134,6 +146,7 @@ describe('createSolutionListPageContext - All', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkUrl: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -142,7 +155,7 @@ describe('createSolutionListPageContext - All', () => {
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/all/00001',
+          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
         },
       ],
     };
@@ -166,7 +179,12 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      query: 'capabilities=C1',
+    });
 
     expect(context).toEqual(expectedContext);
   });
@@ -175,6 +193,7 @@ describe('createSolutionListPageContext - All', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkUrl: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -182,7 +201,7 @@ describe('createSolutionListPageContext - All', () => {
           summary: 'Some solution summary',
           supplierName: 'Some supplier',
           isFoundation: true,
-          viewSolutionUrl: '/solutions/all/00001',
+          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
         },
       ],
     };
@@ -205,7 +224,12 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      query: 'capabilities=C1',
+    });
 
     expect(context).toEqual(expectedContext);
   });
@@ -214,6 +238,7 @@ describe('createSolutionListPageContext - All', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkUrl: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -221,7 +246,7 @@ describe('createSolutionListPageContext - All', () => {
           summary: 'Some solution summary',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/all/00001',
+          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
         },
       ],
     };
@@ -241,7 +266,12 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      query: 'capabilities=C1',
+    });
 
     expect(context).toEqual(expectedContext);
   });
@@ -250,6 +280,7 @@ describe('createSolutionListPageContext - All', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
+      backLinkUrl: '/solutions/capabilities-selector',
       solutions: [],
     };
     const solutionsData = [];
@@ -259,7 +290,12 @@ describe('createSolutionListPageContext - All', () => {
       description: solutionPageDescription,
     };
 
-    const context = createSolutionListPageContext({ filterType: 'all', solutionListManifest, solutionsData });
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      query: 'capabilities=C1',
+    });
 
     expect(context).toEqual(expectedContext);
   });
@@ -270,6 +306,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkUrl: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -280,7 +317,7 @@ describe('createSolutionListPageContext - Foundation', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/00001',
+          viewSolutionUrl: '/solutions/foundation/selected/00001',
         },
         {
           id: '00002',
@@ -291,7 +328,7 @@ describe('createSolutionListPageContext - Foundation', () => {
             'Some other capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/00002',
+          viewSolutionUrl: '/solutions/foundation/selected/00002',
         },
       ],
     };
@@ -345,6 +382,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkUrl: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -355,7 +393,7 @@ describe('createSolutionListPageContext - Foundation', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/00001',
+          viewSolutionUrl: '/solutions/foundation/selected/00001',
         },
       ],
     };
@@ -393,6 +431,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkUrl: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -401,7 +440,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/00001',
+          viewSolutionUrl: '/solutions/foundation/selected/00001',
         },
       ],
     };
@@ -434,6 +473,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkUrl: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -441,7 +481,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           summary: 'Some solution summary',
           supplierName: 'Some supplier',
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/00001',
+          viewSolutionUrl: '/solutions/foundation/selected/00001',
         },
       ],
     };
@@ -473,6 +513,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkUrl: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -480,7 +521,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           summary: 'Some solution summary',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/00001',
+          viewSolutionUrl: '/solutions/foundation/selected/00001',
         },
       ],
     };
@@ -509,8 +550,10 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
+      backLinkUrl: '/solutions',
       solutions: [],
     };
+
     const solutionsData = [];
 
     const solutionListManifest = {
