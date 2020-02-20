@@ -37,7 +37,7 @@ describe('browse solutions page', () => {
 
       expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual(content.foundationPromoHeading);
       expect(foundationSolutionsPromo.find('p').text().trim()).toEqual(content.foundationPromoDescription);
-      expect(foundationSolutionsPromo.find('a').attr('href')).toEqual('/solutions/foundation');
+      expect(foundationSolutionsPromo.find('a').attr('href')).toEqual('/solutions/foundation/selected');
     });
   }));
 
