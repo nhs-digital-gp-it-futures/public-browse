@@ -129,7 +129,7 @@ describe('routes', () => {
     });
   });
 
-  describe('GET /solutions/:filterType/selected', () => {
+  describe('GET /solutions/:filterType.:capabilities?', () => {
     afterEach(() => {
       solutionListPageContext.getSolutionListPageContext.mockReset();
     });
@@ -141,7 +141,7 @@ describe('routes', () => {
       app.use('/', routes);
 
       return request(app)
-        .get('/solutions/foundation/selected')
+        .get('/solutions/foundation')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(true);
@@ -150,13 +150,27 @@ describe('routes', () => {
     });
 
     it('should return the correct status and text if there is no error for capabilities-selector', () => {
+      capabilitiesContext.getCapabilitiesContext = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+      const app = new App().createApp();
+      app.use('/', routes);
+      return request(app)
+        .get('/solutions/capabilities-selector')
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+        });
+    });
+
+    it('should return the correct status and text if there is no error for capabilities-selector with capabilities', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
       const app = new App().createApp();
       app.use('/', routes);
 
       return request(app)
-        .get('/solutions/capabilities-selector/selected?capabilities=C1')
+        .get('/solutions/capabilities-selector.C1')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(true);
@@ -165,7 +179,7 @@ describe('routes', () => {
     });
   });
 
-  describe('GET /solutions/:filterType/selected/:solutionId', () => {
+  describe('GET /solutions/:filterType.:capabilities?/:solutionId', () => {
     afterEach(() => {
       viewSolutionController.getPublicSolutionById.mockReset();
     });
@@ -177,26 +191,25 @@ describe('routes', () => {
       app.use('/', routes);
 
       return request(app)
-        .get('/solutions/foundation/selected/1')
+        .get('/solutions/foundation/1')
         .expect(200)
         .then((res) => {
           expect(res.text.includes(`<h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">${mockGetPublicSolutionById.name}</h1>`)).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });
     });
-  });
 
-  describe('GET /solutions/capabilities-selector', () => {
-    it('should return the correct status and text if there is no error', () => {
-      capabilitiesContext.getCapabilitiesContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+    it('should return the correct status and text if there is no error with capabilities', () => {
+      viewSolutionController.getPublicSolutionById = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockGetPublicSolutionById));
       const app = new App().createApp();
       app.use('/', routes);
+
       return request(app)
-        .get('/solutions/capabilities-selector')
+        .get('/solutions/capabilities-selector.C1/1')
         .expect(200)
         .then((res) => {
-          expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);
+          expect(res.text.includes(`<h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">${mockGetPublicSolutionById.name}</h1>`)).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });
     });
@@ -219,13 +232,13 @@ describe('routes', () => {
   });
 
   describe('Error handler', () => {
-    it('should return error page if there is an error from /solutions/:filterType/selected route', () => {
+    it('should return error page if there is an error from /solutions/:filterType.:capabilities? route', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
         .mockImplementation(() => Promise.reject());
       const app = new App().createApp();
       app.use('/', routes);
       return request(app)
-        .get('/solutions/foundation/selected')
+        .get('/solutions/foundation')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
@@ -234,7 +247,22 @@ describe('routes', () => {
         });
     });
 
-    it('should return error page if there is an error from the /solutions/:filterType/selected/:solutionId route', () => {
+    it('should return error page if there is an error from /solutions/:filterType.:capabilities? route with capabilities', () => {
+      solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
+        .mockImplementation(() => Promise.reject());
+      const app = new App().createApp();
+      app.use('/', routes);
+      return request(app)
+        .get('/solutions/capabilities-selector.C1')
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          solutionListPageContext.getSolutionsForSelectedCapabilities.mockReset();
+        });
+    });
+
+    it('should return error page if there is an error from the /solutions/:filterType.:capabilities?/:solutionId route', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
         .mockImplementation(() => Promise.reject());
       const app = new App().createApp();

@@ -1,4 +1,4 @@
-export const createViewSolutionPageContext = ({ solutionData, filterType, query }) => ({
+export const createViewSolutionPageContext = ({ solutionData }) => ({
   solutionHeader: {
     id: solutionData.id,
     name: solutionData.name,
@@ -6,9 +6,6 @@ export const createViewSolutionPageContext = ({ solutionData, filterType, query 
     isFoundation: solutionData.isFoundation,
     lastUpdated: solutionData.lastUpdated,
   },
-  solutionBackLinkUrl: filterType === 'capabilities-selector'
-    ? `/solutions/capabilities-selector/selected?${query}`
-    : '/solutions/foundation/selected',
   sections: Object.fromEntries(
     Object.entries(solutionData.sections).map(([key, sectionValue]) => {
       if (sectionValue.answers && sectionValue.answers['document-name']) {

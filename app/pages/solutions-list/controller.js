@@ -26,18 +26,19 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
   const solutionsData = await getSolutionListData(filterType);
-
-  return createSolutionListPageContext({ filterType, solutionListManifest, solutionsData });
+  return createSolutionListPageContext({
+    filterType,
+    solutionListManifest,
+    solutionsData,
+  });
 };
 
 export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
-  const query = `capabilities=${capabilitiesSelected.join('+')}`;
   const solutionListManifest = new ManifestProvider().getSolutionListManifest('capabilities-selector');
   const transformedCapabilities = transformCapabilities({ capabilitiesSelected });
   const solutionsData = await new ApiProvider()
     .postSelectedCapabilities({ selectedCapabilities: transformedCapabilities });
-
   return createSolutionListPageContext({
-    filterType: 'capabilities-selector', solutionListManifest, solutionsData: solutionsData.data.solutions, query,
+    filterType: 'capabilities-selector', solutionListManifest, solutionsData: solutionsData.data.solutions, capabilitiesSelected,
   });
 };

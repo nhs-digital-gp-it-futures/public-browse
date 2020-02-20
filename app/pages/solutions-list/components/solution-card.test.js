@@ -43,7 +43,7 @@ describe('solution-card', () => {
       params: {
         solution: {
           id: 'S1',
-          viewSolutionUrl: '/solutions/all/S1',
+          viewSolutionUrl: '/solutions/foundation/S1',
         },
       },
     };
@@ -52,7 +52,7 @@ describe('solution-card', () => {
       const viewSolutionLink = $('[data-test-id="solution-card-view-link"]');
       expect(viewSolutionLink.length).toEqual(1);
       expect(viewSolutionLink.text().trim()).toEqual('View this solution');
-      expect(viewSolutionLink.find('a').attr('href')).toEqual(`/solutions/all/${context.params.solution.id}`);
+      expect(viewSolutionLink.find('a').attr('href')).toEqual(`/solutions/foundation/${context.params.solution.id}`);
     });
   }));
 
@@ -96,14 +96,14 @@ describe('solution-card', () => {
           solution: {
             id: '0001',
             name: 'some solution name',
-            viewSolutionUrl: '/solutions/all/0001',
+            viewSolutionUrl: '/solutions/foundation/0001',
           },
         },
       };
 
       harness.request(context, ($) => {
         const solutionName = $('[data-test-id="solution-card-name"]');
-        expect(solutionName.find('a').attr('href')).toEqual('/solutions/all/0001');
+        expect(solutionName.find('a').attr('href')).toEqual('/solutions/foundation/0001');
       });
     }));
   });

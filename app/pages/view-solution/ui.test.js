@@ -23,7 +23,7 @@ const mocks = (existingData) => {
 
 const pageSetup = async (t, existingData = false) => {
   mocks(existingData);
-  await t.navigateTo(`${clientLocalhost}/solutions/foundation/selected/100000-001`);
+  await t.navigateTo(`${clientLocalhost}/solutions/foundation/100000-001`);
 };
 
 fixture('Show view solution page - heading components');

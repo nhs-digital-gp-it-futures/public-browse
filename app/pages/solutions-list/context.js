@@ -1,7 +1,9 @@
-const createSolutionsContext = (filterType, solutions, query) => solutions.map((solution) => {
-  const viewSolutionUrl = filterType === 'capabilities-selector'
-    ? `/solutions/capabilities-selector/selected/${solution.id}?${query}`
-    : `/solutions/${filterType}/selected/${solution.id}`;
+const createSolutionsContext = ({
+  filterType,
+  solutions,
+  capabilitiesSelected,
+}) => solutions.map((solution) => {
+  const viewSolutionUrl = `/solutions/${filterType}${capabilitiesSelected ? `.${capabilitiesSelected}` : ''}/${solution.id}`;
   return ({
     id: solution.id,
     name: solution.name,
@@ -14,12 +16,10 @@ const createSolutionsContext = (filterType, solutions, query) => solutions.map((
 });
 
 export const createSolutionListPageContext = ({
-  filterType, solutionListManifest, solutionsData, query,
+  filterType, solutionListManifest, solutionsData, capabilitiesSelected,
 }) => ({
+  backLinkPath: `/solutions${filterType === 'capabilities-selector' ? '/capabilities-selector' : ''}`,
   pageTitle: solutionListManifest.title,
   pageDescription: solutionListManifest.description,
-  solutions: createSolutionsContext(filterType, solutionsData, query),
-  backLinkUrl: filterType === 'capabilities-selector'
-    ? '/solutions/capabilities-selector'
-    : '/solutions',
+  solutions: createSolutionsContext({ filterType, solutions: solutionsData, capabilitiesSelected }),
 });

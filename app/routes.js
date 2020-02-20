@@ -40,46 +40,43 @@ router.get('/solutions', (req, res) => {
   res.render('pages/browse-solutions/template.njk', addConfig(context));
 });
 
-router.get('/solutions/capabilities-selector', withCatch(async (req, res) => {
-  logger.info('navigating to capabilities-selector page');
-  const context = await getCapabilitiesContext();
-  res.render('pages/capabilities-selector/template.njk', addConfig(context));
-}));
-
 router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
   let capabilitiesSelected = req.body.capabilities;
   if (!Array.isArray(capabilitiesSelected)) capabilitiesSelected = [capabilitiesSelected];
-  const queryParams = `?capabilities=${capabilitiesSelected.join('+')}`;
-  res.redirect(`/solutions/capabilities-selector/selected${queryParams}`);
+  const capabilitiesParam = capabilitiesSelected.join('+');
+  res.redirect(`/solutions/capabilities-selector.${capabilitiesParam}`);
 }));
 
-router.get('/solutions/:filterType/selected', withCatch(async (req, res) => {
-  const { filterType } = req.params;
-  logger.info(`filter type '${filterType}' applied`);
+router.get('/solutions/:filterType.:capabilities?', withCatch(async (req, res) => {
+  const { filterType, capabilities } = req.params;
   if (filterType === 'capabilities-selector') {
-    if (req.query.capabilities) {
-      const capabilities = req.query.capabilities.split(' ');
+    if (capabilities) {
+      const formattedCapabilities = capabilities.split('+');
       const context = await getSolutionsForSelectedCapabilities({
-        capabilitiesSelected: capabilities,
+        capabilitiesSelected: formattedCapabilities,
       });
+      logger.info(`navigating to capabilities-selector (with ${capabilities} selected) page`);
       res.render('pages/solutions-list/template.njk', addConfig(context));
-    } else throw new Error('No capabilities selected');
+    } else {
+      const context = await getCapabilitiesContext();
+      logger.info('navigating to capabilities-selector page');
+      res.render('pages/capabilities-selector/template.njk', addConfig(context));
+    }
   } else {
     const context = await getSolutionListPageContext({ filterType });
+    logger.info(`navigating to ${filterType} page`);
     res.render('pages/solutions-list/template.njk', addConfig(context));
   }
 }));
 
-router.get('/solutions/:filterType/selected/:solutionId', withCatch(async (req, res) => {
-  let query;
-  if (req.query.capabilities) query = `capabilities=${req.query.capabilities.replace(' ', '+')}`;
-  const { solutionId, filterType } = req.params;
+router.get('/solutions/:filterType.:capabilities?/:solutionId', withCatch(async (req, res) => {
+  const { solutionId } = req.params;
   logger.info(`navigating to Solution ${solutionId} page`);
-  const context = await getPublicSolutionById({ solutionId, filterType, query });
+  const context = await getPublicSolutionById({ solutionId });
   res.render('pages/view-solution/template.njk', addConfig(context));
 }));
 
-router.get('/solutions/:filterType/selected/:solutionId/document/:documentName', async (req, res) => {
+router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
   const { solutionId, documentName } = req.params;
   logger.info(`downloading Solution ${solutionId} document ${documentName}`);
   const response = await getDocument({ solutionId, documentName });

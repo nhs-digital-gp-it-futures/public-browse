@@ -32,7 +32,7 @@ describe('error page', () => {
     const context = {};
 
     harness.request(context, ($) => {
-      const homepageBackLink = $('[data-test-id="go-to-all-solutions-link"]');
+      const homepageBackLink = $('[data-test-id="go-to-capabilities-selector-link"]');
       expect(homepageBackLink.length).toEqual(1);
       expect(homepageBackLink.text().trim()).toEqual('Go to Select Capabilities');
       expect($(homepageBackLink).find('a').attr('href')).toEqual('/solutions/capabilities-selector');

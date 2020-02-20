@@ -11,7 +11,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
-      backLinkUrl: '/solutions/capabilities-selector',
+      backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -22,7 +22,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
+          viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
         },
         {
           id: '00002',
@@ -33,7 +33,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
             'Some other capability',
           ],
           isFoundation: false,
-          viewSolutionUrl: '/solutions/capabilities-selector/selected/00002?capabilities=C1',
+          viewSolutionUrl: '/solutions/capabilities-selector.C1/00002',
         },
       ],
     };
@@ -82,7 +82,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      query: 'capabilities=C1',
+      capabilitiesSelected: 'C1',
     });
 
     expect(context).toEqual(expectedContext);
@@ -92,7 +92,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
-      backLinkUrl: '/solutions/capabilities-selector',
+      backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -103,7 +103,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
+          viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
         },
       ],
     };
@@ -136,7 +136,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      query: 'capabilities=C1',
+      capabilitiesSelected: 'C1',
     });
 
     expect(context).toEqual(expectedContext);
@@ -146,7 +146,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
-      backLinkUrl: '/solutions/capabilities-selector',
+      backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -155,7 +155,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
+          viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
         },
       ],
     };
@@ -183,7 +183,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      query: 'capabilities=C1',
+      capabilitiesSelected: 'C1',
     });
 
     expect(context).toEqual(expectedContext);
@@ -193,7 +193,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
-      backLinkUrl: '/solutions/capabilities-selector',
+      backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -201,7 +201,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
           summary: 'Some solution summary',
           supplierName: 'Some supplier',
           isFoundation: true,
-          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
+          viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
         },
       ],
     };
@@ -228,7 +228,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      query: 'capabilities=C1',
+      capabilitiesSelected: 'C1',
     });
 
     expect(context).toEqual(expectedContext);
@@ -238,7 +238,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
-      backLinkUrl: '/solutions/capabilities-selector',
+      backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -246,7 +246,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
           summary: 'Some solution summary',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/capabilities-selector/selected/00001?capabilities=C1',
+          viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
         },
       ],
     };
@@ -270,7 +270,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      query: 'capabilities=C1',
+      capabilitiesSelected: 'C1',
     });
 
     expect(context).toEqual(expectedContext);
@@ -280,7 +280,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
-      backLinkUrl: '/solutions/capabilities-selector',
+      backLinkPath: '/solutions/capabilities-selector',
       solutions: [],
     };
     const solutionsData = [];
@@ -294,7 +294,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      query: 'capabilities=C1',
+      capabilitiesSelected: 'C1',
     });
 
     expect(context).toEqual(expectedContext);
@@ -306,7 +306,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
-      backLinkUrl: '/solutions',
+      backLinkPath: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -317,7 +317,7 @@ describe('createSolutionListPageContext - Foundation', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/selected/00001',
+          viewSolutionUrl: '/solutions/foundation/00001',
         },
         {
           id: '00002',
@@ -328,7 +328,7 @@ describe('createSolutionListPageContext - Foundation', () => {
             'Some other capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/selected/00002',
+          viewSolutionUrl: '/solutions/foundation/00002',
         },
       ],
     };
@@ -382,7 +382,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
-      backLinkUrl: '/solutions',
+      backLinkPath: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -393,7 +393,7 @@ describe('createSolutionListPageContext - Foundation', () => {
             'Some capability',
           ],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/selected/00001',
+          viewSolutionUrl: '/solutions/foundation/00001',
         },
       ],
     };
@@ -431,7 +431,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
-      backLinkUrl: '/solutions',
+      backLinkPath: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -440,7 +440,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/selected/00001',
+          viewSolutionUrl: '/solutions/foundation/00001',
         },
       ],
     };
@@ -473,7 +473,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
-      backLinkUrl: '/solutions',
+      backLinkPath: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -481,7 +481,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           summary: 'Some solution summary',
           supplierName: 'Some supplier',
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/selected/00001',
+          viewSolutionUrl: '/solutions/foundation/00001',
         },
       ],
     };
@@ -513,7 +513,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
-      backLinkUrl: '/solutions',
+      backLinkPath: '/solutions',
       solutions: [
         {
           id: '00001',
@@ -521,7 +521,7 @@ describe('createSolutionListPageContext - Foundation', () => {
           summary: 'Some solution summary',
           capabilities: [],
           isFoundation: true,
-          viewSolutionUrl: '/solutions/foundation/selected/00001',
+          viewSolutionUrl: '/solutions/foundation/00001',
         },
       ],
     };
@@ -550,7 +550,7 @@ describe('createSolutionListPageContext - Foundation', () => {
     const expectedContext = {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
-      backLinkUrl: '/solutions',
+      backLinkPath: '/solutions',
       solutions: [],
     };
 

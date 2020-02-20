@@ -18,7 +18,7 @@ const pageSetup = async (
   t, responseStatus = 200, responseBody = aCustomSolutionList,
 ) => {
   await mocks(responseStatus, responseBody);
-  await t.navigateTo('http://localhost:1234/solutions/capabilities-selector/selected?capabilities=C1');
+  await t.navigateTo('http://localhost:1234/solutions/capabilities-selector.C1');
 };
 
 fixture('Show Capability Selector Solution List Page')
@@ -96,7 +96,7 @@ test('should navigate to the solution view page when clicking on the title of th
   await t
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
-    .expect(getLocation()).contains('/solutions/capabilities-selector/selected/S1')
+    .expect(getLocation()).contains('/solutions/capabilities-selector.C1/S1')
     .expect(Selector('[data-test-id="view-solution-header"]').exists).ok();
 });
 
