@@ -46,27 +46,40 @@ router.get('/solutions/capabilities-selector', withCatch(async (req, res) => {
   res.render('pages/capabilities-selector/template.njk', addConfig(context));
 }));
 
-router.get('/solutions/:filterType', withCatch(async (req, res) => {
+router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
+  let capabilitiesSelected = req.body.capabilities;
+  if (!Array.isArray(capabilitiesSelected)) capabilitiesSelected = [capabilitiesSelected];
+  const queryParams = `?capabilities=${capabilitiesSelected.join('+')}`;
+  res.redirect(`/solutions/capabilities-selector/selected${queryParams}`);
+}));
+
+router.get('/solutions/:filterType/selected', withCatch(async (req, res) => {
   const { filterType } = req.params;
   logger.info(`filter type '${filterType}' applied`);
-  const context = await getSolutionListPageContext({ filterType });
-  res.render('pages/solutions-list/template.njk', addConfig(context));
+  if (filterType === 'capabilities-selector') {
+    if (req.query.capabilities) {
+      const capabilities = req.query.capabilities.split(' ');
+      const context = await getSolutionsForSelectedCapabilities({
+        capabilitiesSelected: capabilities,
+      });
+      res.render('pages/solutions-list/template.njk', addConfig(context));
+    } else throw new Error('No capabilities selected');
+  } else {
+    const context = await getSolutionListPageContext({ filterType });
+    res.render('pages/solutions-list/template.njk', addConfig(context));
+  }
 }));
 
-router.post('/solutions/custom', withCatch(async (req, res) => {
-  const capabilitiesSelected = req.body.capabilities;
-  const context = await getSolutionsForSelectedCapabilities({ capabilitiesSelected });
-  res.render('pages/solutions-list/template.njk', addConfig(context));
-}));
-
-router.get('/solutions/:filterType/:solutionId', withCatch(async (req, res) => {
-  const { solutionId } = req.params;
+router.get('/solutions/:filterType/selected/:solutionId', withCatch(async (req, res) => {
+  let query;
+  if (req.query.capabilities) query = `capabilities=${req.query.capabilities.replace(' ', '+')}`;
+  const { solutionId, filterType } = req.params;
   logger.info(`navigating to Solution ${solutionId} page`);
-  const context = await getPublicSolutionById({ solutionId });
+  const context = await getPublicSolutionById({ solutionId, filterType, query });
   res.render('pages/view-solution/template.njk', addConfig(context));
 }));
 
-router.get('/solutions/:filterType/:solutionId/document/:documentName', async (req, res) => {
+router.get('/solutions/:filterType/selected/:solutionId/document/:documentName', async (req, res) => {
   const { solutionId, documentName } = req.params;
   logger.info(`downloading Solution ${solutionId} document ${documentName}`);
   const response = await getDocument({ solutionId, documentName });
