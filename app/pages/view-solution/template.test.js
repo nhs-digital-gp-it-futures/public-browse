@@ -8,11 +8,11 @@ const setup = {
 
 describe('view solution', () => {
   it('should render back-link component with correct href', createTestHarness(setup, (harness) => {
-    const context = {};
+    const context = { solutionBackLinkUrl: '/backlink/url' };
 
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-page-back-link"]').length).toEqual(1);
-      expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual('./');
+      expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual(context.solutionBackLinkUrl);
     });
   }));
 
