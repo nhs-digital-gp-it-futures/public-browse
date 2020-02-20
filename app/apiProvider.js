@@ -45,9 +45,9 @@ export class ApiProvider {
     return axios.get(endpoint);
   }
 
-  async postSelectedCapabilities({ selectedCapabilitiesJson }) {
+  async postSelectedCapabilities({ selectedCapabilities }) {
     const endpoint = `${this.apiHost}/api/v1/Solutions`;
-    logger.info(`api called: [POST] ${endpoint}: ${JSON.stringify(selectedCapabilitiesJson)}`);
-    return axios.post(endpoint, selectedCapabilitiesJson);
+    logger.info(`api called: [POST] ${endpoint}: ${JSON.stringify(selectedCapabilities)}`);
+    return axios.post(endpoint, selectedCapabilities);
   }
 }
