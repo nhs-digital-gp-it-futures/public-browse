@@ -31,11 +31,13 @@ export const getSolutionListPageContext = async ({ filterType }) => {
 };
 
 export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
-  const solutionListManifest = new ManifestProvider().getSolutionListManifest('custom');
+  const query = `capabilities=${capabilitiesSelected.join('+')}`;
+  const solutionListManifest = new ManifestProvider().getSolutionListManifest('capabilities-selector');
   const transformedCapabilities = transformCapabilities({ capabilitiesSelected });
   const solutionsData = await new ApiProvider()
-    .postSelectedCapabilities({ transformedCapabilities });
+    .postSelectedCapabilities({ selectedCapabilities: transformedCapabilities });
 
-  return createSolutionListPageContext({ filterType: 'custom', solutionListManifest, solutionsData: solutionsData.data.solutions });
+  return createSolutionListPageContext({
+    filterType: 'capabilities-selector', solutionListManifest, solutionsData: solutionsData.data.solutions, query,
+  });
 };
-
