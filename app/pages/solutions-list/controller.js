@@ -13,6 +13,7 @@ const getSolutionListData = async (filterType) => {
 };
 
 const transformCapabilities = ({ capabilitiesSelected }) => {
+  if (!capabilitiesSelected) return { capabilities: [] };
   const transformed = capabilitiesSelected.reduce((acc, capabilityId) => {
     acc.push({ reference: capabilityId });
     return acc;
@@ -25,15 +26,25 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
   const solutionsData = await getSolutionListData(filterType);
-
-  return createSolutionListPageContext({ filterType, solutionListManifest, solutionsData });
+  return createSolutionListPageContext({
+    filterType,
+    solutionListManifest,
+    solutionsData,
+  });
 };
 
 export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
-  const solutionListManifest = new ManifestProvider().getSolutionListManifest('custom');
-  const transformedCapabilities = transformCapabilities({ capabilitiesSelected });
+  const formattedCapabilities = capabilitiesSelected.split('+');
+  const solutionListManifest = new ManifestProvider().getSolutionListManifest('capabilities-selector');
+  const transformedCapabilities = transformCapabilities({
+    capabilitiesSelected: formattedCapabilities,
+  });
   const solutionsData = await new ApiProvider()
-    .postSelectedCapabilities({ transformedCapabilities });
-
-  return createSolutionListPageContext({ filterType: 'custom', solutionListManifest, solutionsData: solutionsData.data.solutions });
+    .postSelectedCapabilities({ selectedCapabilities: transformedCapabilities });
+  return createSolutionListPageContext({
+    filterType: 'capabilities-selector',
+    solutionListManifest,
+    solutionsData: solutionsData.data.solutions,
+    capabilitiesSelected: formattedCapabilities,
+  });
 };

@@ -1,9 +1,13 @@
 import nock from 'nock';
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 import publicSolutionWithData from '../../test-utils/fixtures/publicSolutionWithData.json';
 import publicSolutionNoData from '../../test-utils/fixtures/publicSolutionNoData.json';
+import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
+
 import { apiLocalhost, apiPath, clientLocalhost } from '../../test-utils/config';
 import { extractInnerText } from '../../test-utils/helper';
+
+const getLocation = ClientFunction(() => document.location.href);
 
 const mocks = (existingData) => {
   if (!existingData) {
@@ -24,13 +28,19 @@ const pageSetup = async (t, existingData = false) => {
 
 fixture('Show view solution page - heading components');
 
-test('should render back link', async (t) => {
+test('should navigate back to the previous page when backlink is clicked', async (t) => {
   await pageSetup(t);
-
-  const backLink = Selector('[data-test-id="view-solution-page-back-link"]');
+  await nock('http://localhost:8080')
+    .get('/api/v1/Solutions/Foundation')
+    .reply(200, aFoundationSolutionList);
+  const backLink = Selector('[data-test-id="view-solution-page-back-link"] a');
 
   await t
-    .expect(await extractInnerText(backLink)).eql('Go back to previous page');
+    .expect(backLink.exists).ok()
+    .expect(await extractInnerText(backLink)).eql('Go back to previous page')
+    .click(backLink)
+    .expect(getLocation()).contains('/solutions')
+    .expect(Selector('[data-test-id="general-page-title"]').exists).ok();
 });
 
 test('should render foundation tag', async (t) => {
