@@ -76,7 +76,7 @@ router.get('/solutions/:filterType/:solutionId/document/:documentName', async (r
 router.get('*', (req, res, next) => {
   next({
     status: 404,
-    message: 'Incorrect url - please check it is valid and try again',
+    message: `Incorrect url ${req.originalUrl} - please check it is valid and try again`,
   });
 });
 
