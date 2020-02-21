@@ -5,6 +5,7 @@ describe('routerHelper', () => {
     it('returns all if no capabilities are sent', () => {
       expect(getCapabilitiesParam('')).toEqual('.all');
       expect(getCapabilitiesParam()).toEqual('.all');
+      expect(getCapabilitiesParam([])).toEqual('.all');
     });
 
     it('returns the correct param string if one capability is sent', () => {
