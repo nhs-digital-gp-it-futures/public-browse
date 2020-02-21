@@ -299,6 +299,53 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
     expect(context).toEqual(expectedContext);
   });
+
+  it('should create a context for the solution list page with "all" as capabilities', () => {
+    const expectedContext = {
+      pageTitle: solutionPageTitle,
+      pageDescription: solutionPageDescription,
+      backLinkPath: '/solutions/capabilities-selector',
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          supplierName: 'Some supplier',
+          capabilities: [],
+          isFoundation: true,
+          viewSolutionUrl: '/solutions/capabilities-selector.all/00001',
+        },
+      ],
+    };
+
+    const solutionsData = [
+      {
+        id: '00001',
+        name: 'The first solution',
+        summary: 'Some solution summary',
+        isFoundation: true,
+        supplier: {
+          id: '1',
+          name: 'Some supplier',
+        },
+        capabilities: [],
+      },
+    ];
+
+    const solutionListManifest = {
+      title: solutionPageTitle,
+      description: solutionPageDescription,
+    };
+
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      capabilitiesSelected: 'all',
+    });
+
+    expect(context).toEqual(expectedContext);
+  });
 });
 
 describe('createSolutionListPageContext - Foundation', () => {

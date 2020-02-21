@@ -42,9 +42,11 @@ router.get('/solutions', (req, res) => {
 
 router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
   let capabilitiesSelected = req.body.capabilities;
+  if (!capabilitiesSelected) capabilitiesSelected = 'all';
   if (!Array.isArray(capabilitiesSelected)) capabilitiesSelected = [capabilitiesSelected];
-  const capabilitiesParam = capabilitiesSelected.join('+');
-  res.redirect(`/solutions/capabilities-selector.${capabilitiesParam}`);
+  const capabilitiesParam = `.${capabilitiesSelected.join('+')}`;
+
+  res.redirect(`/solutions/capabilities-selector${capabilitiesParam}`);
 }));
 
 router.get('/solutions/:filterType.:capabilities?', withCatch(async (req, res) => {
