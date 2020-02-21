@@ -227,7 +227,7 @@ describe('routes', () => {
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
-          expect(res.text).toEqual('Found. Redirecting to /solutions/capabilities-selector.C1');
+          expect(res.headers.location).toEqual('/solutions/capabilities-selector.C1');
         });
     });
 
@@ -238,11 +238,11 @@ describe('routes', () => {
       app.use('/', routes);
       return request(app)
         .post('/solutions/capabilities-selector')
-        .send({ capabilities: 'C1 C2 C3' })
+        .send({ capabilities: ['C1', 'C2', 'C3'] })
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
-          expect(res.text).toEqual('Found. Redirecting to /solutions/capabilities-selector.C1%20C2%20C3');
+          expect(res.headers.location).toEqual('/solutions/capabilities-selector.C1+C2+C3');
         });
     });
 
@@ -257,7 +257,7 @@ describe('routes', () => {
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
-          expect(res.text).toEqual('Found. Redirecting to /solutions/capabilities-selector.all');
+          expect(decodeURI(res.headers.location)).toEqual('/solutions/capabilities-selector.all');
         });
     });
   });
