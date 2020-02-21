@@ -85,7 +85,7 @@ router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:document
 router.get('*', (req, res, next) => {
   next({
     status: 404,
-    message: 'Incorrect url - please check it is valid and try again',
+    message: `Incorrect url ${req.originalUrl} - please check it is valid and try again`,
   });
 });
 
