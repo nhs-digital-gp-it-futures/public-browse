@@ -1,5 +1,6 @@
 {% from 'components/header/macro.njk' import header %}
 {% from 'components/panel/macro.njk' import panel %}
+{% from 'components/login-logout/macro.njk' import loginLogout %}
 
 {% macro termBanner(config) %}
   <div class='nhsuk-grid-row'>
@@ -18,11 +19,15 @@
   }) }}
 </div>
 
-<div data-test-id="header-banner">
-  {{ header({
-    "classes": "nhsuk-header--white",
-    "organisation": {
-        "name": "Digital"
-      }
-    }) }}
-</div>
+{{ header({
+  dataTestId: "header-banner",
+  innerComponent: loginLogout({
+    dataTestId: "login-logout",
+    username: "<placeholder>",
+    classes: "example-class",
+    loginUrl: "#",
+    logoutUrl: "#"
+  }),
+  classes: "example-class"
+}) }}
+
