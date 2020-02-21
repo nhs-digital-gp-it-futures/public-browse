@@ -50,21 +50,20 @@ router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
 router.get('/solutions/:filterType.:capabilities?', withCatch(async (req, res) => {
   const { filterType, capabilities } = req.params;
   if (filterType === 'capabilities-selector') {
-    if (capabilities) {
-      const formattedCapabilities = capabilities.split('+');
-      const context = await getSolutionsForSelectedCapabilities({
-        capabilitiesSelected: formattedCapabilities,
-      });
-      logger.info(`navigating to capabilities-selector (with ${capabilities} selected) page`);
-      res.render('pages/solutions-list/template.njk', addConfig(context));
-    } else {
+    if (!capabilities) {
       const context = await getCapabilitiesContext();
       logger.info('navigating to capabilities-selector page');
       res.render('pages/capabilities-selector/template.njk', addConfig(context));
+    } else {
+      const context = await getSolutionsForSelectedCapabilities({
+        capabilitiesSelected: capabilities,
+      });
+      logger.info(`navigating to solution-list (with ${capabilities} selected) page`);
+      res.render('pages/solutions-list/template.njk', addConfig(context));
     }
   } else {
     const context = await getSolutionListPageContext({ filterType });
-    logger.info(`navigating to ${filterType} page`);
+    logger.info(`navigating to ${filterType} solution-list page`);
     res.render('pages/solutions-list/template.njk', addConfig(context));
   }
 }));
