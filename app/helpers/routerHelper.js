@@ -5,3 +5,10 @@ export const withCatch = route => async (req, res, next) => {
     return next(err);
   }
 };
+
+export const getCapabilitiesParam = (capabilities) => {
+  let capabilitiesSelected = capabilities;
+  if (!capabilitiesSelected) capabilitiesSelected = 'all';
+  if (!Array.isArray(capabilitiesSelected)) capabilitiesSelected = [capabilitiesSelected];
+  return `.${capabilitiesSelected.join('+')}`;
+};

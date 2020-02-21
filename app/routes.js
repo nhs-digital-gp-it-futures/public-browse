@@ -8,7 +8,7 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { errorHandler } from './pages/error/errorHandler';
 import logger from './logger';
 import config from './config';
-import { withCatch } from './helpers/routerHelper';
+import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 
 const router = express.Router();
 
@@ -41,11 +41,8 @@ router.get('/solutions', (req, res) => {
 });
 
 router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
-  let capabilitiesSelected = req.body.capabilities;
-  if (!capabilitiesSelected) capabilitiesSelected = 'all';
-  if (!Array.isArray(capabilitiesSelected)) capabilitiesSelected = [capabilitiesSelected];
-  const capabilitiesParam = `.${capabilitiesSelected.join('+')}`;
-
+  const capabilitiesParam = getCapabilitiesParam(req.body.capabilities);
+  logger.info(`capabilities submitted - ${capabilitiesParam}`);
   res.redirect(`/solutions/capabilities-selector${capabilitiesParam}`);
 }));
 
