@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:12
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -14,4 +14,4 @@ COPY . .
 
 # Expose port 
 EXPOSE 3000
-CMD [ "npm run start" ]
+CMD [ "npm", "start" ]
