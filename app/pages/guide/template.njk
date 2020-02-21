@@ -1,5 +1,6 @@
 {% extends 'includes/layout.njk' %}
 {% from 'components/back-link/macro.njk' import backLink %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from './components/subsection.njk' import subsection %}
 
 {% block body %}
@@ -27,10 +28,13 @@
     <div id="{{ section.id }}" class="nhsuk-grid-row" data-test-id="guide-section-{{section.id}}">
 
         <div class='bc-c-title-block nhsuk-grid-column-full nhsuk-u-margin-left-3'>
-          <h2 class='nhsuk-u-margin-bottom-3' data-test-id="guide-section-title">{{ section.title }}</h2>
+          {{ viewSectionHeading({
+            text: section.title,
+            dataTestId: "guide-section-title"
+          }) }}
         </div>
 
-        <div class="nhsuk-grid-column-two-thirds nhsuk-u-font-size-19 nhsuk-u-margin-left-3" data-test-id="guide-section-subsection">
+        <div class="nhsuk-grid-column-two-thirds nhsuk-u-font-size-19 nhsuk-u-margin-left-5" data-test-id="guide-section-subsection">
           {% for subSection in section.subsections %}
             {{ subsection({
               subSection: subSection,
