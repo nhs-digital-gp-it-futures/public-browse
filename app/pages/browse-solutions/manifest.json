@@ -1,8 +1,6 @@
 {
   "title": "View Catalogue Solutions",
-  "description": [
-    "There are two types of Catalogue Solution on the Buying Catalogue. You can choose to view all those available or only the ones which have all 6 Foundation Capabilities - the minimum requirement to enable a GP practice to operate."
-  ],
+  "description": "There are two types of Catalogue Solution on the Buying Catalogue. You can choose to view all those available or only the ones which have all 6 Foundation Capabilities - the minimum requirement to enable a GP practice to operate.",
   "foundationPromoHeading": "View Foundation Solutions",
   "foundationPromoDescription": "Find Catalogue Solutions that meet all Foundation Capabilities.",
   "allPromoHeading": "View all Catalogue Solutions",
