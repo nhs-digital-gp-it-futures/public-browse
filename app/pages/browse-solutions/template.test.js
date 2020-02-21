@@ -19,7 +19,7 @@ describe('browse solutions page', () => {
       expect(viewSolutionsTitle.length).toEqual(1);
       expect(viewSolutionsTitle.text().trim()).toEqual(content.title);
       expect(viewSolutionsDescription.length).toEqual(1);
-      expect(viewSolutionsDescription.text().trim()).toEqual(content.description[0]);
+      expect(viewSolutionsDescription.text().trim()).toEqual(content.description);
     });
   }));
 
