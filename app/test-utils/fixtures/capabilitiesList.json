@@ -1,21 +1,21 @@
 {
   "capabilities": [
     {
-      "reference": "C5",
+      "reference": "C1",
       "version": "1.0.1",
-      "name": "Appointments Management - GP",
+      "name": "Capability 1",
       "isFoundation": true
     },
     {
-      "reference": "C13",
+      "reference": "C2",
       "version": "1.0.1",
-      "name": "Patient Information Maintenance",
-      "isFoundation": true
+      "name": "Capability 2",
+      "isFoundation": false
     },
     {
-      "reference": "C14",
+      "reference": "C3",
       "version": "1.0.1",
-      "name": "Prescribing",
+      "name": "Capability 3",
       "isFoundation": true
     }
   ]
