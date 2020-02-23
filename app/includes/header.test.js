@@ -59,11 +59,13 @@ describe('header', () => {
     harness.request(context, ($) => {
       const headerBanner = $('header[data-test-id="header-banner"]');
       const loginLogout = headerBanner.find('[data-test-id="login-logout"]');
+      const loginLogoutText = loginLogout.find('span').text().trim().split(/\s\s+/);
+
       // TODO: Add more test when login/logout component is functional
       expect(headerBanner.length).toEqual(1);
       expect(loginLogout.length).toEqual(1);
-      expect(loginLogout.find('span').text().trim()).toEqual('Logged in as: <placeholder>');
-      expect(loginLogout.find('a').text().trim()).toEqual('Log out');
+      expect(loginLogoutText[0]).toEqual('Logged in as: <placeholder>');
+      expect(loginLogoutText[1]).toEqual('Log out');
       expect(loginLogout.find('a').attr('href')).toEqual('#');
     });
   }));
