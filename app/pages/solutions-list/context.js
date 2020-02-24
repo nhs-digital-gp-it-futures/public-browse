@@ -21,5 +21,9 @@ export const createSolutionListPageContext = ({
   backLinkPath: `/solutions${filterType === 'capabilities-selector' ? '/capabilities-selector' : ''}`,
   pageTitle: solutionListManifest.title,
   pageDescription: solutionListManifest.description,
-  solutions: createSolutionsContext({ filterType, solutions: solutionsData, capabilitiesSelected }),
+  solutions: createSolutionsContext({
+    filterType,
+    solutions: solutionsData,
+    capabilitiesSelected: capabilitiesSelected && capabilitiesSelected.length < 1 ? 'all' : capabilitiesSelected,
+  }),
 });
