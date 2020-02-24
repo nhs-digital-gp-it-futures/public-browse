@@ -34,11 +34,12 @@ export const getSolutionListPageContext = async ({ filterType }) => {
 };
 
 export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
-  const formattedCapabilities = capabilitiesSelected.split('+');
   const solutionListManifest = new ManifestProvider().getSolutionListManifest('capabilities-selector');
+  const formattedCapabilities = capabilitiesSelected === 'all' ? [] : capabilitiesSelected.split('+');
   const transformedCapabilities = transformCapabilities({
     capabilitiesSelected: formattedCapabilities,
   });
+
   const solutionsData = await new ApiProvider()
     .postSelectedCapabilities({ selectedCapabilities: transformedCapabilities });
   return createSolutionListPageContext({

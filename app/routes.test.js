@@ -149,7 +149,7 @@ describe('routes', () => {
         });
     });
 
-    it('should return the correct status and text if there is no error for capabilities-selector', () => {
+    it('should return the correct status and text if there is no error for capabilities-selector and capabilities are selected', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
       const app = new App().createApp();
@@ -216,17 +216,48 @@ describe('routes', () => {
   });
 
   describe('POST /solutions/capabilities-selector', () => {
-    it('should return the correct status and text if there is no error', () => {
+    it('should return the correct status and text if there is no error and one capability selected', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
       const app = new App().createApp();
       app.use('/', routes);
       return request(app)
         .post('/solutions/capabilities-selector')
-        .send({ capabilities: { reference: ['C5'] } })
+        .send({ capabilities: 'C1' })
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
+          expect(res.headers.location).toEqual('/solutions/capabilities-selector.C1');
+        });
+    });
+
+    it('should return the correct status and text if there is no error and many capabilities selected', () => {
+      solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
+      const app = new App().createApp();
+      app.use('/', routes);
+      return request(app)
+        .post('/solutions/capabilities-selector')
+        .send({ capabilities: ['C1', 'C2', 'C3'] })
+        .expect(302)
+        .then((res) => {
+          expect(res.redirect).toEqual(true);
+          expect(res.headers.location).toEqual('/solutions/capabilities-selector.C1+C2+C3');
+        });
+    });
+
+    it('should return the correct status and text if there is no error and capabilities not selected', () => {
+      solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
+      const app = new App().createApp();
+      app.use('/', routes);
+      return request(app)
+        .post('/solutions/capabilities-selector')
+        .send('all')
+        .expect(302)
+        .then((res) => {
+          expect(res.redirect).toEqual(true);
+          expect(decodeURI(res.headers.location)).toEqual('/solutions/capabilities-selector.all');
         });
     });
   });
