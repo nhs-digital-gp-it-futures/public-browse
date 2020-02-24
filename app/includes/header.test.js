@@ -48,10 +48,25 @@ describe('header', () => {
     const context = {};
 
     harness.request(context, ($) => {
-      const headerBanner = $('[data-test-id="header-banner"] > header');
+      const headerBanner = $('header[data-test-id="header-banner"]');
+      expect(headerBanner.length).toEqual(1);
+    });
+  }));
 
-      expect(headerBanner.hasClass('nhsuk-header--white')).toEqual(true);
-      expect(headerBanner.text().trim()).toEqual('Digital');
+  it('should render the login/logout component', createTestHarness(setup, (harness) => {
+    const context = {};
+
+    harness.request(context, ($) => {
+      const headerBanner = $('header[data-test-id="header-banner"]');
+      const loginLogout = headerBanner.find('[data-test-id="login-logout"]');
+      const loginLogoutText = loginLogout.find('span').text().trim().split(/\s\s+/);
+
+      // TODO: Add more test when login/logout component is functional
+      expect(headerBanner.length).toEqual(1);
+      expect(loginLogout.length).toEqual(1);
+      expect(loginLogoutText[0]).toEqual('Logged in as: <placeholder>');
+      expect(loginLogoutText[1]).toEqual('Log out');
+      expect(loginLogout.find('a').attr('href')).toEqual('#');
     });
   }));
 });
