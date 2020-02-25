@@ -22,9 +22,9 @@
 {{ header({
   dataTestId: "header-banner",
   innerComponent: loginLogout({
-    dataTestId: "login-logout",
-    username: "<placeholder>",
-    loginUrl: "#",
+    dataTestId: "login-logout-component",
+    username: username,
+    loginUrl: "/login",
     logoutUrl: "#"
   }),
   classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2"

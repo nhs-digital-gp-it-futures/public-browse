@@ -51,10 +51,10 @@ describe('capabilitiesSelector', () => {
     harness.request(context, async ($) => {
       const question = $('div[data-test-id="capabilities-selector"]');
       expect(question.find('.nhsuk-checkboxes__item').length).toEqual(2);
-      expect(question.find('.nhsuk-checkboxes__item:nth-child(3)').find('input').attr('value')).toEqual('value-3');
-      expect(question.find('.nhsuk-checkboxes__item:nth-child(3)').find('label').text().trim()).toEqual('text 3');
-      expect(question.find('.nhsuk-checkboxes__item:nth-child(4)').find('input').attr('value')).toEqual('value-4');
-      expect(question.find('.nhsuk-checkboxes__item:nth-child(4)').find('label').text().trim()).toEqual('text 4');
+      expect(question.find('.nhsuk-checkboxes__item:nth-child(1)').find('input').attr('value')).toEqual('value-3');
+      expect(question.find('.nhsuk-checkboxes__item:nth-child(1)').find('label').text().trim()).toEqual('text 3');
+      expect(question.find('.nhsuk-checkboxes__item:nth-child(2)').find('input').attr('value')).toEqual('value-4');
+      expect(question.find('.nhsuk-checkboxes__item:nth-child(2)').find('label').text().trim()).toEqual('text 4');
     });
   }));
 });

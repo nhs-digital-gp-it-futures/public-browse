@@ -53,20 +53,44 @@ describe('header', () => {
     });
   }));
 
-  it('should render the login/logout component', createTestHarness(setup, (harness) => {
-    const context = {};
+  describe('login/logout component', () => {
+    describe('when username is provided', () => {
+      it('should render username', createTestHarness(setup, (harness) => {
+        const context = {
+          username: 'user 1',
+        };
+        harness.request(context, ($) => {
+          const headerBanner = $('header[data-test-id="header-banner"]');
+          const loginLogout = headerBanner.find('[data-test-id="login-logout-component"]');
+          const loginLogoutText = loginLogout.find('span').text().trim().split(/\s\s+/);
+          expect(loginLogoutText[0]).toEqual(`Logged in as: ${context.username}`);
+        });
+      }));
 
-    harness.request(context, ($) => {
-      const headerBanner = $('header[data-test-id="header-banner"]');
-      const loginLogout = headerBanner.find('[data-test-id="login-logout"]');
-      const loginLogoutText = loginLogout.find('span').text().trim().split(/\s\s+/);
-
-      // TODO: Add more test when login/logout component is functional
-      expect(headerBanner.length).toEqual(1);
-      expect(loginLogout.length).toEqual(1);
-      expect(loginLogoutText[0]).toEqual('Logged in as: <placeholder>');
-      expect(loginLogoutText[1]).toEqual('Log out');
-      expect(loginLogout.find('a').attr('href')).toEqual('#');
+      it('should render logout link', createTestHarness(setup, (harness) => {
+        const context = {
+          username: 'user 1',
+        };
+        harness.request(context, ($) => {
+          const headerBanner = $('header[data-test-id="header-banner"]');
+          const logoutLink = headerBanner.find('[data-test-id="login-logout-component"] a');
+          expect(logoutLink.text().trim()).toEqual('Log out');
+          // TODO: Change when logout route is implemented
+          expect(logoutLink.attr('href')).toEqual('#');
+        });
+      }));
     });
-  }));
+
+    describe('when username is not provided', () => {
+      it('should render login link', createTestHarness(setup, (harness) => {
+        const context = {};
+        harness.request(context, ($) => {
+          const headerBanner = $('header[data-test-id="header-banner"]');
+          const loginLink = headerBanner.find('[data-test-id="login-logout-component"] a');
+          expect(loginLink.text().trim()).toEqual('Log in');
+          expect(loginLink.attr('href')).toEqual('/login');
+        });
+      }));
+    });
+  });
 });
