@@ -67,7 +67,7 @@ test('should render buyers guide information', async (t) => {
 });
 
 test('should navigate to browse all solutions page', async (t) => {
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Capabilities')
     .reply(200, aSolutionList);
 
@@ -83,7 +83,7 @@ test('should navigate to browse all solutions page', async (t) => {
 });
 
 test('should navigate to browse foundation solutions page', async (t) => {
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Solutions/Foundation')
     .reply(200, aFoundationSolutionList);
 

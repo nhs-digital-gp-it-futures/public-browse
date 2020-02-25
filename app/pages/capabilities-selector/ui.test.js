@@ -80,7 +80,7 @@ test('should render continue button', async (t) => {
 
 test('should navigate to the view-solution page when capabilities have been selected and continue clicked', async (t) => {
   await pageSetup(t);
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .post('/api/v1/Solutions')
     .reply(200, aCustomSolutionList);
 
