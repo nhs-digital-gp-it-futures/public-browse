@@ -5,6 +5,7 @@ const { App } = require('./app');
 
 // Routes
 const app = new App().createApp();
+
 app.use('/', routes);
 
 // Run application on configured port

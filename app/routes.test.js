@@ -66,6 +66,20 @@ describe('routes', () => {
     });
   });
 
+  describe('GET /login', () => {
+    it('should return the correct status and text', () => {
+      const app = new App().createApp();
+      app.use('/', routes);
+
+      return request(app)
+        .get('/login')
+        .expect(200)
+        .then((res) => {
+          expect(res.text).toBe('Login route');
+        });
+    });
+  });
+
   describe('GET /', () => {
     afterEach(() => {
       homepageContext.getHomepageContext.mockReset();

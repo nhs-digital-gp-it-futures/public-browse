@@ -17,6 +17,11 @@ const addConfig = context => ({
   config,
 });
 
+
+router.get('/login', (req, res) => {
+  res.send('Login route');
+});
+
 router.get('/healthcheck', (req, res) => {
   logger.info('navigating to healthcheck page');
   res.send('Public browse is running!!!');
