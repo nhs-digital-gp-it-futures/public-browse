@@ -41,6 +41,15 @@ test('should navigate to home page header banner', async (t) => {
     .expect(getLocation()).eql('http://localhost:1234/');
 });
 
+test('should naviage to the login page when clicking the login button', async (t) => {
+  await pageSetup(t);
+  const getLocation = ClientFunction(() => document.location.href);
+  const loginComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .click(loginComponent)
+    .expect(getLocation()).contains('http://localhost:8070/Account/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fresponse_type%3Dcode%26client_id%3DSampleClient%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A3000%252Foauth%252Fcallback%26scope%3Dopenid%2520profile%26state');
+});
+
 fixture('Show Home Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
