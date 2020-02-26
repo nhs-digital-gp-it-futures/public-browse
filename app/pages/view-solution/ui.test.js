@@ -30,7 +30,7 @@ fixture('Show view solution page - heading components');
 
 test('should navigate back to the previous page when backlink is clicked', async (t) => {
   await pageSetup(t);
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Solutions/Foundation')
     .reply(200, aFoundationSolutionList);
   const backLink = Selector('[data-test-id="view-solution-page-back-link"] a');

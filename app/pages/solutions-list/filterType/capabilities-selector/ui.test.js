@@ -9,7 +9,7 @@ import manifest from './manifest.json';
 const getLocation = ClientFunction(() => document.location.href);
 
 const mocks = async (responseStatus, responseBody) => {
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .post('/api/v1/Solutions')
     .reply(responseStatus, responseBody);
 };
@@ -92,7 +92,7 @@ test('should display the capability details of a solution card', async (t) => {
 
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
   await pageSetup({ t, capabilities: 'C1' });
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Solutions/S1/Public')
     .reply(200, publicSolutionNoData);
   const solutionCardTitleLink = Selector('div[data-test-id="solution-card"]:nth-child(1) a');
@@ -105,7 +105,7 @@ test('should navigate to the solution view page when clicking on the title of th
 
 test('should navigate back to the capabilities-selector when backlink is clicked', async (t) => {
   await pageSetup({ t, capabilities: 'C1' });
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Capabilities')
     .reply(200, capabilitiesList);
   const backLink = Selector('[data-test-id="go-back-link"] a');
@@ -185,7 +185,7 @@ test('should display the capability details of a solution card', async (t) => {
 
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
   await pageSetup({ t });
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Solutions/S1/Public')
     .reply(200, publicSolutionNoData);
   const solutionCardTitleLink = Selector('div[data-test-id="solution-card"]:nth-child(1) a');
@@ -198,7 +198,7 @@ test('should navigate to the solution view page when clicking on the title of th
 
 test('should navigate back to the capabilities-selector when backlink is clicked', async (t) => {
   await pageSetup({ t });
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Capabilities')
     .reply(200, capabilitiesList);
   const backLink = Selector('[data-test-id="go-back-link"] a');

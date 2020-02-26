@@ -9,10 +9,10 @@ module.exports = {
   port: process.env.PORT || 3000,
 
   // API_HOST
-  apiHost: process.env.API_HOST || 'http://localhost:8080',
+  apiHost: process.env.API_HOST || 'http://localhost:5100',
 
   // DOCUMENT_HOST
-  documentHost: process.env.DOCUMENT_HOST || 'http://localhost:8090',
+  documentHost: process.env.DOCUMENT_HOST || 'http://localhost:5101',
 
   // BLOBSTORE_HOST
   blobstoreHost: process.env.BLOBSTORE_HOST || 'https://gpitfuturesdevsa.blob.core.windows.net',

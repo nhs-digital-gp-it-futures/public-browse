@@ -4,7 +4,7 @@ import aFoundationSolutionList from '../../../../test-utils/fixtures/aFoundation
 import { extractInnerText } from '../../../../test-utils/helper';
 
 const mocks = async (responseStatus, responseBody) => {
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Solutions/Foundation')
     .reply(responseStatus, responseBody);
 };
@@ -84,7 +84,7 @@ test('should display the capability details of a foundation solution card', asyn
 
 test('should navigate to the foundation solution view page when clicking on the title of the solution', async (t) => {
   await pageSetup(t);
-  await nock('http://localhost:8080')
+  await nock('http://localhost:5100')
     .get('/api/v1/Solutions/S1/Public')
     .reply(200);
   const getLocation = ClientFunction(() => document.location.href);
