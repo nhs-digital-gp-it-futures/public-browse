@@ -67,15 +67,16 @@ describe('routes', () => {
   });
 
   describe('GET /login', () => {
-    it('should return the correct status and text', () => {
-      const app = new App().createApp();
+    it('should return the correct status and redirect to the login page when not authenticated', () => {
+      const app = new App().createAppWithAuthentication();
       app.use('/', routes);
 
       return request(app)
         .get('/login')
-        .expect(200)
+        .expect(302)
         .then((res) => {
-          expect(res.text).toBe('Login route');
+          expect(res.redirect).toEqual(true);
+          expect(res.headers.location).toContain('http://localhost:8070/connect/authorize?response_type=code&client_id=SampleClient&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth%2Fcallback&scope=openid%20profile&state=');
         });
     });
   });

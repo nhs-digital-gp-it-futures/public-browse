@@ -4,7 +4,7 @@ const config = require('./app/config');
 const { App } = require('./app');
 
 // Routes
-const app = new App().createApp();
+const app = new App().createAppWithAuthentication();
 
 app.use('/', routes);
 
