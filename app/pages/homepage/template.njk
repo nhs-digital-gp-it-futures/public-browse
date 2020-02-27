@@ -1,55 +1,44 @@
-{% extends 'includes/layout.njk' %}
+{% extends 'includes/layouts/fluid.njk' %}
 {% from 'components/hero/macro.njk' import hero %}
 {% from 'components/promo/macro.njk' import promo %}
 
-
-{% block mainOpen %}
-  <div>
-    <main class="nhsuk-main-wrapper nhsuk-u-padding-top-0" id="maincontent">
-      {% endblock %}
-
-      {% block body %}
-        <div class="nhsuk-hero" data-test-id="homepage-hero">
-          <div class="nhsuk-hero__wrapper">
-            <div class="nhsuk-width-container nhsuk-grid-row">
-              <div class="nhsuk-grid-column-two-thirds nhsuk-u-padding-0">
-                <h1 class="nhsuk-u-margin-bottom-3">{{ heroHeading }}</h1>
-                <h2 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-0 nhsuk-u-font-weight-normal">{{ heroText }}</h2>
-              </div>
-            </div>
-          </div>
+{% block body %}
+  <div class="nhsuk-hero" data-test-id="homepage-hero">
+    <div class="nhsuk-hero__wrapper">
+      <div class="nhsuk-width-container nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds nhsuk-u-padding-0">
+          <h1 class="nhsuk-u-margin-bottom-3">{{ heroHeading }}</h1>
+          <h2 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-0 nhsuk-u-font-weight-normal">{{ heroText }}</h2>
         </div>
-        <div class="nhsuk-width-container" data-test-id="about-us">
-          <div class="nhsuk-grid-row">
-            <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-top-7">
-              <h3>{{ title }}</h3>
-              {% for eachDescription in description %}
-                <p>{{ eachDescription }}</p>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-        <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="homepage-promo-group">
-          <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
-            {{ promo({
-              "href": "/guide",
-              "heading": guidePromoHeading,
-              "classes": "nhsuk-u-margin-top-5",
-              "description": guidePromoDescription
-            }) }}
-          </div>
-          <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
-            {{ promo({
-              "href": "/solutions",
-              "heading": viewSolutionsPromoHeading,
-              "classes": "nhsuk-u-margin-top-5",
-              "description": viewSolutionsPromoDescription
-            }) }}
-          </div>
-        </div>
-      {% endblock %}
-
-      {% block mainClose %}
-    </main>
+      </div>
+    </div>
+  </div>
+  <div class="nhsuk-width-container" data-test-id="about-us">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-top-7">
+        <h3>{{ title }}</h3>
+        {% for eachDescription in description %}
+          <p>{{ eachDescription }}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="homepage-promo-group">
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
+      {{ promo({
+        "href": "/guide",
+        "heading": guidePromoHeading,
+        "classes": "nhsuk-u-margin-top-5",
+        "description": guidePromoDescription
+      }) }}
+    </div>
+    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
+      {{ promo({
+        "href": "/solutions",
+        "heading": viewSolutionsPromoHeading,
+        "classes": "nhsuk-u-margin-top-5",
+        "description": viewSolutionsPromoDescription
+      }) }}
+    </div>
   </div>
 {% endblock %}
