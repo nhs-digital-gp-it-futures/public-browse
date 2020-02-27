@@ -8,12 +8,13 @@ const cookieParser = require('cookie-parser');
 
 export class RealAuthProvider {
   constructor() {
+    this.passport = passport;
     const OIDC_BASE_URI = 'http://localhost:8070';
     const OIDC_CLIENT_ID = 'SampleClient';
     const OIDC_CLIENT_SECRET = 'SampleClientSecret';
     const OIDC_REDIRECT_URI = 'http://localhost:3000/oauth/callback';
 
-    passport.use(new PassportStrategy({
+    this.passport.use(new PassportStrategy({
       issuer: OIDC_BASE_URI,
       clientID: OIDC_CLIENT_ID,
       clientSecret: OIDC_CLIENT_SECRET,
@@ -24,24 +25,16 @@ export class RealAuthProvider {
       passReqToCallback: true,
     },
     ((req, issuer, userId, profile, accessToken, refreshToken, params, cb) => {
-      console.log('issuer:', issuer);
-      console.log('userId:', userId);
-      console.log('accessToken:', accessToken);
-      console.log('refreshToken:', refreshToken);
-      console.log('params:', params);
-
       req.session.accessToken = accessToken;
 
       return cb(null, profile);
     })));
 
-    passport.serializeUser((user, done) => {
-      console.log(`serializeUser ${JSON.stringify(user)}`);
+    this.passport.serializeUser((user, done) => {
       done(null, user);
     });
 
-    passport.deserializeUser((obj, done) => {
-      console.log(`deserializeUser ${JSON.stringify(obj)}`);
+    this.passport.deserializeUser((obj, done) => {
       done(null, obj);
     });
   }
@@ -52,39 +45,37 @@ export class RealAuthProvider {
       secret: 'secret squirrel',
     }));
 
-    app.use(passport.initialize());
-    app.use(passport.session());
+    app.use(this.passport.initialize());
+    app.use(this.passport.session());
   }
 
   authenticate(options) {
-    console.log('in authenticateLogin')
     return (req, res, next) => {
-      passport.authenticate('openidconnect', options)(req, res, next);
-    }
+      this.passport.authenticate('openidconnect', options)(req, res, next);
+    };
   }
 }
 
 export class FakeAuthProvider {
-  constructor() {
-    console.log('Createing a Fakey fake');
-  }
+  // eslint-disable-next-line no-useless-constructor, no-empty-function
+  constructor() {}
 
+  // eslint-disable-next-line class-methods-use-this
   setup(app) {
     app.use(cookieParser());
 
     app.use((req, res, next) => {
       if (req.cookies && req.cookies.fakeToken) {
-        console.log('IN APP WHAT HAVE WE GOT');
-        console.log(`req ${JSON.stringify(JSON.parse(req.cookies.fakeToken))}`);
         req.user = JSON.parse(req.cookies.fakeToken);
       }
       next();
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
   authenticate(options) {
-    return (req, res, next) => {
+    return (req, res) => {
       res.redirect('http://identity-server/login');
-    }
+    };
   }
 }
