@@ -25,14 +25,20 @@ test('should render the description', async (t) => {
     .expect(await extractInnerText(description)).eql(content.description);
 });
 
+test('should render the advice', async (t) => {
+  await pageSetup(t);
+  const advice = Selector('[data-test-id="guide-page-advice"]');
+  await t
+    .expect(await extractInnerText(advice.find('p').nth(0))).eql(content.advice[0])
+    .expect(await extractInnerText(advice.find('p').nth(1))).eql(content.advice[1])
+    .expect(await extractInnerText(advice.find('p').nth(2))).eql(content.advice[2]);
+});
+
 test('should render the subtext', async (t) => {
   await pageSetup(t);
-  const subText = Selector('[data-test-id="guide-page-subtext"] > div');
+  const subtext = Selector('[data-test-id="guide-page-subtext"]');
   await t
-    .expect(await extractInnerText(subText.find('div').nth(0))).eql(content.subtext[0])
-    .expect(await extractInnerText(subText.find('div').nth(1))).eql(content.subtext[1])
-    .expect(await extractInnerText(subText.find('div').nth(2))).eql(content.subtext[2])
-    .expect(await extractInnerText(subText.find('div').nth(3))).eql(content.subtext[3]);
+    .expect(await extractInnerText(subtext)).eql(content.subtext);
 });
 
 test('should render Catalogue Solution subsections', async (t) => {
@@ -44,9 +50,9 @@ test('should render Catalogue Solution subsections', async (t) => {
     .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-title-associated-services"]'))).eql(catalogueSolution.subsections[1].title)
     .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-associated-services"]'))).eql(catalogueSolution.subsections[1].description[0])
     .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-title-additional-services"]'))).eql(catalogueSolution.subsections[2].title)
-    .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-additional-services"] > div:nth-child(1)'))).eql(catalogueSolution.subsections[2].description[0])
-    .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-additional-services"] > div:nth-child(2)'))).eql(catalogueSolution.subsections[2].description[1])
-    .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-additional-services"] > div:nth-child(3)'))).eql(catalogueSolution.subsections[2].description[2]);
+    .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-additional-services"] > p:nth-child(1)'))).eql(catalogueSolution.subsections[2].description[0])
+    .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-additional-services"] > p:nth-child(2)'))).eql(catalogueSolution.subsections[2].description[1])
+    .expect(await extractInnerText(catalogueSolutionSelector.find('[data-test-id="subsection-additional-services"] > p:nth-child(3)'))).eql(catalogueSolution.subsections[2].description[2]);
 });
 
 test('should render Capabilities subsections', async (t) => {
@@ -55,25 +61,25 @@ test('should render Capabilities subsections', async (t) => {
   const capabilitiesSection = content.sections[1];
   await t
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="guide-section-title"]'))).eql(capabilitiesSection.title)
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(1)'))).eql(capabilitiesSection.subsections[0].description[0])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(2)'))).eql(capabilitiesSection.subsections[0].description[1])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(3)'))).eql(capabilitiesSection.subsections[0].description[2])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > div:nth-child(3)'))).eql(capabilitiesSection.subsections[0].description[2])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > p:nth-child(1)'))).eql(capabilitiesSection.subsections[0].description[0])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > p:nth-child(2)'))).eql(capabilitiesSection.subsections[0].description[1])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > p:nth-child(3)'))).eql(capabilitiesSection.subsections[0].description[2])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-capabilities-description"] > p:nth-child(3)'))).eql(capabilitiesSection.subsections[0].description[2])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="guide-section-description-with-link"] > a'))).eql(capabilitiesSection.subsections[1].description[0].linkText)
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-title-epics"]'))).eql(capabilitiesSection.subsections[2].title)
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-epics"] > div:nth-child(1)'))).eql(capabilitiesSection.subsections[2].description[0])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-epics"] > div:nth-child(2)'))).eql(capabilitiesSection.subsections[2].description[1])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-epics"] > div:nth-child(3)'))).eql(capabilitiesSection.subsections[2].description[2])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-epics"] > p:nth-child(1)'))).eql(capabilitiesSection.subsections[2].description[0])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-epics"] > p:nth-child(2)'))).eql(capabilitiesSection.subsections[2].description[1])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-epics"] > p:nth-child(3)'))).eql(capabilitiesSection.subsections[2].description[2])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-title-foundation-solution-set"]'))).eql(capabilitiesSection.subsections[3].title)
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-foundation-solution-set"] > div:nth-child(1)'))).eql(capabilitiesSection.subsections[3].description[0])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-they-are"] > div:nth-child(1)'))).eql(capabilitiesSection.subsections[4].description[0])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-foundation-solution-set"] > p:nth-child(1)'))).eql(capabilitiesSection.subsections[3].description[0])
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-they-are"] > p:nth-child(1)'))).eql(capabilitiesSection.subsections[4].description[0])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-bulletlist"] > li:nth-child(1)'))).eql(capabilitiesSection.subsections[5].bulletlist[0])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-bulletlist"] > li:nth-child(2)'))).eql(capabilitiesSection.subsections[5].bulletlist[1])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-bulletlist"] > li:nth-child(3)'))).eql(capabilitiesSection.subsections[5].bulletlist[2])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-bulletlist"] > li:nth-child(4)'))).eql(capabilitiesSection.subsections[5].bulletlist[3])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-bulletlist"] > li:nth-child(5)'))).eql(capabilitiesSection.subsections[5].bulletlist[4])
     .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-bulletlist"] > li:nth-child(6)'))).eql(capabilitiesSection.subsections[5].bulletlist[5])
-    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-view-only-catalogue-solutions"] > div:nth-child(1)'))).eql(capabilitiesSection.subsections[6].description[0]);
+    .expect(await extractInnerText(capabilitiesSelector.find('[data-test-id="subsection-view-only-catalogue-solutions"] > p:nth-child(1)'))).eql(capabilitiesSection.subsections[6].description[0]);
 });
 
 test('should render learn more about the Capability Model link', async (t) => {
@@ -89,11 +95,11 @@ test('should render Standards subsections', async (t) => {
   const standardsSection = content.sections[2];
   await t
     .expect(await extractInnerText(standardsSelector.find('[data-test-id="guide-section-title"]'))).eql(standardsSection.title)
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > div:nth-child(1)'))).eql(standardsSection.subsections[0].description[0])
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > div:nth-child(2)'))).eql(standardsSection.subsections[0].description[1])
+    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > p:nth-child(1)'))).eql(standardsSection.subsections[0].description[0])
+    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > p:nth-child(2)'))).eql(standardsSection.subsections[0].description[1])
     .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-title-compliance-work-off-plan"]'))).eql(standardsSection.subsections[1].title)
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-compliance-work-off-plan"] > div:nth-child(1)'))).eql(standardsSection.subsections[1].description[0])
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-compliance-work-off-plan"] > div:nth-child(2)'))).eql(standardsSection.subsections[1].description[1]);
+    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-compliance-work-off-plan"] > p:nth-child(1)'))).eql(standardsSection.subsections[1].description[0])
+    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-compliance-work-off-plan"] > p:nth-child(2)'))).eql(standardsSection.subsections[1].description[1]);
 });
 
 test('should render Integrations subsections', async (t) => {
@@ -103,9 +109,9 @@ test('should render Integrations subsections', async (t) => {
   await t
     .expect(await extractInnerText(integrationSelector.find('[data-test-id="guide-section-title"]'))).eql(integrationSection.title)
     .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-title-nhs-assured-integrations"]'))).eql(integrationSection.subsections[0].title)
-    .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-nhs-assured-integrations"] > div:nth-child(1)'))).eql(integrationSection.subsections[0].description[0])
+    .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-nhs-assured-integrations"] > p:nth-child(1)'))).eql(integrationSection.subsections[0].description[0])
     .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-title-supplier-assured-integrations"]'))).eql(integrationSection.subsections[1].title)
-    .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-supplier-assured-integrations"] > div:nth-child(1)'))).eql(integrationSection.subsections[1].description[0]);
+    .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-supplier-assured-integrations"] > p:nth-child(1)'))).eql(integrationSection.subsections[1].description[0]);
 });
 
 test('should render Learn More subsections', async (t) => {
@@ -114,7 +120,7 @@ test('should render Learn More subsections', async (t) => {
   const learnMoreSection = content.sections[4];
   await t
     .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="guide-section-title"]'))).eql(learnMoreSection.title)
-    .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="subsection-learn-more"] > div:nth-child(1)'))).eql(learnMoreSection.subsections[0].description[0])
+    .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="subsection-learn-more"] > p:nth-child(1)'))).eql(learnMoreSection.subsections[0].description[0])
     .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="subsection-button"] > a'))).eql(learnMoreSection.subsections[1].button.text)
     .expect(learnMoreSelector.find('[data-test-id="subsection-button"] > a').getAttribute('href')).eql(`${blobstoreHost}${learnMoreSection.subsections[1].button.href}`);
 });

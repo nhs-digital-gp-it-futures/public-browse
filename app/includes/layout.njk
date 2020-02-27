@@ -38,9 +38,17 @@
 
     {% include 'includes/header.njk' %}
 
-      <main class="nhsuk-main-wrapper" id="maincontent">
-        {% block body %}{% endblock %}
-      </main>
+    {% block mainOpen %}
+      <div class="nhsuk-width-container">
+        <main class="nhsuk-main-wrapper" id="maincontent">
+          {% endblock %}
+
+          {% block body %}{% endblock %}
+
+          {% block mainClose %}
+        </main>
+      </div>
+    {% endblock %}
 
     {% include 'includes/footer.njk' %}
 
