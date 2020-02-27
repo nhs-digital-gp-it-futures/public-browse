@@ -6,10 +6,7 @@ const session = require('cookie-session');
 // Fake Authentication dependencies
 const cookieParser = require('cookie-parser');
 
-export class AuthProvider {
-}
-
-export class RealAuthProvider extends AuthProvider {
+export class RealAuthProvider {
   constructor() {
     const OIDC_BASE_URI = 'http://localhost:8070';
     const OIDC_CLIENT_ID = 'SampleClient';
@@ -47,8 +44,6 @@ export class RealAuthProvider extends AuthProvider {
       console.log(`deserializeUser ${JSON.stringify(obj)}`);
       done(null, obj);
     });
-
-    super();
   }
 
   setup(app) {
@@ -63,12 +58,21 @@ export class RealAuthProvider extends AuthProvider {
 
 }
 
-export class FakeAuthProvider extends AuthProvider {
+export class FakeAuthProvider {
   constructor() {
-    super();
+    console.log('Createing a Fakey fake');
   }
 
-  
+  setup(app) {
+    app.use(cookieParser());
 
-
+    app.use((req, res, next) => {
+      if (req.cookies && req.cookies.fakeToken) {
+        console.log('IN APP WHAT HAVE WE GOT');
+        console.log(`req ${JSON.stringify(JSON.parse(req.cookies.fakeToken))}`);
+        req.user = JSON.parse(req.cookies.fakeToken);
+      }
+      next();
+    });
+  }
 }
