@@ -1,17 +1,21 @@
-{% extends 'includes/layout.njk' %}
+{% extends 'includes/layouts/fluid.njk' %}
 {% from 'components/hero/macro.njk' import hero %}
 {% from 'components/promo/macro.njk' import promo %}
 
 {% block body %}
-  <div data-test-id="homepage-hero">
-    {{ hero({
-    "heading": heroHeading,
-    "text": heroText
-    }) }}
+  <div class="nhsuk-hero" data-test-id="homepage-hero">
+    <div class="nhsuk-hero__wrapper">
+      <div class="nhsuk-width-container nhsuk-grid-row">
+        <div class="nhsuk-grid-column-two-thirds nhsuk-u-padding-0">
+          <h1 class="nhsuk-u-margin-bottom-3">{{ heroHeading }}</h1>
+          <h2 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-0 nhsuk-u-font-weight-normal">{{ heroText }}</h2>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="nhsuk-width-container" data-test-id="about-us">
     <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-top-4">
+      <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-top-7">
         <h3>{{ title }}</h3>
         {% for eachDescription in description %}
           <p>{{ eachDescription }}</p>

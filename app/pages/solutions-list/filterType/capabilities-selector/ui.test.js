@@ -52,7 +52,7 @@ test('should display the page description', async (t) => {
 
 test('should display the capabilities heading', async (t) => {
   await pageSetup({ t, capabilities: 'C1' });
-  const capabilityHeading = Selector('div[data-test-id="capability-list"] h4');
+  const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
   await t
     .expect(capabilityHeading.exists).ok()
     .expect(await extractInnerText(capabilityHeading)).eql('Capabilities met');
@@ -75,9 +75,9 @@ test('should display the solution details of a solution card', async (t) => {
   await t
     .expect(foundationTag.exists).ok()
     .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set')
-    .expect(await extractInnerText(solutionCard.find('h5[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
-    .expect(await extractInnerText(solutionCard.find('h2'))).eql('some foundation solution name')
-    .expect(await extractInnerText(solutionCard.find('div[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
+    .expect(await extractInnerText(solutionCard.find('h4[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
+    .expect(await extractInnerText(solutionCard.find('h3'))).eql('some foundation solution name')
+    .expect(await extractInnerText(solutionCard.find('p[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
 });
 
 test('should display the capability details of a solution card', async (t) => {
@@ -145,7 +145,7 @@ test('should display the page description', async (t) => {
 
 test('should display the capabilities heading', async (t) => {
   await pageSetup({ t });
-  const capabilityHeading = Selector('div[data-test-id="capability-list"] h4');
+  const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
   await t
     .expect(capabilityHeading.exists).ok()
     .expect(await extractInnerText(capabilityHeading)).eql('Capabilities met');
@@ -168,9 +168,9 @@ test('should display the solution details of a solution card', async (t) => {
   await t
     .expect(foundationTag.exists).ok()
     .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set')
-    .expect(await extractInnerText(solutionCard.find('h5[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
-    .expect(await extractInnerText(solutionCard.find('h2'))).eql('some foundation solution name')
-    .expect(await extractInnerText(solutionCard.find('div[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
+    .expect(await extractInnerText(solutionCard.find('h4[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
+    .expect(await extractInnerText(solutionCard.find('h3'))).eql('some foundation solution name')
+    .expect(await extractInnerText(solutionCard.find('p[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
 });
 
 test('should display the capability details of a solution card', async (t) => {

@@ -2,7 +2,7 @@
 
 {% macro capabilityList(params) %}
   <div data-test-id="capability-list">
-    <h4>Capabilities met</h4>
+    <h5 class="nhsuk-u-font-size-22">Capabilities met</h5>
     <ul>
       {% for capability in params.capabilities %}
         <li data-test-id="capability-list-item" class="nhsuk-u-font-size-16">
@@ -28,19 +28,19 @@
       }) }}
     {% endif %}
 
-      <h2 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-name">
+      <h3 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-size-32" data-test-id="solution-card-name">
         <a href="{{ params.solution.viewSolutionUrl }}">
           {{ params.solution.name }}
         </a>
-      </h2>
+      </h3>
 
-      <h5 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-supplier">
+      <h4 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-supplier">
         {{ params.solution.supplierName }}
-      </h5>
+      </h4>
 
-      <div data-test-id="solution-card-summary">
+      <p data-test-id="solution-card-summary" class="nhsuk-u-font-size-16">
         {{ params.solution.summary }}
-      </div>
+      </p>
 
       <div data-test-id="solution-card-view-link" class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
         <a href="{{ params.solution.viewSolutionUrl }}">View this solution</a>
