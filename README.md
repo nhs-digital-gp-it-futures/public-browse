@@ -15,7 +15,7 @@ npm install
 ```
 
 ## Running the application
-- Run - `npm run start`
+- Build and run - `npm run start`
 - Unit Tests - `npm run test`
 - Integration Tests - `npm run test:integration`
 
