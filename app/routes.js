@@ -1,5 +1,4 @@
 import express from 'express';
-import passport from 'passport';
 import { getPublicSolutionById, getDocument } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -24,12 +23,12 @@ export class Router {
   }
 
   routes() {
-    this.router.get('/login', passport.authenticate('openidconnect', {
+    this.router.get('/login', this.authProvider.authenticate({
       successReturnToOrRedirect: '/',
       scope: 'profile',
     }));
 
-    this.router.get('/oauth/callback', passport.authenticate('openidconnect', {
+    this.router.get('/oauth/callback', this.authProvider.authenticate({
       callback: true,
       successReturnToOrRedirect: '/',
       failureRedirect: '/',

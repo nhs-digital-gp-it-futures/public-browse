@@ -56,6 +56,12 @@ export class RealAuthProvider {
     app.use(passport.session());
   }
 
+  authenticate(options) {
+    console.log('in authenticateLogin')
+    return (req, res, next) => {
+      passport.authenticate('openidconnect', options)(req, res, next);
+    }
+  }
 }
 
 export class FakeAuthProvider {
@@ -74,5 +80,11 @@ export class FakeAuthProvider {
       }
       next();
     });
+  }
+
+  authenticate(options) {
+    return (req, res, next) => {
+      res.redirect('http://identity-server/login');
+    }
   }
 }
