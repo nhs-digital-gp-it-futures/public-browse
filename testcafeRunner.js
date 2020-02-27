@@ -15,7 +15,7 @@ createTestcafe('localhost')
   .then((tc) => {
     testcafe = tc;
 
-    const app = new App().createAppWithAuthentication();
+    const app = new App().createAppWithFakeAuthentication();
     app.use('/', routes);
 
     server = app.listen('1234');

@@ -3,11 +3,23 @@ import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 import { extractInnerText } from '../../test-utils/helper';
 
-const pageSetup = async (t) => {
+const setCookies = ClientFunction(() => {
+  const cookieValue = JSON.stringify({
+    id: '88421113', name: {}, _raw: '{"sub":"88421113"}', _json: { sub: '88421113' },
+  });
+
+  document.cookie = `fakeToken=${cookieValue}`;
+});
+
+const pageSetup = async (t, withAuth = false) => {
+  if (withAuth) {
+    await setCookies();
+  }
   await t.navigateTo('http://localhost:1234/');
 };
 
 fixture('Header')
+  .page('http://localhost:1234/healthcheck')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -41,13 +53,23 @@ test('should navigate to home page header banner', async (t) => {
     .expect(getLocation()).eql('http://localhost:1234/');
 });
 
-test('should naviage to the login page when clicking the login button', async (t) => {
+test('should display the login link and navigate to the login page when clicking the login button', async (t) => {
   await pageSetup(t);
+
   const getLocation = ClientFunction(() => document.location.href);
   const loginComponent = Selector('[data-test-id="login-logout-component"] a');
   await t
+    .expect(await extractInnerText(loginComponent)).eql('Log in')
     .click(loginComponent)
     .expect(getLocation()).contains('http://localhost:8070/Account/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fresponse_type%3Dcode%26client_id%3DSampleClient%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A3000%252Foauth%252Fcallback%26scope%3Dopenid%2520profile%26state');
+});
+
+test('should display the logout link when the user is authenticated', async (t) => {
+  await pageSetup(t, true);
+
+  const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(logoutComponent)).eql('Log out');
 });
 
 fixture('Show Home Page')

@@ -14,6 +14,9 @@ const passport = require('passport');
 const PassportStrategy = require('passport-openidconnect').Strategy;
 const session = require('cookie-session');
 
+// Fake Authentication dependencies
+const cookieParser = require('cookie-parser');
+
 // Local dependencies
 const config = require('./app/config');
 const locals = require('./app/locals');
@@ -67,6 +70,7 @@ class App {
 
   createAppWithAuthentication() {
     this.app = this.createApp();
+
     const OIDC_BASE_URI = 'http://localhost:8070';
     const OIDC_CLIENT_ID = 'SampleClient';
     const OIDC_CLIENT_SECRET = 'SampleClientSecret';
@@ -106,14 +110,27 @@ class App {
 
     this.app.use(session({
       name: 'token2',
-      // keys: [],
       secret: 'secret squirrel',
-      // cookie: { httpOnly: true },
-      // secret: "long random string"
     }));
 
     this.app.use(passport.initialize());
     this.app.use(passport.session());
+
+    return this.app;
+  }
+
+  createAppWithFakeAuthentication() {
+    this.app = this.createApp();
+    this.app.use(cookieParser());
+
+    this.app.use((req, res, next) => {
+      if (req.cookies && req.cookies.fakeToken) {
+        console.log('IN APP WHAT HAVE WE GOT');
+        console.log(`req ${JSON.stringify(JSON.parse(req.cookies.fakeToken))}`);
+        req.user = JSON.parse(req.cookies.fakeToken);
+      }
+      next();
+    });
 
     return this.app;
   }
