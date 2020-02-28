@@ -7,8 +7,10 @@ const { routes } = require('./app/routes');
 
 Object.keys(config).map((configKey) => {
   if (config[configKey]) {
+    // eslint-disable-next-line no-console
     console.log(`${configKey} set to ${config[configKey]}`);
   } else {
+    // eslint-disable-next-line no-console
     console.log(`${configKey} not set`);
   }
 });
