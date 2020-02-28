@@ -1,6 +1,6 @@
 import { createCapabilitiesSelectorPageContext } from './capabilitiesSelectorPageContext';
 import { ApiProvider } from '../../apiProvider';
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 export const getCapabilitiesContext = async () => {
   const response = await new ApiProvider().getCapabilities();

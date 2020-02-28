@@ -1,8 +1,18 @@
+require('dotenv').config();
 const browserSync = require('browser-sync');
 const config = require('./app/config');
 const { App } = require('./app');
 const { AuthProvider } = require('./app/authProvider');
 const { routes } = require('./app/routes');
+const { logger } = require('./app/logger');
+
+Object.keys(config).map((configKey) => {
+  if (config[configKey]) {
+    logger.info(`${configKey} set to ${config[configKey]}`);
+  } else {
+    logger.error(`${configKey} not set`);
+  }
+});
 
 const authProvider = new AuthProvider();
 const app = new App(authProvider).createApp();
