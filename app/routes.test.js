@@ -61,26 +61,24 @@ const setUpFakeApp = () => {
 
 describe('routes', () => {
   describe('GET /healthcheck', () => {
-    it('should return the correct status and text', () => {
-      return request(setUpFakeApp())
+    it('should return the correct status and text', () => (
+      request(setUpFakeApp())
         .get('/healthcheck')
         .expect(200)
         .then((res) => {
           expect(res.text).toBe('Public browse is running!!!');
-        });
-    });
+        })));
   });
 
   describe('GET /login', () => {
-    it('should return the correct status and redirect to the login page when not authenticated', () => {
-      return request(setUpFakeApp())
+    it('should return the correct status and redirect to the login page when not authenticated', () => (
+      request(setUpFakeApp())
         .get('/login')
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
           expect(res.headers.location).toEqual('http://identity-server/login');
-        });
-    });
+        })));
   });
 
   describe('GET /', () => {
@@ -306,13 +304,12 @@ describe('routes', () => {
   });
 
   describe('GET *', () => {
-    it('should return error page if url cannot be matched', () => {
-      return request(setUpFakeApp())
+    it('should return error page if url cannot be matched', () => (
+      request(setUpFakeApp())
         .get('/aaaa')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-padding-left-3" data-test-id="error-page-title">Error: Incorrect url /aaaa - please check it is valid and try again</h1>')).toEqual(true);
-        });
-    });
+        })));
   });
 });
