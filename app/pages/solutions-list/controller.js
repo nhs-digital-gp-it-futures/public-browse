@@ -1,7 +1,7 @@
 import { ManifestProvider } from './filterType/manifestProvider';
 import { createSolutionListPageContext } from './context';
 import { ApiProvider } from '../../apiProvider';
-import logger from '../../logger';
+import { logger } from '../../logger';
 
 const getSolutionListData = async (filterType) => {
   const solutionListResponse = await new ApiProvider().getSolutionListData(filterType);

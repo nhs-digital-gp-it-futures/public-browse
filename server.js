@@ -4,14 +4,13 @@ const config = require('./app/config');
 const { App } = require('./app');
 const { AuthProvider } = require('./app/authProvider');
 const { routes } = require('./app/routes');
+const { logger } = require('./app/logger');
 
 Object.keys(config).map((configKey) => {
   if (config[configKey]) {
-    // eslint-disable-next-line no-console
-    console.log(`${configKey} set to ${config[configKey]}`);
+    logger.info(`${configKey} set to ${config[configKey]}`);
   } else {
-    // eslint-disable-next-line no-console
-    console.log(`${configKey} not set`);
+    logger.error(`${configKey} not set`);
   }
 });
 

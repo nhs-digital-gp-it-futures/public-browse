@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiHost, documentHost } from './config';
-import logger from './logger';
+import { logger } from './logger';
 
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
   if (filterType === 'all') {

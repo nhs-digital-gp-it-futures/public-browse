@@ -6,7 +6,7 @@ import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
 import { getCapabilitiesContext } from './pages/capabilities-selector/controller';
 import { errorHandler } from './pages/error/errorHandler';
-import logger from './logger';
+import { logger } from './logger';
 import config from './config';
 import includesContext from './includes/manifest.json';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
