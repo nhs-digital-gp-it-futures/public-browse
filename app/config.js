@@ -9,7 +9,7 @@ module.exports = {
   port: process.env.PORT || 3000,
 
   // The base uri the app is running on to pass to identity service for redirection
-  apBaseUri: process.env.APP_BASE_URI || 'http://localhost:3000',
+  appBaseUri: process.env.APP_BASE_URI || 'http://localhost:3000',
 
   // API_HOST
   apiHost: process.env.API_HOST || 'http://localhost:5100',

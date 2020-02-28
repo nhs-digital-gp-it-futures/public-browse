@@ -1,20 +1,22 @@
 import passport from 'passport';
 import PassportClient from 'passport-openidconnect';
 import session from 'cookie-session';
-import config from './config';
+import {
+  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri,
+} from './config';
 
 export class AuthProvider {
   constructor() {
     this.passport = passport;
 
     this.passport.use(new PassportClient.Strategy({
-      issuer: config.oidcBaseUri,
-      clientID: config.oidcClientId,
-      clientSecret: config.oidcClientSecret,
-      authorizationURL: `${config.oidcBaseUri}/connect/authorize`,
-      userInfoURL: `${config.oidcBaseUri}/connect/userinfo`,
-      tokenURL: `${config.oidcBaseUri}/connect/token`,
-      callbackURL: `${config.apBaseUri}/oauth/callback`,
+      issuer: oidcBaseUri,
+      clientID: oidcClientId,
+      clientSecret: oidcClientSecret,
+      authorizationURL: `${oidcBaseUri}/connect/authorize`,
+      userInfoURL: `${oidcBaseUri}/connect/userinfo`,
+      tokenURL: `${oidcBaseUri}/connect/token`,
+      callbackURL: `${appBaseUri}/oauth/callback`,
       passReqToCallback: true,
     },
     ((req, issuer, userId, profile, accessToken, refreshToken, params, cb) => {
