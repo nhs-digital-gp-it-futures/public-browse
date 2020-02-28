@@ -13,10 +13,11 @@ const dateFilter = require('nunjucks-date-filter');
 const config = require('./app/config');
 const locals = require('./app/locals');
 
-class App {
-  constructor() {
+export class App {
+  constructor(authProvider) {
     // Initialise application
     this.app = express();
+    this.authProvider = authProvider;
   }
 
   createApp() {
@@ -57,8 +58,11 @@ class App {
 
     env.addFilter('isArray', value => Array.isArray(value));
     env.addFilter('dateTime', dateFilter);
+
+    if (this.authProvider) {
+      this.authProvider.setup(this.app);
+    }
+
     return this.app;
   }
 }
-
-module.exports = { App };

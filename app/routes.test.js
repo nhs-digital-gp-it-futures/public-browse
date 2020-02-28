@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { App } from '../app';
-import routes from './routes';
+import { routes } from './routes';
+import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
 import * as solutionListPageContext from './pages/solutions-list/controller';
@@ -51,33 +52,33 @@ const mockCapabilitiesContext = {
   },
 };
 
+const setUpFakeApp = () => {
+  const authProvider = new FakeAuthProvider();
+  const app = new App(authProvider).createApp();
+  app.use('/', routes(authProvider));
+  return app;
+};
+
 describe('routes', () => {
   describe('GET /healthcheck', () => {
-    it('should return the correct status and text', () => {
-      const app = new App().createApp();
-      app.use('/', routes);
-
-      return request(app)
+    it('should return the correct status and text', () => (
+      request(setUpFakeApp())
         .get('/healthcheck')
         .expect(200)
         .then((res) => {
           expect(res.text).toBe('Public browse is running!!!');
-        });
-    });
+        })));
   });
 
   describe('GET /login', () => {
-    it('should return the correct status and text', () => {
-      const app = new App().createApp();
-      app.use('/', routes);
-
-      return request(app)
+    it('should return the correct status and redirect to the login page when not authenticated', () => (
+      request(setUpFakeApp())
         .get('/login')
-        .expect(200)
+        .expect(302)
         .then((res) => {
-          expect(res.text).toBe('Login route');
-        });
-    });
+          expect(res.redirect).toEqual(true);
+          expect(res.headers.location).toEqual('http://identity-server/login');
+        })));
   });
 
   describe('GET /', () => {
@@ -88,10 +89,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error', () => {
       homepageContext.getHomepageContext = jest.fn()
         .mockImplementation(() => Promise.resolve({}));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/')
         .expect(200)
         .then((res) => {
@@ -109,10 +108,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error', () => {
       guidePageContext.getGuidePageContext = jest.fn()
         .mockImplementation(() => Promise.resolve({}));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/guide')
         .expect(200)
         .then((res) => {
@@ -130,10 +127,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error', () => {
       browseSolutionsPageContext.getBrowseSolutionsPageContext = jest.fn()
         .mockImplementation(() => Promise.resolve({}));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/solutions')
         .expect(200)
         .then((res) => {
@@ -151,10 +146,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error for foundation', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/solutions/foundation')
         .expect(200)
         .then((res) => {
@@ -166,9 +159,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error for capabilities-selector and capabilities are selected', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .get('/solutions/capabilities-selector')
         .expect(200)
         .then((res) => {
@@ -180,10 +172,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error for capabilities-selector with capabilities', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/solutions/capabilities-selector.C1')
         .expect(200)
         .then((res) => {
@@ -201,10 +191,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
         .mockImplementation(() => Promise.resolve(mockGetPublicSolutionById));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/solutions/foundation/1')
         .expect(200)
         .then((res) => {
@@ -216,10 +204,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error with capabilities', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
         .mockImplementation(() => Promise.resolve(mockGetPublicSolutionById));
-      const app = new App().createApp();
-      app.use('/', routes);
 
-      return request(app)
+      return request(setUpFakeApp())
         .get('/solutions/capabilities-selector.C1/1')
         .expect(200)
         .then((res) => {
@@ -233,9 +219,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error and one capability selected', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
         .send({ capabilities: 'C1' })
         .expect(302)
@@ -248,9 +233,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error and many capabilities selected', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
         .send({ capabilities: ['C1', 'C2', 'C3'] })
         .expect(302)
@@ -263,9 +247,8 @@ describe('routes', () => {
     it('should return the correct status and text if there is no error and capabilities not selected', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
         .send('all')
         .expect(302)
@@ -280,9 +263,8 @@ describe('routes', () => {
     it('should return error page if there is an error from /solutions/:filterType.:capabilities? route', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
         .mockImplementation(() => Promise.reject());
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .get('/solutions/foundation')
         .expect(200)
         .then((res) => {
@@ -295,9 +277,8 @@ describe('routes', () => {
     it('should return error page if there is an error from /solutions/:filterType.:capabilities? route with capabilities', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.reject());
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .get('/solutions/capabilities-selector.C1')
         .expect(200)
         .then((res) => {
@@ -310,9 +291,8 @@ describe('routes', () => {
     it('should return error page if there is an error from the /solutions/:filterType.:capabilities?/:solutionId route', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
         .mockImplementation(() => Promise.reject());
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+
+      return request(setUpFakeApp())
         .get('/solutions/foundation/1')
         .expect(200)
         .then((res) => {
@@ -324,15 +304,12 @@ describe('routes', () => {
   });
 
   describe('GET *', () => {
-    it('should return error page if url cannot be matched', () => {
-      const app = new App().createApp();
-      app.use('/', routes);
-      return request(app)
+    it('should return error page if url cannot be matched', () => (
+      request(setUpFakeApp())
         .get('/aaaa')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-padding-left-3" data-test-id="error-page-title">Error: Incorrect url /aaaa - please check it is valid and try again</h1>')).toEqual(true);
-        });
-    });
+        })));
   });
 });

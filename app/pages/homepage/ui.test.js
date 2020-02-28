@@ -3,11 +3,23 @@ import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 import { extractInnerText } from '../../test-utils/helper';
 
-const pageSetup = async (t) => {
+const setCookies = ClientFunction(() => {
+  const cookieValue = JSON.stringify({
+    id: '88421113', name: {}, _raw: '{"sub":"88421113"}', _json: { sub: '88421113' },
+  });
+
+  document.cookie = `fakeToken=${cookieValue}`;
+});
+
+const pageSetup = async (t, withAuth = false) => {
+  if (withAuth) {
+    await setCookies();
+  }
   await t.navigateTo('http://localhost:1234/');
 };
 
 fixture('Header')
+  .page('http://localhost:1234/healthcheck')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -39,6 +51,36 @@ test('should navigate to home page header banner', async (t) => {
     .expect(headerBannerLink.exists).ok()
     .click(headerBannerLink)
     .expect(getLocation()).eql('http://localhost:1234/');
+});
+
+test('when user is not authenticated - should display the login link', async (t) => {
+  await pageSetup(t);
+
+  const loginComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(loginComponent)).eql('Log in');
+});
+
+test('when user is not authenticated - should navigate to the identity server login page when clicking the login link', async (t) => {
+  await pageSetup(t);
+
+  nock('http://identity-server')
+    .get('/login')
+    .reply(200);
+
+  const getLocation = ClientFunction(() => document.location.href);
+  const loginComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .click(loginComponent)
+    .expect(getLocation()).eql('http://identity-server/login');
+});
+
+test('when user is authenticated - should display the logout link', async (t) => {
+  await pageSetup(t, true);
+
+  const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(logoutComponent)).eql('Log out');
 });
 
 fixture('Show Home Page')

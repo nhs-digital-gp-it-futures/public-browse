@@ -1,12 +1,13 @@
 const browserSync = require('browser-sync');
-const routes = require('./app/routes');
 const config = require('./app/config');
 const { App } = require('./app');
+const { AuthProvider } = require('./app/authProvider');
+const { routes } = require('./app/routes');
 
-// Routes
-const app = new App().createApp();
+const authProvider = new AuthProvider();
+const app = new App(authProvider).createApp();
 
-app.use('/', routes);
+app.use('/', routes(authProvider));
 
 // Run application on configured port
 if (config.env === 'development') {
