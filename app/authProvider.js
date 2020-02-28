@@ -1,10 +1,6 @@
-// Authentication dependencies
 const passport = require('passport');
 const PassportStrategy = require('passport-openidconnect').Strategy;
 const session = require('cookie-session');
-
-// Fake Authentication dependencies
-const cookieParser = require('cookie-parser');
 
 export class AuthProvider {
   constructor() {
@@ -52,30 +48,6 @@ export class AuthProvider {
   authenticate(options) {
     return (req, res, next) => {
       this.passport.authenticate('openidconnect', options)(req, res, next);
-    };
-  }
-}
-
-export class FakeAuthProvider {
-  // eslint-disable-next-line no-useless-constructor, no-empty-function
-  constructor() {}
-
-  // eslint-disable-next-line class-methods-use-this
-  setup(app) {
-    app.use(cookieParser());
-
-    app.use((req, res, next) => {
-      if (req.cookies && req.cookies.fakeToken) {
-        req.user = JSON.parse(req.cookies.fakeToken);
-      }
-      next();
-    });
-  }
-
-  // eslint-disable-next-line class-methods-use-this, no-unused-vars
-  authenticate(options) {
-    return (req, res) => {
-      res.redirect('http://identity-server/login');
     };
   }
 }

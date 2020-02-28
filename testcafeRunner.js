@@ -1,7 +1,7 @@
 import createTestcafe from 'testcafe';
 import { App } from './app';
 import { routes } from './app/routes';
-import { FakeAuthProvider } from './app/authProvider';
+import { FakeAuthProvider } from './app/test-utils/FakeAuthProvider';
 
 let testcafe;
 let server;
