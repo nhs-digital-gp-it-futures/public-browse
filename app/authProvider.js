@@ -1,23 +1,20 @@
-const passport = require('passport');
-const PassportStrategy = require('passport-openidconnect').Strategy;
-const session = require('cookie-session');
+import passport from 'passport';
+import PassportClient from 'passport-openidconnect';
+import session from 'cookie-session';
+import config from './config';
 
 export class AuthProvider {
   constructor() {
     this.passport = passport;
-    const OIDC_BASE_URI = 'http://localhost:8070';
-    const OIDC_CLIENT_ID = 'SampleClient';
-    const OIDC_CLIENT_SECRET = 'SampleClientSecret';
-    const OIDC_REDIRECT_URI = 'http://localhost:3000/oauth/callback';
 
-    this.passport.use(new PassportStrategy({
-      issuer: OIDC_BASE_URI,
-      clientID: OIDC_CLIENT_ID,
-      clientSecret: OIDC_CLIENT_SECRET,
-      authorizationURL: `${OIDC_BASE_URI}/connect/authorize`,
-      userInfoURL: `${OIDC_BASE_URI}/connect/userinfo`,
-      tokenURL: `${OIDC_BASE_URI}/connect/token`,
-      callbackURL: OIDC_REDIRECT_URI,
+    this.passport.use(new PassportClient.Strategy({
+      issuer: config.oidcBaseUri,
+      clientID: config.oidcClientId,
+      clientSecret: config.oidcClientSecret,
+      authorizationURL: `${config.oidcBaseUri}/connect/authorize`,
+      userInfoURL: `${config.oidcBaseUri}/connect/userinfo`,
+      tokenURL: `${config.oidcBaseUri}/connect/token`,
+      callbackURL: `${config.apBaseUri}/oauth/callback`,
       passReqToCallback: true,
     },
     ((req, issuer, userId, profile, accessToken, refreshToken, params, cb) => {
