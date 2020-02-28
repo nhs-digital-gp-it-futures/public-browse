@@ -8,12 +8,14 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { errorHandler } from './pages/error/errorHandler';
 import logger from './logger';
 import config from './config';
+import includesContext from './includes/manifest.json';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 
 const router = express.Router();
 
 const addConfig = context => ({
   ...context,
+  ...includesContext,
   config,
 });
 
