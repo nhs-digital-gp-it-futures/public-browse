@@ -66,5 +66,3 @@ export class App {
     return this.app;
   }
 }
-
-module.exports = { App };
