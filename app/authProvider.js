@@ -6,7 +6,7 @@ const session = require('cookie-session');
 // Fake Authentication dependencies
 const cookieParser = require('cookie-parser');
 
-export class RealAuthProvider {
+export class AuthProvider {
   constructor() {
     this.passport = passport;
     const OIDC_BASE_URI = 'http://localhost:8070';

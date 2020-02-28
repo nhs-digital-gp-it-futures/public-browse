@@ -1,10 +1,10 @@
 const browserSync = require('browser-sync');
 const config = require('./app/config');
 const { App } = require('./app');
-const { RealAuthProvider } = require('./app/authProvider');
+const { AuthProvider } = require('./app/authProvider');
 const { routes } = require('./app/routes');
 
-const authProvider = new RealAuthProvider();
+const authProvider = new AuthProvider();
 const app = new App(authProvider).createApp();
 
 app.use('/', routes(authProvider));
