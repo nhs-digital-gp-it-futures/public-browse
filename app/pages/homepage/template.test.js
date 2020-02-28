@@ -13,9 +13,9 @@ describe('home page', () => {
     const context = content;
 
     harness.request(context, ($) => {
-      const homepageSection = $('[data-test-id="homepage-hero"] > section');
+      const homepageSection = $('[data-test-id="homepage-hero"]');
       const title = homepageSection.find('h1');
-      const description = homepageSection.find('p');
+      const description = homepageSection.find('h2');
       expect(homepageSection.length).toEqual(1);
       expect(title.text().trim()).toEqual(content.heroHeading);
       expect(description.text().trim()).toEqual(content.heroText);

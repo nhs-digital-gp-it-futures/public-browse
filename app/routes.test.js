@@ -94,7 +94,7 @@ describe('routes', () => {
         .get('/')
         .expect(200)
         .then((res) => {
-          expect(res.text.includes('<div data-test-id="homepage-hero">')).toEqual(true);
+          expect(res.text.includes('<div class="nhsuk-hero" data-test-id="homepage-hero">')).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });
     });

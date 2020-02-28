@@ -50,7 +50,7 @@ describe('subsection', () => {
     harness.request(context, ($) => {
       const description = $('[data-test-id="subsection-1"]');
       context.params.subSection.description.forEach((descriptionText, i) => {
-        expect(description.find(`div:nth-child(${i + 1})`).text().trim()).toEqual(descriptionText);
+        expect(description.find(`p:nth-child(${i + 1})`).text().trim()).toEqual(descriptionText);
       });
     });
   }));

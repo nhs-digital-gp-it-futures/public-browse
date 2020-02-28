@@ -95,9 +95,9 @@ fixture('Show Home Page')
 
 test('should render the homepage hero', async (t) => {
   await pageSetup(t);
-  const homepageSection = Selector('[data-test-id="homepage-hero"] > section');
+  const homepageSection = Selector('[data-test-id="homepage-hero"]');
   const title = homepageSection.find('h1');
-  const description = homepageSection.find('p');
+  const description = homepageSection.find('h2');
 
   await t
     .expect(homepageSection.count).eql(1)

@@ -1,22 +1,22 @@
-{% extends 'includes/layout.njk' %}
+{% extends 'includes/layouts/contained.njk' %}
 {% from 'components/error-summary/macro.njk' import errorSummary %}
 {% from 'components/back-link/macro.njk' import backLink %}
 
 {% block body %}
 <div class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-4 bc-c-error-container nhsuk-u-padding-4">
-  <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-home-page-link"> 
+  <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-home-page-link">
     {{ backLink({
       "href": "/",
       "text": "Go to Home Page"
     }) }}
   </div>
-  <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-capabilities-selector-link"> 
+  <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-capabilities-selector-link">
     {{ backLink({
       "href": "/solutions/capabilities-selector",
       "text": "Go to Select Capabilities"
     }) }}
   </div>
-  <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-foundation-solutions-link"> 
+  <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-foundation-solutions-link">
     {{ backLink({
       "href": "/solutions/foundation",
       "text": "Go to Foundation Solutions"

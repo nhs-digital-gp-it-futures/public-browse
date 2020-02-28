@@ -25,13 +25,14 @@ describe('guide', () => {
     harness.request(context, ($) => {
       const title = $('[data-test-id="guide-page-title"]');
       const description = $('[data-test-id="guide-page-description"]');
-      const subtext = $('[data-test-id="guide-page-subtext"] > div');
+      const advice = $('[data-test-id="guide-page-advice"]');
       expect(title.length).toEqual(1);
       expect(title.text().trim()).toEqual(content.title);
       expect(description.length).toEqual(1);
       expect(description.text().trim()).toEqual(content.description);
-      content.subtext.map((subtextEntry, i) => {
-        expect(subtext.find(`div:nth-child(${i + 1})`).text().trim()).toEqual(subtextEntry);
+      expect(advice.find('.nhsuk-u-visually-hidden').text().trim()).toEqual('Information:');
+      content.advice.map((adviceEntry, i) => {
+        expect(advice.find(`p:nth-child(${i + 2})`).text().trim()).toEqual(adviceEntry);
       });
     });
   }));
