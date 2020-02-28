@@ -53,7 +53,15 @@ test('should navigate to home page header banner', async (t) => {
     .expect(getLocation()).eql('http://localhost:1234/');
 });
 
-test('should display the login link and navigate to the login page when clicking the login button', async (t) => {
+test('when user is not authenticated - should display the login link', async (t) => {
+  await pageSetup(t);
+
+  const loginComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(loginComponent)).eql('Log in');
+});
+
+test('when user is not authenticated - should navigate to the identity server login page when clicking the login link', async (t) => {
   await pageSetup(t);
 
   nock('http://identity-server')
@@ -63,12 +71,11 @@ test('should display the login link and navigate to the login page when clicking
   const getLocation = ClientFunction(() => document.location.href);
   const loginComponent = Selector('[data-test-id="login-logout-component"] a');
   await t
-    .expect(await extractInnerText(loginComponent)).eql('Log in')
     .click(loginComponent)
     .expect(getLocation()).eql('http://identity-server/login');
 });
 
-test('should display the logout link when the user is authenticated', async (t) => {
+test('when user is authenticated - should display the logout link', async (t) => {
   await pageSetup(t, true);
 
   const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
