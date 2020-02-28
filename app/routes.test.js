@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { App } from '../app';
-import { Router } from './routes';
+import { routes } from './routes';
 import { FakeAuthProvider } from './authProvider';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
@@ -55,7 +55,7 @@ const mockCapabilitiesContext = {
 const setUpFakeApp = () => {
   const authProvider = new FakeAuthProvider();
   const app = new App(authProvider).createApp();
-  app.use('/', new Router(authProvider).routes());
+  app.use('/', routes(authProvider));
   return app;
 };
 

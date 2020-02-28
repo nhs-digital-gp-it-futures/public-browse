@@ -1,6 +1,6 @@
 import createTestcafe from 'testcafe';
 import { App } from './app';
-import { Router } from './app/routes';
+import { routes } from './app/routes';
 import { FakeAuthProvider } from './app/authProvider';
 
 let testcafe;
@@ -18,7 +18,7 @@ createTestcafe('localhost')
 
     const authProvider = new FakeAuthProvider();
     const app = new App(authProvider).createApp();
-    app.use('/', new Router(authProvider).routes());
+    app.use('/', routes(authProvider));
 
     server = app.listen('1234');
 
