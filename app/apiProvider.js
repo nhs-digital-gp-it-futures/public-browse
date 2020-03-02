@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiHost, documentHost } from './config';
+import { buyingCatalogueApiHost, documentApiHost } from './config';
 import { logger } from './logger';
 
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
@@ -14,12 +14,24 @@ const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
 
 export class ApiProvider {
   constructor() {
-    this.apiHost = apiHost;
-    this.documentHost = documentHost;
+    this.buyingCatalogueApiHost = buyingCatalogueApiHost;
+    this.documentApiHost = documentApiHost;
+  }
+
+  async getBuyingCatalogueApiHealth() {
+    const endpoint = `${this.buyingCatalogueApiHost}/health/ready`;
+    logger.info(`api called: [GET] ${endpoint}`);
+    return axios.get(endpoint);
+  }
+
+  async getDocumentApiHealth() {
+    const endpoint = `${this.documentApiHost}/health/ready`;
+    logger.info(`api called: [GET] ${endpoint}`);
+    return axios.get(endpoint);
   }
 
   async getSolutionListData(filterType) {
-    const endpoint = getSolutionListDataEndpoint(this.apiHost, filterType);
+    const endpoint = getSolutionListDataEndpoint(this.buyingCatalogueApiHost, filterType);
     if (endpoint) {
       logger.info(`api called: [GET] ${endpoint}`);
       return axios.get(endpoint);
@@ -28,25 +40,25 @@ export class ApiProvider {
   }
 
   async getPublicSolutionById({ solutionId }) {
-    const endpoint = `${this.apiHost}/api/v1/Solutions/${solutionId}/Public`;
+    const endpoint = `${this.buyingCatalogueApiHost}/api/v1/Solutions/${solutionId}/Public`;
     logger.info(`api called: [GET] ${endpoint}`);
     return axios.get(endpoint);
   }
 
   async getDocument({ solutionId, documentName }) {
-    const endpoint = `${this.documentHost}/api/v1/Solutions/${solutionId}/documents/${documentName}`;
+    const endpoint = `${this.documentApiHost}/api/v1/Solutions/${solutionId}/documents/${documentName}`;
     logger.info(`api called: [GET] ${endpoint}`);
     return axios.get(endpoint, { responseType: 'stream' });
   }
 
   async getCapabilities() {
-    const endpoint = `${this.apiHost}/api/v1/Capabilities`;
+    const endpoint = `${this.buyingCatalogueApiHost}/api/v1/Capabilities`;
     logger.info(`api called: [GET] ${endpoint}`);
     return axios.get(endpoint);
   }
 
   async postSelectedCapabilities({ selectedCapabilities }) {
-    const endpoint = `${this.apiHost}/api/v1/Solutions`;
+    const endpoint = `${this.buyingCatalogueApiHost}/api/v1/Solutions`;
     logger.info(`api called: [POST] ${endpoint}: ${JSON.stringify(selectedCapabilities)}`);
     return axios.post(endpoint, selectedCapabilities);
   }
