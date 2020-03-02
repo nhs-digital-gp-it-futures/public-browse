@@ -60,16 +60,6 @@ const setUpFakeApp = () => {
 };
 
 describe('routes', () => {
-  describe('GET /healthcheck', () => {
-    it('should return the correct status and text', () => (
-      request(setUpFakeApp())
-        .get('/healthcheck')
-        .expect(200)
-        .then((res) => {
-          expect(res.text).toBe('Public browse is running!!!');
-        })));
-  });
-
   describe('GET /login', () => {
     it('should return the correct status and redirect to the login page when not authenticated', () => (
       request(setUpFakeApp())
