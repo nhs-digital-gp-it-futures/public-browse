@@ -32,6 +32,10 @@ export const routes = (authProvider) => {
     failureRedirect: '/',
   }));
 
+  router.get('/logout', (req, res) => {
+    res.send('Log out route');
+  });
+
   router.get('/healthcheck', (req, res) => {
     logger.info('navigating to healthcheck page');
     res.send('Public browse is running!!!');

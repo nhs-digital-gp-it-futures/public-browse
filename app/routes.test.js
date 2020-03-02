@@ -81,6 +81,16 @@ describe('routes', () => {
         })));
   });
 
+  describe('GET /logout', () => {
+    it('should return the text', () => (
+      request(setUpFakeApp())
+        .get('/logout')
+        .expect(200)
+        .then((res) => {
+          expect(res.text).toEqual('Log out route');
+        })));
+  });
+
   describe('GET /', () => {
     afterEach(() => {
       homepageContext.getHomepageContext.mockReset();
