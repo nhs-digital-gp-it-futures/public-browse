@@ -93,7 +93,6 @@ describe('routes', () => {
 
       return request(setUpFakeApp())
         .get('/')
-        .send({ _csrf: 'dada' })
         .expect(200)
         .then((res) => {
           expect(res.text.includes('<div class="nhsuk-hero" data-test-id="homepage-hero">')).toEqual(true);
