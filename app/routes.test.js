@@ -218,6 +218,15 @@ describe('routes', () => {
   });
 
   describe('POST /solutions/capabilities-selector', () => {
+    it('should return 403 forbidden if no csrf token is available', () => (
+      request(setUpFakeApp())
+        .post('/solutions/capabilities-selector')
+        .type('form')
+        .send({
+          capabilities: 'C1',
+        })
+        .expect(403)));
+
     it('should return the correct status and text if there is no error and one capability selected', async () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
