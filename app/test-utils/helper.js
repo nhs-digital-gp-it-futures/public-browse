@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import cheerio from 'cheerio';
 import request from 'supertest';
 
@@ -22,4 +23,4 @@ export const getCsrfTokenFromGet = async (app, getPath) => {
       csrfToken = extractCsrfToken(getRes);
     });
   return { cookies, csrfToken };
-}
+};
