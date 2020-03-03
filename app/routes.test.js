@@ -2,6 +2,7 @@ import request from 'supertest';
 import { App } from '../app';
 import { routes } from './routes';
 import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
+import { getCsrfTokenFromGet } from './test-utils/helper';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
 import * as solutionListPageContext from './pages/solutions-list/controller';
@@ -92,6 +93,7 @@ describe('routes', () => {
 
       return request(setUpFakeApp())
         .get('/')
+        .send({ _csrf: 'dada' })
         .expect(200)
         .then((res) => {
           expect(res.text.includes('<div class="nhsuk-hero" data-test-id="homepage-hero">')).toEqual(true);
@@ -156,7 +158,7 @@ describe('routes', () => {
         });
     });
 
-    it('should return the correct status and text if there is no error for capabilities-selector and capabilities are selected', () => {
+    it('should return the correct status and text if there is no error for capabilities-selector ', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
 
@@ -169,7 +171,7 @@ describe('routes', () => {
         });
     });
 
-    it('should return the correct status and text if there is no error for capabilities-selector with capabilities', () => {
+    it('should return the correct status and text if there is no error for capabilities-selector with capabilities and capabilities are selected', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
 
@@ -216,13 +218,23 @@ describe('routes', () => {
   });
 
   describe('POST /solutions/capabilities-selector', () => {
-    it('should return the correct status and text if there is no error and one capability selected', () => {
+    it('should return the correct status and text if there is no error and one capability selected', async () => {
+      capabilitiesContext.getCapabilitiesContext = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
+      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
-        .send({ capabilities: 'C1' })
+        .type('form')
+        .set('Cookie', cookies)
+        .send({
+          capabilities: 'C1',
+          _csrf: csrfToken,
+        })
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
@@ -230,13 +242,23 @@ describe('routes', () => {
         });
     });
 
-    it('should return the correct status and text if there is no error and many capabilities selected', () => {
+    it('should return the correct status and text if there is no error and many capabilities selected', async () => {
+      capabilitiesContext.getCapabilitiesContext = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
+      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
-        .send({ capabilities: ['C1', 'C2', 'C3'] })
+        .type('form')
+        .set('Cookie', cookies)
+        .send({
+          capabilities: ['C1', 'C2', 'C3'],
+          _csrf: csrfToken,
+        })
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
@@ -244,13 +266,23 @@ describe('routes', () => {
         });
     });
 
-    it('should return the correct status and text if there is no error and capabilities not selected', () => {
+    it('should return the correct status and text if there is no error and capabilities not selected', async () => {
+      capabilitiesContext.getCapabilitiesContext = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
+      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
-        .send('all')
+        .type('form')
+        .set('Cookie', cookies)
+        .send({
+          capabilities: 'all',
+          _csrf: csrfToken,
+        })
         .expect(302)
         .then((res) => {
           expect(res.redirect).toEqual(true);
