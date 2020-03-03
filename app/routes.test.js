@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { App } from '../app';
+import { App } from './app';
 import { routes } from './routes';
 import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
 import * as homepageContext from './pages/homepage/context';
