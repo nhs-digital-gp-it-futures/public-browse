@@ -12,8 +12,8 @@ const bodyParser = require('body-parser');
 const dateFilter = require('nunjucks-date-filter');
 
 // Local dependencies
-const config = require('./app/config');
-const locals = require('./app/locals');
+const config = require('./config');
+const locals = require('./locals');
 
 export class App {
   constructor(authProvider) {
@@ -24,7 +24,7 @@ export class App {
 
   createApp() {
     // Adds favicon to every page
-    this.app.use(favicon(path.join(__dirname, '/node_modules/nhsuk-frontend/packages/assets/favicons', 'favicon.ico')));
+    this.app.use(favicon(path.join(__dirname, '/../node_modules/nhsuk-frontend/packages/assets/favicons', 'favicon.ico')));
 
     // Use gzip compression to decrease the size of
     // the response body and increase the speed of web app
@@ -42,8 +42,8 @@ export class App {
     this.app.use(csrfMiddleware);
 
     // Middleware to serve static assets
-    this.app.use(express.static(path.join(__dirname, 'public/')));
-    this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/node_modules/nhsuk-frontend/packages')));
+    this.app.use(express.static(path.join(__dirname, '/../public/')));
+    this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/../node_modules/nhsuk-frontend/packages')));
 
     // View engine (Nunjucks)
     this.app.set('view engine', 'njk');
@@ -53,10 +53,10 @@ export class App {
 
     // Nunjucks configuration
     const appViews = [
-      path.join(__dirname, 'app/views/'),
-      path.join(__dirname, 'app/'),
-      path.join(__dirname, 'node_modules/buying-catalogue-components/app/'),
-      path.join(__dirname, 'node_modules/nhsuk-frontend/packages/'),
+      path.join(__dirname, '/views/'),
+      __dirname,
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/'),
+      path.join(__dirname, '/../node_modules/nhsuk-frontend/packages/'),
     ];
 
     const env = nunjucks.configure(appViews, {

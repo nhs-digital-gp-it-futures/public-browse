@@ -1,5 +1,5 @@
 import createTestcafe from 'testcafe';
-import { App } from './app';
+import { App } from './app/app';
 import { routes } from './app/routes';
 import { FakeAuthProvider } from './app/test-utils/FakeAuthProvider';
 

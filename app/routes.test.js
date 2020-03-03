@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { App } from '../app';
+import { App } from './app';
 import { routes } from './routes';
 import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
 import { getCsrfTokenFromGet } from './test-utils/helper';
@@ -61,16 +61,6 @@ const setUpFakeApp = () => {
 };
 
 describe('routes', () => {
-  describe('GET /healthcheck', () => {
-    it('should return the correct status and text', () => (
-      request(setUpFakeApp())
-        .get('/healthcheck')
-        .expect(200)
-        .then((res) => {
-          expect(res.text).toBe('Public browse is running!!!');
-        })));
-  });
-
   describe('GET /login', () => {
     it('should return the correct status and redirect to the login page when not authenticated', () => (
       request(setUpFakeApp())
@@ -79,6 +69,16 @@ describe('routes', () => {
         .then((res) => {
           expect(res.redirect).toEqual(true);
           expect(res.headers.location).toEqual('http://identity-server/login');
+        })));
+  });
+
+  describe('GET /logout', () => {
+    it('should return the text', () => (
+      request(setUpFakeApp())
+        .get('/logout')
+        .expect(200)
+        .then((res) => {
+          expect(res.text).toEqual('Log out route');
         })));
   });
 

@@ -13,8 +13,8 @@
     "lint:js": "eslint \"**/*.js\" --ignore-pattern node_modules/",
     "lint:css": "sass-lint 'app/**/*.scss' -v -q",
     "nuke": "npm run clean && rm -rf node_modules/",
-    "start:dev": "cross-env LOGGER_LEVEL=info babel-node server",
-    "start": "cross-env NODE_ENV=production npm run build && babel-node server",
+    "start:dev": "cross-env LOGGER_LEVEL=info babel-node ./app/server",
+    "start": "cross-env NODE_ENV=production npm run build && babel-node ./app/server",
     "test:ui": "cross-env NODE_ENV=test LOGGER_LEVEL=off babel-node testcafeRunner.js",
     "test:integration": "cross-env NODE_ENV=pipeline LOGGER_LEVEL=off babel-node testcafeRunner.js",
     "test": "jest --coverage",
@@ -33,7 +33,6 @@
   "dependencies": {
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
-    "browser-sync": "^2.26.7",
     "buying-catalogue-components": "^1.1.35",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",

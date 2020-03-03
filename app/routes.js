@@ -9,6 +9,7 @@ import { errorHandler } from './pages/error/errorHandler';
 import { logger } from './logger';
 import config from './config';
 import includesContext from './includes/manifest.json';
+import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 
 const addConfig = ({ context, user, csrfToken }) => ({
@@ -22,6 +23,8 @@ const addConfig = ({ context, user, csrfToken }) => ({
 export const routes = (authProvider) => {
   const router = express.Router();
 
+  router.use('/health', healthRoutes);
+
   router.get('/login', authProvider.authenticate({
     successReturnToOrRedirect: '/',
     scope: 'profile',
@@ -33,9 +36,8 @@ export const routes = (authProvider) => {
     failureRedirect: '/',
   }));
 
-  router.get('/healthcheck', (req, res) => {
-    logger.info('navigating to healthcheck page');
-    res.send('Public browse is running!!!');
+  router.get('/logout', (req, res) => {
+    res.send('Log out route');
   });
 
   router.get('/', (req, res) => {

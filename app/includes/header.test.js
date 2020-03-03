@@ -75,8 +75,7 @@ describe('header', () => {
           const headerBanner = $('header[data-test-id="header-banner"]');
           const logoutLink = headerBanner.find('[data-test-id="login-logout-component"] a');
           expect(logoutLink.text().trim()).toEqual('Log out');
-          // TODO: Change when logout route is implemented
-          expect(logoutLink.attr('href')).toEqual('#');
+          expect(logoutLink.attr('href')).toEqual('/logout');
         });
       }));
     });
