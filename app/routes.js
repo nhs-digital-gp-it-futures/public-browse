@@ -12,10 +12,11 @@ import includesContext from './includes/manifest.json';
 import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 
-const addConfig = ({ context, user }) => ({
+const addConfig = ({ context, user, csrfToken }) => ({
   ...context,
   ...includesContext,
   username: user && user.id,
+  csrfToken,
   config,
 });
 
@@ -69,7 +70,7 @@ export const routes = (authProvider) => {
       if (!capabilities) {
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');
-        res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user }));
+        res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user, csrfToken: req.csrfToken() }));
       } else {
         const context = await getSolutionsForSelectedCapabilities({
           capabilitiesSelected: capabilities,
