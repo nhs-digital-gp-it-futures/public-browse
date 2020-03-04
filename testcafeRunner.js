@@ -49,7 +49,8 @@ createTestcafe('localhost')
         pageLoadTimeout: 5000,
         speed: 1,
         quarantineMode,
-        stopOnFirstFail,      });
+        stopOnFirstFail,
+      });
   })
   .then(() => {
     server.close();
