@@ -1,0 +1,20 @@
+{% from 'components/checkboxes/macro.njk' import checkboxes %}
+
+{% macro capabilitiesSelector(params) %}
+  <div id="capabilities-selector" data-test-id="capabilities-selector">
+    <div data-test-id="capabilities-checkbox-column-1" class="nhsuk-grid-column-one-half">
+      {{ checkboxes({
+        "idPrefix": "column-1",
+        "name": "capabilities",
+        "items": params.capabilities.column1
+      }) }}
+    </div>
+    <div data-test-id="capabilities-checkbox-column-2" class="nhsuk-grid-column-one-half">
+      {{ checkboxes({
+        "idPrefix": "column-2",
+        "name": "capabilities",
+        "items": params.capabilities.column2
+      }) }}
+    </div>
+  </div>
+{% endmacro %}

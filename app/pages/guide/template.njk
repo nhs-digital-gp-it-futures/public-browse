@@ -1,36 +1,52 @@
-{% extends 'includes/layout.njk' %}
+{% extends 'includes/layouts/contained.njk' %}
 {% from 'components/back-link/macro.njk' import backLink %}
+{% from 'components/view-section-heading/macro.njk' import viewSectionHeading %}
 {% from './components/subsection.njk' import subsection %}
 
 {% block body %}
-  <div class="nhsuk-grid-row nhsuk-width-container nhsuk-u-margin-bottom-8" data-test-id="guide-page-body">
-      <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link"> 
-      {{ backLink({
-        "href": "/",
-        "text": "Go back to homepage"
-      }) }}
-    </div>
-    <h1 class="nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-4" data-test-id="guide-page-title">{{ title }}</h1>
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-two-thirds">
-        <div class="nhsuk-u-font-size-24" data-test-id="guide-page-description">{{ description }}</div>
-        <div class="nhsuk-u-font-size-19" data-test-id="guide-page-subtext">{{ subsection({ description: subtext }) }}</div>
+  <div data-test-id="guide-page-body" class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-3">
+      <div data-test-id="go-back-link">
+        {{ backLink({
+          "href": "/",
+          "text": "Go back to homepage"
+        }) }}
       </div>
     </div>
-    {% for section in sections %}
-    <div id="{{ section.id }}" class="nhsuk-grid-row" data-test-id="guide-section-{{section.id}}">
-
-        <div class='bc-c-title-block nhsuk-grid-column-full nhsuk-u-margin-left-3'>
-          <h2 class='nhsuk-u-margin-bottom-3' data-test-id="guide-section-title">{{ section.title }}</h2>
-        </div>
-
-        <div class="nhsuk-grid-column-two-thirds nhsuk-u-font-size-19 nhsuk-u-margin-left-3" data-test-id="guide-section-subsection">
-          {% for sectionDetails in section.subsections %}
-            {{ subsection(sectionDetails, config.blobstoreHost) }}
+    <div class="nhsuk-grid-column-two-thirds">
+      <div class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-0">
+        <h1 data-test-id="guide-page-title" class="nhsuk-u-margin-bottom-3">{{ title }}</h1>
+        <h2 data-test-id="guide-page-description" class="nhsuk-u-font-size-22">{{ description }}</h2>
+        <div data-test-id="guide-page-advice" class="nhsuk-inset-text nhsuk-u-padding-2 nhsuk-u-padding-right-4 nhsuk-u-padding-left-4 nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-6">
+          <span class="nhsuk-u-visually-hidden">Information: </span>
+          {% for text in advice %}
+            <p class="nhsuk-u-font-size-14">{{ text }}</p>
           {% endfor %}
         </div>
-
+        <p data-test-id="guide-page-subtext" class="nhsuk-u-margin-bottom-0">{{ subtext }}</p>
+      </div>
     </div>
-    {% endfor %}
+    <div class="nhsuk-grid-column-full">
+      {% for section in sections %}
+      <div class="nhsuk-grid-row">
+        <div id="{{ section.id }}" data-test-id="guide-section-{{section.id}}" class="nhsuk-width-container">
+          {{ viewSectionHeading({
+            text: section.title,
+            dataTestId: "guide-section-title"
+          }) }}
+          <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
+            <div data-test-id="guide-section-subsection" class="nhsuk-grid-column-two-thirds">
+              {% for subSection in section.subsections %}
+                {{ subsection({
+                  subSection: subSection,
+                  blobstoreHost: config.blobstoreHost
+                }) }}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}

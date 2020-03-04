@@ -1,12 +1,25 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
+import { extractInnerText } from '../../test-utils/helper';
 
-const pageSetup = async (t) => {
+const setCookies = ClientFunction(() => {
+  const cookieValue = JSON.stringify({
+    id: '88421113', name: {}, _raw: '{"sub":"88421113"}', _json: { sub: '88421113' },
+  });
+
+  document.cookie = `fakeToken=${cookieValue}`;
+});
+
+const pageSetup = async (t, withAuth = false) => {
+  if (withAuth) {
+    await setCookies();
+  }
   await t.navigateTo('http://localhost:1234/');
 };
 
 fixture('Header')
+  .page('http://localhost:1234/healthcheck')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -20,14 +33,14 @@ test('should display BETA banner', async (t) => {
   await pageSetup(t);
   const betaBanner = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(1)');
   await t
-    .expect(betaBanner.innerText).eql('BETA');
+    .expect(await extractInnerText(betaBanner)).eql('BETA');
 });
 
 test('should display General Terms of Use text', async (t) => {
   await pageSetup(t);
   const termsOfUseText = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(2)');
   await t
-    .expect(termsOfUseText.innerText).eql('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
+    .expect(await extractInnerText(termsOfUseText)).eql('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
 });
 
 test('should navigate to home page header banner', async (t) => {
@@ -38,6 +51,36 @@ test('should navigate to home page header banner', async (t) => {
     .expect(headerBannerLink.exists).ok()
     .click(headerBannerLink)
     .expect(getLocation()).eql('http://localhost:1234/');
+});
+
+test('when user is not authenticated - should display the login link', async (t) => {
+  await pageSetup(t);
+
+  const loginComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(loginComponent)).eql('Log in');
+});
+
+test('when user is not authenticated - should navigate to the identity server login page when clicking the login link', async (t) => {
+  await pageSetup(t);
+
+  nock('http://identity-server')
+    .get('/login')
+    .reply(200);
+
+  const getLocation = ClientFunction(() => document.location.href);
+  const loginComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .click(loginComponent)
+    .expect(getLocation()).eql('http://identity-server/login');
+});
+
+test('when user is authenticated - should display the logout link', async (t) => {
+  await pageSetup(t, true);
+
+  const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(logoutComponent)).eql('Log out');
 });
 
 fixture('Show Home Page')
@@ -52,24 +95,24 @@ fixture('Show Home Page')
 
 test('should render the homepage hero', async (t) => {
   await pageSetup(t);
-  const homepageSection = Selector('[data-test-id="homepage-hero"] > section');
+  const homepageSection = Selector('[data-test-id="homepage-hero"]');
   const title = homepageSection.find('h1');
-  const description = homepageSection.find('p');
+  const description = homepageSection.find('h2');
 
   await t
     .expect(homepageSection.count).eql(1)
-    .expect(title.innerText).eql(content.heroHeading)
-    .expect(description.innerText).eql(content.heroText);
+    .expect(await extractInnerText(title)).eql(content.heroHeading)
+    .expect(await extractInnerText(description)).eql(content.heroText);
 });
 
 test('should render the about us section', async (t) => {
   await pageSetup(t);
   const aboutUsSection = Selector('[data-test-id="about-us"]');
   await t
-    .expect(aboutUsSection.find('h3').innerText).eql(content.title)
-    .expect(aboutUsSection.find('p').innerText).eql(content.description[0])
-    .expect(aboutUsSection.find('p').nth(1).innerText).eql(content.description[1])
-    .expect(aboutUsSection.find('p').nth(2).innerText).eql(content.description[2]);
+    .expect(await extractInnerText(aboutUsSection.find('h3'))).eql(content.title)
+    .expect(await extractInnerText(aboutUsSection.find('p'))).eql(content.description[0])
+    .expect(await extractInnerText(aboutUsSection.find('p').nth(1))).eql(content.description[1])
+    .expect(await extractInnerText(aboutUsSection.find('p').nth(2))).eql(content.description[2]);
 });
 
 test('should render the guidance promo', async (t) => {
@@ -77,8 +120,8 @@ test('should render the guidance promo', async (t) => {
   const guidancePromo = Selector('[data-test-id="guidance-promo"]');
   await t
     .expect(guidancePromo.count).eql(1)
-    .expect(guidancePromo.find('h3').innerText).eql(content.guidePromoHeading)
-    .expect(guidancePromo.find('p').innerText).eql(content.guidePromoDescription);
+    .expect(await extractInnerText(guidancePromo.find('h3'))).eql(content.guidePromoHeading)
+    .expect(await extractInnerText(guidancePromo.find('p'))).eql(content.guidePromoDescription);
 });
 
 test('should render the browse promo', async (t) => {
@@ -86,8 +129,8 @@ test('should render the browse promo', async (t) => {
   const browsePromo = Selector('[data-test-id="browse-promo"]');
   await t
     .expect(browsePromo.count).eql(1)
-    .expect(browsePromo.find('h3').innerText).eql(content.viewSolutionsPromoHeading)
-    .expect(browsePromo.find('p').innerText).eql(content.viewSolutionsPromoDescription);
+    .expect(await extractInnerText(browsePromo.find('h3'))).eql(content.viewSolutionsPromoHeading)
+    .expect(await extractInnerText(browsePromo.find('p'))).eql(content.viewSolutionsPromoDescription);
 });
 
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
@@ -115,7 +158,7 @@ test('should render buyers guide link', async (t) => {
   const buyersGuideLink = Selector('[data-test-id="footer-component"] li:nth-child(1) > a');
   await t
     .expect(buyersGuideLink.exists).ok()
-    .expect(buyersGuideLink.innerText).eql("Buyer's Guide")
+    .expect(await extractInnerText(buyersGuideLink)).eql("Buyer's Guide")
     .expect(buyersGuideLink.getAttribute('href')).eql('/guide');
 });
 
@@ -124,7 +167,7 @@ test('should render buyers guide contact us link', async (t) => {
   const guideContactUsLink = Selector('[data-test-id="footer-component"] li:nth-child(2) > a');
   await t
     .expect(guideContactUsLink.exists).ok()
-    .expect(guideContactUsLink.innerText).eql('NHS Digital Helpdesk')
+    .expect(await extractInnerText(guideContactUsLink)).eql('NHS Digital Helpdesk')
     .expect(guideContactUsLink.getAttribute('href')).eql('/guide#contact-us');
 });
 
@@ -133,7 +176,7 @@ test('should render nhs digital link', async (t) => {
   const nhsDigitalLink = Selector('[data-test-id="footer-component"] li:nth-child(3) > a');
   await t
     .expect(nhsDigitalLink.exists).ok()
-    .expect(nhsDigitalLink.innerText).eql('NHS Digital')
+    .expect(await extractInnerText(nhsDigitalLink)).eql('NHS Digital')
     .expect(nhsDigitalLink.getAttribute('href')).eql('https://digital.nhs.uk/');
 });
 
@@ -142,7 +185,7 @@ test('should render about GP IT futures link', async (t) => {
   const aboutGpitLink = Selector('[data-test-id="footer-component"] li:nth-child(4) > a');
   await t
     .expect(aboutGpitLink.exists).ok()
-    .expect(aboutGpitLink.innerText).eql('About GP IT Futures')
+    .expect(await extractInnerText(aboutGpitLink)).eql('About GP IT Futures')
     .expect(aboutGpitLink.getAttribute('href')).eql('https://digital.nhs.uk/services/future-gp-it-systems-and-services');
 });
 
@@ -151,7 +194,7 @@ test('should render capabilities and standards link', async (t) => {
   const capabilitiesAndStandardsLink = Selector('[data-test-id="footer-component"] li:nth-child(5) > a');
   await t
     .expect(capabilitiesAndStandardsLink.exists).ok()
-    .expect(capabilitiesAndStandardsLink.innerText).eql('Capabilities & Standards Model')
+    .expect(await extractInnerText(capabilitiesAndStandardsLink)).eql('Capabilities & Standards Model')
     .expect(capabilitiesAndStandardsLink.getAttribute('href')).eql('https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview');
 });
 
@@ -161,9 +204,9 @@ test('should render legal banner', async (t) => {
   const privacyAndCookiesLink = Selector('[data-test-id="legal-panel"] span:nth-child(2) > a');
   await t
     .expect(legalText.exists).ok()
-    .expect(legalText.innerText).eql('Legal')
+    .expect(await extractInnerText(legalText)).eql('Legal')
     .expect(privacyAndCookiesLink.exists).ok()
-    .expect(privacyAndCookiesLink.innerText).eql('Privacy and Cookies');
+    .expect(await extractInnerText(privacyAndCookiesLink)).eql('Privacy and Cookies');
 });
 
 test('should navigate guide page', async (t) => {

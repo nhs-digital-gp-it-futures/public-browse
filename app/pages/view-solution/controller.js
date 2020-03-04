@@ -1,15 +1,17 @@
-import axios from 'axios';
-import { createViewSolutionPageContext } from './context';
-import { apiHost } from '../../config';
-import logger from '../../logger';
+import { createViewSolutionPageContext } from './solutionPageContext';
+import { ApiProvider } from '../../apiProvider';
+import { logger } from '../../logger';
 
-export const getPublicSolutionById = async (solutionId) => {
-  const endpoint = `${apiHost}/api/v1/Solutions/${solutionId}/Public`;
-  logger.info(`api called: [GET] ${endpoint}`);
-  const response = await axios.get(endpoint);
+export const getPublicSolutionById = async ({ solutionId }) => {
+  const response = await new ApiProvider().getPublicSolutionById({ solutionId });
+
   if (response.data) {
     logger.info(`Solution ${solutionId}: ${response.data.name} returned`);
-    return createViewSolutionPageContext(response.data);
+    return createViewSolutionPageContext({ solutionData: response.data });
   }
   throw new Error('No data returned');
 };
+
+export const getDocument = async ({ solutionId, documentName }) => (
+  new ApiProvider().getDocument({ solutionId, documentName })
+);

@@ -1,6 +1,8 @@
 import createTestcafe from 'testcafe';
-import { App } from './app';
-import routes from './app/routes';
+import { App } from './app/app';
+import { routes } from './app/routes';
+import { FakeAuthProvider } from './app/test-utils/FakeAuthProvider';
+import { env } from './app/config';
 
 let testcafe;
 let server;
@@ -11,12 +13,25 @@ const browserToRun = browserFromArgs.length > 0 ? browserFromArgs : 'chrome:head
 const testFromArgs = process.argv.slice(3, 4);
 const testsToRun = testFromArgs ? `**/*${testFromArgs}*/ui.test.js` : '**/*ui.test.js';
 
+let concurrency = 4;
+let stopOnFirstFail = true;
+let quarantineMode = true;
+if (env === 'pipeline' || browserFromArgs.length > 0) {
+  concurrency = 1;
+  stopOnFirstFail = false;
+  quarantineMode = false;
+}
+
+// eslint-disable-next-line no-console
+console.log(`Running tests in ${concurrency} threads\nstopOnFirstFail is ${stopOnFirstFail}\nquarantineMode is ${quarantineMode}`);
+
 createTestcafe('localhost')
   .then((tc) => {
     testcafe = tc;
 
-    const app = new App().createApp();
-    app.use('/', routes);
+    const authProvider = new FakeAuthProvider();
+    const app = new App(authProvider).createApp();
+    app.use('/', routes(authProvider));
 
     server = app.listen('1234');
 
@@ -29,7 +44,12 @@ createTestcafe('localhost')
         output: 'integration-test-report.xml',
       }])
       .run({
-        skipJsErrors: true,
+        selectorTimeout: 3000,
+        assertionTimeout: 1000,
+        pageLoadTimeout: 5000,
+        speed: 1,
+        quarantineMode,
+        stopOnFirstFail,
       });
   })
   .then(() => {

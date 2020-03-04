@@ -1,12 +1,12 @@
 {
   "title": "Buyer’s Guide",
   "description": "Read the following information before using the Buying Catalogue. It’ll help you find the information you need to make an informed decision when procuring.",
-  "subtext": [
+  "advice": [
     "All products and services listed on the Buying Catalogue are known as Catalogue Solutions. Each Solution has a certain number of Capabilities which can address business needs in primary care.",
     "To prove these Capabilities, Suppliers must demonstrate that their Catalogue Solution can satisfy Epics which detail the functions required to successfully achieve a Capability.",
-    "There is a link to the full Catalogue Buyer’s Guide at the bottom of this page.",
-    "These are the key terms you need to understand to use the Buying Catalogue effectively:"
+    "There is a link to the full Catalogue Buyer’s Guide at the bottom of this page."
   ],
+  "subtext": "These are the key terms you need to understand to use the Buying Catalogue effectively:",
   "sections": [
     {
       "id": "catalogue-solution",

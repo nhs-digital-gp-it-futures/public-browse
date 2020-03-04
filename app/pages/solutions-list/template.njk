@@ -1,4 +1,4 @@
-{% extends 'includes/layout.njk' %}
+{% extends 'includes/layouts/contained.njk' %}
 {% from 'components/back-link/macro.njk' import backLink %}
 {% from './components/solution-card.njk' import solutionCard %}
 {% from 'components/general-page-description.njk' import generalPageDescription %}
@@ -6,18 +6,23 @@
 {% block body %}
   <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="solutions-list-body">
 
-    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link"> 
+    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link">
       {{ backLink({
-        "href": "/solutions",
+        "href": backLinkPath,
         "text": "Go back to previous page"
       }) }}
     </div>
 
-    {{ generalPageDescription(pageTitle, [pageDescription]) }}
+    {{ generalPageDescription({
+      titleText: pageTitle,
+      descriptionText: pageDescription
+    }) }}
 
     <div data-test-id="solution-cards" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
       {% for solution in solutions %}
-        {{ solutionCard(solution) }}
+        {{ solutionCard({
+          solution: solution
+        }) }}
       {% endfor %}
       <div class="bc-t-border-top--blue" />
     </div>
