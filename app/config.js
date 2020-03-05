@@ -9,7 +9,7 @@ module.exports = {
   port: process.env.PORT || 3000,
 
   // The base uri the app is running on to pass to identity service for redirection
-  appBaseUri: process.env.APP_BASE_URI || 'http://docker.for.win.localhost:3000',
+  appBaseUri: process.env.APP_BASE_URI || 'http://docker.for.mac.localhost:3000',
 
   // API_HOST
   buyingCatalogueApiHost: process.env.API_HOST || 'http://localhost:5100',
