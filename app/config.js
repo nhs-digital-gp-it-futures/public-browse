@@ -9,7 +9,7 @@ module.exports = {
   port: process.env.PORT || 3000,
 
   // The base uri the app is running on to pass to identity service for redirection
-  appBaseUri: process.env.APP_BASE_URI || 'http://localhost:3000',
+  appBaseUri: process.env.APP_BASE_URI || 'http://docker.for.win.localhost:3000',
 
   // API_HOST
   buyingCatalogueApiHost: process.env.API_HOST || 'http://localhost:5100',
@@ -24,7 +24,7 @@ module.exports = {
   loggerLevel: process.env.LOGGER_LEVEL || 'error',
 
   // The base uri of identity service
-  oidcBaseUri: process.env.OIDC_BASE_URI || 'http://localhost:8070',
+  oidcBaseUri: process.env.OIDC_BASE_URI || 'http://localhost:5102',
 
   // The client id to be sent to identity service
   oidcClientId: process.env.OIDC_CLIENT_ID || 'SampleClient',
