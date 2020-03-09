@@ -5,7 +5,7 @@ import { extractInnerText } from '../../test-utils/helper';
 
 const setCookies = ClientFunction(() => {
   const cookieValue = JSON.stringify({
-    id: '88421113', name: {}, _raw: '{"sub":"88421113"}', _json: { sub: '88421113' },
+    id: '88421113', name: {}, _raw: '{"sub":"88421113"}', _json: { sub: '88421113' }, organisation: 'view',
   });
 
   document.cookie = `fakeToken=${cookieValue}`;
@@ -84,6 +84,7 @@ test('when user is authenticated - should display the logout link', async (t) =>
 });
 
 fixture('Show Home Page')
+  .page('http://localhost:1234/healthcheck')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -141,6 +142,22 @@ test('should navigate to the browse solution page when clicking on the browse pr
     .expect(browsePromoLink.exists).ok()
     .click(browsePromoLink)
     .expect(getLocation()).contains('/solutions');
+});
+
+test('should render the admin promo when user is authenticated and has an organisation claim', async (t) => {
+  await pageSetup(t, true);
+  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  await t
+    .expect(adminPromo.count).eql(1)
+    .expect(await extractInnerText(adminPromo.find('h3'))).eql(content.adminPromoHeading)
+    .expect(await extractInnerText(adminPromo.find('p'))).eql(content.adminPromoDescription);
+});
+
+test('should not render the admin promo when user is not authenticated', async (t) => {
+  await pageSetup(t);
+  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  await t
+    .expect(adminPromo.exists).notOk();
 });
 
 fixture('Footer')
