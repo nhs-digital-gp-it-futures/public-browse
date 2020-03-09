@@ -150,6 +150,13 @@ test('should render the admin promo when user is authenticated and has an organi
     .expect(await extractInnerText(adminPromo.find('p'))).eql(content.adminPromoDescription);
 });
 
+test('should not render the admin promo when user is authenticated but does not have the organisation claim in the cookie', async (t) => {
+  await pageSetup(t, { id: '88421113', name: 'Cool Dude' });
+  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  await t
+    .expect(adminPromo.exists).notOk();
+});
+
 test('should not render the admin promo when user is not authenticated', async (t) => {
   await pageSetup(t);
   const adminPromo = Selector('[data-test-id="admin-promo"]');
