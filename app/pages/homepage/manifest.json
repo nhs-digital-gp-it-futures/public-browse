@@ -10,5 +10,7 @@
   "guidePromoHeading": "Buyer’s Guide",
   "guidePromoDescription": "Our guide explains the terminology you’ll need to understand when procuring Catalogue Solutions.",
   "viewSolutionsPromoHeading": "View Catalogue Solutions",
-  "viewSolutionsPromoDescription": "See what’s available on the Buying Catalogue that can meet your needs."
+  "viewSolutionsPromoDescription": "See what’s available on the Buying Catalogue that can meet your needs.",
+  "adminPromoHeading": "Admin Tile",
+  "adminPromoDescription": "Manage buyer organisation and users"
 }

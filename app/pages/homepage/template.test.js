@@ -62,4 +62,31 @@ describe('home page', () => {
       expect(browsePromo.find('p').text().trim()).toEqual(content.viewSolutionsPromoDescription);
     });
   }));
+
+  it('should render the admin promo when provided with a flag by the context', createTestHarness(setup, (harness) => {
+    const context = {
+      ...content,
+      showAdminTile: true,
+    };
+
+    harness.request(context, ($) => {
+      const adminPromo = $('[data-test-id="admin-promo"]');
+      expect(adminPromo.length).toEqual(1);
+      expect(adminPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(adminPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(adminPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(adminPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(adminPromo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
+      expect(adminPromo.find('p').text().trim()).toEqual(content.adminPromoDescription);
+    });
+  }));
+
+  it('should not render the admin promo when not provided with a flag by the context', createTestHarness(setup, (harness) => {
+    const context = content;
+
+    harness.request(context, ($) => {
+      const adminPromo = $('[data-test-id="admin-promo"]');
+      expect(adminPromo.length).toEqual(0);
+    });
+  }));
 });
