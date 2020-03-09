@@ -3,17 +3,14 @@ import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 import { extractInnerText } from '../../test-utils/helper';
 
-const setCookies = ClientFunction(() => {
-  const cookieValue = JSON.stringify({
-    id: '88421113', name: {}, _raw: '{"sub":"88421113"}', _json: { sub: '88421113' }, organisation: 'view',
-  });
-
+const setCookies = ClientFunction((payload) => {
+  const cookieValue = JSON.stringify(payload);
   document.cookie = `fakeToken=${cookieValue}`;
 });
 
-const pageSetup = async (t, withAuth = false) => {
-  if (withAuth) {
-    await setCookies();
+const pageSetup = async (t, cookiePayload = undefined) => {
+  if (cookiePayload) {
+    await setCookies(cookiePayload);
   }
   await t.navigateTo('http://localhost:1234/');
 };
@@ -76,7 +73,7 @@ test('when user is not authenticated - should navigate to the identity server lo
 });
 
 test('when user is authenticated - should display the logout link', async (t) => {
-  await pageSetup(t, true);
+  await pageSetup(t, { id: '88421113', name: 'Cool Dude' });
 
   const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
   await t
@@ -145,7 +142,7 @@ test('should navigate to the browse solution page when clicking on the browse pr
 });
 
 test('should render the admin promo when user is authenticated and has an organisation claim', async (t) => {
-  await pageSetup(t, true);
+  await pageSetup(t, { id: '88421113', name: 'Cool Dude', organisation: 'view' });
   const adminPromo = Selector('[data-test-id="admin-promo"]');
   await t
     .expect(adminPromo.count).eql(1)
