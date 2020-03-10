@@ -63,7 +63,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the admin promo when provided with a flag by the context', createTestHarness(setup, (harness) => {
+  it('should render the admin promo when showAdminTile is true', createTestHarness(setup, (harness) => {
     const context = {
       ...content,
       showAdminTile: true,
@@ -83,7 +83,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should not render the admin promo when not provided with a flag by the context', createTestHarness(setup, (harness) => {
+  it('should not render the admin promo when showAdminTile is falsey', createTestHarness(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
