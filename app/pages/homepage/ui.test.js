@@ -95,11 +95,16 @@ test('when user is authenticated - should display log in text once log out link 
   await pageSetup({ t, withAuth: true, withLoggedInCookies: true });
 
   const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
+
   await t
     .expect(logoutComponent.exists).ok()
-    .click(logoutComponent)
-    .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log in').exists).eql(true)
-    .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log out').exists).eql(false);
+    .expect(await extractInnerText(logoutComponent)).eql('Log out')
+    .click(logoutComponent);
+
+  const logoutComponentAfterClick = Selector('[data-test-id="login-logout-component"] a');
+
+  await t
+    .expect(await extractInnerText(logoutComponentAfterClick)).eql('Log in');
 });
 
 test
@@ -136,12 +141,16 @@ test('when user is authenticated - should navigate to the identity server log in
     .reply(200);
 
   const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
+
   await t
     .expect(logoutComponent.exists).ok()
-    .click(logoutComponent)
-    .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log in').exists).eql(true)
-    .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log out').exists).eql(false)
-    .click(Selector('[data-test-id="login-logout-component"] a').withText('Log in'))
+    .expect(await extractInnerText(logoutComponent)).eql('Log out')
+    .click(logoutComponent);
+
+  const logoutComponentAfterClick = Selector('[data-test-id="login-logout-component"] a');
+  await t
+    .expect(await extractInnerText(logoutComponentAfterClick)).eql('Log in')
+    .click(logoutComponentAfterClick)
     .expect(getLocation()).eql('http://identity-server/login');
 });
 
