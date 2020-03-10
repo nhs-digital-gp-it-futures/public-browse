@@ -11,7 +11,7 @@ export class AuthProvider {
 
     Issuer.discover(oidcBaseUri)
       .then((issuer) => {
-        const client = new issuer.Client({
+        this.client = new issuer.Client({
           client_id: oidcClientId,
           client_secret: oidcClientSecret,
         });
@@ -27,9 +27,10 @@ export class AuthProvider {
         const usePKCE = 'S256';
 
         this.passport.use('oidc', new Strategy({
-          client, params, passReqToCallback, usePKCE,
+          client: this.client, params, passReqToCallback, usePKCE,
         }, (req, tokenset, userinfo, done) => {
           req.session.accessToken = tokenset;
+          this.id_token = tokenset.id_token;
 
           return done(null, userinfo);
         }));
@@ -58,5 +59,12 @@ export class AuthProvider {
     return (req, res, next) => {
       this.passport.authenticate('oidc', options)(req, res, next);
     };
+  }
+
+  logout() {
+    return this.client.endSessionUrl({
+      id_token_hint: this.id_token,
+      post_logout_redirect_uri: `${appBaseUri}/signout-callback-oidc`,
+    });
   }
 }
