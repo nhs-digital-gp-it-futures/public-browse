@@ -75,15 +75,13 @@ describe('routes', () => {
   });
 
   describe('GET /logout', () => {
-    it('should redirect to the url provided by authProvider', async () => {
-      return request(setUpFakeApp())
-        .get('/logout')
-        .expect(302)
-        .then((res) => {
-          expect(res.redirect).toEqual(true);
-          expect(res.headers.location).toEqual('/signout-callback-oidc');
-        });
-    });
+    it('should redirect to the url provided by authProvider', async () => request(setUpFakeApp())
+      .get('/logout')
+      .expect(302)
+      .then((res) => {
+        expect(res.redirect).toEqual(true);
+        expect(res.headers.location).toEqual('/signout-callback-oidc');
+      }));
   });
 
   describe('GET /signout-callback-oidc', () => {
