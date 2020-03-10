@@ -57,7 +57,7 @@ export class AuthProvider {
 
   authenticate(options) {
     return (req, res, next) => {
-      this.passport.authenticate('openidconnect', options)(req, res, next);
+      this.passport.authenticate('oidc', options)(req, res, next);
     };
   }
 

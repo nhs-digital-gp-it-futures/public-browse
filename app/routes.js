@@ -15,7 +15,7 @@ import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 const addConfig = ({ context, user, csrfToken }) => ({
   ...context,
   ...includesContext,
-  username: user && user.id,
+  username: user && user.name,
   csrfToken,
   config,
 });
@@ -27,7 +27,6 @@ export const routes = (authProvider) => {
 
   router.get('/login', authProvider.authenticate({
     successReturnToOrRedirect: '/',
-    scope: 'profile',
   }));
 
   router.get('/oauth/callback', authProvider.authenticate({
