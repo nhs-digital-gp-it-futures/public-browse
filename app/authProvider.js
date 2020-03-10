@@ -1,5 +1,5 @@
 import passport from 'passport';
-import PassportClient from 'passport-openidconnect';
+import { Strategy, Issuer } from 'openid-client';
 import session from 'cookie-session';
 import {
   oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri,
@@ -9,21 +9,32 @@ export class AuthProvider {
   constructor() {
     this.passport = passport;
 
-    this.passport.use(new PassportClient.Strategy({
-      issuer: oidcBaseUri,
-      clientID: oidcClientId,
-      clientSecret: oidcClientSecret,
-      authorizationURL: `${oidcBaseUri}/connect/authorize`,
-      userInfoURL: `${oidcBaseUri}/connect/userinfo`,
-      tokenURL: `${oidcBaseUri}/connect/token`,
-      callbackURL: `${appBaseUri}/oauth/callback`,
-      passReqToCallback: true,
-    },
-    ((req, issuer, userId, profile, accessToken, refreshToken, params, cb) => {
-      req.session.accessToken = accessToken;
+    Issuer.discover(oidcBaseUri)
+      .then((issuer) => {
+        this.client = new issuer.Client({
+          client_id: oidcClientId,
+          client_secret: oidcClientSecret,
+        });
 
-      return cb(null, profile);
-    })));
+        const params = {
+          client_id: oidcClientId,
+          redirect_uri: `${appBaseUri}/oauth/callback`,
+          scope: 'openid profile',
+        };
+
+        const passReqToCallback = true;
+
+        const usePKCE = 'S256';
+
+        this.passport.use('oidc', new Strategy({
+          client: this.client, params, passReqToCallback, usePKCE,
+        }, (req, tokenset, userinfo, done) => {
+          req.session.accessToken = tokenset;
+          this.id_token = tokenset.id_token;
+
+          return done(null, userinfo);
+        }));
+      });
 
     this.passport.serializeUser((user, done) => {
       done(null, user);
@@ -48,5 +59,12 @@ export class AuthProvider {
     return (req, res, next) => {
       this.passport.authenticate('openidconnect', options)(req, res, next);
     };
+  }
+
+  logout() {
+    return this.client.endSessionUrl({
+      id_token_hint: this.id_token,
+      post_logout_redirect_uri: `${appBaseUri}/signout-callback-oidc`,
+    });
   }
 }

@@ -2,7 +2,9 @@ const cookieParser = require('cookie-parser');
 
 export class FakeAuthProvider {
   // eslint-disable-next-line no-useless-constructor, no-empty-function
-  constructor() {}
+  constructor(fakeLogoutMethod) {
+    this.fakeLogout = fakeLogoutMethod;
+  }
 
   // eslint-disable-next-line class-methods-use-this
   setup(app) {
@@ -12,6 +14,7 @@ export class FakeAuthProvider {
       if (req.cookies && req.cookies.fakeToken) {
         req.user = JSON.parse(req.cookies.fakeToken);
       }
+      req.logout = this.fakeLogout;
       next();
     });
   }
@@ -21,5 +24,10 @@ export class FakeAuthProvider {
     return (req, res) => {
       res.redirect('http://identity-server/login');
     };
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  logout() {
+    return '/signout-callback-oidc';
   }
 }
