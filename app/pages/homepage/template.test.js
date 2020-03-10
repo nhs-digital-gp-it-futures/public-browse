@@ -67,6 +67,7 @@ describe('home page', () => {
     const context = {
       ...content,
       showAdminTile: true,
+      adminUrl: 'http://admin-page',
     };
 
     harness.request(context, ($) => {
@@ -78,6 +79,7 @@ describe('home page', () => {
       expect(adminPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
       expect(adminPromo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
       expect(adminPromo.find('p').text().trim()).toEqual(content.adminPromoDescription);
+      expect(adminPromo.find('a').attr('href')).toEqual(context.adminUrl);
     });
   }));
 
