@@ -23,22 +23,38 @@
       </div>
     </div>
   </div>
-  <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container" data-test-id="homepage-promo-group">
-    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
-      {{ promo({
-        "href": "/guide",
-        "heading": guidePromoHeading,
-        "classes": "nhsuk-u-margin-top-5",
-        "description": guidePromoDescription
-      }) }}
+  <div data-test-id="homepage-promo-group">
+    <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container">
+      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
+        {{ promo({
+          "href": "/guide",
+          "heading": guidePromoHeading,
+          "classes": "nhsuk-u-margin-top-5",
+          "description": guidePromoDescription
+        }) }}
+      </div>
+      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
+        {{ promo({
+          "href": "/solutions",
+          "heading": viewSolutionsPromoHeading,
+          "classes": "nhsuk-u-margin-top-5",
+          "description": viewSolutionsPromoDescription
+        }) }}
+      </div>
     </div>
-    <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
-      {{ promo({
-        "href": "/solutions",
-        "heading": viewSolutionsPromoHeading,
-        "classes": "nhsuk-u-margin-top-5",
-        "description": viewSolutionsPromoDescription
-      }) }}
+    
+    {% if (showAdminTile) %}
+    <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container">
+      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="admin-promo">
+        {{ promo({
+          "href": adminUrl,
+          "heading": adminPromoHeading,
+          "classes": "nhsuk-u-margin-top-5",
+          "description": adminPromoDescription
+        }) }}
+      </div>
     </div>
+    {% endif %}
+
   </div>
 {% endblock %}

@@ -54,7 +54,7 @@ export const routes = (authProvider) => {
   });
 
   router.get('/', (req, res) => {
-    const context = getHomepageContext();
+    const context = getHomepageContext({ user: req.user });
     logger.info('navigating to home page');
     res.render('pages/homepage/template.njk', addConfig({ context, user: req.user }));
   });
