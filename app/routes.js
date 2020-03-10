@@ -35,8 +35,22 @@ export const routes = (authProvider) => {
     failureRedirect: '/',
   }));
 
-  router.get('/logout', (req, res) => {
-    res.send('Log out route');
+  router.get('/logout', async (req, res) => {
+    const url = await authProvider.logout();
+    res.redirect(url);
+  });
+
+  router.get('/signout-callback-oidc', async (req, res) => {
+    if (req.logout) req.logout();
+    req.session = null;
+
+    if (req.headers.cookie) {
+      req.headers.cookie.split(';')
+        .map(cookie => cookie.split('=')[0])
+        .forEach(cookieKey => res.clearCookie(cookieKey));
+    }
+
+    res.redirect('/');
   });
 
   router.get('/', (req, res) => {
