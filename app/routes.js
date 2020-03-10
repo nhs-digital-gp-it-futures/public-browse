@@ -47,7 +47,7 @@ export const routes = (authProvider) => {
     if (req.headers.cookie) {
       req.headers.cookie.split(';')
         .map(cookie => cookie.split('=')[0])
-        .forEach(cookie => res.clearCookie(cookie));
+        .forEach(cookieKey => res.clearCookie(cookieKey));
     }
 
     res.redirect('/');

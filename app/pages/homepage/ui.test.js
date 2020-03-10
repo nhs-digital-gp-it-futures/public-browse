@@ -96,7 +96,7 @@ test('when user is authenticated - should display log in text once log out link 
 
   const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
   await t
-    .expect(logoutComponent.exists).eql(true)
+    .expect(logoutComponent.exists).ok()
     .click(logoutComponent)
     .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log in').exists).eql(true)
     .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log out').exists).eql(false);
@@ -109,7 +109,7 @@ test
     const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
 
     await t
-      .expect(logoutComponent.exists).eql(true).debug()
+      .expect(logoutComponent.exists).ok()
       .expect(await getCookies()).contains('cookie1=cookie1')
       .click(logoutComponent)
       .expect(logger.contains(r => r.response.statusCode === 200)).ok()
@@ -123,7 +123,7 @@ test
     const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
 
     await t
-      .expect(logoutComponent.exists).eql(true).debug()
+      .expect(logoutComponent.exists).ok()
       .expect(await getCookies()).contains('cookie1=cookie1')
       .click(logoutComponent)
       .expect(getLocation()).eql('http://localhost:1234/');
@@ -137,8 +137,8 @@ test('when user is authenticated - should navigate to the identity server log in
 
   const logoutComponent = Selector('[data-test-id="login-logout-component"] a');
   await t
-    .expect(logoutComponent.exists).eql(true)
-    .click(logoutComponent).debug()
+    .expect(logoutComponent.exists).ok()
+    .click(logoutComponent)
     .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log in').exists).eql(true)
     .expect(Selector('[data-test-id="login-logout-component"] a').withText('Log out').exists).eql(false)
     .click(Selector('[data-test-id="login-logout-component"] a').withText('Log in'))
