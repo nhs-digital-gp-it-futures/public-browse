@@ -2,7 +2,7 @@ const cookieParser = require('cookie-parser');
 
 export class FakeAuthProvider {
   // eslint-disable-next-line no-useless-constructor, no-empty-function
-  constructor(fakeLogoutMethod) {
+  constructor(fakeLogoutMethod = () => {}) {
     this.fakeLogout = fakeLogoutMethod;
   }
 
