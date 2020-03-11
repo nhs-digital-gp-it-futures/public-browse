@@ -1,3 +1,4 @@
+import url from 'url';
 import passport from 'passport';
 import { Strategy, Issuer } from 'openid-client';
 import session from 'cookie-session';
@@ -55,13 +56,23 @@ export class AuthProvider {
     app.use(this.passport.session());
   }
 
-  authenticate(options) {
+  authenticate(options = {}) {
     return (req, res, next) => {
-      this.passport.authenticate('oidc', options)(req, res, next);
+      if (!this.loginRedirectUrl) {
+        this.loginRedirectUrl = req.headers.referer ? url.parse(req.headers.referer).pathname : '/';
+      }
+      const optionsWithUrl = {
+        ...options,
+        successReturnToOrRedirect: this.loginRedirectUrl,
+      };
+
+      this.passport.authenticate('oidc', optionsWithUrl)(req, res, next);
     };
   }
 
   logout() {
+    this.loginRedirectUrl = null;
+
     return this.client.endSessionUrl({
       id_token_hint: this.id_token,
       post_logout_redirect_uri: `${appBaseUri}/signout-callback-oidc`,
