@@ -9,6 +9,7 @@ import * as solutionListPageContext from './pages/solutions-list/controller';
 import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
+import config from './config';
 
 jest.mock('./logger');
 
@@ -63,6 +64,9 @@ const setUpFakeApp = () => {
 };
 
 describe('routes', () => {
+  beforeEach(() => {
+    config.useCapabilitiesSelector = true;
+  });
   describe('GET /login', () => {
     it('should return the correct status and redirect to the login page when not authenticated', () => (
       request(setUpFakeApp())
@@ -396,5 +400,23 @@ describe('routes', () => {
         .then((res) => {
           expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-padding-left-3" data-test-id="error-page-title">Error: Incorrect url /aaaa - please check it is valid and try again</h1>')).toEqual(true);
         })));
+  });
+
+  describe('when capabilities selector is off by default', () => {
+    beforeEach(() => {
+      config.useCapabilitiesSelector = false;
+    });
+    it('should return the correct status and text if there is no error for capabilities-selector ', () => {
+      capabilitiesContext.getCapabilitiesContext = jest.fn()
+        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+
+      return request(setUpFakeApp())
+        .get('/solutions/capabilities-selector')
+        .expect(302)
+        .then((res) => {
+          expect(res.redirect).toEqual(true);
+          expect(res.headers.location).toEqual('/solutions/capabilities-selector.all');
+        });
+    });
   });
 });

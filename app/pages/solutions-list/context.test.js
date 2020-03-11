@@ -1,4 +1,6 @@
 import { createSolutionListPageContext } from './context';
+// TODO: Remove line below when capabilities-selector is on by default
+import config from '../../config';
 
 const solutionPageTitle = 'All Solutions results';
 const solutionPageDescription = 'These are the Solutions on the GP IT Futures framework available from the Buying Catalogue.';
@@ -8,6 +10,8 @@ const foundationPageDescription = 'These Solutions meet the six Foundation Capab
 
 describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
+  // TODO: Remove line below when capabilities-selector is on by default
+    config.useCapabilitiesSelector = true;
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
@@ -329,6 +333,89 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
           name: 'Some supplier',
         },
         capabilities: [],
+      },
+    ];
+
+    const solutionListManifest = {
+      title: solutionPageTitle,
+      description: solutionPageDescription,
+    };
+
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      capabilitiesSelected: 'all',
+    });
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  // TODO: Remove test below when capabilities-selector is on by default
+  it('should create correck back link url if use capabilities selector is false by default', () => {
+    config.useCapabilitiesSelector = false;
+    const expectedContext = {
+      pageTitle: solutionPageTitle,
+      pageDescription: solutionPageDescription,
+      backLinkPath: '/solutions',
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          supplierName: 'Some supplier',
+          capabilities: [
+            'Some capability',
+          ],
+          isFoundation: true,
+          viewSolutionUrl: '/solutions/capabilities-selector.all/00001',
+        },
+        {
+          id: '00002',
+          name: 'The second solution',
+          summary: 'Some other solution summary',
+          supplierName: 'Some other supplier',
+          capabilities: [
+            'Some other capability',
+          ],
+          isFoundation: false,
+          viewSolutionUrl: '/solutions/capabilities-selector.all/00002',
+        },
+      ],
+    };
+
+    const solutionsData = [
+      {
+        id: '00001',
+        name: 'The first solution',
+        summary: 'Some solution summary',
+        isFoundation: true,
+        supplier: {
+          id: '1',
+          name: 'Some supplier',
+        },
+        capabilities: [
+          {
+            id: '1',
+            name: 'Some capability',
+          },
+        ],
+      },
+      {
+        id: '00002',
+        name: 'The second solution',
+        summary: 'Some other solution summary',
+        isFoundation: false,
+        supplier: {
+          id: '1',
+          name: 'Some other supplier',
+        },
+        capabilities: [
+          {
+            id: '1',
+            name: 'Some other capability',
+          },
+        ],
       },
     ];
 
