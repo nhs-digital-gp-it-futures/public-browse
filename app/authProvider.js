@@ -56,14 +56,23 @@ export class AuthProvider {
     app.use(this.passport.session());
   }
 
-  authenticate(options = {}) {
+  login() {
     return (req, res, next) => {
-      if (!this.loginRedirectUrl) {
-        this.loginRedirectUrl = req.headers.referer ? url.parse(req.headers.referer).pathname : '/';
-      }
+      const options = {
+        successReturnToOrRedirect: '/',
+        state: url.parse(req.headers.referer).pathname,
+      };
+      this.passport.authenticate('oidc', options)(req, res, next);
+    };
+  }
+
+  loginCallback() {
+    return (req, res, next) => {
+      const redirectUrl = req.query.state;
       const optionsWithUrl = {
-        ...options,
-        successReturnToOrRedirect: this.loginRedirectUrl,
+        callback: true,
+        failureRedirect: '/',
+        successReturnToOrRedirect: redirectUrl,
       };
 
       this.passport.authenticate('oidc', optionsWithUrl)(req, res, next);

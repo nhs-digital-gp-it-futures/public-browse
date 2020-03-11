@@ -25,12 +25,9 @@ export const routes = (authProvider) => {
 
   router.use('/health', healthRoutes);
 
-  router.get('/login', authProvider.authenticate());
+  router.get('/login', authProvider.login());
 
-  router.get('/oauth/callback', authProvider.authenticate({
-    callback: true,
-    failureRedirect: '/',
-  }));
+  router.get('/oauth/callback', authProvider.loginCallback());
 
   router.get('/logout', async (req, res) => {
     const url = await authProvider.logout({ req });
