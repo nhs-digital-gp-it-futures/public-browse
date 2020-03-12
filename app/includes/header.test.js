@@ -53,7 +53,8 @@ describe('header', () => {
   }));
 
   describe('login/logout component', () => {
-    // TODO: Remove describe block surrounding the tests below when login is on by default
+    // TODO: LOGIN_ENABLED Remove describe block surrounding the tests below
+    // when login is on by default
     describe('when login is enabled by default', () => {
       describe('when username is provided', () => {
         it('should render username', createTestHarness(setup, (harness) => {
@@ -98,7 +99,7 @@ describe('header', () => {
       });
     });
 
-    // TODO: Remove test below when login is on by default
+    // TODO: LOGIN_ENABLED Remove test below when login is on by default
     describe('when login is disabled by default', () => {
       it('should not render the login component', createTestHarness(setup, (harness) => {
         const context = {
