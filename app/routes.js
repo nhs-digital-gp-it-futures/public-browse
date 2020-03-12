@@ -75,21 +75,22 @@ export const routes = (authProvider) => {
     const { filterType, capabilities } = req.params;
     if (filterType === 'capabilities-selector') {
       if (!capabilities) {
+        // TODO: USE_CAPABILITIES_SELECTOR Remove line below when
+        // capabilities-selector is on by default
+        if (!config.useCapabilitiesSelector) return res.redirect('/solutions/capabilities-selector.all');
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');
-        res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user, csrfToken: req.csrfToken() }));
-      } else {
-        const context = await getSolutionsForSelectedCapabilities({
-          capabilitiesSelected: capabilities,
-        });
-        logger.info(`navigating to solution-list (with ${capabilities} selected) page`);
-        res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
+        return res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user, csrfToken: req.csrfToken() }));
       }
-    } else {
-      const context = await getSolutionListPageContext({ filterType });
-      logger.info(`navigating to ${filterType} solution-list page`);
-      res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
+      const context = await getSolutionsForSelectedCapabilities({
+        capabilitiesSelected: capabilities,
+      });
+      logger.info(`navigating to solution-list (with ${capabilities} selected) page`);
+      return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
     }
+    const context = await getSolutionListPageContext({ filterType });
+    logger.info(`navigating to ${filterType} solution-list page`);
+    return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?/:solutionId', withCatch(async (req, res) => {
