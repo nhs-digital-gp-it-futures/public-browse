@@ -59,7 +59,6 @@ export class AuthProvider {
   login() {
     return (req, res, next) => {
       const options = {
-        successReturnToOrRedirect: '/',
         state: url.parse(req.headers.referer).pathname,
       };
       this.passport.authenticate('oidc', options)(req, res, next);
@@ -80,8 +79,6 @@ export class AuthProvider {
   }
 
   logout() {
-    this.loginRedirectUrl = null;
-
     return this.client.endSessionUrl({
       id_token_hint: this.id_token,
       post_logout_redirect_uri: `${appBaseUri}/signout-callback-oidc`,
