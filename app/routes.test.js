@@ -64,6 +64,7 @@ const setUpFakeApp = () => {
 };
 
 describe('routes', () => {
+  // TODO: Remove beforeEach when capabilities selector is on by default
   beforeEach(() => {
     config.useCapabilitiesSelector = true;
   });
@@ -402,6 +403,7 @@ describe('routes', () => {
         })));
   });
 
+  // TODO: Remove test below when capabilities selector is on by default
   describe('when capabilities selector is off by default', () => {
     beforeEach(() => {
       config.useCapabilitiesSelector = false;
