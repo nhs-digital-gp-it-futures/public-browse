@@ -34,4 +34,8 @@ module.exports = {
 
   // The secret need to decode JWT tokens
   oidcClientSecret: process.env.OIDC_CLIENT_SECRET,
+
+  // TODO: Remove line below when login is enabled by default
+  // Boolean to indicate if we show the login/logout component
+  loginEnabled: process.env.LOGIN_ENABLED || 'false',
 };

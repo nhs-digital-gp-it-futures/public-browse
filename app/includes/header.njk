@@ -19,14 +19,17 @@
   }) }}
 </span>
 
+{% if loginEnabled === 'true' %}
+  {% set innerComponent = loginLogout({
+      dataTestId: "login-logout-component",
+      username: username,
+      loginUrl: "/login",
+      logoutUrl: "/logout"
+    }) %}
+{% endif %}
+
 {{ bcHeader({
   dataTestId: "header-banner",
-  innerComponent: loginLogout({
-    dataTestId: "login-logout-component",
-    username: username,
-    loginUrl: "/login",
-    logoutUrl: "/logout"
-  }),
+  innerComponent: innerComponent,
   classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2"
 }) }}
-
