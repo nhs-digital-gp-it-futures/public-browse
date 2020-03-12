@@ -73,7 +73,7 @@ describe('header', () => {
         it('should render logout link', createTestHarness(setup, (harness) => {
           const context = {
             username: 'user 1',
-            loginEnabled: 'true',
+            loginEnabled: true,
           };
           harness.request(context, ($) => {
             const headerBanner = $('header[data-test-id="header-banner"]');
@@ -86,7 +86,7 @@ describe('header', () => {
         describe('when username is not provided', () => {
           it('should render login link', createTestHarness(setup, (harness) => {
             const context = {
-              loginEnabled: 'true',
+              loginEnabled: true,
             };
             harness.request(context, ($) => {
               const headerBanner = $('header[data-test-id="header-banner"]');
@@ -103,7 +103,7 @@ describe('header', () => {
     describe('when login is disabled by default', () => {
       it('should not render the login component', createTestHarness(setup, (harness) => {
         const context = {
-          loginEnabled: 'false',
+          loginEnabled: false,
         };
         harness.request(context, ($) => {
           const headerBanner = $('header[data-test-id="header-banner"]');

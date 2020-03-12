@@ -3,5 +3,5 @@ import config from '../config';
 
 export const includesContext = {
   ...content,
-  loginEnabled: config.loginEnabled,
+  loginEnabled: config.loginEnabled === 'true',
 };
