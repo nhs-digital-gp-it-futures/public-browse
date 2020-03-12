@@ -25,15 +25,9 @@ export const routes = (authProvider) => {
 
   router.use('/health', healthRoutes);
 
-  router.get('/login', authProvider.authenticate({
-    successReturnToOrRedirect: '/',
-  }));
+  router.get('/login', authProvider.login());
 
-  router.get('/oauth/callback', authProvider.authenticate({
-    callback: true,
-    successReturnToOrRedirect: '/',
-    failureRedirect: '/',
-  }));
+  router.get('/oauth/callback', authProvider.loginCallback());
 
   router.get('/logout', async (req, res) => {
     const url = await authProvider.logout();
@@ -50,7 +44,7 @@ export const routes = (authProvider) => {
         .forEach(cookieKey => res.clearCookie(cookieKey));
     }
 
-    res.redirect('/');
+    res.redirect(config.logoutRedirectPath);
   });
 
   router.get('/', (req, res) => {

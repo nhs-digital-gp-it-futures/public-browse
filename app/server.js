@@ -28,6 +28,7 @@ if (config.env === 'development') {
       open: false,
       port: config.port,
       proxy: `localhost:${config.port - 50}`,
+      ghostMode: false,
       ui: false,
     });
   });

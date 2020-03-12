@@ -1,3 +1,4 @@
+import url from 'url';
 import passport from 'passport';
 import { Strategy, Issuer } from 'openid-client';
 import session from 'cookie-session';
@@ -55,9 +56,25 @@ export class AuthProvider {
     app.use(this.passport.session());
   }
 
-  authenticate(options) {
+  login() {
     return (req, res, next) => {
+      const options = {
+        state: url.parse(req.headers.referer).pathname,
+      };
       this.passport.authenticate('oidc', options)(req, res, next);
+    };
+  }
+
+  loginCallback() {
+    return (req, res, next) => {
+      const redirectUrl = req.query.state;
+      const optionsWithUrl = {
+        callback: true,
+        failureRedirect: '/',
+        successReturnToOrRedirect: redirectUrl,
+      };
+
+      this.passport.authenticate('oidc', optionsWithUrl)(req, res, next);
     };
   }
 

@@ -35,6 +35,9 @@ module.exports = {
   // The secret need to decode JWT tokens
   oidcClientSecret: process.env.OIDC_CLIENT_SECRET,
 
+  // The path that the user is redirected to after logout
+  logoutRedirectPath: process.env.LOGOUT_REDIRECT_PATH || '/',
+
   // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
   // Boolean to indicate if we show the capabilities selector page
   useCapabilitiesSelector: process.env.USE_CAPABILITIES_SELECTOR || false,

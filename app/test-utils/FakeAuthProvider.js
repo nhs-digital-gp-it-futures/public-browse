@@ -20,9 +20,16 @@ export class FakeAuthProvider {
   }
 
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
-  authenticate(options) {
+  login() {
     return (req, res) => {
       res.redirect('http://identity-server/login');
+    };
+  }
+
+  // eslint-disable-next-line class-methods-use-this, no-unused-vars
+  loginCallback() {
+    return (req, res) => {
+      res.redirect('/');
     };
   }
 
