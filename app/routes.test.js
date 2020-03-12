@@ -64,7 +64,7 @@ const setUpFakeApp = () => {
 };
 
 describe('routes', () => {
-  // TODO: Remove beforeEach when capabilities selector is on by default
+  // TODO: USE_CAPABILITIES_SELECTOR Remove beforeEach when capabilities selector is on by default
   beforeEach(() => {
     config.useCapabilitiesSelector = true;
   });
@@ -403,12 +403,12 @@ describe('routes', () => {
         })));
   });
 
-  // TODO: Remove test below when capabilities selector is on by default
+  // TODO: USE_CAPABILITIES_SELECTOR Remove test below when capabilities selector is on by default
   describe('when capabilities selector is off by default', () => {
     beforeEach(() => {
       config.useCapabilitiesSelector = false;
     });
-    it('should return the correct status and text if there is no error for capabilities-selector ', () => {
+    it('should return the correct status and redirect to capabilities-selector.all if there is no errors', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
         .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
 

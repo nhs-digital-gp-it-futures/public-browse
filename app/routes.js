@@ -81,7 +81,8 @@ export const routes = (authProvider) => {
     const { filterType, capabilities } = req.params;
     if (filterType === 'capabilities-selector') {
       if (!capabilities) {
-        // TODO: Remove line below when capabilities-selector is on by default
+        // TODO: USE_CAPABILITIES_SELECTOR Remove line below when
+        // capabilities-selector is on by default
         if (!config.useCapabilitiesSelector) return res.redirect('/solutions/capabilities-selector.all');
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');

@@ -1,5 +1,5 @@
 import { createSolutionListPageContext } from './context';
-// TODO: Remove line below when capabilities-selector is on by default
+// TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
 import config from '../../config';
 
 const solutionPageTitle = 'All Solutions results';
@@ -10,7 +10,7 @@ const foundationPageDescription = 'These Solutions meet the six Foundation Capab
 
 describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
-  // TODO: Remove line below when capabilities-selector is on by default
+  // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
     config.useCapabilitiesSelector = true;
     const expectedContext = {
       pageTitle: solutionPageTitle,
@@ -351,7 +351,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     expect(context).toEqual(expectedContext);
   });
 
-  // TODO: Remove test below when capabilities-selector is on by default
+  // TODO: USE_CAPABILITIES_SELECTOR Remove test below when capabilities-selector is on by default
   it('should create correck back link url if use capabilities selector is false by default', () => {
     config.useCapabilitiesSelector = false;
     const expectedContext = {

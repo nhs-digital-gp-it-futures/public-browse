@@ -1,4 +1,4 @@
-// TODO: Remove line below when capabilities-selector is on by default
+// TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
 import config from '../../config';
 
 const createSolutionsContext = ({
@@ -21,7 +21,8 @@ const createSolutionsContext = ({
 export const createSolutionListPageContext = ({
   filterType, solutionListManifest, solutionsData, capabilitiesSelected,
 }) => {
-  // TODO: Remove '&& config.useCapabilitiesSelector' when capabilities-selector is on by default
+  // TODO: USE_CAPABILITIES_SELECTOR Remove '&& config.useCapabilitiesSelector'
+  // when capabilities-selector is on by default
   const backLinkPath = `/solutions${filterType === 'capabilities-selector' && config.useCapabilitiesSelector ? '/capabilities-selector' : ''}`;
 
   return {

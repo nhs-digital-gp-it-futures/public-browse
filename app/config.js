@@ -35,7 +35,7 @@ module.exports = {
   // The secret need to decode JWT tokens
   oidcClientSecret: process.env.OIDC_CLIENT_SECRET,
 
-  // TODO: Remove line below when capabilities-selector is on by default
+  // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
   // Boolean to indicate if we show the capabilities selector page
   useCapabilitiesSelector: process.env.USE_CAPABILITIES_SELECTOR || false,
 };
