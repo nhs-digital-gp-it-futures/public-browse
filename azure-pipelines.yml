@@ -15,7 +15,7 @@ pr:
 pool:
   name: GP IT Futures AKS Build Agents
 
-jobs: 
+jobs:
 - job: buildAndTest
   displayName: Build app and run tests
   steps:
@@ -113,27 +113,6 @@ jobs:
       additionalImageTags: '$(Build.BuildNumber)'
       includeSourceTags: true
 
-  - task: DockerCompose@0
-    displayName: 'Build: PreProd'
-    inputs:
-      containerregistrytype: 'Azure Container Registry'
-      azureSubscription: 'NHSAPP-BuyingCatalogue (Non-Prod)'
-      azureContainerRegistry: '{"loginServer":"gpitfuturespprodacr.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfutures-pprod-rg-acr/providers/Microsoft.ContainerRegistry/registries/gpitfuturespprodacr"}'
-      dockerComposeFile: '**/docker-compose.yml'
-      action: 'Build services'
-      additionalImageTags: '$(Build.BuildNumber)'
-      includeSourceTags: true
-
-  - task: DockerCompose@0
-    displayName: 'Push: PreProd'
-    inputs:
-      containerregistrytype: 'Azure Container Registry'
-      azureSubscription: 'NHSAPP-BuyingCatalogue (Non-Prod)'
-      azureContainerRegistry: '{"loginServer":"gpitfuturespprodacr.azurecr.io", "id" : "/subscriptions/7b12a8a2-f06f-456f-b6f9-aa2d92e0b2ec/resourceGroups/gpitfutures-pprod-rg-acr/providers/Microsoft.ContainerRegistry/registries/gpitfuturespprodacr"}'
-      dockerComposeFile: '**/docker-compose.yml'
-      action: 'Push services'
-      additionalImageTags: '$(Build.BuildNumber)'
-      includeSourceTags: true
 
   - task: DockerCompose@0
     displayName: 'Build: Prod'
