@@ -20,7 +20,7 @@ export class AuthProvider {
         const params = {
           client_id: oidcClientId,
           redirect_uri: `${appBaseUri}/oauth/callback`,
-          scope: 'openid profile',
+          scope: 'openid profile Organisation',
         };
 
         const passReqToCallback = true;
