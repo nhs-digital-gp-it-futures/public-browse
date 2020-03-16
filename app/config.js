@@ -42,6 +42,9 @@ module.exports = {
   // The path that the user is redirected to after logout
   logoutRedirectPath: process.env.LOGOUT_REDIRECT_PATH || '/',
 
+  // How long before the cookies stored in the session expire in ms (1 hour)
+  maxCookieAge: process.env.MAX_COOKIE_AGE || 3600000,
+
   // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
   // Boolean to indicate if we show the capabilities selector page
   useCapabilitiesSelector: process.env.USE_CAPABILITIES_SELECTOR || false,
