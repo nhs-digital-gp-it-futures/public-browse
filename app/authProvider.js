@@ -3,7 +3,7 @@ import passport from 'passport';
 import { Strategy, Issuer } from 'openid-client';
 import session from 'cookie-session';
 import {
-  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri,
+  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri, maxCookieAge,
 } from './config';
 
 export class AuthProvider {
@@ -49,6 +49,7 @@ export class AuthProvider {
     app.use(session({
       name: 'token2',
       secret: 'secret squirrel',
+      maxAge: maxCookieAge,
     }));
 
     app.use(this.passport.initialize());
