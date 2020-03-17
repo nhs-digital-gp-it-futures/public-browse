@@ -78,7 +78,7 @@ export const routes = (authProvider) => {
       if (!capabilities) {
         // TODO: USE_CAPABILITIES_SELECTOR Remove line below when
         // capabilities-selector is on by default
-        if (!config.useCapabilitiesSelector) return res.redirect('/solutions/capabilities-selector.all');
+        if (config.useCapabilitiesSelector === 'false') return res.redirect('/solutions/capabilities-selector.all');
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');
         return res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user, csrfToken: req.csrfToken() }));

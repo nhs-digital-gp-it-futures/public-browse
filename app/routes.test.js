@@ -66,7 +66,7 @@ const setUpFakeApp = () => {
 describe('routes', () => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove beforeEach when capabilities selector is on by default
   beforeEach(() => {
-    config.useCapabilitiesSelector = true;
+    config.useCapabilitiesSelector = 'true';
   });
   describe('GET /login', () => {
     it('should return the correct status and redirect to the login page when not authenticated', () => (
@@ -406,7 +406,7 @@ describe('routes', () => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove test below when capabilities selector is on by default
   describe('when capabilities selector is off by default', () => {
     beforeEach(() => {
-      config.useCapabilitiesSelector = false;
+      config.useCapabilitiesSelector = 'false';
     });
     it('should return the correct status and redirect to capabilities-selector.all if there is no errors', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
