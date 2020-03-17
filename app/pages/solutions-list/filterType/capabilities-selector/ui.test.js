@@ -221,7 +221,7 @@ fixture('Show Capability Selector Solution List Page - no capabilities selected'
 test('should display the page title', async (t) => {
   await pageSetup({ t });
   const pageTitle = Selector('h1[data-test-id="general-page-title"]');
-  await t.debug()
+  await t
     .expect(pageTitle.exists).ok()
     .expect(await extractInnerText(pageTitle)).eql(manifest.title);
 });
