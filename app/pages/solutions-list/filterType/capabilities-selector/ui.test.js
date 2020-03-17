@@ -18,13 +18,13 @@ const pageSetup = async ({
   t,
   responseStatus = 200,
   responseBody = aCustomSolutionList,
-  capabilities = 'all',
+  capabilities = ['all'],
 }) => {
   await mocks(responseStatus, responseBody);
-  await t.navigateTo(`http://localhost:1234/solutions/capabilities-selector.${capabilities}`);
+  await t.navigateTo(`http://localhost:1234/solutions/capabilities-selector.${capabilities.join('+')}`);
 };
 
-fixture('Show Capability Selector Solution List Page - capabilities selected')
+fixture('Show Capability Selector Solution List Page - one capability selected')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -35,7 +35,7 @@ fixture('Show Capability Selector Solution List Page - capabilities selected')
   });
 
 test('should display the page title', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   const pageTitle = Selector('h1[data-test-id="general-page-title"]');
   await t
     .expect(pageTitle.exists).ok()
@@ -43,7 +43,7 @@ test('should display the page title', async (t) => {
 });
 
 test('should display the page description', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   const pageDescription = Selector('h2[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
@@ -51,7 +51,7 @@ test('should display the page description', async (t) => {
 });
 
 test('should display the capabilities heading', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
   await t
     .expect(capabilityHeading.exists).ok()
@@ -59,13 +59,13 @@ test('should display the capabilities heading', async (t) => {
 });
 
 test('should display the solution cards', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   await t
     .expect(Selector('div[data-test-id="solution-card"]').count).eql(2);
 });
 
 test('should display the solution details of a solution card', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   const solutionCardsSection = Selector('div[data-test-id="solution-cards"]');
   await t
     .expect(solutionCardsSection.find('div[data-test-id="solution-card"]').count).eql(2);
@@ -81,7 +81,7 @@ test('should display the solution details of a solution card', async (t) => {
 });
 
 test('should display the capability details of a solution card', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   const solutionCard = Selector('div[data-test-id="solution-card"]:nth-child(1)');
   const capabilityList = solutionCard.find('[data-test-id="capability-list"]');
   await t
@@ -91,7 +91,7 @@ test('should display the capability details of a solution card', async (t) => {
 });
 
 test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   await nock('http://localhost:5100')
     .get('/api/v1/Solutions/S1/Public')
     .reply(200, publicSolutionNoData);
@@ -104,7 +104,7 @@ test('should navigate to the solution view page when clicking on the title of th
 });
 
 test('should navigate back to the capabilities-selector when backlink is clicked', async (t) => {
-  await pageSetup({ t, capabilities: 'C1' });
+  await pageSetup({ t, capabilities: ['C1'] });
   await nock('http://localhost:5100')
     .get('/api/v1/Capabilities')
     .reply(200, capabilitiesList);
@@ -116,6 +116,97 @@ test('should navigate back to the capabilities-selector when backlink is clicked
     .expect(Selector('[data-test-id="capabilities-selector-page-title"]').exists).ok();
 });
 
+fixture('Show Capability Selector Solution List Page - multiple capabilities selected')
+  .afterEach(async (t) => {
+    const isDone = nock.isDone();
+    if (!isDone) {
+      nock.cleanAll();
+    }
+
+    await t.expect(isDone).ok('Not all nock interceptors were used!');
+  });
+
+test('should display the page title', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  await t
+    .expect(pageTitle.exists).ok()
+    .expect(await extractInnerText(pageTitle)).eql(manifest.title);
+});
+
+test('should display the page description', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  const pageDescription = Selector('h2[data-test-id="general-page-description"]');
+  await t
+    .expect(pageDescription.exists).ok()
+    .expect(await extractInnerText(pageDescription)).eql(manifest.description);
+});
+
+test('should display the capabilities heading', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
+  await t
+    .expect(capabilityHeading.exists).ok()
+    .expect(await extractInnerText(capabilityHeading)).eql('Capabilities met');
+});
+
+test('should display the solution cards', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  await t
+    .expect(Selector('div[data-test-id="solution-card"]').count).eql(2);
+});
+
+test('should display the solution details of a solution card', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  const solutionCardsSection = Selector('div[data-test-id="solution-cards"]');
+  await t
+    .expect(solutionCardsSection.find('div[data-test-id="solution-card"]').count).eql(2);
+
+  const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card"]:nth-child(1)');
+  const foundationTag = solutionCard.find('div[data-test-id="solution-card-foundation"]');
+  await t
+    .expect(foundationTag.exists).ok()
+    .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set')
+    .expect(await extractInnerText(solutionCard.find('h4[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
+    .expect(await extractInnerText(solutionCard.find('h3'))).eql('some foundation solution name')
+    .expect(await extractInnerText(solutionCard.find('p[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
+});
+
+test('should display the capability details of a solution card', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  const solutionCard = Selector('div[data-test-id="solution-card"]:nth-child(1)');
+  const capabilityList = solutionCard.find('[data-test-id="capability-list"]');
+  await t
+    .expect(capabilityList.exists).ok()
+    .expect(capabilityList.find('li').count).eql(1)
+    .expect(await extractInnerText(capabilityList.find('li:nth-child(1)'))).eql('some capability name');
+});
+
+test('should navigate to the solution view page when clicking on the title of the solution', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  await nock('http://localhost:5100')
+    .get('/api/v1/Solutions/S1/Public')
+    .reply(200, publicSolutionNoData);
+  const solutionCardTitleLink = Selector('div[data-test-id="solution-card"]:nth-child(1) a');
+  await t
+    .expect(solutionCardTitleLink.exists).ok()
+    .click(solutionCardTitleLink)
+    .expect(getLocation()).contains('/solutions/capabilities-selector.C1+C2/S1')
+    .expect(Selector('[data-test-id="view-solution-header"]').exists).ok();
+});
+
+test('should navigate back to the capabilities-selector when backlink is clicked', async (t) => {
+  await pageSetup({ t, capabilities: ['C1', 'C2'] });
+  await nock('http://localhost:5100')
+    .get('/api/v1/Capabilities')
+    .reply(200, capabilitiesList);
+  const backLink = Selector('[data-test-id="go-back-link"] a');
+  await t
+    .expect(backLink.exists).ok()
+    .click(backLink)
+    .expect(getLocation()).contains('/solutions/capabilities-selector')
+    .expect(Selector('[data-test-id="capabilities-selector-page-title"]').exists).ok();
+});
 
 fixture('Show Capability Selector Solution List Page - no capabilities selected')
   .afterEach(async (t) => {
@@ -130,7 +221,7 @@ fixture('Show Capability Selector Solution List Page - no capabilities selected'
 test('should display the page title', async (t) => {
   await pageSetup({ t });
   const pageTitle = Selector('h1[data-test-id="general-page-title"]');
-  await t
+  await t.debug()
     .expect(pageTitle.exists).ok()
     .expect(await extractInnerText(pageTitle)).eql(manifest.title);
 });

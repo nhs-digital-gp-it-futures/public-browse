@@ -86,7 +86,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'C1',
+      capabilitiesSelected: ['C1'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -140,7 +140,66 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'C1',
+      capabilitiesSelected: ['C1'],
+    });
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  it('should create a context for the solution list page with one solution and multiple capabilities', () => {
+    const expectedContext = {
+      pageTitle: solutionPageTitle,
+      pageDescription: solutionPageDescription,
+      backLinkPath: '/solutions/capabilities-selector',
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          supplierName: 'Some supplier',
+          capabilities: [
+            'Some capability',
+            'Another capability',
+          ],
+          isFoundation: true,
+          viewSolutionUrl: '/solutions/capabilities-selector.C1+C2/00001',
+        },
+      ],
+    };
+
+    const solutionsData = [
+      {
+        id: '00001',
+        name: 'The first solution',
+        summary: 'Some solution summary',
+        isFoundation: true,
+        supplier: {
+          id: '1',
+          name: 'Some supplier',
+        },
+        capabilities: [
+          {
+            id: '1',
+            name: 'Some capability',
+          },
+          {
+            id: '2',
+            name: 'Another capability',
+          },
+        ],
+      },
+    ];
+
+    const solutionListManifest = {
+      title: solutionPageTitle,
+      description: solutionPageDescription,
+    };
+
+    const context = createSolutionListPageContext({
+      filterType: 'capabilities-selector',
+      solutionListManifest,
+      solutionsData,
+      capabilitiesSelected: ['C1', 'C2'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -187,7 +246,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'C1',
+      capabilitiesSelected: ['C1'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -232,7 +291,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'C1',
+      capabilitiesSelected: ['C1'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -274,7 +333,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'C1',
+      capabilitiesSelected: ['C1'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -298,7 +357,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'C1',
+      capabilitiesSelected: ['C1'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -345,7 +404,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'all',
+      capabilitiesSelected: ['all'],
     });
 
     expect(context).toEqual(expectedContext);
@@ -428,7 +487,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       filterType: 'capabilities-selector',
       solutionListManifest,
       solutionsData,
-      capabilitiesSelected: 'all',
+      capabilitiesSelected: ['all'],
     });
 
     expect(context).toEqual(expectedContext);
