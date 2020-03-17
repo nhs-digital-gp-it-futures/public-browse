@@ -23,7 +23,7 @@ export const createSolutionListPageContext = ({
 }) => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove '&& config.useCapabilitiesSelector'
   // when capabilities-selector is on by default
-  const backLinkPath = `/solutions${filterType === 'capabilities-selector' && config.useCapabilitiesSelector ? '/capabilities-selector' : ''}`;
+  const backLinkPath = `/solutions${filterType === 'capabilities-selector' && config.useCapabilitiesSelector === 'true' ? '/capabilities-selector' : ''}`;
 
   return {
     backLinkPath,

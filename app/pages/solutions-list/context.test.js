@@ -11,7 +11,7 @@ const foundationPageDescription = 'These Solutions meet the six Foundation Capab
 describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
-    config.useCapabilitiesSelector = true;
+    config.useCapabilitiesSelector = 'true';
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
@@ -412,7 +412,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   // TODO: USE_CAPABILITIES_SELECTOR Remove test below when capabilities-selector is on by default
   it('should create correck back link url if use capabilities selector is false by default', () => {
-    config.useCapabilitiesSelector = false;
+    config.useCapabilitiesSelector = 'false';
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
