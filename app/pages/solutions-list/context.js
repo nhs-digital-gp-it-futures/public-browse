@@ -6,7 +6,6 @@ const createSolutionsContext = ({
   solutions,
   capabilitiesSelected,
 }) => solutions.map((solution) => {
-  console.log(capabilitiesSelected)
   const viewSolutionUrl = `/solutions/${filterType}${capabilitiesSelected ? `.${capabilitiesSelected.join('+')}` : ''}/${solution.id}`;
   return ({
     id: solution.id,
