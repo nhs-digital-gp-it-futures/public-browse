@@ -6,7 +6,7 @@ const createSolutionsContext = ({
   solutions,
   capabilitiesSelected,
 }) => solutions.map((solution) => {
-  const viewSolutionUrl = `/solutions/${filterType}${capabilitiesSelected ? `.${capabilitiesSelected}` : ''}/${solution.id}`;
+  const viewSolutionUrl = `/solutions/${filterType}${capabilitiesSelected ? `.${capabilitiesSelected.join('+')}` : ''}/${solution.id}`;
   return ({
     id: solution.id,
     name: solution.name,
@@ -32,7 +32,7 @@ export const createSolutionListPageContext = ({
     solutions: createSolutionsContext({
       filterType,
       solutions: solutionsData,
-      capabilitiesSelected: capabilitiesSelected && capabilitiesSelected.length < 1 ? 'all' : capabilitiesSelected,
+      capabilitiesSelected: capabilitiesSelected && capabilitiesSelected.length < 1 ? ['all'] : capabilitiesSelected,
     }),
   };
 };
