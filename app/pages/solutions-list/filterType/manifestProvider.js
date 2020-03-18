@@ -1,6 +1,5 @@
 import fs from 'fs';
-
-const path = require('path');
+import path from 'path';
 
 export class ManifestProvider {
   getSolutionListManifest(type) {
