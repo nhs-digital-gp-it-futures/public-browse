@@ -1,5 +1,5 @@
 import { ManifestProvider } from './filterType/manifestProvider';
-import { getData, postData } from '../../apiProvider2';
+import { getData, postData } from '../../apiProvider';
 import { createSolutionListPageContext } from './context';
 import { logger } from '../../logger';
 

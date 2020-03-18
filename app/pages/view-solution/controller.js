@@ -1,4 +1,4 @@
-import { getData } from '../../apiProvider2';
+import { getData } from '../../apiProvider';
 import { createViewSolutionPageContext } from './solutionPageContext';
 import { logger } from '../../logger';
 
