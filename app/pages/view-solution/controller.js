@@ -11,4 +11,3 @@ export const getPublicSolutionById = async ({ solutionId }) => {
   }
   throw new Error('No data returned');
 };
-
