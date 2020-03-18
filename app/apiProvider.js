@@ -18,18 +18,6 @@ export class ApiProvider {
     this.documentApiHost = documentApiHost;
   }
 
-  async getBuyingCatalogueApiHealth() {
-    const endpoint = `${this.buyingCatalogueApiHost}/health/ready`;
-    logger.info(`api called: [GET] ${endpoint}`);
-    return axios.get(endpoint);
-  }
-
-  async getDocumentApiHealth() {
-    const endpoint = `${this.documentApiHost}/health/ready`;
-    logger.info(`api called: [GET] ${endpoint}`);
-    return axios.get(endpoint);
-  }
-
   async getSolutionListData(filterType) {
     const endpoint = getSolutionListDataEndpoint(this.buyingCatalogueApiHost, filterType);
     if (endpoint) {
