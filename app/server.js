@@ -1,5 +1,4 @@
 require('dotenv').config();
-const browserSync = require('browser-sync'); // eslint-disable-line import/no-extraneous-dependencies
 const config = require('./config');
 const { App } = require('./app');
 const { AuthProvider } = require('./authProvider');
@@ -21,17 +20,8 @@ app.use('/', routes(authProvider));
 
 // Run application on configured port
 if (config.env === 'development') {
-  app.listen(config.port - 50, () => {
-    browserSync({
-      files: ['./**/*.*', '../public/**/*.*'],
-      notify: true,
-      open: false,
-      port: config.port,
-      proxy: `localhost:${config.port - 50}`,
-      ghostMode: false,
-      ui: false,
-    });
-  });
+  logger.info(`Public browse - \x1b[35m${config.appBaseUri}/\x1b[0m`);
 } else {
-  app.listen(config.port);
+  logger.info(`App listening on port ${config.port} - Public browse`);
 }
+app.listen(config.port);
