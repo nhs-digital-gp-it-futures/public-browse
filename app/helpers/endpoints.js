@@ -6,5 +6,5 @@ export const endpoints = {
   getDocumentApiHealth: () => `${documentApiHost}/health/ready`,
   getSolutionListData:
     options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
-  getPublicSolutionById: solutionId => `${buyingCatalogueApiHost}/api/v1/Solutions/${solutionId}/Public`,
+  getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
 };
