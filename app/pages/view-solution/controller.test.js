@@ -1,7 +1,11 @@
 import { getPublicSolutionById, getDocument } from './controller';
 import { ApiProvider } from '../../apiProvider';
+import * as apiProvider from '../../apiProvider2';
 
 jest.mock('../../apiProvider');
+jest.mock('../../apiProvider2', () => ({
+  getData: jest.fn(),
+}));
 
 describe('view-solution controller', () => {
   describe('getPublicSolutionById', () => {
@@ -36,16 +40,15 @@ describe('view-solution controller', () => {
         },
       };
 
-      ApiProvider.prototype.getPublicSolutionById.mockResolvedValue(mockedSolutionData);
-
+      apiProvider.getData
+        .mockReturnValueOnce(mockedSolutionData);
       const context = await getPublicSolutionById('100000-001');
-
       expect(context).toEqual(expectedContext);
     });
 
     it('should throw an error when no data is returned from the ApiProvider', async () => {
-      ApiProvider.prototype.getPublicSolutionById.mockResolvedValue({});
-
+      apiProvider.getData
+        .mockReturnValueOnce({});
       try {
         await getPublicSolutionById('some-solution-id');
       } catch (err) {
