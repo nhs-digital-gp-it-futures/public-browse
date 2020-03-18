@@ -7,4 +7,5 @@ export const endpoints = {
   getSolutionListData:
     options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
   getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
+  getDocument: (solutionId, documentName) => `${documentApiHost}/api/v1/Solutions/${solutionId}/documents/${documentName}`,
 };

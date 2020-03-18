@@ -11,3 +11,9 @@ export const getData = async ({ endpointLocator, options, accessToken }) => {
   const response = await axios.get(endpoint, getHeaders(accessToken));
   return response.data || null;
 };
+
+export const getDocument = ({ solutionId, documentName }) => {
+  const endpoint = endpoints.getDocument({ options: { solutionId, documentName } });
+  logger.info(`api called: [GET] ${endpoint}`);
+  return axios.get(endpoint, { responseType: 'stream' });
+};

@@ -8,12 +8,6 @@ export class ApiProvider {
     this.documentApiHost = documentApiHost;
   }
 
-  async getDocument({ solutionId, documentName }) {
-    const endpoint = `${this.documentApiHost}/api/v1/Solutions/${solutionId}/documents/${documentName}`;
-    logger.info(`api called: [GET] ${endpoint}`);
-    return axios.get(endpoint, { responseType: 'stream' });
-  }
-
   async getCapabilities() {
     const endpoint = `${this.buyingCatalogueApiHost}/api/v1/Capabilities`;
     logger.info(`api called: [GET] ${endpoint}`);
