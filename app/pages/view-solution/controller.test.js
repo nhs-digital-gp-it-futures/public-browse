@@ -42,7 +42,7 @@ describe('view-solution controller', () => {
 
       apiProvider.getData
         .mockReturnValueOnce(mockedSolutionData);
-      const context = await getPublicSolutionById('100000-001');
+      const context = await getPublicSolutionById({ solutionId: '100000-001' });
       expect(context).toEqual(expectedContext);
     });
 
