@@ -17,3 +17,9 @@ export const getDocument = ({ solutionId, documentName }) => {
   logger.info(`api called: [GET] ${endpoint}`);
   return axios.get(endpoint, { responseType: 'stream' });
 };
+
+export const postData = async ({ endpointLocator, options, body }) => {
+  const endpoint = endpoints[endpointLocator](options);
+  logger.info(`api called: [POST] ${endpoint}: ${JSON.stringify(body)}`);
+  return axios.post(endpoint, body);
+};

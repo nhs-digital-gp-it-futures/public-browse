@@ -1,7 +1,6 @@
 import { ManifestProvider } from './filterType/manifestProvider';
-import { getData } from '../../apiProvider2';
+import { getData, postData } from '../../apiProvider2';
 import { createSolutionListPageContext } from './context';
-import { ApiProvider } from '../../apiProvider';
 import { logger } from '../../logger';
 
 const getSolutionListData = async (filterType) => {
@@ -42,8 +41,8 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
     capabilitiesSelected: formattedCapabilities,
   });
 
-  const solutionsData = await new ApiProvider()
-    .postSelectedCapabilities({ selectedCapabilities: transformedCapabilities });
+  const solutionsData = await postData({ endpointLocator: 'postSelectedCapabilities', body: { selectedCapabilities: transformedCapabilities } });
+
   return createSolutionListPageContext({
     filterType: 'capabilities-selector',
     solutionListManifest,

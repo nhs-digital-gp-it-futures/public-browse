@@ -7,10 +7,4 @@ export class ApiProvider {
     this.buyingCatalogueApiHost = buyingCatalogueApiHost;
     this.documentApiHost = documentApiHost;
   }
-
-  async postSelectedCapabilities({ selectedCapabilities }) {
-    const endpoint = `${this.buyingCatalogueApiHost}/api/v1/Solutions`;
-    logger.info(`api called: [POST] ${endpoint}: ${JSON.stringify(selectedCapabilities)}`);
-    return axios.post(endpoint, selectedCapabilities);
-  }
 }

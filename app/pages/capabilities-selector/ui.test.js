@@ -88,7 +88,6 @@ test('should navigate to the view-solution page when capabilities have been sele
   const capabilityC2Checkbox = Selector('input[value="C2"]');
   const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"] button');
   await t
-
     .expect(capabilityC1Checkbox.exists).ok()
     .click(capabilityC1Checkbox)
     .expect(capabilityC2Checkbox.exists).ok()
