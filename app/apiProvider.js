@@ -1,8 +1,27 @@
 import axios from 'axios';
-import { endpoints } from './helpers/endpoints';
 import { logger } from './logger';
+import { buyingCatalogueApiHost, documentApiHost } from './config';
 
 const getHeaders = accessToken => (accessToken ? { headers: { Authorization: `Bearer ${accessToken}` } } : {});
+
+
+const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
+  if (filterType === 'foundation') {
+    return `${apiHostUrl}/api/v1/Solutions/Foundation`;
+  }
+  return undefined;
+};
+
+const endpoints = {
+  getBuyingCatalogueApiHealth: () => `${buyingCatalogueApiHost}/health/ready`,
+  getDocumentApiHealth: () => `${documentApiHost}/health/ready`,
+  getSolutionListData:
+    options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
+  getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
+  getDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
+  getCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Capabilities`,
+  postSelectedCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Solutions`,
+};
 
 export const getData = async ({ endpointLocator, options, accessToken }) => {
   const endpoint = endpoints[endpointLocator](options);

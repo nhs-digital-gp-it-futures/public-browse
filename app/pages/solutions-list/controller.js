@@ -10,6 +10,7 @@ const getSolutionListData = async (filterType) => {
     logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filterType}`);
     return solutionListResponse.solutions;
   }
+
   throw new Error(`No endpoint found for filter type: ${filterType}`);
 };
 
