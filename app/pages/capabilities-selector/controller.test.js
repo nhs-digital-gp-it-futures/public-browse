@@ -45,7 +45,7 @@ describe('capabilities-selector controller', () => {
         }],
       };
       apiProvider.getData
-        .mockReturnValueOnce(mockedCapabilitiesData);
+        .mockResolvedValueOnce(mockedCapabilitiesData);
 
       const context = await getCapabilitiesContext();
 
@@ -54,7 +54,7 @@ describe('capabilities-selector controller', () => {
 
     it('should throw an error when no data is returned from the ApiProvider', async () => {
       apiProvider.getData
-        .mockReturnValueOnce({});
+        .mockResolvedValueOnce({});
 
       try {
         await getCapabilitiesContext();

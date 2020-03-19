@@ -16,13 +16,16 @@ const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
 };
 
 const endpoints = {
+  // GET endpoints
   getBuyingCatalogueApiHealth: () => `${buyingCatalogueApiHost}/health/ready`,
   getDocumentApiHealth: () => `${documentApiHost}/health/ready`,
   getSolutionListData:
     options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
   getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
-  getDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
   getCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Capabilities`,
+  // GET Documents endpoint
+  getDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
+  // POST endpoints
   postSelectedCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Solutions`,
 };
 
@@ -34,8 +37,8 @@ export const getData = async ({ endpointLocator, options, accessToken }) => {
   return response.data || null;
 };
 
-export const getDocument = ({ solutionId, documentName }) => {
-  const endpoint = endpoints.getDocument({ options: { solutionId, documentName } });
+export const getDocument = (options) => {
+  const endpoint = endpoints.getDocument(options);
   logger.info(`api called: [GET] ${endpoint}`);
   return axios.get(endpoint, { responseType: 'stream' });
 };
