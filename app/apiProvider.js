@@ -6,6 +6,9 @@ const getHeaders = accessToken => (accessToken ? { headers: { Authorization: `Be
 
 
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
+  if (filterType === 'all') {
+    return `${apiHostUrl}/api/v1/Solutions`;
+  }
   if (filterType === 'foundation') {
     return `${apiHostUrl}/api/v1/Solutions/Foundation`;
   }
