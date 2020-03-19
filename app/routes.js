@@ -1,5 +1,5 @@
 import express from 'express';
-import { getPublicSolutionById, getDocument } from './pages/view-solution/controller';
+import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
@@ -11,6 +11,7 @@ import config from './config';
 import { includesContext } from './includes/contextCreator';
 import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
+import { getDocument } from './apiProvider';
 
 const addConfig = ({ context, user, csrfToken }) => ({
   ...context,

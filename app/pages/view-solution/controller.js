@@ -1,17 +1,13 @@
+import { getData } from '../../apiProvider';
 import { createViewSolutionPageContext } from './solutionPageContext';
-import { ApiProvider } from '../../apiProvider';
 import { logger } from '../../logger';
 
 export const getPublicSolutionById = async ({ solutionId }) => {
-  const response = await new ApiProvider().getPublicSolutionById({ solutionId });
+  const solutionData = await getData({ endpointLocator: 'getPublicSolutionById', options: { solutionId } });
 
-  if (response.data) {
-    logger.info(`Solution ${solutionId}: ${response.data.name} returned`);
-    return createViewSolutionPageContext({ solutionData: response.data });
+  if (solutionData) {
+    logger.info(`Solution ${solutionId}: ${solutionData.name} returned`);
+    return createViewSolutionPageContext({ solutionData });
   }
   throw new Error('No data returned');
 };
-
-export const getDocument = async ({ solutionId, documentName }) => (
-  new ApiProvider().getDocument({ solutionId, documentName })
-);

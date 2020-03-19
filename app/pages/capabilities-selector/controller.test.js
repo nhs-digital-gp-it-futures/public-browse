@@ -1,8 +1,10 @@
 import { getCapabilitiesContext } from './controller';
-import { ApiProvider } from '../../apiProvider';
+import * as apiProvider from '../../apiProvider';
 import manifest from './manifest.json';
 
-jest.mock('../../apiProvider');
+jest.mock('../../apiProvider', () => ({
+  getData: jest.fn(),
+}));
 
 describe('capabilities-selector controller', () => {
   describe('getCapabilitiesContext', () => {
@@ -25,27 +27,25 @@ describe('capabilities-selector controller', () => {
       };
 
       const mockedCapabilitiesData = {
-        data: {
-          capabilities: [{
-            reference: 'C5',
-            version: '1.0.1',
-            name: 'Appointments Management - GP',
-            isFoundation: true,
-          }, {
-            reference: 'C13',
-            version: '1.0.1',
-            name: 'Patient Information Maintenance',
-            isFoundation: true,
-          }, {
-            reference: 'C14',
-            version: '1.0.1',
-            name: 'Prescribing',
-            isFoundation: true,
-          }],
-        },
+        capabilities: [{
+          reference: 'C5',
+          version: '1.0.1',
+          name: 'Appointments Management - GP',
+          isFoundation: true,
+        }, {
+          reference: 'C13',
+          version: '1.0.1',
+          name: 'Patient Information Maintenance',
+          isFoundation: true,
+        }, {
+          reference: 'C14',
+          version: '1.0.1',
+          name: 'Prescribing',
+          isFoundation: true,
+        }],
       };
-
-      ApiProvider.prototype.getCapabilities.mockResolvedValue(mockedCapabilitiesData);
+      apiProvider.getData
+        .mockReturnValueOnce(mockedCapabilitiesData);
 
       const context = await getCapabilitiesContext();
 
@@ -53,7 +53,8 @@ describe('capabilities-selector controller', () => {
     });
 
     it('should throw an error when no data is returned from the ApiProvider', async () => {
-      ApiProvider.prototype.getCapabilities.mockResolvedValue({});
+      apiProvider.getData
+        .mockReturnValueOnce({});
 
       try {
         await getCapabilitiesContext();

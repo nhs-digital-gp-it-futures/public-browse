@@ -1,14 +1,16 @@
 import { ManifestProvider } from './filterType/manifestProvider';
+import { getData, postData } from '../../apiProvider';
 import { createSolutionListPageContext } from './context';
-import { ApiProvider } from '../../apiProvider';
 import { logger } from '../../logger';
 
 const getSolutionListData = async (filterType) => {
-  const solutionListResponse = await new ApiProvider().getSolutionListData(filterType);
-  if (solutionListResponse && solutionListResponse.data && solutionListResponse.data.solutions) {
-    logger.info(`${solutionListResponse.data.solutions.length} solutions returned for type ${filterType}`);
-    return solutionListResponse.data.solutions;
+  const solutionListResponse = await getData({ endpointLocator: 'getSolutionListData', options: { filterType } });
+
+  if (solutionListResponse && solutionListResponse.solutions) {
+    logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filterType}`);
+    return solutionListResponse.solutions;
   }
+
   throw new Error(`No endpoint found for filter type: ${filterType}`);
 };
 
@@ -40,8 +42,8 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
     capabilitiesSelected: formattedCapabilities,
   });
 
-  const solutionsData = await new ApiProvider()
-    .postSelectedCapabilities({ selectedCapabilities: transformedCapabilities });
+  const solutionsData = await postData({ endpointLocator: 'postSelectedCapabilities', body: { selectedCapabilities: transformedCapabilities } });
+
   return createSolutionListPageContext({
     filterType: 'capabilities-selector',
     solutionListManifest,
