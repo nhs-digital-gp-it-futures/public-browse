@@ -38,14 +38,14 @@ describe('view-solution controller', () => {
       };
 
       apiProvider.getData
-        .mockReturnValueOnce(mockedSolutionData);
+        .mockResolvedValueOnce(mockedSolutionData);
       const context = await getPublicSolutionById({ solutionId: '100000-001' });
       expect(context).toEqual(expectedContext);
     });
 
     it('should throw an error when no data is returned from getData', async () => {
       apiProvider.getData
-        .mockReturnValueOnce();
+        .mockResolvedValueOnce();
       try {
         await getPublicSolutionById({ solutionId: 'some-solution-id' });
       } catch (err) {
@@ -59,7 +59,7 @@ describe('view-solution controller', () => {
       const expectedDocument = 'Hello';
 
       apiProvider.getDocument
-        .mockReturnValueOnce(expectedDocument);
+        .mockResolvedValueOnce(expectedDocument);
 
       const document = await apiProvider.getDocument({ solutionId: 'some-solution-id', documentName: 'some-document-name' });
 
