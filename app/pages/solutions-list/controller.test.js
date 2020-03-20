@@ -104,7 +104,7 @@ describe('solutions-list controller', () => {
       createContext.createSolutionListPageContext.mockReset();
     });
 
-    fit('should call postData once with the correct params when capabilitiesSelected is "all"', async () => {
+    it('should call postData once with the correct params when capabilitiesSelected is "all"', async () => {
       apiProvider.postData
         .mockResolvedValueOnce({ data: mockedSolutionData });
 
