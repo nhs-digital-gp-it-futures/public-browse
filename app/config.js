@@ -48,4 +48,7 @@ module.exports = {
   // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
   // Boolean to indicate if we show the capabilities selector page
   useCapabilitiesSelector: process.env.USE_CAPABILITIES_SELECTOR || 'true',
+
+  // The secret needed for encoding and decoding the cookie
+  cookieSecret: process.env.COOKIE_SECRET,
 };
