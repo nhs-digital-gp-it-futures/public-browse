@@ -3,11 +3,40 @@ import * as apiProvider from '../../apiProvider';
 
 jest.mock('../../apiProvider', () => ({
   getData: jest.fn(),
-  getDocument: jest.fn(),
 }));
+
+const mockedSolutionData = {
+  id: '100000-001',
+  name: 'Write on Time',
+  supplierName: 'Really Kool Corporation',
+  isFoundation: true,
+  lastUpdated: '1996-03-15T10:00:00',
+  sections: {
+    'some-section': {
+      answers: {},
+    },
+  },
+};
 
 describe('view-solution controller', () => {
   describe('getPublicSolutionById', () => {
+    afterEach(() => {
+      apiProvider.getData.mockReset();
+    });
+
+    it('should call getData once with the correct params', async () => {
+      apiProvider.getData
+        .mockResolvedValueOnce(mockedSolutionData);
+
+      await getPublicSolutionById({ solutionId: '100000-001' });
+      expect(apiProvider.getData.mock.calls.length).toEqual(1);
+      expect(apiProvider.getData.mock.calls[0].length).toEqual(1);
+      expect(Object.keys(apiProvider.getData.mock.calls[0][0]).length).toEqual(2);
+      expect(apiProvider.getData.mock.calls[0][0].endpointLocator).toBe('getPublicSolutionById');
+      expect(Object.keys(apiProvider.getData.mock.calls[0][0].options).length).toEqual(1);
+      expect(apiProvider.getData.mock.calls[0][0].options.solutionId).toBe('100000-001');
+    });
+
     it('should return the context when preview data is returned by getData', async () => {
       const expectedContext = {
         solutionHeader: {
@@ -17,19 +46,6 @@ describe('view-solution controller', () => {
           isFoundation: true,
           lastUpdated: '1996-03-15T10:00:00',
         },
-        sections: {
-          'some-section': {
-            answers: {},
-          },
-        },
-      };
-
-      const mockedSolutionData = {
-        id: '100000-001',
-        name: 'Write on Time',
-        supplierName: 'Really Kool Corporation',
-        isFoundation: true,
-        lastUpdated: '1996-03-15T10:00:00',
         sections: {
           'some-section': {
             answers: {},
@@ -51,19 +67,6 @@ describe('view-solution controller', () => {
       } catch (err) {
         expect(err).toEqual(new Error('No data returned'));
       }
-    });
-  });
-
-  describe('getDocument', () => {
-    it('should return the document when a document is returned by getData', async () => {
-      const expectedDocument = 'Hello';
-
-      apiProvider.getDocument
-        .mockResolvedValueOnce(expectedDocument);
-
-      const document = await apiProvider.getDocument({ solutionId: 'some-solution-id', documentName: 'some-document-name' });
-
-      expect(document).toEqual(expectedDocument);
     });
   });
 });
