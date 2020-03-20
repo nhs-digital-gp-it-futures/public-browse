@@ -42,7 +42,7 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
     capabilitiesSelected: formattedCapabilities,
   });
 
-  const solutionsData = await postData({ endpointLocator: 'postSelectedCapabilities', body: { selectedCapabilities: transformedCapabilities } });
+  const solutionsData = await postData({ endpointLocator: 'postSelectedCapabilities', body: transformedCapabilities });
 
   return createSolutionListPageContext({
     filterType: 'capabilities-selector',
