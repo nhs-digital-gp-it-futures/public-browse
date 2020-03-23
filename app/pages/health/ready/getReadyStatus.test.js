@@ -7,6 +7,17 @@ jest.mock('../../../apiProvider', () => ({
 }));
 
 describe('getReadyStatus', () => {
+  afterEach(() => {
+    apiProvider.getData.mockReset();
+  });
+
+  it('should call getData twice with the correct params', async () => {
+    await getReadyStatus();
+    expect(apiProvider.getData.mock.calls.length).toEqual(2);
+    expect(apiProvider.getData).toHaveBeenNthCalledWith(1, { endpointLocator: 'getBuyingCatalogueApiHealth' });
+    expect(apiProvider.getData).toHaveBeenNthCalledWith(2, { endpointLocator: 'getDocumentApiHealth' });
+  });
+
   it('should return "Healthy" when BuyingCatalogueApi and DocumentApi are both "Healthy"', async () => {
     apiProvider.getData
       .mockReturnValueOnce({ data: status.healthy.message })

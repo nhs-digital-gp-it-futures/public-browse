@@ -9,9 +9,13 @@ import * as solutionListPageContext from './pages/solutions-list/controller';
 import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
+import * as apiProvider from './apiProvider';
 import config from './config';
 
 jest.mock('./logger');
+jest.mock('./apiProvider', () => ({
+  getDocument: jest.fn(),
+}));
 
 const mockFoundationSolutionsContext = {
   pageTitle: 'Foundation',
@@ -346,6 +350,23 @@ describe('routes', () => {
           expect(res.redirect).toEqual(true);
           expect(decodeURI(res.headers.location)).toEqual('/solutions/capabilities-selector.all');
         });
+    });
+  });
+
+  describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
+    afterEach(() => {
+      apiProvider.getDocument.mockReset();
+    });
+
+    it('should return the document when a document is returned by getData', async () => {
+      const expectedDocument = 'Hello';
+
+      apiProvider.getDocument
+        .mockResolvedValueOnce(expectedDocument);
+
+      const document = await apiProvider.getDocument({ solutionId: 'some-solution-id', documentName: 'some-document-name' });
+
+      expect(document).toEqual(expectedDocument);
     });
   });
 
