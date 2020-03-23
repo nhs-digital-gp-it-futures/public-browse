@@ -50,12 +50,10 @@ describe('solutions-list controller', () => {
         .mockResolvedValueOnce(mockedSolutionData);
 
       await getSolutionListPageContext({ filterType: 'foundation' });
-      expect(apiProvider.getData.mock.calls.length).toEqual(1);
-      expect(apiProvider.getData.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(apiProvider.getData.mock.calls[0][0]).length).toEqual(2);
-      expect(apiProvider.getData.mock.calls[0][0].endpointLocator).toBe('getSolutionListData');
-      expect(Object.keys(apiProvider.getData.mock.calls[0][0].options).length).toEqual(1);
-      expect(apiProvider.getData.mock.calls[0][0].options.filterType).toBe('foundation');
+      expect(apiProvider.getData).toHaveBeenCalledWith({
+        endpointLocator: 'getSolutionListData',
+        options: { filterType: 'foundation' },
+      });
     });
 
     it('should call createSolutionListPageContext once with the correct params', async () => {
@@ -67,14 +65,11 @@ describe('solutions-list controller', () => {
       await getSolutionListPageContext({ filterType: 'foundation' });
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
-      expect(createContext.createSolutionListPageContext.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(createContext.createSolutionListPageContext.mock.calls[0][0]).length)
-        .toEqual(3);
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].filterType).toBe('foundation');
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].solutionListManifest)
-        .toEqual(foundationContent);
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].solutionsData)
-        .toEqual(mockedSolutionData.solutions);
+      expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
+        filterType: 'foundation',
+        solutionListManifest: foundationContent,
+        solutionsData: mockedSolutionData.solutions,
+      });
     });
 
     it('should throw an error when no data is returned from getData', async () => {
@@ -109,12 +104,12 @@ describe('solutions-list controller', () => {
         .mockResolvedValueOnce({ data: mockedSolutionData });
 
       await getSolutionsForSelectedCapabilities({ capabilitiesSelected: 'all' });
+
       expect(apiProvider.postData.mock.calls.length).toEqual(1);
-      expect(apiProvider.postData.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(apiProvider.postData.mock.calls[0][0]).length).toEqual(2);
-      expect(apiProvider.postData.mock.calls[0][0].endpointLocator).toBe('postSelectedCapabilities');
-      expect(Object.keys(apiProvider.postData.mock.calls[0][0].body).length).toEqual(1);
-      expect(apiProvider.postData.mock.calls[0][0].body.capabilities).toEqual([]);
+      expect(apiProvider.postData).toHaveBeenCalledWith({
+        endpointLocator: 'postSelectedCapabilities',
+        body: { capabilities: [] },
+      });
     });
 
     it('should call postData once with the correct params when capabilities are selected', async () => {
@@ -123,11 +118,10 @@ describe('solutions-list controller', () => {
 
       await getSolutionsForSelectedCapabilities({ capabilitiesSelected: 'C1+C2' });
       expect(apiProvider.postData.mock.calls.length).toEqual(1);
-      expect(apiProvider.postData.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(apiProvider.postData.mock.calls[0][0]).length).toEqual(2);
-      expect(apiProvider.postData.mock.calls[0][0].endpointLocator).toBe('postSelectedCapabilities');
-      expect(Object.keys(apiProvider.postData.mock.calls[0][0].body).length).toEqual(1);
-      expect(apiProvider.postData.mock.calls[0][0].body.capabilities).toEqual([{ reference: 'C1' }, { reference: 'C2' }]);
+      expect(apiProvider.postData).toHaveBeenCalledWith({
+        endpointLocator: 'postSelectedCapabilities',
+        body: { capabilities: [{ reference: 'C1' }, { reference: 'C2' }] },
+      });
     });
 
     it('should call createSolutionListPageContext once with the correct params', async () => {
@@ -139,16 +133,12 @@ describe('solutions-list controller', () => {
       await getSolutionsForSelectedCapabilities({ capabilitiesSelected: 'C1+C2' });
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
-      expect(createContext.createSolutionListPageContext.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(createContext.createSolutionListPageContext.mock.calls[0][0]).length)
-        .toEqual(4);
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].filterType).toBe('capabilities-selector');
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].solutionListManifest)
-        .toEqual(capabilitiesSelectorContent);
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].solutionsData)
-        .toEqual(mockedSolutionData.solutions);
-      expect(createContext.createSolutionListPageContext.mock.calls[0][0].capabilitiesSelected)
-        .toEqual(['C1', 'C2']);
+      expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
+        filterType: 'capabilities-selector',
+        capabilitiesSelected: ['C1', 'C2'],
+        solutionListManifest: capabilitiesSelectorContent,
+        solutionsData: mockedSolutionData.solutions,
+      });
     });
   });
 });

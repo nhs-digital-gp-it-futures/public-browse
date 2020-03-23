@@ -37,9 +37,7 @@ describe('capabilities-selector controller', () => {
 
       await getCapabilitiesContext();
       expect(apiProvider.getData.mock.calls.length).toEqual(1);
-      expect(apiProvider.getData.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(apiProvider.getData.mock.calls[0][0]).length).toEqual(1);
-      expect(apiProvider.getData.mock.calls[0][0].endpointLocator).toBe('getCapabilities');
+      expect(apiProvider.getData).toHaveBeenCalledWith({ endpointLocator: 'getCapabilities' });
     });
 
     it('should return the context when capabilities data is returned by the ApiProvider', async () => {

@@ -29,12 +29,10 @@ describe('view-solution controller', () => {
         .mockResolvedValueOnce(mockedSolutionData);
 
       await getPublicSolutionById({ solutionId: '100000-001' });
-      expect(apiProvider.getData.mock.calls.length).toEqual(1);
-      expect(apiProvider.getData.mock.calls[0].length).toEqual(1);
-      expect(Object.keys(apiProvider.getData.mock.calls[0][0]).length).toEqual(2);
-      expect(apiProvider.getData.mock.calls[0][0].endpointLocator).toBe('getPublicSolutionById');
-      expect(Object.keys(apiProvider.getData.mock.calls[0][0].options).length).toEqual(1);
-      expect(apiProvider.getData.mock.calls[0][0].options.solutionId).toBe('100000-001');
+      expect(apiProvider.getData).toHaveBeenCalledWith({
+        endpointLocator: 'getPublicSolutionById',
+        options: { solutionId: '100000-001' },
+      });
     });
 
     it('should return the context when preview data is returned by getData', async () => {
