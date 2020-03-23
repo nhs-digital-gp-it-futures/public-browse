@@ -50,5 +50,5 @@ module.exports = {
   useCapabilitiesSelector: process.env.USE_CAPABILITIES_SELECTOR || 'true',
 
   // The secret needed for encoding and decoding the cookie
-  cookieSecret: process.env.COOKIE_SECRET,
+  cookieSecret: process.env.COOKIE_SECRET || 'secret squirrel',
 };
