@@ -1,38 +1,53 @@
-import axios from 'axios';
 import { ManifestProvider } from './filterType/manifestProvider';
+import { getData, postData } from '../../apiProvider';
 import { createSolutionListPageContext } from './context';
-import { apiHost } from '../../config';
-import logger from '../../logger';
-
-const getSolutionListDataEndpoint = (filterType) => {
-  if (filterType === 'all') {
-    return `${apiHost}/api/v1/Solutions`;
-  }
-
-  if (filterType === 'foundation') {
-    return `${apiHost}/api/v1/Solutions/Foundation`;
-  }
-
-  return undefined;
-};
+import { logger } from '../../logger';
 
 const getSolutionListData = async (filterType) => {
-  const endpoint = getSolutionListDataEndpoint(filterType);
-  if (endpoint) {
-    logger.info(`api called: [GET] ${endpoint}`);
-    const solutionListResponse = await axios.get(endpoint);
-    if (solutionListResponse && solutionListResponse.data && solutionListResponse.data.solutions) {
-      logger.info(`${solutionListResponse.data.solutions.length} solutions returned for type ${filterType}`);
-      return solutionListResponse.data.solutions;
-    }
+  const solutionListResponse = await getData({ endpointLocator: 'getSolutionListData', options: { filterType } });
+
+  if (solutionListResponse && solutionListResponse.solutions) {
+    logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filterType}`);
+    return solutionListResponse.solutions;
   }
 
   throw new Error(`No endpoint found for filter type: ${filterType}`);
 };
 
-export const getSolutionListPageContext = async (filterType) => {
+const transformCapabilities = ({ capabilitiesSelected }) => {
+  if (!capabilitiesSelected) return { capabilities: [] };
+  const transformed = capabilitiesSelected.reduce((acc, capabilityId) => {
+    acc.push({ reference: capabilityId });
+    return acc;
+  }, []);
+  return {
+    capabilities: transformed,
+  };
+};
+
+export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = new ManifestProvider().getSolutionListManifest(filterType);
   const solutionsData = await getSolutionListData(filterType);
+  return createSolutionListPageContext({
+    filterType,
+    solutionListManifest,
+    solutionsData,
+  });
+};
 
-  return createSolutionListPageContext(filterType, solutionListManifest, solutionsData);
+export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {
+  const solutionListManifest = new ManifestProvider().getSolutionListManifest('capabilities-selector');
+  const formattedCapabilities = capabilitiesSelected === 'all' ? [] : capabilitiesSelected.split('+');
+  const transformedCapabilities = transformCapabilities({
+    capabilitiesSelected: formattedCapabilities,
+  });
+
+  const solutionsData = await postData({ endpointLocator: 'postSelectedCapabilities', body: transformedCapabilities });
+
+  return createSolutionListPageContext({
+    filterType: 'capabilities-selector',
+    solutionListManifest,
+    solutionsData: solutionsData.data.solutions,
+    capabilitiesSelected: formattedCapabilities,
+  });
 };

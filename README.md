@@ -3,7 +3,7 @@
 Allows the public to browse the buying catalogue.
 
 ## Requirements
-- Node 10
+- Node 12
 
 Install the long-term support (LTS) version of <a href="https://nodejs.org/en/">Node.js</a>, which includes NPM.
 
@@ -15,7 +15,7 @@ npm install
 ```
 
 ## Running the application
-- Run - `npm run start`
+- Build and run - `npm run start`
 - Unit Tests - `npm run test`
 - Integration Tests - `npm run test:integration`
 

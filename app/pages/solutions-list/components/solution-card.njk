@@ -1,10 +1,10 @@
 {% from 'components/tag/macro.njk' import tag %}
 
-{% macro capabilityList(capabilities) %}
+{% macro capabilityList(params) %}
   <div data-test-id="capability-list">
-    <h4>Capabilities met</h4>
+    <h5 class="nhsuk-u-font-size-22">Capabilities met</h5>
     <ul>
-      {% for capability in capabilities %}
+      {% for capability in params.capabilities %}
         <li data-test-id="capability-list-item" class="nhsuk-u-font-size-16">
           {{ capability }}
         </li>
@@ -14,13 +14,13 @@
 {% endmacro %}
 
 
-{% macro solutionCard(solution) %}
+{% macro solutionCard(params) %}
 
   <div class="nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7 bc-t-border-top--blue" data-test-id="solution-card">
     <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-    {% if solution.isFoundation %}
+    {% if params.solution.isFoundation %}
       {{ tag({
         dataTestId: 'solution-card-foundation',
         text: 'Foundation Solution Set',
@@ -28,27 +28,29 @@
       }) }}
     {% endif %}
 
-      <h2 class="nhsuk-u-margin-bottom-2" data-test-id="solution-card-name">
-        <a href="{{ solution.viewSolutionUrl }}">
-          {{ solution.name }}
+      <h3 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-size-32" data-test-id="solution-card-name">
+        <a href="{{ params.solution.viewSolutionUrl }}">
+          {{ params.solution.name }}
         </a>
-      </h2>
+      </h3>
 
-      <h5 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-supplier">
-        {{ solution.supplierName }}
-      </h5>
+      <h4 class="nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22" data-test-id="solution-card-supplier">
+        {{ params.solution.supplierName }}
+      </h4>
 
-      <div data-test-id="solution-card-summary">
-        {{ solution.summary }}
-      </div>
+      <p data-test-id="solution-card-summary" class="nhsuk-u-font-size-16">
+        {{ params.solution.summary }}
+      </p>
 
       <div data-test-id="solution-card-view-link" class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
-        <a href="{{ solution.viewSolutionUrl }}">View this solution</a>
+        <a href="{{ params.solution.viewSolutionUrl }}">View this solution</a>
       </div>
     </div>
 
     <div class="nhsuk-grid-column-one-third" data-test-id="solution-card-capability-list">
-      {{ capabilityList(solution.capabilities) }}
+      {{ capabilityList({
+        capabilities: params.solution.capabilities
+      }) }}
     </div>
     </div>
   </div>

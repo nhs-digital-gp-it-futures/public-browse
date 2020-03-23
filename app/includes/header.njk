@@ -1,5 +1,6 @@
-{% from 'components/header/macro.njk' import header %}
+{% from 'components/bc-header/macro.njk' import bcHeader %}
 {% from 'components/panel/macro.njk' import panel %}
+{% from 'components/login-logout/macro.njk' import loginLogout %}
 
 {% macro termBanner(config) %}
   <div class='nhsuk-grid-row'>
@@ -16,13 +17,18 @@
     "HTML": termBanner(config),
     "classes": "nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-0 nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 nhsuk-width-container"
   }) }}
-</div>
+</span>
+{% if loginEnabled %}
+  {% set innerComponent = loginLogout({
+      dataTestId: "login-logout-component",
+      username: username,
+      loginUrl: "/login",
+      logoutUrl: "/logout"
+    }) %}
+{% endif %}
 
-<div data-test-id="header-banner">
-  {{ header({
-    "classes": "nhsuk-header--white",
-    "organisation": {
-        "name": "Digital"
-      }
-    }) }}
-</div>
+{{ bcHeader({
+  dataTestId: "header-banner",
+  innerComponent: innerComponent,
+  classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2"
+}) }}

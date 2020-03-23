@@ -1,0 +1,36 @@
+{
+  "solutions": [
+    {
+      "id": "S1",
+      "name": "some foundation solution name",
+      "summary": "some foundation solution summary",
+      "isFoundation": true,
+      "supplier": {
+        "id": "O1",
+        "name": "some supplier name"
+      },
+      "capabilities": [
+        {
+          "id": "C1",
+          "name": "some capability name"
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "some solution name",
+      "summary": "some solution summary",
+      "isFoundation": false,
+      "supplier": {
+        "id": "O2",
+        "name": "some second supplier name"
+      },
+      "capabilities": [
+        {
+          "id": "C1",
+          "name": "some capability name"
+        }
+      ]
+    }
+  ]
+}
