@@ -51,4 +51,6 @@ module.exports = {
 
   // The secret needed for encoding and decoding the cookie
   cookieSecret: process.env.COOKIE_SECRET || 'secret squirrel',
+
+  showCovid19: process.env.SHOW_COVID19 || 'true',
 };
