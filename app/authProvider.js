@@ -1,7 +1,7 @@
 import url from 'url';
 import passport from 'passport';
 import { Strategy, Issuer } from 'openid-client';
-import session from 'cookie-session';
+import session from 'express-session';
 import {
   oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri, maxCookieAge, cookieSecret,
 } from './config';
@@ -49,6 +49,8 @@ export class AuthProvider {
     app.use(session({
       name: 'token',
       secret: cookieSecret,
+      resave: false,
+      saveUninitialized: true,
       maxAge: maxCookieAge,
     }));
 
