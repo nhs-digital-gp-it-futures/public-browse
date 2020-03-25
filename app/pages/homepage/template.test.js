@@ -91,4 +91,39 @@ describe('home page', () => {
       expect(adminPromo.length).toEqual(0);
     });
   }));
+
+  it('should render the covid19 promo when the showCovid19 flag is set', createTestHarness(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showCovid19: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const covid19Promo = $('[data-test-id="covid19-promo"]');
+      expect(covid19Promo.length).toEqual(1);
+      expect(covid19Promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(covid19Promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(covid19Promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(covid19Promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(covid19Promo.find('h3').text().trim()).toEqual(content.covid19PromoHeading);
+      expect(covid19Promo.find('p').text().trim()).toEqual(content.covid19PromoDescription);
+      expect(covid19Promo.find('a').attr('href')).toEqual('/solutions/covid19');
+    });
+  }));
+
+  it('should not render the covid19 promo when the showCovid19 flag is not set', createTestHarness(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showCovid19: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const covid19Promo = $('[data-test-id="covid19-promo"]');
+      expect(covid19Promo.length).toEqual(0);
+    });
+  }));
 });
