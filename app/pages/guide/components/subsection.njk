@@ -11,7 +11,7 @@
           {% if descriptionText.href %}
             <p data-test-id="guide-section-description-with-link" class="nhsuk-u-margin-bottom-5">
               <span>{{ descriptionText.startText }}</span>
-                <a data-test-id="guide-link" href="{{ descriptionText.href }}">{{ descriptionText.linkText }}</a>
+                <a data-test-id="guide-link" href="{{ descriptionText.href | addBaseUrlFilter }}">{{ descriptionText.linkText }}</a>
               <span>{{ descriptionText.endText }}</span>
             </p>
           {% else %}

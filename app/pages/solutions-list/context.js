@@ -1,12 +1,12 @@
 // TODO: Remove useCapabilitiesSelector when capabilities-selector is on by default
-import { useCapabilitiesSelector, baseUrl } from '../../config';
+import { useCapabilitiesSelector } from '../../config';
 
 const createSolutionsContext = ({
   filterType,
   solutions,
   capabilitiesSelected,
 }) => solutions.map((solution) => {
-  const viewSolutionUrl = `${baseUrl}/solutions/${filterType}${capabilitiesSelected ? `.${capabilitiesSelected.join('+')}` : ''}/${solution.id}`;
+  const viewSolutionUrl = `/solutions/${filterType}${capabilitiesSelected ? `.${capabilitiesSelected.join('+')}` : ''}/${solution.id}`;
   return ({
     id: solution.id,
     name: solution.name,
@@ -23,7 +23,7 @@ export const createSolutionListPageContext = ({
 }) => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove '&& config.useCapabilitiesSelector'
   // when capabilities-selector is on by default
-  const backLinkPath = `${baseUrl}/solutions${filterType === 'capabilities-selector' && useCapabilitiesSelector === 'true' ? '/capabilities-selector' : ''}`;
+  const backLinkPath = `/solutions${filterType === 'capabilities-selector' && useCapabilitiesSelector === 'true' ? '/capabilities-selector' : ''}`;
 
   return {
     backLinkPath,

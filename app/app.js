@@ -68,6 +68,10 @@ export class App {
       noCache: true,
     });
 
+    env.addFilter('addBaseUrlFilter', (url) => {
+      const trimTrailingSlash = url.replace(/\/+$/, '');
+      return config.baseUrl + trimTrailingSlash;
+    });
     env.addFilter('isArray', value => Array.isArray(value));
     env.addFilter('dateTime', dateFilter);
 

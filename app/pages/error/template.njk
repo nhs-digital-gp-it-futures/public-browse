@@ -6,19 +6,19 @@
 <div class="nhsuk-width-container nhsuk-u-margin-top-4 nhsuk-u-margin-bottom-4 bc-c-error-container nhsuk-u-padding-4">
   <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-home-page-link">
     {{ backLink({
-      "href": config.baseUrl + "/",
+      "href": "/" | addBaseUrlFilter,
       "text": "Go to Home Page"
     }) }}
   </div>
   <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-capabilities-selector-link">
     {{ backLink({
-      "href": config.baseUrl + "/solutions/capabilities-selector",
+      "href": "/solutions/capabilities-selector"  | addBaseUrlFilter,
       "text": "Go to Select Capabilities"
     }) }}
   </div>
   <div class="nhsuk-u-padding-top-5 nhsuk-grid-column-one-third" data-test-id="go-to-foundation-solutions-link">
     {{ backLink({
-      "href": config.baseUrl + "/solutions/foundation",
+      "href": "/solutions/foundation" | addBaseUrlFilter,
       "text": "Go to Foundation Solutions"
     }) }}
   </div>

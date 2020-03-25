@@ -8,7 +8,7 @@
     <div class="nhsuk-grid-column-full nhsuk-u-margin-bottom-3">
       <div data-test-id="go-back-link">
         {{ backLink({
-          "href": config.baseUrl + "/",
+          "href": "./" | addBaseUrlFilter,
           "text": "Go back to homepage"
         }) }}
       </div>

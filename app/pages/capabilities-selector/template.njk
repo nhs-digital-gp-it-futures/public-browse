@@ -7,7 +7,7 @@
   <div  class="nhsuk-width-container">
     <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link">
       {{ backLink({
-        "href": config.baseUrl + "/solutions",
+        "href": "./" | addBaseUrlFilter,
         "text": "Go back to previous page"
       }) }}
     </div>
