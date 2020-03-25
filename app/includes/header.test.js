@@ -112,5 +112,34 @@ describe('header', () => {
         });
       }));
     });
+
+    it('should render the covid19 global warning if feature flag set', createTestHarness(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'true',
+        },
+      };
+
+      harness.request(context, ($) => {
+        const globalAlert = $('[data-test-id="covid19-global-alert"]');
+        const title = globalAlert.find('div').find('h2');
+        const paragraph = globalAlert.find('div').find('p');
+        const link = paragraph.find('a');
+
+        expect(globalAlert.hasClass('bc-c-global-alert')).toEqual(true);
+        expect(title.text().trim()).toEqual('Coronavirus (COVID-19)');
+        expect(paragraph.text().trim()).toEqual('View catalogue solutions that are relevant to COVID-19.');
+        expect(link.attr('href')).toEqual('/solutions/covid19');
+      });
+    }));
+
+    it('should not render the covid19 global warning if feature flag is not set', createTestHarness(setup, (harness) => {
+      const context = {};
+
+      harness.request(context, ($) => {
+        const globalAlert = $('[data-test-id="covid19-global-alert"]');
+        expect(globalAlert.length).toEqual(0);
+      });
+    }));
   });
 });
