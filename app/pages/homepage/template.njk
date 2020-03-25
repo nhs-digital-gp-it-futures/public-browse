@@ -15,6 +15,18 @@
   </div>
   <div data-test-id="homepage-promo-group">
     <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container nhsuk-u-padding-top-5">
+
+      {% if (config.showCovid19 === 'true') %}
+        <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="covid19-promo">
+          {{ promo({
+            "href": "/solutions/covid19",
+            "heading": covid19PromoHeading,
+            "classes": "nhsuk-u-margin-top-5",
+            "description": covid19PromoDescription
+          }) }}
+        </div>
+      {% endif %}
+
       <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
         {{ promo({
           "href": "/guide",
@@ -23,6 +35,7 @@
           "description": guidePromoDescription
         }) }}
       </div>
+
       <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
         {{ promo({
           "href": "/solutions",
@@ -31,20 +44,18 @@
           "description": viewSolutionsPromoDescription
         }) }}
       </div>
-    </div>
 
-    {% if (showAdminTile) %}
-    <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container">
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="admin-promo">
-        {{ promo({
-          "href": adminUrl,
-          "heading": adminPromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
-          "description": adminPromoDescription
-        }) }}
-      </div>
+      {% if (showAdminTile) %}
+        <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="admin-promo">
+          {{ promo({
+            "href": adminUrl,
+            "heading": adminPromoHeading,
+            "classes": "nhsuk-u-margin-top-5",
+            "description": adminPromoDescription
+          }) }}
+        </div>
+      {% endif %}
     </div>
-    {% endif %}
 
     <div class="nhsuk-width-container" data-test-id="about-us">
       <div class="nhsuk-grid-row">
