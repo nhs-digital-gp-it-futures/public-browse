@@ -2,6 +2,9 @@ module.exports = {
   // App name
   appName: 'Buying Catalogue - Public Browse',
 
+  // Base URL
+  baseUrl: process.env.BASE_URL || '',
+
   // Environment
   env: process.env.NODE_ENV || 'development',
 

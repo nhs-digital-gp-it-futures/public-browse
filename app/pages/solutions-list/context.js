@@ -1,5 +1,5 @@
 // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
-import config from '../../config';
+import { useCapabilitiesSelector } from '../../config';
 
 const createSolutionsContext = ({
   filterType,
@@ -23,7 +23,7 @@ export const createSolutionListPageContext = ({
 }) => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove '&& config.useCapabilitiesSelector'
   // when capabilities-selector is on by default
-  const backLinkPath = `/solutions${filterType === 'capabilities-selector' && config.useCapabilitiesSelector === 'true' ? '/capabilities-selector' : ''}`;
+  const backLinkPath = `/solutions${filterType === 'capabilities-selector' && useCapabilitiesSelector === 'true' ? '/capabilities-selector' : ''}`;
 
   return {
     backLinkPath,
