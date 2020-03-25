@@ -134,7 +134,11 @@ describe('header', () => {
     }));
 
     it('should not render the covid19 global warning if feature flag is not set', createTestHarness(setup, (harness) => {
-      const context = {};
+      const context = {
+        config: {
+          showCovid19: 'false',
+        },
+      };
 
       harness.request(context, ($) => {
         const globalAlert = $('[data-test-id="covid19-global-alert"]');

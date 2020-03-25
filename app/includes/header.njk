@@ -22,8 +22,8 @@
   {% set innerComponent = loginLogout({
       dataTestId: "login-logout-component",
       username: username,
-      loginUrl: "/login",
-      logoutUrl: "/logout"
+      loginUrl: config.baseUrl + "/login",
+      logoutUrl: config.baseUrl + "/logout"
     }) %}
 {% endif %}
 
@@ -37,7 +37,7 @@
   <div class="bc-c-global-alert" data-test-id="covid19-global-alert">
     <div class="nhsuk-width-container">
       <h2>Coronavirus (COVID-19)</h2>
-      <p><a href="/solutions/covid19">View catalogue solutions</a> that are relevant to COVID-19.</p>
+      <p><a href="{{ config.baseUrl + '/solutions/covid19' }}">View catalogue solutions</a> that are relevant to COVID-19.</p>
     </div>
   </div>
 {% endif %}

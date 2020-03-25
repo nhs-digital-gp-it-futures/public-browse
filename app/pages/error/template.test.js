@@ -40,7 +40,11 @@ describe('error page', () => {
   }));
 
   it('should render a backLink to foundation solutions page', createTestHarness(setup, (harness) => {
-    const context = {};
+    const context = {
+      confing: {
+        baseUrl: '',
+      },
+    };
 
     harness.request(context, ($) => {
       const homepageBackLink = $('[data-test-id="go-to-foundation-solutions-link"]');

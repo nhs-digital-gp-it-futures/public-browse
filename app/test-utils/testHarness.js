@@ -4,6 +4,15 @@ import request from 'supertest';
 import cheerio from 'cheerio';
 import nunjucks from 'nunjucks';
 import { App } from '../app';
+import config from '../config';
+
+const addConfig = ({ context }) => ({
+  ...context,
+  config: {
+    ...config,
+    ...context.config,
+  },
+});
 
 const testFunction = ({ setup, done }) => {
   const app = new App().createApp();
@@ -15,10 +24,11 @@ const testFunction = ({ setup, done }) => {
   return {
     request: (context, callback) => {
       const dummyRouter = router.get('/', (req, res) => {
+
         if (setup.template) {
-          res.render(setup.template.path, context);
+          res.render(setup.template.path, addConfig({ context }));
         } else {
-          const viewToTest = nunjucks.renderString(macroWrapper, context);
+          const viewToTest = nunjucks.renderString(macroWrapper, addConfig({ context }));
           res.send(viewToTest);
         }
       });
