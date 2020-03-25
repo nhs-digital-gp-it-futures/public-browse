@@ -12,7 +12,7 @@ describe('view solution', () => {
 
     harness.request(context, ($) => {
       expect($('[data-test-id="view-solution-page-back-link"]').length).toEqual(1);
-      expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual('./');
+      expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual('.');
     });
   }));
 

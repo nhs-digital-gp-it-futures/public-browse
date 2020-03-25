@@ -128,7 +128,7 @@ describe('header', () => {
 
         expect(globalAlert.hasClass('bc-c-global-alert')).toEqual(true);
         expect(title.text().trim()).toEqual('Coronavirus (COVID-19)');
-        expect(paragraph.text().trim()).toEqual('View catalogue solutions that are relevant to COVID-19.');
+        expect(paragraph.text().trim()).toEqual('View Catalogue Solutions that can help prevent the spread of coronavirus.');
         expect(link.attr('href')).toEqual('/solutions/covid19');
       });
     }));
