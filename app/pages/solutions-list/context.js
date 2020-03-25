@@ -1,4 +1,4 @@
-// TODO: USE_CAPABILITIES_SELECTOR Remove useCapabilitiesSelector capabilities-selector is on by default
+// TODO: Remove useCapabilitiesSelector when capabilities-selector is on by default
 import { useCapabilitiesSelector, baseUrl } from '../../config';
 
 const createSolutionsContext = ({

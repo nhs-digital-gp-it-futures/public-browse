@@ -24,7 +24,6 @@ const testFunction = ({ setup, done }) => {
   return {
     request: (context, callback) => {
       const dummyRouter = router.get('/', (req, res) => {
-
         if (setup.template) {
           res.render(setup.template.path, addConfig({ context }));
         } else {
