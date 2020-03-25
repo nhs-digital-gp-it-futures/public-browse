@@ -1,7 +1,6 @@
-.nhsuk-global-alert {
-  background-color: #ffeb3b;
-  padding-bottom: 24px;
-  padding-top: 24px;
+.bc-c-global-alert {
+  background-color: $color_nhsuk-yellow;
+  padding: nhsuk-spacing(4) 0;
 
   h2 {
     font-size: 24px;
@@ -11,7 +10,7 @@
 
   p {
     font-size: 19px;
-    margin-top: 8px;
+    margin-top: nhsuk-spacing(2);
     margin-bottom: 0;
   }
 }
