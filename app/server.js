@@ -25,7 +25,7 @@ if (config.baseUrl) {
 
 // Run application on configured port
 if (config.env === 'development') {
-  logger.info(`Public browse - \x1b[35m${config.appBaseUri}/\x1b[0m`);
+  logger.info(`Public browse - \x1b[35m${config.appBaseUri}${config.baseUrl}/\x1b[0m`);
 } else {
   logger.info(`App listening on port ${config.port} - Public browse`);
 }

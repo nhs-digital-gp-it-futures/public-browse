@@ -15,7 +15,7 @@ describe('guide', () => {
       const goBacklLink = $('[data-test-id="go-back-link"]');
       expect(goBacklLink.length).toEqual(1);
       expect(goBacklLink.text().trim()).toEqual('Go back to homepage');
-      expect($(goBacklLink).find('a').attr('href')).toEqual('.');
+      expect($(goBacklLink).find('a').attr('href')).toEqual('./');
     });
   }));
 
