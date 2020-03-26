@@ -19,7 +19,7 @@
       {% if (config.showCovid19 === 'true') %}
         <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="covid19-promo">
           {{ promo({
-            "href": "/solutions/covid19" | addBaseUrlFilter,
+            "href": "/solutions/covid19",
             "heading": covid19PromoHeading,
             "classes": "nhsuk-u-margin-top-5",
             "description": covid19PromoDescription
@@ -29,7 +29,7 @@
 
       <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
         {{ promo({
-          "href": "/guide" | addBaseUrlFilter,
+          "href": "/guide",
           "heading": guidePromoHeading,
           "classes": "nhsuk-u-margin-top-5",
           "description": guidePromoDescription
@@ -38,7 +38,7 @@
 
       <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
         {{ promo({
-          "href": "/solutions" | addBaseUrlFilter,
+          "href": "/solutions",
           "heading": viewSolutionsPromoHeading,
           "classes": "nhsuk-u-margin-top-5",
           "description": viewSolutionsPromoDescription
@@ -48,7 +48,7 @@
       {% if (showAdminTile) %}
         <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="admin-promo">
           {{ promo({
-            "href": adminUrl | addBaseUrlFilter,
+            "href": adminUrl,
             "heading": adminPromoHeading,
             "classes": "nhsuk-u-margin-top-5",
             "description": adminPromoDescription

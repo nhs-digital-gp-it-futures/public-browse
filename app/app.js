@@ -11,6 +11,7 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
 const dateFilter = require('nunjucks-date-filter');
+const connectSlashes = require('connect-slashes');
 
 // Local dependencies
 const config = require('./config');
@@ -54,6 +55,9 @@ export class App {
     // Use local variables
     this.app.use(locals(config));
 
+    // Remove trailing slashes from url
+    this.app.use(connectSlashes(false));
+
     // Nunjucks configuration
     const appViews = [
       path.join(__dirname, '/views/'),
@@ -68,7 +72,6 @@ export class App {
       noCache: true,
     });
 
-    env.addFilter('addBaseUrlFilter', url => config.baseUrl + url);
     env.addFilter('isArray', value => Array.isArray(value));
     env.addFilter('dateTime', dateFilter);
 
