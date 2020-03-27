@@ -75,7 +75,7 @@ export class App {
     env.addFilter('isArray', value => Array.isArray(value));
     env.addFilter('dateTime', dateFilter);
 
-    if (this.authProvider) {
+    if (this.authProvider && config.loginEnabled === 'true') {
       this.authProvider.setup(this.app);
     }
 
