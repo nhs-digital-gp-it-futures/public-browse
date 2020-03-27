@@ -4,7 +4,7 @@
   "advice": [
     "All products and services listed on the Buying Catalogue are known as Catalogue Solutions. Each Solution has a certain number of Capabilities which can address business needs in primary care.",
     "To prove these Capabilities, Suppliers must demonstrate that their Catalogue Solution can satisfy Epics which detail the functions required to successfully achieve a Capability.",
-    "There is a link to the full Catalogue Buyer’s Guide at the bottom of this page."
+    "There is a link to further Buyer Guidance in the 'Learn more' section of this page."
   ],
   "subtext": "These are the key terms you need to understand to use the Buying Catalogue effectively:",
   "sections": [
@@ -31,7 +31,7 @@
           "description": [
             "Additional Services are add-ons that provide additional Capabilities to a Catalogue Solution for an extra cost.",
             "When you view Catalogue Solutions on the Buying Catalogue, if there are Additional Services available, information about their Capabilities and price will be presented to you.",
-            "Additional Services may also have Associated Services"
+            "Additional Services may also have Associated Services."
           ]
         }
       ]
@@ -53,7 +53,7 @@
           "description": [
             {
               "startText": "",
-              "linkText": "You can learn more about the Capability Model",
+              "linkText": "Learn more about the Capability Model",
               "href": "https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview",
               "endText": ""
             }
@@ -72,7 +72,7 @@
           "id": "foundation-solution-set",
           "title": "Foundation Solution Set",
           "description": [
-            "6 Foundation Capabilities are the minimum requirement to enable a GP practice to operate. All 6 Capabilities must be fulfilled to achieve Foundation Solution Set status. They are:"
+            "6 Foundation Capabilities are the minimum requirement to enable a GP practice to operate. All 6 Capabilities must be fulfilled to achieve Foundation Solution Set status."
           ]
         },
         {
@@ -110,13 +110,18 @@
             "Standards describe the technical or operating levels a Catalogue Solution must meet. Each Catalogue Solution must meet all Standards relevant to the Capabilities it offers.",
             "Therefore, if a Catalogue Solution is listed on the Buying Catalogue, a Buyer can be certain the standards have been met."
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "work-off-plans",
+      "title": "Work-off Plans",
+      "subsections": [
         {
-          "id": "compliance-work-off-plan",
-          "title": "Compliance Work-Off Plan",
+          "id": "work-off-plans-describe",
           "description": [
-            "A Catalogue Solution close to meeting a required Capability or Standard can be given a Compliance Work-Off Plan. This means the Supplier has agreed to complete any outstanding work in an agreed timeframe.",
-            "Any such Catalogue Solution on the Buying Catalogue will have the details of its Compliance Work-Off Plan included on its information page. Buyers can take this in to consideration when using the Catalogue."
+            "A Catalogue Solution close to meeting a required Capability or compliance with a Standard can be given a Work-off Plan. This means the Supplier has agreed to complete any outstanding work in an agreed timeframe.",
+            "Any such Catalogue Solution on the Buying Catalogue will have the details of its Work-off Plan included on its listing page. Buyers can take this in to consideration when browsing the Buying Catalogue."
           ]
         }
       ]
@@ -149,15 +154,13 @@
           "id": "learn-more",
           "description": [
             "You can refer to this guidance at any time using the Buyer’s Guide link in the footer of every page.",
-            "See our full Buyer’s Guide for step-by-step help when procuring IT systems, information about our assurance process and more about the key concepts of the Buying Catalogue."
+            {
+              "startText": "You can access",
+              "linkText": "further Buyer Guidance",
+              "href": "https://gpitbjss.atlassian.net/wiki/spaces/BG/overview?homepageId=1810497659",
+              "endText": " on Capabilities and Standards, contractual requirements, funding and procurement methods."
+            }
           ]
-        },
-        {
-          "id": "button",
-          "button": {
-            "text": "Download Buyer’s Guide PDF",
-            "href": "/$web/content/buyers-guide.pdf"
-          }
         }
       ]
     },
@@ -166,7 +169,7 @@
       "title": "Contact us",
       "subsections": [
         {
-          "id": "contact-us-paragrpath",
+          "id": "contact-us-paragraph",
           "description": [
             {
               "startText": "If you experience any technical issues when using this website, please contact NHS Digital’s Exeter Helpdesk at",
