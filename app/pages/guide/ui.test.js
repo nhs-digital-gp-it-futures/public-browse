@@ -1,6 +1,5 @@
 import { Selector } from 'testcafe';
 import content from './manifest.json';
-import { blobstoreHost } from '../../config';
 import { extractInnerText } from '../../test-utils/helper';
 
 const pageSetup = async (t) => {
