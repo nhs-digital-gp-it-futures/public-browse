@@ -10,7 +10,11 @@
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
-        "description": "Remote Consultation reduces face to face appointments by enabling healthcare professionals to triage patients and resolve requests remotely. It has proven to successfully reduce appointments demand by 20%.\n\nRemote Consultation provides:\n\n— automated, clinically safe sign-posting to alternative pathways\n— local and national services to suitable patients\n— direct patient communication via video, in-app phone call messaging or phone call\n"
+        "list": [
+          "supports online consultations",
+          "provides automated, clinically safe sign-posting to alternative pathways",
+          "provides local and national services to suitable patients"
+        ]
       }
     },
     {
@@ -23,7 +27,10 @@
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
-        "description": "GP&Me is a non-emergency communications platform and app providing live video consultation facilities on smartphones and tablets for NHS patients and clinicians.\n\nArrange and attend secure, remote video consultations with your GP, nurse or pharmacist - or professionals in other health and care settings - via an app on your smartphone or tablet.\n"
+        "list": [
+          "provides live video consultation facilities for NHS patients and clinicians",
+          "allows patients to arrange and attend secure, remote video consultations with GPs, nurses and pharmacists - or professionals in other health and care settings"
+        ]
       }
     },
     {
@@ -36,7 +43,12 @@
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
-        "description": "alldayDR helps prevent the spread of coronavirus by:\n\n— supporting online video consultations\n— reducing the spread of infection at GP surgeries\n— responding securely and remotely to patient queries\n— reducing the number of missed appointments\n"
+        "list":  [
+          "supports online video consultations",
+          "reduces the spread of infection at GP surgeries",
+          "allows GPs to respond securely and remotely to patient queries",
+          "reduces the number of missed appointments"
+        ]
       }
     },
     {
@@ -49,7 +61,12 @@
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
-        "description": "AccuRx Chain can help prevent the spread of coronavirus by supporting online consultations, patient screening surveys and easy to create information templates.\n\nIt has demonstrated this by satisfying a Productivity Capability defined by the supplier."
+        "list":  [
+          "supports online video consultations",
+          "reduces the spread of infection at GP surgeries",
+          "allows GPs to respond securely and remotely to patient queries",
+          "reduces the number of missed appointments"
+        ]
       }
     }
   ]

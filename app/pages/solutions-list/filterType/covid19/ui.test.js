@@ -1,22 +1,12 @@
 import nock from 'nock';
 import { Selector, ClientFunction } from 'testcafe';
-import aFoundationSolutionList from '../../../../test-utils/fixtures/aFoundationSolutionList.json';
 import { extractInnerText } from '../../../../test-utils/helper';
 
-const mocks = async (responseStatus, responseBody) => {
-  await nock('http://localhost:5100')
-    .get('/api/v1/Solutions/Foundation')
-    .reply(responseStatus, responseBody);
+const pageSetup = async (t) => {
+  await t.navigateTo('http://localhost:1234/solutions/covid19');
 };
 
-const pageSetup = async (
-  t, responseStatus = 200, responseBody = aFoundationSolutionList,
-) => {
-  await mocks(responseStatus, responseBody);
-  await t.navigateTo('http://localhost:1234/solutions/foundation');
-};
-
-fixture('Show Foundation Solution List Page')
+fixture('Show Covid19 Solution List Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
@@ -31,7 +21,7 @@ test('should display the page title', async (t) => {
   const pageTitle = Selector('h1[data-test-id="general-page-title"]');
   await t
     .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql('Foundation Solution Sets – results');
+    .expect(await extractInnerText(pageTitle)).eql('Catalogue Solutions to help with coronavirus');
 });
 
 test('should display the page description', async (t) => {
@@ -39,67 +29,57 @@ test('should display the page description', async (t) => {
   const pageDescription = Selector('h2[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
-    .expect(await extractInnerText(pageDescription)).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');
+    .expect(await extractInnerText(pageDescription)).eql('The following Catalogue Solutions can help prevent the spread of coronavirus by providing online consultations, services and information.');
 });
 
-test('should display the capabilities heading', async (t) => {
+test('should display the covid19 solution cards', async (t) => {
   await pageSetup(t);
-  const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
   await t
-    .expect(capabilityHeading.exists).ok()
-    .expect(await extractInnerText(capabilityHeading)).eql('Capabilities met');
+    .expect(Selector('div[data-test-id="solution-card-covid19"]').count).eql(4);
 });
 
-test('should display the foundation solution cards', async (t) => {
+test('should display the covid19 solution details of a solution card', async (t) => {
   await pageSetup(t);
+  const solutionCardsSection = Selector('div[data-test-id="solution-cards-covid19"]');
   await t
-    .expect(Selector('div[data-test-id="solution-card"]').count).eql(2);
+    .expect(solutionCardsSection.find('div[data-test-id="solution-card-covid19"]').count).eql(4);
+
+  const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card-covid19"]:nth-child(1)');
+  const covid19Tag = solutionCard.find('div[data-test-id="solution-card-covid19-tag"]');
+  await t
+    .expect(covid19Tag.exists).ok()
+    .expect(await extractInnerText(covid19Tag)).eql('Coronavirus')
+    .expect(await extractInnerText(solutionCard.find('h4[data-test-id="solution-card-supplier"]'))).eql('iPLATO Healthcare Limited')
+    .expect(await extractInnerText(solutionCard.find('h3'))).eql('Remote Consultation')
+    .expect(await extractInnerText(solutionCard.find('p[data-test-id="solution-card-summary"]'))).eql('Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.');
 });
 
-test('should display the foundation solution details of a solution card', async (t) => {
+test('should display the covid19 title', async (t) => {
   await pageSetup(t);
-  const solutionCardsSection = Selector('div[data-test-id="solution-cards"]');
+  const covid19Title = Selector('[data-test-id="solution-card-covid19-title"]');
   await t
-    .expect(solutionCardsSection.find('div[data-test-id="solution-card"]').count).eql(2);
-
-  const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card"]:nth-child(1)');
-  const foundationTag = solutionCard.find('div[data-test-id="solution-card-foundation"]');
-  await t
-    .expect(foundationTag.exists).ok()
-    .expect(await extractInnerText(foundationTag)).eql('Foundation Solution Set')
-    .expect(await extractInnerText(solutionCard.find('h4[data-test-id="solution-card-supplier"]'))).eql('some supplier name')
-    .expect(await extractInnerText(solutionCard.find('h3'))).eql('some foundation solution name')
-    .expect(await extractInnerText(solutionCard.find('p[data-test-id="solution-card-summary"]'))).eql('some foundation solution summary');
+    .expect(covid19Title.exists).ok()
+    .expect(await extractInnerText(covid19Title)).eql('How this Catalogue Solution can help with coronavirus');
 });
 
-test('should display the capability details of a foundation solution card', async (t) => {
+test('should display the covid19 list', async (t) => {
   await pageSetup(t);
-  const solutionCard = Selector('div[data-test-id="solution-card"]:nth-child(1)');
-  const capabilityList = solutionCard.find('[data-test-id="capability-list"]');
+  const solutionCard = Selector('div[data-test-id="solution-card-covid19"]:nth-child(1)');
+  const covid19List = solutionCard.find('[data-test-id="solution-card-covid19-list"]');
   await t
-    .expect(capabilityList.exists).ok()
-    .expect(capabilityList.find('li').count).eql(1)
-    .expect(await extractInnerText(capabilityList.find('li:nth-child(1)'))).eql('some capability name');
+    .expect(covid19List.exists).ok()
+    .expect(covid19List.find('li').count).eql(3)
+    .expect(await extractInnerText(covid19List.find('li:nth-child(1)'))).eql('supports online consultations')
+    .expect(await extractInnerText(covid19List.find('li:nth-child(2)'))).eql('provides automated, clinically safe sign-posting to alternative pathways')
+    .expect(await extractInnerText(covid19List.find('li:nth-child(3)'))).eql('provides local and national services to suitable patients');
 });
 
-test('should navigate to the foundation solution view page when clicking on the title of the solution', async (t) => {
+test('should navigate to the covid19 solution view page when clicking on the title of the solution', async (t) => {
   await pageSetup(t);
-  await nock('http://localhost:5100')
-    .get('/api/v1/Solutions/S1/Public')
-    .reply(200);
   const getLocation = ClientFunction(() => document.location.href);
-  const solutionCardTitleLink = Selector('div[data-test-id="solution-card"]:nth-child(1) a');
+  const solutionCardTitleLink = Selector('div[data-test-id="solution-card-covid19"]:nth-child(1) a');
   await t
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
-    .expect(getLocation()).contains('/solutions/foundation/S1');
-});
-
-test('should render the error page when receiving an error from the foundation solution list api endpoint', async (t) => {
-  await pageSetup(t, 500, {});
-
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
-
-  await t
-    .expect(errorTitle.exists).ok();
+    .expect(getLocation()).contains('/solutions/covid19/100000-001');
 });

@@ -126,22 +126,72 @@ describe('covid19-solution-card', () => {
     });
   }));
 
-  it('should render the solution covid19 description', createTestHarness(setup, (harness) => {
-    const context = {
-      params: {
-        solution: {
-          covid19: {
-            description: 'some covid19 description',
+  describe('covid19 list', () => {
+    it('should render 0 in list if no capabilities are provided in the context', createTestHarness(setup, (harness) => {
+      const context = {
+        params: {
+          solution: {
+            covid19: {
+              list: [],
+            },
           },
         },
-      },
-    };
+      };
 
-    harness.request(context, ($) => {
-      const covid19Description = $('[data-test-id="solution-card-covid19-description"]');
+      harness.request(context, ($) => {
+        const covid19List = $('[data-test-id="solution-card-covid19-list"]');
 
-      expect(covid19Description.length).toEqual(1);
-      expect(covid19Description.text().trim()).toEqual('some covid19 description');
-    });
-  }));
+        expect(covid19List.length).toEqual(1);
+        expect(covid19List.find('[data-test-id="covid19-list-item"]').length).toEqual(0);
+      });
+    }));
+
+    it('should render 1 in list if only 1 capability is provided context', createTestHarness(setup, (harness) => {
+      const context = {
+        params: {
+          solution: {
+            covid19: {
+              list: [
+                'some list item',
+              ],
+            },
+          },
+        },
+      };
+
+      harness.request(context, ($) => {
+        const covid19List = $('[data-test-id="solution-card-covid19-list"]');
+
+        expect(covid19List.length).toEqual(1);
+        expect(covid19List.find('[data-test-id="covid19-list-item"]').length).toEqual(1);
+        expect(covid19List.find('[data-test-id="covid19-list-item"]:nth-child(1)').text().trim()).toEqual('some list item');
+      });
+    }));
+
+    it('should render 3 capability names if 3 capabilities are provided in the context', createTestHarness(setup, (harness) => {
+      const context = {
+        params: {
+          solution: {
+            covid19: {
+              list: [
+                'some first list item',
+                'some second list item',
+                'some third list item',
+              ],
+            },
+          },
+        },
+      };
+
+      harness.request(context, ($) => {
+        const covid19List = $('[data-test-id="solution-card-covid19-list"]');
+
+        expect(covid19List.length).toEqual(1);
+        expect(covid19List.find('[data-test-id="covid19-list-item"]').length).toEqual(3);
+        expect(covid19List.find('[data-test-id="covid19-list-item"]:nth-child(1)').text().trim()).toEqual('some first list item');
+        expect(covid19List.find('[data-test-id="covid19-list-item"]:nth-child(2)').text().trim()).toEqual('some second list item');
+        expect(covid19List.find('[data-test-id="covid19-list-item"]:nth-child(3)').text().trim()).toEqual('some third list item');
+      });
+    }));
+  });
 });

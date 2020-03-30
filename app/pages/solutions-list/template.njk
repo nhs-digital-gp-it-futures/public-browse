@@ -22,7 +22,7 @@
 
     {% if(filterType === 'covid19') %}
 
-      <div data-test-id="dashboard-preview-button">
+      <div data-test-id="covid19-compare-button">
         {{ button({
           "text": "Compare Solutions",
           "classes": "nhsuk-button--secondary",
@@ -30,11 +30,11 @@
         }) }}
       </div>
 
-      <p>
+      <p data-test-id="covid19-subtext">
         Use the compare Solutions button to see an overview of the key features offered by each of these Catalogue Solutions.
       </p>
 
-    <div data-test-id="solution-cards" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
+    <div data-test-id="solution-cards-covid19" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
       {% for solution in solutions %}
         {{ covid19SolutionCard({
           solution: solution
