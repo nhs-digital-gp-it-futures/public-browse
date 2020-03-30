@@ -14,6 +14,7 @@ const createSolutionsContext = ({
     supplierName: solution.supplier && solution.supplier.name,
     capabilities: solution.capabilities && solution.capabilities.map(capability => capability.name),
     isFoundation: solution.isFoundation,
+    covid19: solution.covid19,
     viewSolutionUrl,
   });
 });
@@ -34,5 +35,6 @@ export const createSolutionListPageContext = ({
       solutions: solutionsData,
       capabilitiesSelected: capabilitiesSelected && capabilitiesSelected.length < 1 ? ['all'] : capabilitiesSelected,
     }),
+    ...(filterType === 'covid19' ? { filterType } : {}),
   };
 };

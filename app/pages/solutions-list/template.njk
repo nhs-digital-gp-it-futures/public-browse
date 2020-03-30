@@ -1,7 +1,9 @@
 {% extends 'includes/layouts/contained.njk' %}
 {% from 'components/back-link/macro.njk' import backLink %}
 {% from './components/solution-card.njk' import solutionCard %}
+{% from './filterType/covid19/solution-card/covid19-solution-card.njk' import covid19SolutionCard %}
 {% from 'components/general-page-description.njk' import generalPageDescription %}
+{% from 'components/button/macro.njk' import button %}
 
 {% block body %}
   <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="solutions-list-body">
@@ -18,6 +20,29 @@
       descriptionText: pageDescription
     }) }}
 
+    {% if(filterType === 'covid19') %}
+
+      <div data-test-id="dashboard-preview-button">
+        {{ button({
+          "text": "Compare Solutions",
+          "classes": "nhsuk-button--secondary",
+          "href": 'compare'
+        }) }}
+      </div>
+
+      <p>
+        Use the compare Solutions button to see an overview of the key features offered by each of these Catalogue Solutions.
+      </p>
+
+    <div data-test-id="solution-cards" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
+      {% for solution in solutions %}
+        {{ covid19SolutionCard({
+          solution: solution
+        }) }}
+      {% endfor %}
+      <div class="bc-t-border-top--blue" />
+    {% else %}
+
     <div data-test-id="solution-cards" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
       {% for solution in solutions %}
         {{ solutionCard({
@@ -26,5 +51,8 @@
       {% endfor %}
       <div class="bc-t-border-top--blue" />
     </div>
+
+    {% endif %}
+
   </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+import covid19Data from './filterType/covid19/data/covid19-solutions.json';
 import { getSolutionListManifest } from './filterType/manifestProvider';
 import { getData, postData } from '../../apiProvider';
 import { createSolutionListPageContext } from './context';
@@ -16,7 +17,8 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 
 export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = getSolutionListManifest(filterType);
-  const solutionListResponse = await getData({ endpointLocator: 'getSolutionListData', options: { filterType } });
+  const solutionListResponse = filterType === 'covid19' ? covid19Data : await getData({ endpointLocator: 'getSolutionListData', options: { filterType } });
+
 
   if (solutionListResponse && solutionListResponse.solutions) {
     logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filterType}`);
