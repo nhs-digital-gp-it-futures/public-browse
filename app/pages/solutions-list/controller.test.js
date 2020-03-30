@@ -2,6 +2,8 @@ import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from 
 import * as createContext from './context';
 import * as apiProvider from '../../apiProvider';
 import foundationContent from './filterType/foundation/manifest.json';
+import covid19Content from './filterType/covid19/manifest.json';
+import covid19SolutionData from './filterType/covid19/data/covid19-solutions';
 import capabilitiesSelectorContent from './filterType/capabilities-selector/manifest.json';
 
 jest.mock('../../apiProvider', () => ({
@@ -90,6 +92,29 @@ describe('solutions-list controller', () => {
       } catch (err) {
         expect(err).toEqual(new Error('No manifest found for filter type: unknown'));
       }
+    });
+
+    it('should not call getData if the filterType is covid19', async () => {
+      createContext.createSolutionListPageContext
+        .mockResolvedValueOnce();
+
+      await getSolutionListPageContext({ filterType: 'covid19' });
+
+      expect(apiProvider.getData.mock.calls.length).toEqual(0);
+    });
+
+    it('should get data locally if the filterType is covid19 ', async () => {
+      createContext.createSolutionListPageContext
+        .mockResolvedValueOnce();
+
+      await getSolutionListPageContext({ filterType: 'covid19' });
+
+      expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
+      expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
+        filterType: 'covid19',
+        solutionListManifest: covid19Content,
+        solutionsData: covid19SolutionData.solutions,
+      });
     });
   });
 

@@ -16,6 +16,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -97,6 +98,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -151,6 +153,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -210,6 +213,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -257,6 +261,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -302,6 +307,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -344,6 +350,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [],
     };
     const solutionsData = [];
@@ -368,6 +375,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -411,12 +419,13 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
   });
 
   // TODO: USE_CAPABILITIES_SELECTOR Remove test below when capabilities-selector is on by default
-  it('should create correck back link url if use capabilities selector is false by default', () => {
+  it('should create correct back link url if use capabilities selector is false by default', () => {
     config.useCapabilitiesSelector = 'false';
     const expectedContext = {
       pageTitle: solutionPageTitle,
       pageDescription: solutionPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'capabilities-selector',
       solutions: [
         {
           id: '00001',
@@ -500,6 +509,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'foundation',
       solutions: [
         {
           id: '00001',
@@ -576,6 +586,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'foundation',
       solutions: [
         {
           id: '00001',
@@ -625,6 +636,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'foundation',
       solutions: [
         {
           id: '00001',
@@ -667,6 +679,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'foundation',
       solutions: [
         {
           id: '00001',
@@ -707,6 +720,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'foundation',
       solutions: [
         {
           id: '00001',
@@ -744,6 +758,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       pageTitle: foundationPageTitle,
       pageDescription: foundationPageDescription,
       backLinkPath: '/solutions',
+      filterType: 'foundation',
       solutions: [],
     };
 

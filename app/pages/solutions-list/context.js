@@ -35,6 +35,6 @@ export const createSolutionListPageContext = ({
       solutions: solutionsData,
       capabilitiesSelected: capabilitiesSelected && capabilitiesSelected.length < 1 ? ['all'] : capabilitiesSelected,
     }),
-    ...(filterType === 'covid19' ? { filterType } : {}),
+    filterType,
   };
 };
