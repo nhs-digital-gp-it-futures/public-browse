@@ -16,7 +16,7 @@ describe('covid19-solution-card', () => {
     };
 
     harness.request(context, ($) => {
-      const covid19SolutionIndicator = $('[data-test-id="solution-card-covid19"]');
+      const covid19SolutionIndicator = $('[data-test-id="solution-card-covid19-tag"]');
       expect(covid19SolutionIndicator.length).toEqual(1);
       expect(covid19SolutionIndicator.text().trim()).toEqual('Coronavirus');
     });
