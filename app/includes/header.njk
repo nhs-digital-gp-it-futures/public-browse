@@ -18,7 +18,7 @@
     "classes": "nhsuk-u-margin-top-0 nhsuk-u-margin-bottom-0 nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-3 nhsuk-u-padding-left-0 nhsuk-width-container"
   }) }}
 </span>
-{% if loginReady %}
+{% if loginEnabled %}
   {% set innerComponent = loginLogout({
       dataTestId: "login-logout-component",
       username: username,

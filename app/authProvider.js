@@ -3,48 +3,46 @@ import passport from 'passport';
 import { Strategy, Issuer } from 'openid-client';
 import session from 'express-session';
 import {
-  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri, maxCookieAge, cookieSecret, loginReady,
+  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri, maxCookieAge, cookieSecret,
 } from './config';
 
 export class AuthProvider {
   constructor() {
-    if (loginReady === 'true') {
-      this.passport = passport;
+    this.passport = passport;
 
-      Issuer.discover(oidcBaseUri)
-        .then((issuer) => {
-          this.client = new issuer.Client({
-            client_id: oidcClientId,
-            client_secret: oidcClientSecret,
-          });
-
-          const params = {
-            client_id: oidcClientId,
-            redirect_uri: `${appBaseUri}/oauth/callback`,
-            scope: 'openid profile Organisation',
-          };
-
-          const passReqToCallback = true;
-
-          const usePKCE = 'S256';
-
-          this.passport.use('oidc', new Strategy({
-            client: this.client, params, passReqToCallback, usePKCE,
-          }, (req, tokenset, userinfo, done) => {
-            req.session.accessToken = tokenset;
-
-            return done(null, userinfo);
-          }));
+    Issuer.discover(oidcBaseUri)
+      .then((issuer) => {
+        this.client = new issuer.Client({
+          client_id: oidcClientId,
+          client_secret: oidcClientSecret,
         });
 
-      this.passport.serializeUser((user, done) => {
-        done(null, user);
+        const params = {
+          client_id: oidcClientId,
+          redirect_uri: `${appBaseUri}/oauth/callback`,
+          scope: 'openid profile Organisation',
+        };
+
+        const passReqToCallback = true;
+
+        const usePKCE = 'S256';
+
+        this.passport.use('oidc', new Strategy({
+          client: this.client, params, passReqToCallback, usePKCE,
+        }, (req, tokenset, userinfo, done) => {
+          req.session.accessToken = tokenset;
+
+          return done(null, userinfo);
+        }));
       });
 
-      this.passport.deserializeUser((obj, done) => {
-        done(null, obj);
-      });
-    }
+    this.passport.serializeUser((user, done) => {
+      done(null, user);
+    });
+
+    this.passport.deserializeUser((obj, done) => {
+      done(null, obj);
+    });
   }
 
   setup(app) {

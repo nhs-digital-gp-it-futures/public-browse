@@ -16,53 +16,42 @@ const { logger } = require('./logger');
     }
   });
 
+  let intervalId;
+  let app;
 
-  // if loginEnabled is 'true' then wait till isapi is ready before starting the app and server.
-  // keep polling x amount of times before quitting.
-
-
-  let isapiReady = false;
-
-  setInterval(async () => {
-    if (isapiReady) {
-      return;
+  const a = async () => {
+    if (app) {
+      return clearInterval(intervalId);
     }
-
-    console.log('about to check if Isapi is ready');
 
     try {
-      console.log('about to check if Isapi is ready');
-      await axios.get('http://localhost:5102/identity/.well-known/openid-configuration');
-      console.log('Isapi is ready');
-      isapiReady = true;
+      let authProvider;
+
+      if (config.loginEnabled === 'true') {
+        await axios.get('http://localhost:8070/identity/.well-known/openid-configuration')
+        authProvider = new AuthProvider();
+      }
+
+      app = new App(authProvider).createApp();
+
+      app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider));
+      if (config.baseUrl) {
+        app.use('/', (req, res) => {
+          res.redirect(config.baseUrl);
+        });
+      }
+
+      // Run application on configured port
+      if (config.env === 'development') {
+        logger.info(`Public browse - \x1b[35m${config.appBaseUri}${config.baseUrl}/\x1b[0m`);
+      } else {
+        logger.info(`App listening on port ${config.port} - Public browse`);
+      }
+      app.listen(config.port);
     } catch (err) {
       console.log('Isapi is not ready');
-      isapiReady = false;
     }
-  }, 1000);
+  };
 
-
-  console.log('isapiReady', isapiReady);
-
-  const loginReady = config.loginEnabled === 'true' && isapiReady;
-  console.log('loginReady', loginReady);
-
-
-  const authProvider = new AuthProvider();
-  const app = new App(authProvider, loginReady).createApp();
-
-  app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider, loginReady));
-  if (config.baseUrl) {
-    app.use('/', (req, res) => {
-      res.redirect(config.baseUrl);
-    });
-  }
-
-  // Run application on configured port
-  if (config.env === 'development') {
-    logger.info(`Public browse - \x1b[35m${config.appBaseUri}${config.baseUrl}/\x1b[0m`);
-  } else {
-    logger.info(`App listening on port ${config.port} - Public browse`);
-  }
-  app.listen(config.port);
+  intervalId = await setInterval(a, 1000);
 })();

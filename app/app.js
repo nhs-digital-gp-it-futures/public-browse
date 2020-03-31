@@ -18,11 +18,10 @@ const config = require('./config');
 const locals = require('./locals');
 
 export class App {
-  constructor(authProvider, loginReady) {
+  constructor(authProvider) {
     // Initialise application
     this.app = express();
     this.authProvider = authProvider;
-    this.loginReady = loginReady;
   }
 
   createApp() {
@@ -76,7 +75,7 @@ export class App {
     env.addFilter('isArray', value => Array.isArray(value));
     env.addFilter('dateTime', dateFilter);
 
-    if (this.authProvider && this.loginReady) {
+    if (this.authProvider) {
       this.authProvider.setup(this.app);
     }
 
