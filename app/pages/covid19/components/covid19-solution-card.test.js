@@ -36,7 +36,7 @@ describe('covid19-solution-card', () => {
       const viewSolutionLink = $('[data-test-id="solution-card-view-link"]');
       expect(viewSolutionLink.length).toEqual(1);
       expect(viewSolutionLink.text().trim()).toEqual('View this solution');
-      expect(viewSolutionLink.find('a').attr('href')).toEqual(`/solutions/covid19/${context.params.solution.id}`);
+      expect(viewSolutionLink.find('a').attr('href')).toEqual(context.params.solution.viewSolutionUrl);
     });
   }));
 
@@ -70,23 +70,6 @@ describe('covid19-solution-card', () => {
       const solutionName = $('[data-test-id="solution-card-name"]');
       expect(solutionName.length).toEqual(1);
       expect(solutionName.text().trim()).toEqual('some solution name');
-    });
-  }));
-
-  it('should have correct href when there is filterType key in context', createTestHarness(setup, (harness) => {
-    const context = {
-      params: {
-        solution: {
-          id: '0001',
-          name: 'some solution name',
-          viewSolutionUrl: '/solutions/covid19/0001',
-        },
-      },
-    };
-
-    harness.request(context, ($) => {
-      const solutionName = $('[data-test-id="solution-card-name"]');
-      expect(solutionName.find('a').attr('href')).toEqual('/solutions/covid19/0001');
     });
   }));
 

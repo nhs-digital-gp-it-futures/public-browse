@@ -74,6 +74,7 @@ export const routes = (authProvider) => {
     res.redirect(`/solutions/capabilities-selector${capabilitiesParam}`);
   }));
 
+  // TODO: SHOW_COVID19 Remove when covid19 is no longer needed.
   router.get('/solutions/covid19', withCatch(async (req, res) => {
     const context = await getCovid19SolutionListPageContext();
     logger.info('navigating to covid19 page');
