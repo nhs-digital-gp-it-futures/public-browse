@@ -13,12 +13,15 @@ import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
 
-const addConfig = ({ context, user, csrfToken }) => ({
+const addConfig = ({
+  context, user, csrfToken, loginReady,
+}) => ({
   ...context,
   ...includesContext,
   username: user && user.name,
   csrfToken,
   config,
+  loginReady,
 });
 
 export const routes = (authProvider, loginReady) => {
@@ -122,7 +125,7 @@ export const routes = (authProvider, loginReady) => {
     if (err) {
       const context = errorHandler(err);
       logger.error(context.message);
-      res.render('pages/error/template.njk', addConfig({ context, user: req.user }));
+      res.render('pages/error/template.njk', addConfig({ context, user: req.user, loginReady }));
     } else {
       next();
     }
