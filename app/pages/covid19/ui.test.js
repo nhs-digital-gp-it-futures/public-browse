@@ -29,15 +29,12 @@ test('should display the covid page description', async (t) => {
 test('should display the covid19 solution cards', async (t) => {
   await pageSetup(t);
   await t
-    .expect(Selector('div[data-test-id="solution-card-covid19"]').count).eql(4);
+    .expect(Selector('div[data-test-id="solution-card-covid19"]').count).eql(covid19Data.solutions.length);
 });
 
 test('should display the covid19 solution details of a solution card', async (t) => {
   await pageSetup(t);
   const solutionCardsSection = Selector('div[data-test-id="solution-cards-covid19"]');
-  await t
-    .expect(solutionCardsSection.find('div[data-test-id="solution-card-covid19"]').count).eql(4);
-
   const solutionCard = solutionCardsSection.find('div[data-test-id="solution-card-covid19"]:nth-child(1)');
   const covid19Tag = solutionCard.find('div[data-test-id="solution-card-covid19-tag"]');
   await t
@@ -62,10 +59,13 @@ test('should display the covid19 card list', async (t) => {
   const covid19List = solutionCard.find('[data-test-id="solution-card-covid19-list"]');
   await t
     .expect(covid19List.exists).ok()
-    .expect(covid19List.find('li').count).eql(3)
-    .expect(await extractInnerText(covid19List.find('li:nth-child(1)'))).eql(covid19Data.solutions[0].covid19.list[0])
-    .expect(await extractInnerText(covid19List.find('li:nth-child(2)'))).eql(covid19Data.solutions[0].covid19.list[1])
-    .expect(await extractInnerText(covid19List.find('li:nth-child(3)'))).eql(covid19Data.solutions[0].covid19.list[2]);
+    .expect(covid19List.find('li').count).eql(covid19Data.solutions[0].covid19.list.length);
+
+  await Promise.all(covid19Data.solutions[0].covid19.list.map(async (listItem, i) => {
+    await t
+      .expect(covid19List.find('li').count).eql(covid19Data.solutions[0].covid19.list.length)
+      .expect(await extractInnerText(covid19List.find(`li:nth-child(${i + 1})`))).eql(listItem);
+  }));
 });
 
 test('should navigate to the covid19 solution view page when clicking on the title of the solution', async (t) => {
