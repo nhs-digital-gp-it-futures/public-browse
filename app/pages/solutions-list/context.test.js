@@ -8,8 +8,8 @@ const solutionPageDescription = 'These are the Solutions on the GP IT Futures fr
 const foundationPageTitle = 'Foundation Solutions results';
 const foundationPageDescription = 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.';
 
-const covid19PageTitle = 'Foundation Solutions results';
-const covid19PageDescription = 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.';
+const covid19PageTitle = 'Catalogue Solutions to help with coronavirus';
+const covid19PageDescription = 'The following Catalogue Solutions can help prevent the spread of coronavirus by providing online consultations, services and information.';
 
 describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
