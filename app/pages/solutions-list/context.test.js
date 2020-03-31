@@ -8,6 +8,9 @@ const solutionPageDescription = 'These are the Solutions on the GP IT Futures fr
 const foundationPageTitle = 'Foundation Solutions results';
 const foundationPageDescription = 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.';
 
+const covid19PageTitle = 'Foundation Solutions results';
+const covid19PageDescription = 'These Solutions meet the six Foundation Capabilities (the business needs a Solution addresses) mandated by NHS England’s GP IT Futures Operating Model. All six Capabilities must be fulfilled to achieve Foundation Solution status.';
+
 describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
@@ -772,5 +775,170 @@ describe('createSolutionListPageContext - Foundation', () => {
     const context = createSolutionListPageContext({ filterType: 'foundation', solutionListManifest, solutionsData });
 
     expect(context).toEqual(expectedContext);
+  });
+
+  describe('covid19', () => {
+    it('should create a context for the solution list page with one solution with empty list with filterType covid19', () => {
+      const expectedContext = {
+        pageTitle: covid19PageTitle,
+        pageDescription: covid19PageDescription,
+        backLinkPath: '/solutions',
+        filterType: 'covid19',
+        solutions: [
+          {
+            id: '00001',
+            name: 'The first solution',
+            summary: 'Some solution summary',
+            supplierName: 'Some supplier',
+            covid19: {
+              title: 'Some title',
+              list: [],
+            },
+            viewSolutionUrl: '/solutions/covid19/00001',
+          },
+        ],
+      };
+
+      const solutionsData = [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          supplier: {
+            id: '1',
+            name: 'Some supplier',
+          },
+          covid19: {
+            title: 'Some title',
+            list: [],
+          },
+        },
+      ];
+
+      const solutionListManifest = {
+        title: covid19PageTitle,
+        description: covid19PageDescription,
+      };
+
+      const context = createSolutionListPageContext({ filterType: 'covid19', solutionListManifest, solutionsData });
+
+      expect(context).toEqual(expectedContext);
+    });
+
+    it('should create a context for the solution list page with one solution with no list with filterType covid19', () => {
+      const expectedContext = {
+        pageTitle: covid19PageTitle,
+        pageDescription: covid19PageDescription,
+        backLinkPath: '/solutions',
+        filterType: 'covid19',
+        solutions: [
+          {
+            id: '00001',
+            name: 'The first solution',
+            summary: 'Some solution summary',
+            supplierName: 'Some supplier',
+            viewSolutionUrl: '/solutions/covid19/00001',
+            covid19: {
+              title: 'Some title',
+            },
+          },
+        ],
+      };
+
+      const solutionsData = [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          supplier: {
+            id: '1',
+            name: 'Some supplier',
+          },
+          covid19: {
+            title: 'Some title',
+          },
+        },
+      ];
+
+      const solutionListManifest = {
+        title: covid19PageTitle,
+        description: covid19PageDescription,
+      };
+
+      const context = createSolutionListPageContext({ filterType: 'covid19', solutionListManifest, solutionsData });
+
+      expect(context).toEqual(expectedContext);
+    });
+
+    it('should create a context for the solution list page with one solution with no supplier with filterType covid19', () => {
+      const expectedContext = {
+        pageTitle: covid19PageTitle,
+        pageDescription: covid19PageDescription,
+        backLinkPath: '/solutions',
+        filterType: 'covid19',
+        solutions: [
+          {
+            id: '00001',
+            name: 'The first solution',
+            summary: 'Some solution summary',
+            covid19: {
+              title: 'Some title',
+              list: [
+                'Some first list item',
+                'Some second list item',
+                'Some third list item',
+              ],
+            },
+            viewSolutionUrl: '/solutions/covid19/00001',
+          },
+        ],
+      };
+
+      const solutionsData = [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          covid19: {
+            title: 'Some title',
+            list: [
+              'Some first list item',
+              'Some second list item',
+              'Some third list item',
+            ],
+          },
+        },
+      ];
+
+      const solutionListManifest = {
+        title: covid19PageTitle,
+        description: covid19PageDescription,
+      };
+
+      const context = createSolutionListPageContext({ filterType: 'covid19', solutionListManifest, solutionsData });
+
+      expect(context).toEqual(expectedContext);
+    });
+
+    it('should create a context for the solution list page with no solutions with filterType covid19', () => {
+      const expectedContext = {
+        pageTitle: covid19PageTitle,
+        pageDescription: covid19PageDescription,
+        backLinkPath: '/solutions',
+        filterType: 'covid19',
+        solutions: [],
+      };
+
+      const solutionsData = [];
+
+      const solutionListManifest = {
+        title: covid19PageTitle,
+        description: covid19PageDescription,
+      };
+
+      const context = createSolutionListPageContext({ filterType: 'covid19', solutionListManifest, solutionsData });
+
+      expect(context).toEqual(expectedContext);
+    });
   });
 });
