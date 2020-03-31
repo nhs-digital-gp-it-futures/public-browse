@@ -1,0 +1,44 @@
+{% extends 'includes/layouts/contained.njk' %}
+{% from 'components/back-link/macro.njk' import backLink %}
+{% from 'components/general-page-description.njk' import generalPageDescription %}
+{% from 'components/button/macro.njk' import button %}
+
+{% from './components/covid19-solution-card.njk' import covid19SolutionCard %}
+
+{% block body %}
+  <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="solutions-list-body">
+
+    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link">
+      {{ backLink({
+        "href": backLinkPath,
+        "text": "Go back to previous page"
+      }) }}
+    </div>
+
+    {{ generalPageDescription({
+      titleText: pageTitle,
+      descriptionText: pageDescription
+    }) }}
+
+    <div data-test-id="covid19-compare-button">
+      {{ button({
+        "text": buttonText,
+        "classes": "nhsuk-button--secondary",
+        "href": 'compare'
+      }) }}
+    </div>
+
+    <p data-test-id="covid19-subtext">
+      {{ subtext }}
+    </p>
+
+    <div data-test-id="solution-cards-covid19" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
+      {% for solution in solutions %}
+        {{ covid19SolutionCard({
+          solution: solution
+        }) }}
+      {% endfor %}
+      <div class="bc-t-border-top--blue" />
+    </div>
+  </div>
+{% endblock %}

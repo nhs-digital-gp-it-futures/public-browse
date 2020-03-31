@@ -12,6 +12,7 @@ import { includesContext } from './includes/contextCreator';
 import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
+import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 
 const addConfig = ({ context, user, csrfToken }) => ({
   ...context,
@@ -71,6 +72,13 @@ export const routes = (authProvider) => {
     const capabilitiesParam = getCapabilitiesParam(req.body.capabilities);
     logger.info(`capabilities submitted - ${capabilitiesParam}`);
     res.redirect(`/solutions/capabilities-selector${capabilitiesParam}`);
+  }));
+
+  // TODO: SHOW_COVID19 Remove when covid19 is no longer needed.
+  router.get('/solutions/covid19', withCatch(async (req, res) => {
+    const context = await getCovid19SolutionListPageContext();
+    logger.info('navigating to covid19 page');
+    return res.render('pages/covid19/template.njk', addConfig({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?', withCatch(async (req, res) => {
