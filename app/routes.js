@@ -13,18 +13,15 @@ import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
 
-const addConfig = ({
-  context, user, csrfToken, loginReady,
-}) => ({
+const addConfig = ({ context, user, csrfToken }) => ({
   ...context,
   ...includesContext,
   username: user && user.name,
   csrfToken,
   config,
-  loginReady,
 });
 
-export const routes = (authProvider, loginReady) => {
+export const routes = (authProvider) => {
   const router = express.Router();
 
   router.use('/health', healthRoutes);
@@ -55,19 +52,19 @@ export const routes = (authProvider, loginReady) => {
   router.get('/', (req, res) => {
     const context = getHomepageContext({ user: req.user });
     logger.info('navigating to home page');
-    res.render('pages/homepage/template.njk', addConfig({ context, user: req.user, loginReady }));
+    res.render('pages/homepage/template.njk', addConfig({ context, user: req.user }));
   });
 
   router.get('/guide', (req, res) => {
     const context = getGuidePageContext();
     logger.info('navigating to guide');
-    res.render('pages/guide/template.njk', addConfig({ context, user: req.user, loginReady }));
+    res.render('pages/guide/template.njk', addConfig({ context, user: req.user }));
   });
 
   router.get('/solutions', (req, res) => {
     const context = getBrowseSolutionsPageContext();
     logger.info('navigating to browse solutions');
-    res.render('pages/browse-solutions/template.njk', addConfig({ context, user: req.user, loginReady }));
+    res.render('pages/browse-solutions/template.njk', addConfig({ context, user: req.user }));
   });
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
@@ -85,26 +82,24 @@ export const routes = (authProvider, loginReady) => {
         if (config.useCapabilitiesSelector === 'false') return res.redirect('/solutions/capabilities-selector.all');
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');
-        return res.render('pages/capabilities-selector/template.njk', addConfig({
-          context, user: req.user, csrfToken: req.csrfToken(), loginReady,
-        }));
+        return res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user, csrfToken: req.csrfToken() }));
       }
       const context = await getSolutionsForSelectedCapabilities({
         capabilitiesSelected: capabilities,
       });
       logger.info(`navigating to solution-list (with ${capabilities} selected) page`);
-      return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user, loginReady }));
+      return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
     }
     const context = await getSolutionListPageContext({ filterType });
     logger.info(`navigating to ${filterType} solution-list page`);
-    return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user, loginReady }));
+    return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?/:solutionId', withCatch(async (req, res) => {
     const { solutionId } = req.params;
     logger.info(`navigating to Solution ${solutionId} page`);
     const context = await getPublicSolutionById({ solutionId });
-    res.render('pages/view-solution/template.njk', addConfig({ context, user: req.user, loginReady }));
+    res.render('pages/view-solution/template.njk', addConfig({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
@@ -125,7 +120,7 @@ export const routes = (authProvider, loginReady) => {
     if (err) {
       const context = errorHandler(err);
       logger.error(context.message);
-      res.render('pages/error/template.njk', addConfig({ context, user: req.user, loginReady }));
+      res.render('pages/error/template.njk', addConfig({ context, user: req.user }));
     } else {
       next();
     }

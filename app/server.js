@@ -16,6 +16,11 @@ const { logger } = require('./logger');
     }
   });
 
+
+  // if loginEnabled is 'true' then wait till isapi is ready before starting the app and server. 
+  // keep polling x amount of times before quitting.
+
+
   let isapiReady = false;
 
   setInterval(async () => {
