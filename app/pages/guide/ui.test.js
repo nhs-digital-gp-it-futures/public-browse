@@ -1,6 +1,5 @@
 import { Selector } from 'testcafe';
 import content from './manifest.json';
-import { blobstoreHost } from '../../config';
 import { extractInnerText } from '../../test-utils/helper';
 
 const pageSetup = async (t) => {
@@ -96,16 +95,23 @@ test('should render Standards subsections', async (t) => {
   await t
     .expect(await extractInnerText(standardsSelector.find('[data-test-id="guide-section-title"]'))).eql(standardsSection.title)
     .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > p:nth-child(1)'))).eql(standardsSection.subsections[0].description[0])
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > p:nth-child(2)'))).eql(standardsSection.subsections[0].description[1])
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-title-compliance-work-off-plan"]'))).eql(standardsSection.subsections[1].title)
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-compliance-work-off-plan"] > p:nth-child(1)'))).eql(standardsSection.subsections[1].description[0])
-    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-compliance-work-off-plan"] > p:nth-child(2)'))).eql(standardsSection.subsections[1].description[1]);
+    .expect(await extractInnerText(standardsSelector.find('[data-test-id="subsection-standards-describe"] > p:nth-child(2)'))).eql(standardsSection.subsections[0].description[1]);
+});
+
+test('should render Work-off Plans subsections', async (t) => {
+  await pageSetup(t);
+  const workOffPlansSelector = Selector('[data-test-id="guide-section-work-off-plans"]');
+  const workOffPlansSection = content.sections[3];
+  await t
+    .expect(await extractInnerText(workOffPlansSelector.find('[data-test-id="guide-section-title"]'))).eql(workOffPlansSection.title)
+    .expect(await extractInnerText(workOffPlansSelector.find('[data-test-id="subsection-work-off-plans-describe"] > p:nth-child(1)'))).eql(workOffPlansSection.subsections[0].description[0])
+    .expect(await extractInnerText(workOffPlansSelector.find('[data-test-id="subsection-work-off-plans-describe"] > p:nth-child(2)'))).eql(workOffPlansSection.subsections[0].description[1]);
 });
 
 test('should render Integrations subsections', async (t) => {
   await pageSetup(t);
   const integrationSelector = Selector('[data-test-id="guide-section-integrations"]');
-  const integrationSection = content.sections[3];
+  const integrationSection = content.sections[4];
   await t
     .expect(await extractInnerText(integrationSelector.find('[data-test-id="guide-section-title"]'))).eql(integrationSection.title)
     .expect(await extractInnerText(integrationSelector.find('[data-test-id="subsection-title-nhs-assured-integrations"]'))).eql(integrationSection.subsections[0].title)
@@ -117,18 +123,16 @@ test('should render Integrations subsections', async (t) => {
 test('should render Learn More subsections', async (t) => {
   await pageSetup(t);
   const learnMoreSelector = Selector('[data-test-id="guide-section-learn-more"]');
-  const learnMoreSection = content.sections[4];
+  const learnMoreSection = content.sections[5];
   await t
     .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="guide-section-title"]'))).eql(learnMoreSection.title)
-    .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="subsection-learn-more"] > p:nth-child(1)'))).eql(learnMoreSection.subsections[0].description[0])
-    .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="subsection-button"] > a'))).eql(learnMoreSection.subsections[1].button.text)
-    .expect(learnMoreSelector.find('[data-test-id="subsection-button"] > a').getAttribute('href')).eql(`${blobstoreHost}${learnMoreSection.subsections[1].button.href}`);
+    .expect(await extractInnerText(learnMoreSelector.find('[data-test-id="subsection-learn-more"] > p:nth-child(1)'))).eql(learnMoreSection.subsections[0].description[0]);
 });
 
 test('should render Contact Us subsections', async (t) => {
   await pageSetup(t);
   const contactUsSelector = Selector('[data-test-id="guide-section-contact-us"]');
-  const contactUsSection = content.sections[5];
+  const contactUsSection = content.sections[6];
   await t
     .expect(await extractInnerText(contactUsSelector.find('[data-test-id="guide-section-title"]'))).eql(contactUsSection.title)
     .expect(await extractInnerText(contactUsSelector.find('[data-test-id="guide-section-description-with-link"] > span:nth-child(1)'))).eql(contactUsSection.subsections[0].description[0].startText)
