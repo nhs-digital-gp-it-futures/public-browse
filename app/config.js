@@ -40,7 +40,7 @@ module.exports = {
 
   // TODO: LOGIN_ENABLED Remove line below when login is enabled by default
   // Boolean to indicate if we show the login/logout component
-  loginEnabled: process.env.LOGIN_ENABLED || 'false',
+  loginEnabled: process.env.LOGIN_ENABLED || 'true',
 
   // The path that the user is redirected to after logout
   logoutRedirectPath: process.env.LOGOUT_REDIRECT_PATH || '/',

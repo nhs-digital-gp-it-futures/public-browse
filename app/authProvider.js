@@ -3,12 +3,12 @@ import passport from 'passport';
 import { Strategy, Issuer } from 'openid-client';
 import session from 'express-session';
 import {
-  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri, maxCookieAge, cookieSecret, loginEnabled,
+  oidcBaseUri, oidcClientId, oidcClientSecret, appBaseUri, maxCookieAge, cookieSecret, loginReady,
 } from './config';
 
 export class AuthProvider {
   constructor() {
-    if (loginEnabled === 'true') {
+    if (loginReady === 'true') {
       this.passport = passport;
 
       Issuer.discover(oidcBaseUri)
