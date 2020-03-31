@@ -54,7 +54,7 @@ test('should display the covid19 solution details of a solution card', async (t)
     .expect(await extractInnerText(solutionCard.find('p[data-test-id="solution-card-summary"]'))).eql('Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.');
 });
 
-test('should display the covid19 title', async (t) => {
+test('should display the covid19 card title', async (t) => {
   await pageSetup(t);
   const covid19Title = Selector('[data-test-id="solution-card-covid19-title"]');
   await t
@@ -62,7 +62,7 @@ test('should display the covid19 title', async (t) => {
     .expect(await extractInnerText(covid19Title)).eql('How this Catalogue Solution can help with coronavirus');
 });
 
-test('should display the covid19 list', async (t) => {
+test('should display the covid19 card list', async (t) => {
   await pageSetup(t);
   const solutionCard = Selector('div[data-test-id="solution-card-covid19"]:nth-child(1)');
   const covid19List = solutionCard.find('[data-test-id="solution-card-covid19-list"]');

@@ -127,7 +127,7 @@ describe('covid19-solution-card', () => {
   }));
 
   describe('covid19 list', () => {
-    it('should render 0 in list if no capabilities are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 0 in list if no items are provided in the context', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -146,7 +146,7 @@ describe('covid19-solution-card', () => {
       });
     }));
 
-    it('should render 1 in list if only 1 capability is provided context', createTestHarness(setup, (harness) => {
+    it('should render 1 in list if only 1 item is provided in context', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -168,7 +168,7 @@ describe('covid19-solution-card', () => {
       });
     }));
 
-    it('should render 3 capability names if 3 capabilities are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 3 item names if 3 capabilities are provided in the context', createTestHarness(setup, (harness) => {
       const context = {
         params: {
           solution: {

@@ -103,7 +103,7 @@ describe('solutions-list controller', () => {
       expect(apiProvider.getData.mock.calls.length).toEqual(0);
     });
 
-    it('should get data locally if the filterType is covid19 ', async () => {
+    it('should call createSolutionListPageContext with the local content if filterType is covid19', async () => {
       createContext.createSolutionListPageContext
         .mockResolvedValueOnce();
 
