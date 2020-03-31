@@ -26,9 +26,12 @@ const { logger } = require('./logger');
     console.log('about to check if Isapi is ready');
 
     try {
-      await axios.get('http://localhost:5102/identity/.well-known/openid-confioguration');
+      console.log('about to check if Isapi is ready');
+      await axios.get('http://localhost:5102/identity/.well-known/openid-configuration');
+      console.log('Isapi is ready');
       isapiReady = true;
     } catch (err) {
+      console.log('Isapi is not ready');
       isapiReady = false;
     }
   }, 1000);
@@ -36,12 +39,12 @@ const { logger } = require('./logger');
 
   console.log('isapiReady', isapiReady);
 
-  config.loginReady = config.loginEnabled && isapiReady;
+  const loginReady = config.loginEnabled && isapiReady;
 
   const authProvider = new AuthProvider();
-  const app = new App(authProvider).createApp();
+  const app = new App(authProvider, loginReady).createApp();
 
-  app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider));
+  app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider, loginReady));
   if (config.baseUrl) {
     app.use('/', (req, res) => {
       res.redirect(config.baseUrl);
