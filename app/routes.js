@@ -85,7 +85,7 @@ export const routes = (authProvider, loginReady) => {
         if (config.useCapabilitiesSelector === 'false') return res.redirect('/solutions/capabilities-selector.all');
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');
-        return res.render('pages/capabilities-selector/template.njk', addConfig({ 
+        return res.render('pages/capabilities-selector/template.njk', addConfig({
           context, user: req.user, csrfToken: req.csrfToken(), loginReady,
         }));
       }

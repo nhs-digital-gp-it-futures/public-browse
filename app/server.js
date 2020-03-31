@@ -40,7 +40,7 @@ const { logger } = require('./logger');
   console.log('isapiReady', isapiReady);
 
   const loginReady = config.loginEnabled === 'true' && isapiReady;
-  console.log('loginReady', loginReady)
+  console.log('loginReady', loginReady);
 
 
   const authProvider = new AuthProvider();
