@@ -2,7 +2,6 @@ require('dotenv').config();
 const axios = require('axios');
 const config = require('./config');
 const { App } = require('./app');
-
 const { AuthProvider } = require('./authProvider');
 const { routes } = require('./routes');
 const { logger } = require('./logger');
