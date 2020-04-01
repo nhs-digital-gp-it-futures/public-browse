@@ -27,28 +27,31 @@ export const routes = (authProvider) => {
 
   router.use('/health', healthRoutes);
 
-  router.get('/login', authProvider.login());
+  if (authProvider) {
+    router.get('/login', authProvider.login());
 
-  router.get('/oauth/callback', authProvider.loginCallback());
+    router.get('/oauth/callback', authProvider.loginCallback());
 
-  router.get('/logout', async (req, res) => {
-    const idToken = req.session && req.session.accessToken && req.session.accessToken.id_token;
-    const url = await authProvider.logout({ idToken });
-    res.redirect(url);
-  });
+    router.get('/logout', async (req, res) => {
+      const idToken = req.session && req.session.accessToken && req.session.accessToken.id_token;
+      const url = await authProvider.logout({ idToken });
+      res.redirect(url);
+    });
 
-  router.get('/signout-callback-oidc', async (req, res) => {
-    if (req.logout) req.logout();
-    req.session = null;
+    router.get('/signout-callback-oidc', async (req, res) => {
+      if (req.logout) req.logout();
+      req.session = null;
 
-    if (req.headers.cookie) {
-      req.headers.cookie.split(';')
-        .map(cookie => cookie.split('=')[0])
-        .forEach(cookieKey => res.clearCookie(cookieKey));
-    }
+      if (req.headers.cookie) {
+        req.headers.cookie.split(';')
+          .map(cookie => cookie.split('=')[0])
+          .forEach(cookieKey => res.clearCookie(cookieKey));
+      }
 
-    res.redirect(config.logoutRedirectPath);
-  });
+      res.redirect(config.logoutRedirectPath);
+    });
+  }
+
 
   router.get('/', (req, res) => {
     const context = getHomepageContext({ user: req.user });
