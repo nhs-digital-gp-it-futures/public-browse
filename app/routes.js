@@ -116,7 +116,9 @@ export const routes = (authProvider) => {
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
     logger.info(`downloading Solution ${solutionId} document ${documentName}`);
+    const documentType = documentName.split('.')[1];
     const response = await getDocument({ solutionId, documentName });
+    res.setHeader('Content-type', `application/${documentType}`);
     response.data.pipe(res);
   });
 
