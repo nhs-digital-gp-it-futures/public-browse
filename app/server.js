@@ -18,8 +18,10 @@ const { logger } = require('./logger');
 
   let intervalId;
   let app;
+  const pollDuration = 1000;
 
-  const a = async () => {
+  // eslint-disable-next-line consistent-return
+  const startApp = async () => {
     if (app) {
       return clearInterval(intervalId);
     }
@@ -28,7 +30,7 @@ const { logger } = require('./logger');
       let authProvider;
 
       if (config.loginEnabled === 'true') {
-        await axios.get('http://localhost:8070/identity/.well-known/openid-configuration')
+        await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
         authProvider = new AuthProvider();
       }
 
@@ -49,9 +51,9 @@ const { logger } = require('./logger');
       }
       app.listen(config.port);
     } catch (err) {
-      console.log('Isapi is not ready');
+      logger.error(`Isapi is not ready - will poll again in ${pollDuration / 1000} seconds`);
     }
   };
 
-  intervalId = await setInterval(a, 1000);
+  intervalId = await setInterval(startApp, pollDuration);
 })();
