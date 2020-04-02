@@ -47,7 +47,11 @@ const determineAppTypeToStart = async ({
   });
 
   const appType = await determineAppTypeToStart({
-    canStartApp: false, appType: undefined, loginEnabled: config.loginEnabled, attempt: 1, pollDuration: 1000,
+    canStartApp: false,
+    appType: undefined,
+    loginEnabled: config.loginEnabled,
+    attempt: 1,
+    pollDuration: 1000,
   });
 
   const authProvider = appType === 'auth' ? new AuthProvider() : undefined;
