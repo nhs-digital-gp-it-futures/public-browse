@@ -15,9 +15,7 @@ const isIsapiReady = async ({
   if (!isapiReady) {
     try {
       await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
-      return isIsapiReady({
-        isapiReady: true, attempt, pollDuration,
-      });
+      return true;
     } catch (err) {
       const nextAttempt = attempt + 1;
       const nextPollDuration = nextAttempt * pollDuration;
