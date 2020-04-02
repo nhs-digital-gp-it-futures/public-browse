@@ -10,23 +10,19 @@ const { logger } = require('./logger');
 const setTimeoutPromise = util.promisify(setTimeout);
 
 const isIsapiReady = async ({
-  isapiReady, attempt, pollDuration,
+  attempt, pollDuration,
 }) => {
-  if (!isapiReady) {
-    try {
-      await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
-      return true;
-    } catch (err) {
-      const nextAttempt = attempt + 1;
-      const nextPollDuration = nextAttempt * pollDuration;
-      logger.error(`Isapi is not ready - will poll again in ${nextAttempt} seconds`);
-      return setTimeoutPromise(nextPollDuration).then(() => isIsapiReady({
-        isapiReady: false, attempt: nextAttempt, pollDuration,
-      }));
-    }
+  try {
+    await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
+    return true;
+  } catch (err) {
+    const nextAttempt = attempt + 1;
+    const nextPollDuration = nextAttempt * pollDuration;
+    logger.error(`Isapi is not ready - will poll again in ${nextAttempt} seconds`);
+    return setTimeoutPromise(nextPollDuration).then(() => isIsapiReady({
+      attempt: nextAttempt, pollDuration,
+    }));
   }
-
-  return isapiReady;
 };
 
 (async () => {
