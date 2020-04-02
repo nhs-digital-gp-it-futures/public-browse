@@ -18,12 +18,28 @@ test('should display the covid19 page title', async (t) => {
     .expect(await extractInnerText(pageTitle)).eql(manifest.title);
 });
 
-test('should display the covid page description', async (t) => {
+test('should display the covid19 page description', async (t) => {
   await pageSetup(t);
   const pageDescription = Selector('h2[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);
+});
+
+test('should display the covid19 page inset text', async (t) => {
+  await pageSetup(t);
+  const pageInsetText = Selector('[data-test-id="covid19-inset-text"] p');
+  await t
+    .expect(pageInsetText.exists).ok()
+    .expect(await extractInnerText(pageInsetText)).eql(manifest.insetText);
+});
+
+test('should display the covid19 page compare button', async (t) => {
+  await pageSetup(t);
+  const pageCompareButton = Selector('[data-test-id="covid19-compare-button"] a');
+  await t
+    .expect(pageCompareButton.exists).ok()
+    .expect(await extractInnerText(pageCompareButton)).eql(manifest.buttonText);
 });
 
 test('should display the covid19 solution cards', async (t) => {
