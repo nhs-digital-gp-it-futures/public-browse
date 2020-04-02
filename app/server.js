@@ -28,7 +28,7 @@ const determineAppTypeToStart = async ({
       const nextAttempt = attempt + 1;
       const nextPollDuration = nextAttempt * pollDuration;
       logger.error(`Isapi is not ready - will poll again in ${nextAttempt} seconds`);
-      return setTimeoutPromise(nextPollDuration).then(async () => determineAppTypeToStart({
+      return setTimeoutPromise(nextPollDuration).then(() => determineAppTypeToStart({
         canStartApp: false, appType, attempt: nextAttempt, pollDuration,
       }));
     }
