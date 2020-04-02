@@ -14,6 +14,7 @@ const isIsapiReady = async ({
 }) => {
   try {
     await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
+    logger.info('Isapi is now ready');
     return true;
   } catch (err) {
     const nextAttempt = attempt + 1;
