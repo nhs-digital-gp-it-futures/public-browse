@@ -34,15 +34,7 @@ const isIsapiReady = async ({
     }
   });
 
-  let appType;
-  if (config.loginEnabled === 'false') {
-    appType = 'basic';
-  } else {
-    await isIsapiReady({
-      isapiReady: false, attempt: 1, pollDuration: 1000,
-    });
-    appType = 'auth';
-  }
+  const appType = config.loginEnabled === 'true' && await isIsapiReady({ attempt: 1, pollDuration: 1000 }) ? 'auth' : 'basic';
 
   const authProvider = appType === 'auth' ? new AuthProvider() : undefined;
   const app = new App(authProvider).createApp();
