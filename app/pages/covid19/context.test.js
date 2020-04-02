@@ -5,6 +5,7 @@ import manifest from './manifest';
 const defaultExpectedContext = {
   pageTitle: manifest.title,
   pageDescription: manifest.description,
+  insetText: manifest.insetText,
   buttonText: manifest.buttonText,
   buttonHref: manifest.buttonHref,
   subtext: manifest.subtext,
