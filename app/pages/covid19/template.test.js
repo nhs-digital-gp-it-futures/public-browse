@@ -48,7 +48,7 @@ describe('covid19 page', () => {
   it('should render the covid19 page button', createTestHarness(setup, (harness) => {
     const context = {
       config: {
-        blobstoreHost: 'blobstore/',
+        blobstoreHost: 'blobstore',
       },
       buttonText: 'Covid-19 button text',
       buttonHref: '/link-to-doc',
