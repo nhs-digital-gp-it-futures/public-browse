@@ -45,7 +45,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render the covid19 page button', createTestHarness(setup, (harness) => {
+  it('should render the covid19 compare button', createTestHarness(setup, (harness) => {
     const context = {
       config: {
         blobstoreHost: 'blobstore',
