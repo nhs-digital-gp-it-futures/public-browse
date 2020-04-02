@@ -51,7 +51,7 @@ describe('covid19 page', () => {
     };
 
     harness.request(context, ($) => {
-      const covid19InsetText = $('[data-test-id="covid19-inset-text"]');
+      const covid19InsetText = $('[data-test-id="covid19-inset-text"] p');
       expect(covid19InsetText.length).toEqual(1);
       expect(covid19InsetText.text().trim()).toEqual(context.insetText);
     });
