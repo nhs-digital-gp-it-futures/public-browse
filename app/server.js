@@ -1,10 +1,33 @@
 require('dotenv').config();
+const util = require('util');
 const axios = require('axios');
 const config = require('./config');
 const { App } = require('./app');
 const { AuthProvider } = require('./authProvider');
 const { routes } = require('./routes');
 const { logger } = require('./logger');
+
+const setTimeoutPromise = util.promisify(setTimeout);
+
+const determineAppTypeToStart = async ({ canStartApp, appType, loginEnabled }) => {
+  if (!canStartApp) {
+    if (loginEnabled === 'false') {
+      return determineAppTypeToStart({ canStartApp: true, appType: 'basic', loginEnabled });
+    }
+
+    try {
+      await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
+      return determineAppTypeToStart({ canStartApp: true, appType: 'auth', loginEnabled });
+    } catch (err) {
+      logger.error(`Isapi is not ready - will poll again in ${1000} seconds`);
+      return setTimeoutPromise(1000).then(async () => determineAppTypeToStart({
+        canStartApp: false, appType, loginEnabled,
+      }));
+    }
+  }
+
+  return appType;
+};
 
 (async () => {
   Object.keys(config).map((configKey) => {
@@ -15,44 +38,26 @@ const { logger } = require('./logger');
     }
   });
 
-  let intervalId;
-  let app;
-  const pollDuration = 1000;
+  const appType = await determineAppTypeToStart({
+    canStartApp: false, appType: undefined, loginEnabled: config.loginEnabled,
+  });
 
-  // eslint-disable-next-line consistent-return
-  const startApp = async () => {
-    if (app) {
-      return clearInterval(intervalId);
-    }
+  const authProvider = appType === 'auth' ? new AuthProvider() : undefined;
 
-    try {
-      let authProvider;
+  const app = new App(authProvider).createApp();
 
-      if (config.loginEnabled === 'true') {
-        await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
-        authProvider = new AuthProvider();
-      }
+  app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider));
+  if (config.baseUrl) {
+    app.use('/', (req, res) => {
+      res.redirect(config.baseUrl);
+    });
+  }
 
-      app = new App(authProvider).createApp();
-
-      app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider));
-      if (config.baseUrl) {
-        app.use('/', (req, res) => {
-          res.redirect(config.baseUrl);
-        });
-      }
-
-      // Run application on configured port
-      if (config.env === 'development') {
-        logger.info(`Public browse - \x1b[35m${config.appBaseUri}${config.baseUrl}/\x1b[0m`);
-      } else {
-        logger.info(`App listening on port ${config.port} - Public browse`);
-      }
-      app.listen(config.port);
-    } catch (err) {
-      logger.error(`Isapi is not ready - will poll again in ${pollDuration / 1000} seconds`);
-    }
-  };
-
-  intervalId = await setInterval(startApp, pollDuration);
+  // Run application on configured port
+  if (config.env === 'development') {
+    logger.info(`Public browse - \x1b[35m${config.appBaseUri}${config.baseUrl}/\x1b[0m`);
+  } else {
+    logger.info(`App listening on port ${config.port} - Public browse`);
+  }
+  app.listen(config.port);
 })();
