@@ -45,81 +45,84 @@ describe('covid19 page', () => {
     });
   }));
 
-  describe('covid19 solutions', () => {
-    it('should render the covid19 page button', createTestHarness(setup, (harness) => {
-      const context = {
-        buttonText: 'Covid-19 button text',
-      };
+  it('should render the covid19 page button', createTestHarness(setup, (harness) => {
+    const context = {
+      config: {
+        blobstoreHost: 'blobstore/',
+      },
+      buttonText: 'Covid-19 button text',
+      buttonHref: '/link-to-doc',
+    };
 
-      harness.request(context, ($) => {
-        const covid19CompareButton = $('[data-test-id="covid19-compare-button"] a');
-        expect(covid19CompareButton.length).toEqual(1);
-        expect(covid19CompareButton.text().trim()).toEqual(context.buttonText);
-      });
-    }));
+    harness.request(context, ($) => {
+      const covid19CompareButton = $('[data-test-id="covid19-compare-button"] a');
+      expect(covid19CompareButton.length).toEqual(1);
+      expect(covid19CompareButton.text().trim()).toEqual(context.buttonText);
+      expect(covid19CompareButton.attr('href')).toEqual(context.config.blobstoreHost + context.buttonHref);
+    });
+  }));
 
-    it('should render the covid19 subtext', createTestHarness(setup, (harness) => {
-      const context = {
-        subtext: 'Covid-19 subtext',
-      };
+  it('should render the covid19 subtext', createTestHarness(setup, (harness) => {
+    const context = {
+      subtext: 'Covid-19 subtext',
+    };
 
-      harness.request(context, ($) => {
-        const covid19Subtext = $('[data-test-id="covid19-subtext"]');
-        expect(covid19Subtext.length).toEqual(1);
-        expect(covid19Subtext.text().trim()).toEqual(context.subtext);
-      });
-    }));
+    harness.request(context, ($) => {
+      const covid19Subtext = $('[data-test-id="covid19-subtext"]');
+      expect(covid19Subtext.length).toEqual(1);
+      expect(covid19Subtext.text().trim()).toEqual(context.subtext);
+    });
+  }));
 
-    it('should render 0 covid19 cards if no solutions are provided in the context', createTestHarness(setup, (harness) => {
-      const context = {
-        solutions: [],
-      };
+  it('should render 0 covid19 cards if no solutions are provided in the context', createTestHarness(setup, (harness) => {
+    const context = {
+      solutions: [],
+    };
 
-      harness.request(context, ($) => {
-        const solutionCardsCovid19 = $('div[data-test-id="solution-cards-covid19"]').find('[data-test-id="solution-card-covid19"]');
-        expect(solutionCardsCovid19.length).toEqual(0);
-      });
-    }));
+    harness.request(context, ($) => {
+      const solutionCardsCovid19 = $('div[data-test-id="solution-cards-covid19"]').find('[data-test-id="solution-card-covid19"]');
+      expect(solutionCardsCovid19.length).toEqual(0);
+    });
+  }));
 
-    it('should render 1 covid19 card if 1 solution is provided in context', createTestHarness(setup, (harness) => {
-      const context = {
-        solutions: [
-          {
-            id: '00001',
-            name: 'The first solution',
-          },
-        ],
-      };
+  it('should render 1 covid19 card if 1 solution is provided in context', createTestHarness(setup, (harness) => {
+    const context = {
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+        },
+      ],
+    };
 
-      harness.request(context, ($) => {
-        const solutionCardsCovid19 = $('div[data-test-id="solution-cards-covid19"]').find('[data-test-id="solution-card-covid19"]');
-        expect(solutionCardsCovid19.length).toEqual(1);
-      });
-    }));
+    harness.request(context, ($) => {
+      const solutionCardsCovid19 = $('div[data-test-id="solution-cards-covid19"]').find('[data-test-id="solution-card-covid19"]');
+      expect(solutionCardsCovid19.length).toEqual(1);
+    });
+  }));
 
-    it('should render 3 covid19 cards if 3 solutions are provided in context', createTestHarness(setup, (harness) => {
-      const context = {
-        filterType: 'covid19',
-        solutions: [
-          {
-            id: '00001',
-            name: 'The first solution',
-          },
-          {
-            id: '00002',
-            name: 'The second solution',
-          },
-          {
-            id: '00003',
-            name: 'The third solution',
-          },
-        ],
-      };
+  it('should render 3 covid19 cards if 3 solutions are provided in context', createTestHarness(setup, (harness) => {
+    const context = {
+      filterType: 'covid19',
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+        },
+        {
+          id: '00002',
+          name: 'The second solution',
+        },
+        {
+          id: '00003',
+          name: 'The third solution',
+        },
+      ],
+    };
 
-      harness.request(context, ($) => {
-        const solutionCardsCovid19 = $('div[data-test-id="solution-cards-covid19"]').find('[data-test-id="solution-card-covid19"]');
-        expect(solutionCardsCovid19.length).toEqual(3);
-      });
-    }));
-  });
+    harness.request(context, ($) => {
+      const solutionCardsCovid19 = $('div[data-test-id="solution-cards-covid19"]').find('[data-test-id="solution-card-covid19"]');
+      expect(solutionCardsCovid19.length).toEqual(3);
+    });
+  }));
 });

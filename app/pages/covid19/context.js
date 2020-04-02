@@ -22,6 +22,7 @@ export const createCovid19SolutionListPageContext = ({
     pageTitle: manifest.title,
     pageDescription: manifest.description,
     buttonText: manifest.buttonText,
+    buttonHref: manifest.buttonHref,
     subtext: manifest.subtext,
     solutions: createCovid19SolutionsContext({
       solutions,

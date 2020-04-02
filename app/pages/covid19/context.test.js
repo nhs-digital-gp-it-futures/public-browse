@@ -6,6 +6,7 @@ const defaultExpectedContext = {
   pageTitle: manifest.title,
   pageDescription: manifest.description,
   buttonText: manifest.buttonText,
+  buttonHref: manifest.buttonHref,
   subtext: manifest.subtext,
   backLinkPath: '/solutions',
   solutions: [],
