@@ -9,19 +9,27 @@ const { logger } = require('./logger');
 
 const setTimeoutPromise = util.promisify(setTimeout);
 
-const determineAppTypeToStart = async ({ canStartApp, appType, loginEnabled }) => {
+const determineAppTypeToStart = async ({
+  canStartApp, appType, loginEnabled, attempt, pollDuration,
+}) => {
   if (!canStartApp) {
     if (loginEnabled === 'false') {
-      return determineAppTypeToStart({ canStartApp: true, appType: 'basic', loginEnabled });
+      return determineAppTypeToStart({
+        canStartApp: true, appType: 'basic', loginEnabled, attempt, pollDuration,
+      });
     }
 
     try {
       await axios.get(`${config.oidcBaseUri}/.well-known/openid-configuration`);
-      return determineAppTypeToStart({ canStartApp: true, appType: 'auth', loginEnabled });
+      return determineAppTypeToStart({
+        canStartApp: true, appType: 'auth', loginEnabled, attempt, pollDuration,
+      });
     } catch (err) {
-      logger.error(`Isapi is not ready - will poll again in ${1000} seconds`);
-      return setTimeoutPromise(1000).then(async () => determineAppTypeToStart({
-        canStartApp: false, appType, loginEnabled,
+      const nextAttempt = attempt + 1;
+      const nextPollDuration = nextAttempt * pollDuration;
+      logger.error(`Isapi is not ready - will poll again in ${nextAttempt} seconds`);
+      return setTimeoutPromise(nextPollDuration).then(async () => determineAppTypeToStart({
+        canStartApp: false, appType, loginEnabled, attempt: nextAttempt, pollDuration,
       }));
     }
   }
@@ -39,7 +47,7 @@ const determineAppTypeToStart = async ({ canStartApp, appType, loginEnabled }) =
   });
 
   const appType = await determineAppTypeToStart({
-    canStartApp: false, appType: undefined, loginEnabled: config.loginEnabled,
+    canStartApp: false, appType: undefined, loginEnabled: config.loginEnabled, attempt: 1, pollDuration: 1000,
   });
 
   const authProvider = appType === 'auth' ? new AuthProvider() : undefined;
