@@ -39,9 +39,21 @@ describe('covid19 page', () => {
     };
 
     harness.request(context, ($) => {
-      const solutionListTitleSummary = $('h2[data-test-id="general-page-description"]');
-      expect(solutionListTitleSummary.length).toEqual(1);
-      expect(solutionListTitleSummary.text().trim()).toEqual(context.pageDescription);
+      const covid19Description = $('h2[data-test-id="general-page-description"]');
+      expect(covid19Description.length).toEqual(1);
+      expect(covid19Description.text().trim()).toEqual(context.pageDescription);
+    });
+  }));
+
+  it('should render the covid19 page inset text', createTestHarness(setup, (harness) => {
+    const context = {
+      insetText: 'Some inset text',
+    };
+
+    harness.request(context, ($) => {
+      const covid19InsetText = $('[data-test-id="covid19-inset-text"]');
+      expect(covid19InsetText.length).toEqual(1);
+      expect(covid19InsetText.text().trim()).toEqual(context.insetText);
     });
   }));
 

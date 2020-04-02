@@ -1,6 +1,7 @@
 {
   "title": "Catalogue Solutions to help with coronavirus",
   "description": "The following Catalogue Solutions can help prevent the spread of coronavirus by providing online consultations, services and information.",
+  "insetText": "These Catalogue Solutions will have demonstrated they meet NHS defined eConsultation Capabilities or a Productivity Capability defined by the supplier. Alternatively, they may provide support via an Additional Service.",
   "buttonText": "Compare Solutions",
   "buttonHref": "/$web/content/covid19-compare-solutions.xlsx",
   "subtext": "Use the compare Solutions button to see an overview of the key features offered by each of these Catalogue Solutions."
