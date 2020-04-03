@@ -27,4 +27,4 @@ export const getReadyStatus = async () => {
   }
 
   return status.degraded;
-}
+};
