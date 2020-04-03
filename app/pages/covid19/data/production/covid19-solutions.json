@@ -1,0 +1,73 @@
+{
+  "solutions": [
+    {
+      "id": "100000-001",
+      "name": "Remote Prod Consultation",
+      "summary": "Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
+      "supplier": {
+        "id": "100000",
+        "name": "iPLATO Healthcare Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "supports online consultations",
+          "provides automated, clinically safe sign-posting to alternative pathways",
+          "provides local and national services to suitable patients"
+        ]
+      }
+    },
+    {
+      "id": "100001-001",
+      "name": "GP&Me",
+      "summary": "GP&Me is a simple, straight forward, secure video consultation app and application. Despite the name, it can in fact be used in any health or care setting, by any primary care clinician or professional.",
+      "supplier": {
+        "id": "100001",
+        "name": "The Martin Bell Partnership"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "provides live video consultation facilities for NHS patients and clinicians",
+          "allows patients to arrange and attend secure, remote video consultations with GPs, nurses and pharmacists - or professionals in other health and care settings"
+        ]
+      }
+    },
+    {
+      "id": "100004-001",
+      "name": "alldayDr",
+      "summary": "alldayDr allows patients to see a GP using a secure video-consultation via either a web browser or mobile app. The outcome of the consultation is then fed back. ",
+      "supplier": {
+        "id": "100004",
+        "name": "alldayDr"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list":  [
+          "supports online video consultations",
+          "reduces the spread of infection at GP surgeries",
+          "allows GPs to respond securely and remotely to patient queries",
+          "reduces the number of missed appointments"
+        ]
+      }
+    },
+    {
+      "id": "99998-98",
+      "name": "AccuRx Chain",
+      "summary": "AccuRx is a communication platform built around patients and healthcare professionals. Whether you’re a doctor, nurse, or administrator, you can video call or message patients and other healthcare professionals simply and quickly. AccuRx also allows you to send patient questionnaires and documents.",
+      "supplier": {
+        "id": "99998",
+        "name": "AccuRx Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list":  [
+          "supports online video consultations",
+          "reduces the spread of infection at GP surgeries",
+          "allows GPs to respond securely and remotely to patient queries",
+          "reduces the number of missed appointments"
+        ]
+      }
+    }
+  ]
+}
