@@ -3,7 +3,7 @@ import { getCovid19SolutionListPageContext } from './controller';
 import * as context from './context';
 
 import covid19Content from './manifest.json';
-import covid19SolutionData from './data/covid19-solutions';
+import covid19SolutionData from './data/non-production/covid19-solutions';
 
 jest.mock('./context', () => ({
   createCovid19SolutionListPageContext: jest.fn(),
