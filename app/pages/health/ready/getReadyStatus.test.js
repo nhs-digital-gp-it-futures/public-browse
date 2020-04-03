@@ -9,6 +9,7 @@ jest.mock('../../../apiProvider', () => ({
 describe('getReadyStatus', () => {
   afterEach(() => {
     apiProvider.getData.mockReset();
+    jest.resetModules();
   });
 
   it('should call getData twice with the correct params', async () => {
@@ -88,5 +89,25 @@ describe('getReadyStatus', () => {
       .mockReturnValueOnce(status.unhealthy.message);
 
     expect(await getReadyStatus()).toBe(status.unhealthy);
+  });
+
+  describe('when login is enabled', () => {
+    it('should return "Healthy" when BuyingCatalogueApi, DocumentApi and IdentityApi is "Healthy"', async () => {
+      apiProvider.getData
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.healthy.message);
+
+      expect(await getReadyStatus('true')).toBe(status.healthy);
+    });
+
+    it('should return "Degraded" when BuyingCatalogueApi, DocumentApi are "Healthy" and IdentityApi is not "Healthy"', async () => {
+      apiProvider.getData
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.unhealthy.message);
+
+      expect(await getReadyStatus('true')).toBe(status.degraded);
+    });
   });
 });
