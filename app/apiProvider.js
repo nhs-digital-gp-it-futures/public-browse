@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { logger } from './logger';
-import { buyingCatalogueApiHost, documentApiHost } from './config';
+import { buyingCatalogueApiHost, documentApiHost, oidcBaseUri } from './config';
 
 const getHeaders = accessToken => (accessToken ? { headers: { Authorization: `Bearer ${accessToken}` } } : {});
 
@@ -19,6 +19,7 @@ const endpoints = {
   // GET endpoints
   getBuyingCatalogueApiHealth: () => `${buyingCatalogueApiHost}/health/ready`,
   getDocumentApiHealth: () => `${documentApiHost}/health/ready`,
+  getIdentityApiHealth: () => `${oidcBaseUri}/health/ready`,
   getSolutionListData:
     options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
   getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
