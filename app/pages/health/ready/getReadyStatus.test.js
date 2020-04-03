@@ -20,73 +20,93 @@ describe('getReadyStatus', () => {
 
   it('should return "Healthy" when BuyingCatalogueApi and DocumentApi are both "Healthy"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.healthy.message })
-      .mockReturnValueOnce({ data: status.healthy.message });
+      .mockReturnValueOnce(status.healthy.message)
+      .mockReturnValueOnce(status.healthy.message);
 
     expect(await getReadyStatus()).toBe(status.healthy);
   });
 
   it('should return "Degraded" when BuyingCatalogueApi is "Healthy" and DocumentApi is "Degraded"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.healthy.message })
-      .mockReturnValueOnce({ data: status.degraded.message });
+      .mockReturnValueOnce(status.healthy.message)
+      .mockReturnValueOnce(status.degraded.message);
 
     expect(await getReadyStatus()).toBe(status.degraded);
   });
 
   it('should return "Degraded" when BuyingCatalogueApi is "Healthy" and DocumentApi is "Unhealthy"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.healthy.message })
-      .mockReturnValueOnce({ data: status.unhealthy.message });
+      .mockReturnValueOnce(status.healthy.message)
+      .mockReturnValueOnce(status.unhealthy.message);
 
     expect(await getReadyStatus()).toBe(status.degraded);
   });
 
   it('should return "Degraded" when BuyingCatalogueApi is "Degraded" and DocumentApi is "Healthy"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.degraded.message })
-      .mockReturnValueOnce({ data: status.healthy.message });
+      .mockReturnValueOnce(status.degraded.message)
+      .mockReturnValueOnce(status.healthy.message);
 
     expect(await getReadyStatus()).toBe(status.degraded);
   });
 
   it('should return "Degraded" when BuyingCatalogueApi is "Degraded" and DocumentApi is "Degraded"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.degraded.message })
-      .mockReturnValueOnce({ data: status.degraded.message });
+      .mockReturnValueOnce(status.degraded.message)
+      .mockReturnValueOnce(status.degraded.message);
 
     expect(await getReadyStatus()).toBe(status.degraded);
   });
 
   it('should return "Degraded" when BuyingCatalogueApi is "Degraded" and DocumentApi is "Unhealthy"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.degraded.message })
-      .mockReturnValueOnce({ data: status.unhealthy.message });
+      .mockReturnValueOnce(status.degraded.message)
+      .mockReturnValueOnce(status.unhealthy.message);
 
     expect(await getReadyStatus()).toBe(status.degraded);
   });
 
   it('should return "Unhealthy" when BuyingCatalogueApi is "Unhealthy" and DocumentApi is "Healthy"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.unhealthy.message })
-      .mockReturnValueOnce({ data: status.healthy.message });
+      .mockReturnValueOnce(status.unhealthy.message)
+      .mockReturnValueOnce(status.healthy.message);
 
     expect(await getReadyStatus()).toBe(status.unhealthy);
   });
 
   it('should return "Unhealthy" when BuyingCatalogueApi is "Unhealthy" and DocumentApi is "Degraded"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.unhealthy.message })
-      .mockReturnValueOnce({ data: status.degraded.message });
+      .mockReturnValueOnce(status.unhealthy.message)
+      .mockReturnValueOnce(status.degraded.message);
 
     expect(await getReadyStatus()).toBe(status.unhealthy);
   });
 
   it('should return "Unhealthy" when BuyingCatalogueApi is "Unhealthy" and DocumentApi is "Unhealthy"', async () => {
     apiProvider.getData
-      .mockReturnValueOnce({ data: status.unhealthy.message })
-      .mockReturnValueOnce({ data: status.unhealthy.message });
+      .mockReturnValueOnce(status.unhealthy.message)
+      .mockReturnValueOnce(status.unhealthy.message);
 
     expect(await getReadyStatus()).toBe(status.unhealthy);
+  });
+
+  describe('when login is enabled', () => {
+    it('should return "Healthy" when BuyingCatalogueApi, DocumentApi and IdentityApi is "Healthy"', async () => {
+      apiProvider.getData
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.healthy.message);
+
+      expect(await getReadyStatus('true')).toBe(status.healthy);
+    });
+
+    it('should return "Degraded" when BuyingCatalogueApi, DocumentApi are "Healthy" and IdentityApi is not "Healthy"', async () => {
+      apiProvider.getData
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.healthy.message)
+        .mockReturnValueOnce(status.unhealthy.message);
+
+      expect(await getReadyStatus('true')).toBe(status.degraded);
+    });
   });
 });
