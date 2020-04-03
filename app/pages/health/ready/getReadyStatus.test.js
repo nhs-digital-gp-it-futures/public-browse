@@ -9,7 +9,6 @@ jest.mock('../../../apiProvider', () => ({
 describe('getReadyStatus', () => {
   afterEach(() => {
     apiProvider.getData.mockReset();
-    jest.resetModules();
   });
 
   it('should call getData twice with the correct params', async () => {
