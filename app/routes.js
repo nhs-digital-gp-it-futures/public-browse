@@ -10,7 +10,7 @@ import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
 import healthRoutes from './pages/health/routes';
-import { withCatch, getCapabilitiesParam } from './helpers/routerHelper';
+import { withCatch, getCapabilitiesParam, determineContentType } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 
@@ -116,9 +116,8 @@ export const routes = (authProvider) => {
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
     logger.info(`downloading Solution ${solutionId} document ${documentName}`);
-    const documentType = documentName.split('.')[1];
     const response = await getDocument({ solutionId, documentName });
-    res.setHeader('Content-type', `application/${documentType}`);
+    res.setHeader('Content-type', determineContentType(documentName));
     response.data.pipe(res);
   });
 

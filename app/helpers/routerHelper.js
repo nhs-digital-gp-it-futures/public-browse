@@ -12,3 +12,9 @@ export const getCapabilitiesParam = (capabilities) => {
   if (!Array.isArray(capabilitiesSelected)) capabilitiesSelected = [capabilitiesSelected];
   return `.${capabilitiesSelected.join('+')}`;
 };
+
+export const determineContentType = (documentName) => {
+  const documentNameSplit = documentName.split('.');
+  const documentType = documentNameSplit[documentNameSplit.length - 1];
+  return `application/${documentType}`;
+};
