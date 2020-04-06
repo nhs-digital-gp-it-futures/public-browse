@@ -50,6 +50,11 @@ export const routes = (authProvider) => {
 
       res.redirect(config.logoutRedirectPath);
     });
+
+    router.get('/back-from-admin', (req, res, next) => {
+      req.headers.referer = `${config.appBaseUri}${config.baseUrl}/`;
+      authProvider.login()(req, res, next);
+    });
   }
 
 
