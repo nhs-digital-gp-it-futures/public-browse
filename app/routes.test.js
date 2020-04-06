@@ -136,6 +136,16 @@ describe('routes', () => {
     });
   });
 
+  describe('GET /back-from-admin', () => {
+    it('should return the correct status and redirect to the login route', () => (
+      request(setUpFakeApp())
+        .get('/back-from-admin')
+        .expect(302)
+        .then((res) => {
+          expect(res.headers.location).toEqual('http://identity-server/login');
+        })));
+  });
+
   describe('GET /', () => {
     afterEach(() => {
       homepageContext.getHomepageContext.mockReset();
