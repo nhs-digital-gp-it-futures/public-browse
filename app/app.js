@@ -63,6 +63,9 @@ export class App {
       path.join(__dirname, '/views/'),
       __dirname,
       path.join(__dirname, '/../node_modules/buying-catalogue-components/app/'),
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/components/general/'),
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/components/input/'),
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/components/view/'),
       path.join(__dirname, '/../node_modules/nhsuk-frontend/packages/'),
     ];
 
