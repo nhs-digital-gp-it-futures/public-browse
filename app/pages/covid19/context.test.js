@@ -9,7 +9,7 @@ const defaultExpectedContext = {
   buttonText: manifest.buttonText,
   buttonHref: manifest.buttonHref,
   subtext: manifest.subtext,
-  backLinkPath: '/solutions',
+  backLinkPath: '/',
   solutions: [],
 };
 
