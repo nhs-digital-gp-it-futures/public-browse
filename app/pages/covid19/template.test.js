@@ -47,13 +47,17 @@ describe('covid19 page', () => {
 
   it('should render the covid19 page inset text', createTestHarness(setup, (harness) => {
     const context = {
-      insetText: 'Some inset text',
+      insetText: [
+        'some inset text 1',
+        'some inset text 2',
+        'some inset text 3',
+      ],
     };
 
     harness.request(context, ($) => {
-      const covid19InsetText = $('[data-test-id="covid19-inset-text"] p');
-      expect(covid19InsetText.length).toEqual(1);
-      expect(covid19InsetText.text().trim()).toEqual(context.insetText);
+      const covid19InsetText = $('[data-test-id="covid19-inset-text"]');
+      const covid19InsetTextParagraph = covid19InsetText.find('p');
+      expect(covid19InsetTextParagraph.length).toEqual(3);
     });
   }));
 
