@@ -28,10 +28,10 @@ test('should display the covid19 page description', async (t) => {
 
 test('should display the covid19 page inset text', async (t) => {
   await pageSetup(t);
-  const pageInsetText = Selector('[data-test-id="covid19-inset-text"] p');
+  const pageInsetText = Selector('[data-test-id="covid19-inset-text"]');
   await t
     .expect(pageInsetText.exists).ok()
-    .expect(await extractInnerText(pageInsetText)).eql(manifest.insetText);
+    .expect(pageInsetText.find('p').count).eql(manifest.insetText.length);
 });
 
 test('should display the covid19 page compare button', async (t) => {
