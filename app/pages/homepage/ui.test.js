@@ -237,6 +237,15 @@ test('should render the admin promo when user is authenticated and has an organi
     .expect(await extractInnerText(adminPromo.find('p'))).eql(content.adminPromoDescription);
 });
 
+test('should render the order form promo', async (t) => {
+  await pageSetup({ t });
+  const orderFormPromo = Selector('[data-test-id="order-form-promo"]');
+  await t
+    .expect(orderFormPromo.count).eql(1)
+    .expect(await extractInnerText(orderFormPromo.find('h3'))).eql(content.orderFormPromoHeading)
+    .expect(await extractInnerText(orderFormPromo.find('p'))).eql(content.orderFormPromoDescription);
+});
+
 test('should navigate to the buying-catalogue-admin page when the admin promo is clicked', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
 

@@ -14,5 +14,7 @@
   "adminPromoHeading": "Manage organisations and users",
   "adminPromoDescription": "Add new organisations and user accounts or edit existing details.",
   "covid19PromoHeading": "Solutions to help with coronavirus",
-  "covid19PromoDescription": "Find Catalogue Solutions that can help prevent the spread of coronavirus."
+  "covid19PromoDescription": "Find Catalogue Solutions that can help prevent the spread of coronavirus.",
+  "orderFormPromoHeading": "Create or manage orders",
+  "orderFormPromoDescription": "Place a new order or complete an order you've already started (log in required)."
 }
