@@ -1,8 +1,8 @@
 import { Selector, ClientFunction } from 'testcafe';
 import { extractInnerText } from '../../test-utils/helper';
 
-import manifest from './manifest';
-import covid19Data from './data/non-production/covid19-solutions';
+import manifest from './manifest.json';
+import covid19Data from './data/non-production/covid19-solutions.json';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/solutions/covid19');

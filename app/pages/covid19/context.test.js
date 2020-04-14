@@ -1,6 +1,6 @@
 import { createCovid19SolutionListPageContext } from './context';
 
-import manifest from './manifest';
+import manifest from './manifest.json';
 
 const defaultExpectedContext = {
   pageTitle: manifest.title,
