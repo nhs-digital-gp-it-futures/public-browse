@@ -55,6 +55,10 @@ module.exports = {
   // Boolean to indicate if we show the capabilities selector page
   useCapabilitiesSelector: process.env.USE_CAPABILITIES_SELECTOR || 'true',
 
+  // TODO: SHOW_ORDER_FORM Remove line below when capabilities-selector is on by default
+  // Boolean to indicate if we show the order form tile
+  showOrderForm: process.env.SHOW_ORDER_FORM || 'true',
+
   // The secret needed for encoding and decoding the cookie
   cookieSecret: process.env.COOKIE_SECRET || 'secret squirrel',
 

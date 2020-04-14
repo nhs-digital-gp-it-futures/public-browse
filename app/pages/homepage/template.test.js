@@ -125,4 +125,40 @@ describe('home page', () => {
       expect(covid19Promo.length).toEqual(0);
     });
   }));
+
+  it('should render the order form promo when the showOrderForm flag is set', createTestHarness(setup, (harness) => {
+    const context = {
+      ...content,
+      orderFormUrl: 'http://localhost:3006',
+      config: {
+        showOrderForm: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const orderFormPromo = $('[data-test-id="order-form-promo"]');
+      expect(orderFormPromo.length).toEqual(1);
+      expect(orderFormPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(orderFormPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(orderFormPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(orderFormPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(orderFormPromo.find('h3').text().trim()).toEqual(content.orderFormPromoHeading);
+      expect(orderFormPromo.find('p').text().trim()).toEqual(content.orderFormPromoDescription);
+      expect(orderFormPromo.find('a').attr('href')).toEqual(context.orderFormUrl);
+    });
+  }));
+
+  it('should not render the order form promo when the showOrderForm flag is not set', createTestHarness(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showOrderForm: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const orderFormPromo = $('[data-test-id="order-form-promo"]');
+      expect(orderFormPromo.length).toEqual(0);
+    });
+  }));
 });
