@@ -45,14 +45,16 @@
         }) }}
       </div>
 
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="order-form-promo">
-        {{ promo({
-          "href": orderFormUrl,
-          "heading": orderFormPromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
-          "description": orderFormPromoDescription
-        }) }}
-      </div>
+      {% if (config.showOrderForm === 'true') %}
+        <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="order-form-promo">
+          {{ promo({
+            "href": orderFormUrl,
+            "heading": orderFormPromoHeading,
+            "classes": "nhsuk-u-margin-top-5",
+            "description": orderFormPromoDescription
+          }) }}
+        </div>
+      {% endif %}
     </div>
 
     {% if (showAdminTile) %}
