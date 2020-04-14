@@ -1,4 +1,6 @@
 import request from 'supertest';
+import { createReadStream, readFileSync } from 'fs';
+import path from 'path';
 import { App } from './app';
 import { routes } from './routes';
 import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
@@ -13,9 +15,8 @@ import * as apiProvider from './apiProvider';
 import config from './config';
 
 jest.mock('./logger');
-jest.mock('./apiProvider', () => ({
-  getDocument: jest.fn(),
-}));
+apiProvider.getDocument = jest.fn()
+  .mockImplementation(() => Promise.resolve({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) }));
 
 const mockFoundationSolutionsContext = {
   pageTitle: 'Foundation',
@@ -364,19 +365,14 @@ describe('routes', () => {
   });
 
   describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
-    afterEach(() => {
-      apiProvider.getDocument.mockReset();
-    });
-
-    it('should return the document when a document is returned by getData', async () => {
-      const expectedDocument = 'Hello';
-
-      apiProvider.getDocument
-        .mockResolvedValueOnce(expectedDocument);
-
-      const document = await apiProvider.getDocument({ solutionId: 'some-solution-id', documentName: 'some-document-name' });
-
-      expect(document).toEqual(expectedDocument);
+    it('should return the correct status and text if there is no error', () => {
+      request(setUpFakeApp())
+        .get('/solutions/foundation/1/document/somedoc')
+        .expect(200)
+        .then((res) => {
+          expect(res.text).toEqual(readFileSync(path.resolve(__dirname, 'data.pdf'), 'utf8'));
+          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+        });
     });
   });
 
