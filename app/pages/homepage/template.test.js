@@ -76,7 +76,6 @@ describe('home page', () => {
       expect(adminPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
       expect(adminPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
       expect(adminPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(adminPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
       expect(adminPromo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
       expect(adminPromo.find('p').text().trim()).toEqual(content.adminPromoDescription);
       expect(adminPromo.find('a').attr('href')).toEqual(context.adminUrl);

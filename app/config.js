@@ -17,6 +17,9 @@ module.exports = {
   // BUYING_CATALOGUE_ADMIN_HOST
   buyingCatalogueAdminHost: process.env.BUYING_CATALOGUE_ADMIN_HOST || 'http://localhost:3005',
 
+  // ORDER_FORM_HOST
+  orderFormHost: process.env.ORDER_FORM_HOST || 'http://localhost:3006',
+
   // API_HOST
   buyingCatalogueApiHost: process.env.API_HOST || 'http://localhost:5100',
 
