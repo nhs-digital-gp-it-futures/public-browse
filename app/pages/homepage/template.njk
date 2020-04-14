@@ -53,18 +53,19 @@
           "description": orderFormPromoDescription
         }) }}
       </div>
+    </div>
 
-      {% if (showAdminTile) %}
+    {% if (showAdminTile) %}
+      <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container">
         <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="admin-promo">
           {{ promo({
             "href": adminUrl,
             "heading": adminPromoHeading,
-            "classes": "nhsuk-u-margin-top-5",
             "description": adminPromoDescription
           }) }}
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
 
     <div class="nhsuk-width-container" data-test-id="about-us">
       <div class="nhsuk-grid-row">
