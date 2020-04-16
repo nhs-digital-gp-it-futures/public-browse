@@ -15,7 +15,7 @@ module.exports = {
   appBaseUri: process.env.APP_BASE_URI || 'http://docker.for.mac.localhost:3000',
 
   // BUYING_CATALOGUE_ADMIN_HOST
-  buyingCatalogueAdminHost: process.env.BUYING_CATALOGUE_ADMIN_HOST || 'http://localhost:3005',
+  buyingCatalogueAdminHost: process.env.BUYING_CATALOGUE_ADMIN_HOST || 'http://localhost:3005/admin',
 
   // ORDER_FORM_HOST
   orderFormHost: process.env.ORDER_FORM_HOST || 'http://localhost:3006',

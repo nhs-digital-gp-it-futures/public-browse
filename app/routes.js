@@ -34,7 +34,7 @@ export const routes = (authProvider) => {
 
     router.get('/logout', async (req, res) => {
       const idToken = req.session && req.session.accessToken && req.session.accessToken.id_token;
-      const url = await authProvider.logout({ idToken });
+      const url = await authProvider.logout({ req, idToken });
       res.redirect(url);
     });
 
