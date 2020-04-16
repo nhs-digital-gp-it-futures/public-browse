@@ -64,4 +64,7 @@ module.exports = {
 
   // Boolean to indicate if we show the COVID-19 feature
   showCovid19: process.env.SHOW_COVID19 || 'true',
+
+  // The url in which redis is running
+  redisUrl: process.env.REDIS_URL || 'redis://localhost:6379',
 };
