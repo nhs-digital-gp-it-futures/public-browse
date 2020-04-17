@@ -75,5 +75,5 @@ module.exports = {
   redisTls: process.env.REDIS_TLS || 'false',
 
   // The password to connect to redis
-  redisPass: process.env.REDIS_PASS || '5Ovsnm9EMoUjPONwaH3MUnng9JTCrMnqNqVgJWuxUpk=',
+  redisPass: process.env.REDIS_PASS,
 };
