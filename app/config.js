@@ -66,5 +66,14 @@ module.exports = {
   showCovid19: process.env.SHOW_COVID19 || 'true',
 
   // The url in which redis is running
-  redisUrl: process.env.REDIS_URL || 'redis://localhost:6379',
+  redisUrl: process.env.REDIS_URL || 'localhost',
+
+  // The port redis is running
+  redisPort: process.env.REDIS_PORT || 6379,
+
+  // Boolean to indicate whether to connect to redis via TLS
+  redisTls: process.env.REDIS_TLS || 'false',
+
+  // The password to connect to redis
+  redisPass: process.env.REDIS_PASS || '5Ovsnm9EMoUjPONwaH3MUnng9JTCrMnqNqVgJWuxUpk=',
 };
