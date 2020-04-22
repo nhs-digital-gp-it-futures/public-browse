@@ -16,8 +16,10 @@ import * as apiProvider from './apiProvider';
 import config from './config';
 
 jest.mock('./logger');
-apiProvider.getDocument = jest.fn()
-  .mockImplementation(() => Promise.resolve({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) }));
+
+jest.mock('./apiProvider', () => ({
+  getDocument: jest.fn().mockResolvedValue({ data: { pipe: () => {} } }),
+}));
 
 const mockFoundationSolutionsContext = {
   pageTitle: 'Foundation',
@@ -205,6 +207,22 @@ describe('routes', () => {
     });
   });
 
+  describe('GET /compare/document', () => {
+    it('should call getDocument with the correct params', () => {
+      request(setUpFakeApp())
+        .get('/compare/document')
+        .expect(200)
+        .then(() => {
+          expect(apiProvider.getDocument.mock.calls.length).toEqual(1);
+          expect(apiProvider.getDocument).toHaveBeenCalledWith({
+            endpointLocator: 'getDocument',
+            options: { documentName: 'comparesolutions.xlsx' },
+          });
+          apiProvider.getDocument.mockReset();
+        });
+    });
+  });
+
   describe('GET /solutions', () => {
     afterEach(() => {
       browseSolutionsPageContext.getBrowseSolutionsPageContext.mockReset();
@@ -386,12 +404,15 @@ describe('routes', () => {
 
   describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
     it('should return the correct status and text if there is no error', () => {
+      apiProvider.getDocument
+        .mockResolvedValueOnce({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
       request(setUpFakeApp())
         .get('/solutions/foundation/1/document/somedoc')
         .expect(200)
         .then((res) => {
           expect(res.text).toEqual(readFileSync(path.resolve(__dirname, 'data.pdf'), 'utf8'));
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          apiProvider.getDocument.mockReset();
         });
     });
   });
