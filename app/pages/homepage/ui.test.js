@@ -217,6 +217,15 @@ test('should render the browse promo', async (t) => {
     .expect(await extractInnerText(browsePromo.find('p'))).eql(content.viewSolutionsPromoDescription);
 });
 
+test('should render the compare promo', async (t) => {
+  await pageSetup({ t });
+  const promo = Selector('[data-test-id="compare-promo"]');
+  await t
+    .expect(promo.count).eql(1)
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.comparePromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.comparePromoDescription);
+});
+
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
   await pageSetup({ t });
   const browsePromoLink = Selector('[data-test-id="browse-promo"] a h3');
