@@ -50,6 +50,23 @@ test('should display the page description', async (t) => {
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);
 });
 
+test('should display the compare description', async (t) => {
+  await pageSetup({ t, capabilities: ['C1'] });
+  const compareDescription = Selector('div[data-test-id="compare-solutions-description"]');
+  await t
+    .expect(compareDescription.exists).ok()
+    .expect(await extractInnerText(compareDescription)).eql(manifest.compareSolutionsDescription);
+});
+
+test('should display the compare solutions button', async (t) => {
+  await pageSetup({ t, capabilities: ['C1'] });
+  const button = Selector('div[data-test-id="compare-button"] a');
+  await t
+    .expect(button.exists).ok()
+    .expect(await extractInnerText(button)).eql(manifest.compareButtonText)
+    .expect(button.getAttribute('href')).eql('#');
+});
+
 test('should display the capabilities heading', async (t) => {
   await pageSetup({ t, capabilities: ['C1'] });
   const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
