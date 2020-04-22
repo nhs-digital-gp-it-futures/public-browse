@@ -42,6 +42,20 @@ test('should display the page description', async (t) => {
     .expect(await extractInnerText(pageDescription)).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');
 });
 
+test('should not display the compare description', async (t) => {
+  await pageSetup(t);
+  const compareDescription = Selector('div[data-test-id="compare-solutions-description"]');
+  await t
+    .expect(compareDescription.exists).notOk();
+});
+
+test('should not display the compare solutions button', async (t) => {
+  await pageSetup(t);
+  const button = Selector('div[data-test-id="compare-button"] a');
+  await t
+    .expect(button.exists).notOk();
+});
+
 test('should display the capabilities heading', async (t) => {
   await pageSetup(t);
   const capabilityHeading = Selector('div[data-test-id="capability-list"] h5');
