@@ -398,7 +398,6 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const solutionListManifest = {
       title: solutionPageTitle,
       description: solutionPageDescription,
-      ...commonManifest,
     };
 
     const context = createSolutionListPageContext({
