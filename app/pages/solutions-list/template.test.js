@@ -76,7 +76,7 @@ describe('solutions list page', () => {
       const button = $('div[data-test-id="compare-button"] a');
       expect(button.length).toEqual(1);
       expect(button.text().trim()).toEqual(context.compareButtonText);
-      expect(button.attr('href')).toEqual('#');
+      expect(button.attr('href')).toEqual('/compare/document');
     });
   }));
 
