@@ -13,8 +13,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
     config.useCapabilitiesSelector = 'true';
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -94,8 +94,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with one solution', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -148,8 +148,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with one solution and multiple capabilities', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -207,8 +207,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with one solution with empty capability list', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -254,8 +254,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with one solution with no capabilies', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -299,8 +299,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with one solution with no supplier', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -341,8 +341,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with no solutions', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [],
     };
@@ -365,8 +365,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 
   it('should create a context for the solution list page with "all" as capabilities', () => {
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions/capabilities-selector',
       solutions: [
         {
@@ -398,6 +398,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
     const solutionListManifest = {
       title: solutionPageTitle,
       description: solutionPageDescription,
+      ...commonManifest,
     };
 
     const context = createSolutionListPageContext({
@@ -411,11 +412,11 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
   });
 
   // TODO: USE_CAPABILITIES_SELECTOR Remove test below when capabilities-selector is on by default
-  it('should create correck back link url if use capabilities selector is false by default', () => {
+  it('should create correct back link url if use capabilities selector is false by default', () => {
     config.useCapabilitiesSelector = 'false';
     const expectedContext = {
-      pageTitle: solutionPageTitle,
-      pageDescription: solutionPageDescription,
+      title: solutionPageTitle,
+      description: solutionPageDescription,
       backLinkPath: '/solutions',
       solutions: [
         {
@@ -497,8 +498,8 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
 describe('createSolutionListPageContext - Foundation', () => {
   it('should create a context for the solution list page', () => {
     const expectedContext = {
-      pageTitle: foundationPageTitle,
-      pageDescription: foundationPageDescription,
+      title: foundationPageTitle,
+      description: foundationPageDescription,
       backLinkPath: '/solutions',
       solutions: [
         {
@@ -573,8 +574,8 @@ describe('createSolutionListPageContext - Foundation', () => {
 
   it('should create a context for the solution list page with one solution', () => {
     const expectedContext = {
-      pageTitle: foundationPageTitle,
-      pageDescription: foundationPageDescription,
+      title: foundationPageTitle,
+      description: foundationPageDescription,
       backLinkPath: '/solutions',
       solutions: [
         {
@@ -622,8 +623,8 @@ describe('createSolutionListPageContext - Foundation', () => {
 
   it('should create a context for the solution list page with one solution with empty capability list', () => {
     const expectedContext = {
-      pageTitle: foundationPageTitle,
-      pageDescription: foundationPageDescription,
+      title: foundationPageTitle,
+      description: foundationPageDescription,
       backLinkPath: '/solutions',
       solutions: [
         {
@@ -664,8 +665,8 @@ describe('createSolutionListPageContext - Foundation', () => {
 
   it('should create a context for the solution list page with one solution with no capabilies', () => {
     const expectedContext = {
-      pageTitle: foundationPageTitle,
-      pageDescription: foundationPageDescription,
+      title: foundationPageTitle,
+      description: foundationPageDescription,
       backLinkPath: '/solutions',
       solutions: [
         {
@@ -704,8 +705,8 @@ describe('createSolutionListPageContext - Foundation', () => {
 
   it('should create a context for the solution list page with one solution with no supplier', () => {
     const expectedContext = {
-      pageTitle: foundationPageTitle,
-      pageDescription: foundationPageDescription,
+      title: foundationPageTitle,
+      description: foundationPageDescription,
       backLinkPath: '/solutions',
       solutions: [
         {
@@ -741,8 +742,8 @@ describe('createSolutionListPageContext - Foundation', () => {
 
   it('should create a context for the solution list page with no solutions', () => {
     const expectedContext = {
-      pageTitle: foundationPageTitle,
-      pageDescription: foundationPageDescription,
+      title: foundationPageTitle,
+      description: foundationPageDescription,
       backLinkPath: '/solutions',
       solutions: [],
     };

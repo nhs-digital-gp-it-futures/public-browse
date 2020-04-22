@@ -27,8 +27,7 @@ export const createSolutionListPageContext = ({
 
   return {
     backLinkPath,
-    pageTitle: solutionListManifest.title,
-    pageDescription: solutionListManifest.description,
+    ...solutionListManifest,
     solutions: createSolutionsContext({
       filterType,
       solutions: solutionsData,
