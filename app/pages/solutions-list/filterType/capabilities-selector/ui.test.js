@@ -28,6 +28,8 @@ fixture('Show Capability Selector Solution List Page - one capability selected')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -64,7 +66,7 @@ test('should display the compare solutions button', async (t) => {
   await t
     .expect(button.exists).ok()
     .expect(await extractInnerText(button)).eql(manifest.compareButtonText)
-    .expect(button.getAttribute('href')).eql('#');
+    .expect(button.getAttribute('href')).eql('/compare/document');
 });
 
 test('should display the capabilities heading', async (t) => {
@@ -137,6 +139,8 @@ fixture('Show Capability Selector Solution List Page - multiple capabilities sel
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -229,6 +233,8 @@ fixture('Show Capability Selector Solution List Page - no capabilities selected'
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -322,6 +328,8 @@ fixture('Show Capability Selector Solution List Page Error')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
