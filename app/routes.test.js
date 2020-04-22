@@ -11,6 +11,7 @@ import * as solutionListPageContext from './pages/solutions-list/controller';
 import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
+import * as comparePageContext from './pages/compare/controller';
 import * as apiProvider from './apiProvider';
 import config from './config';
 
@@ -180,6 +181,25 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="guide-page-body"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+        });
+    });
+  });
+
+  describe('GET /compare', () => {
+    afterEach(() => {
+      comparePageContext.getContext.mockReset();
+    });
+
+    it('should return the correct status and text if there is no error', () => {
+      comparePageContext.getContext = jest.fn()
+        .mockImplementation(() => Promise.resolve({}));
+
+      return request(setUpFakeApp())
+        .get('/compare')
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="compare-page-title"')).toEqual(true);
           expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
         });
     });

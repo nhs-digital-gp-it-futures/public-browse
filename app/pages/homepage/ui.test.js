@@ -183,7 +183,7 @@ test('should render the homepage hero', async (t) => {
   const description = homepageSection.find('h2');
 
   await t
-    .expect(homepageSection.count).eql(1)
+    .expect(homepageSection.exists).ok()
     .expect(await extractInnerText(title)).eql(content.heroHeading)
     .expect(await extractInnerText(description)).eql(content.heroText);
 });
@@ -201,85 +201,128 @@ test('should render the about us section', async (t) => {
 
 test('should render the guidance promo', async (t) => {
   await pageSetup({ t });
-  const guidancePromo = Selector('[data-test-id="guidance-promo"]');
+  const promo = Selector('[data-test-id="guidance-promo"]');
   await t
-    .expect(guidancePromo.count).eql(1)
-    .expect(await extractInnerText(guidancePromo.find('h3'))).eql(content.guidePromoHeading)
-    .expect(await extractInnerText(guidancePromo.find('p'))).eql(content.guidePromoDescription);
+    .expect(promo.exists).ok()
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.guidePromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.guidePromoDescription);
+});
+
+test('should navigate to the guide page when the guide promo is clicked', async (t) => {
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+
+  const promo = Selector('[data-test-id="guidance-promo"]');
+
+  await t
+    .expect(promo.exists).ok()
+    .expect(promo.find('a').getAttribute('href')).eql('/guide')
+    .click(promo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/guide');
 });
 
 test('should render the browse promo', async (t) => {
   await pageSetup({ t });
-  const browsePromo = Selector('[data-test-id="browse-promo"]');
+  const promo = Selector('[data-test-id="browse-promo"]');
   await t
-    .expect(browsePromo.count).eql(1)
-    .expect(await extractInnerText(browsePromo.find('h3'))).eql(content.viewSolutionsPromoHeading)
-    .expect(await extractInnerText(browsePromo.find('p'))).eql(content.viewSolutionsPromoDescription);
+    .expect(promo.exists).ok()
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.viewSolutionsPromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.viewSolutionsPromoDescription);
+});
+
+test('should navigate to the solutions page when the browse promo is clicked', async (t) => {
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+
+  const promo = Selector('[data-test-id="browse-promo"]');
+
+  await t
+    .expect(promo.exists).ok()
+    .expect(promo.find('a').getAttribute('href')).eql('/solutions')
+    .click(promo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/solutions');
 });
 
 test('should render the compare promo', async (t) => {
   await pageSetup({ t });
   const promo = Selector('[data-test-id="compare-promo"]');
   await t
-    .expect(promo.count).eql(1)
+    .expect(promo.exists).ok()
     .expect(await extractInnerText(promo.find('h3'))).eql(content.comparePromoHeading)
     .expect(await extractInnerText(promo.find('p'))).eql(content.comparePromoDescription);
 });
 
+test('should navigate to the compare page when the compare promo is clicked', async (t) => {
+  await pageSetup({ t });
+
+  const promo = Selector('[data-test-id="compare-promo"]');
+
+  await t
+    .expect(promo.exists).ok()
+    .expect(promo.find('a').getAttribute('href')).eql('/compare')
+    .click(promo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/compare');
+});
+
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
   await pageSetup({ t });
-  const browsePromoLink = Selector('[data-test-id="browse-promo"] a h3');
+  const promo = Selector('[data-test-id="browse-promo"] a h3');
   await t
-    .expect(browsePromoLink.exists).ok()
-    .click(browsePromoLink)
+    .expect(promo.exists).ok()
+    .click(promo)
     .expect(getLocation()).contains('/solutions');
 });
 
 test('should render the admin promo when user is authenticated and has an organisation claim', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
 
-  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  const promo = Selector('[data-test-id="admin-promo"]');
 
   await t
-    .expect(adminPromo.count).eql(1)
-    .expect(await extractInnerText(adminPromo.find('h3'))).eql(content.adminPromoHeading)
-    .expect(await extractInnerText(adminPromo.find('p'))).eql(content.adminPromoDescription);
+    .expect(promo.exists).ok()
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.adminPromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.adminPromoDescription);
 });
 
 test('should render the order form promo', async (t) => {
   await pageSetup({ t });
-  const orderFormPromo = Selector('[data-test-id="order-form-promo"]');
+  const promo = Selector('[data-test-id="order-form-promo"]');
   await t
-    .expect(orderFormPromo.count).eql(1)
-    .expect(await extractInnerText(orderFormPromo.find('h3'))).eql(content.orderFormPromoHeading)
-    .expect(await extractInnerText(orderFormPromo.find('p'))).eql(content.orderFormPromoDescription);
+    .expect(promo.exists).ok()
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.orderFormPromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.orderFormPromoDescription);
 });
 
-test('should navigate to the buying-catalogue-admin page when the admin promo is clicked', async (t) => {
+test('should have buying-catalogue-admin page as href on admin promo', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
 
-  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  const promo = Selector('[data-test-id="admin-promo"]');
 
   await t
-    .expect(adminPromo.find('a').getAttribute('href')).eql(`${buyingCatalogueAdminHost}/organisations`);
+    .expect(promo.exists).ok()
+    .expect(promo.find('a').getAttribute('href')).eql(`${buyingCatalogueAdminHost}/organisations`);
 });
 
 test('should not render the admin promo when user is authenticated but does not have the organisation claim in the cookie', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude' } });
 
-  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  const promo = Selector('[data-test-id="admin-promo"]');
 
   await t
-    .expect(adminPromo.exists).notOk();
+    .expect(promo.exists).notOk();
 });
 
 test('should not render the admin promo when user is not authenticated', async (t) => {
   await pageSetup({ t });
 
-  const adminPromo = Selector('[data-test-id="admin-promo"]');
+  const promo = Selector('[data-test-id="admin-promo"]');
 
   await t
-    .expect(adminPromo.exists).notOk();
+    .expect(promo.exists).notOk();
 });
 
 fixture('Footer')
