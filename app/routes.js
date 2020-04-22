@@ -76,6 +76,16 @@ export const routes = (authProvider) => {
     res.render('pages/compare/template.njk', addConfig({ context, user: req.user }));
   });
 
+  router.get('/compare/document', async (req, res) => {
+    logger.info('downloading olution comparison document');
+    const response = await getDocument({
+      endpointLocator: 'getDocument',
+      options: { documentName: 'comparesolutions.xlsx' },
+    });
+    res.setHeader('Content-type', 'application/xlsx');
+    response.data.pipe(res);
+  });
+
   router.get('/solutions', (req, res) => {
     const context = getBrowseSolutionsPageContext();
     logger.info('navigating to browse solutions');
@@ -127,7 +137,10 @@ export const routes = (authProvider) => {
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
     logger.info(`downloading Solution ${solutionId} document ${documentName}`);
-    const response = await getDocument({ solutionId, documentName });
+    const response = await getDocument({
+      endpointLocator: 'getSolutionDocument',
+      options: { solutionId, documentName },
+    });
     res.setHeader('Content-type', determineContentType(documentName));
     response.data.pipe(res);
   });
