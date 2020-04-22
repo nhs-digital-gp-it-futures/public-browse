@@ -4,6 +4,7 @@ import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from 
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
 import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
+import { getComparePageContext } from './pages/compare/controller';
 import { getCapabilitiesContext } from './pages/capabilities-selector/controller';
 import { errorHandler } from './pages/error/errorHandler';
 import { logger } from './logger';
@@ -57,7 +58,6 @@ export const routes = (authProvider) => {
     });
   }
 
-
   router.get('/', (req, res) => {
     const context = getHomepageContext({ user: req.user });
     logger.info('navigating to home page');
@@ -68,6 +68,12 @@ export const routes = (authProvider) => {
     const context = getGuidePageContext();
     logger.info('navigating to guide');
     res.render('pages/guide/template.njk', addConfig({ context, user: req.user }));
+  });
+
+  router.get('/compare', (req, res) => {
+    const context = getComparePageContext();
+    logger.info('navigating to compare');
+    res.render('pages/compare/template.njk', addConfig({ context, user: req.user }));
   });
 
   router.get('/solutions', (req, res) => {
