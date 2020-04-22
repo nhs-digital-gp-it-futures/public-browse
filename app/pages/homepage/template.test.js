@@ -36,15 +36,16 @@ describe('home page', () => {
     const context = content;
 
     harness.request(context, ($) => {
-      const guidancePromo = $('[data-test-id="guidance-promo"]');
-      expect(guidancePromo.length).toEqual(1);
-      expect(guidancePromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(guidancePromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(guidancePromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(guidancePromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      const promo = $('[data-test-id="guidance-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/guide');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-      expect(guidancePromo.find('h3').text().trim()).toEqual(content.guidePromoHeading);
-      expect(guidancePromo.find('p').text().trim()).toEqual(content.guidePromoDescription);
+      expect(promo.find('h3').text().trim()).toEqual(content.guidePromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.guidePromoDescription);
     });
   }));
 
@@ -52,14 +53,15 @@ describe('home page', () => {
     const context = content;
 
     harness.request(context, ($) => {
-      const browsePromo = $('[data-test-id="browse-promo"]');
-      expect(browsePromo.length).toEqual(1);
-      expect(browsePromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(browsePromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(browsePromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(browsePromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
-      expect(browsePromo.find('h3').text().trim()).toEqual(content.viewSolutionsPromoHeading);
-      expect(browsePromo.find('p').text().trim()).toEqual(content.viewSolutionsPromoDescription);
+      const promo = $('[data-test-id="browse-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/solutions');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.viewSolutionsPromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.viewSolutionsPromoDescription);
     });
   }));
 
@@ -69,6 +71,7 @@ describe('home page', () => {
     harness.request(context, ($) => {
       const promo = $('[data-test-id="compare-promo"]');
       expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/compare');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
       expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
       expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
@@ -86,14 +89,15 @@ describe('home page', () => {
     };
 
     harness.request(context, ($) => {
-      const adminPromo = $('[data-test-id="admin-promo"]');
-      expect(adminPromo.length).toEqual(1);
-      expect(adminPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(adminPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(adminPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(adminPromo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
-      expect(adminPromo.find('p').text().trim()).toEqual(content.adminPromoDescription);
-      expect(adminPromo.find('a').attr('href')).toEqual(context.adminUrl);
+      const promo = $('[data-test-id="admin-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('http://admin-page');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.adminPromoDescription);
+      expect(promo.find('a').attr('href')).toEqual(context.adminUrl);
     });
   }));
 
@@ -115,15 +119,16 @@ describe('home page', () => {
     };
 
     harness.request(context, ($) => {
-      const covid19Promo = $('[data-test-id="covid19-promo"]');
-      expect(covid19Promo.length).toEqual(1);
-      expect(covid19Promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(covid19Promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(covid19Promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(covid19Promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
-      expect(covid19Promo.find('h3').text().trim()).toEqual(content.covid19PromoHeading);
-      expect(covid19Promo.find('p').text().trim()).toEqual(content.covid19PromoDescription);
-      expect(covid19Promo.find('a').attr('href')).toEqual('/solutions/covid19');
+      const promo = $('[data-test-id="covid19-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.covid19PromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.covid19PromoDescription);
+      expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
     });
   }));
 
