@@ -211,11 +211,11 @@ test('should render the guidance promo', async (t) => {
 test('should navigate to the guide page when the guide promo is clicked', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
 
-  const promo = Selector('[data-test-id="guidance-promo"] a');
+  const promo = Selector('[data-test-id="guidance-promo"]');
 
   await t
     .expect(promo.exists).ok()
-    .expect(promo.getAttribute('href')).eql('/guide')
+    .expect(promo.find('a').getAttribute('href')).eql('/guide')
     .click(promo);
 
   await t
@@ -234,11 +234,11 @@ test('should render the browse promo', async (t) => {
 test('should navigate to the solutions page when the browse promo is clicked', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
 
-  const promo = Selector('[data-test-id="browse-promo"] a');
+  const promo = Selector('[data-test-id="browse-promo"]');
 
   await t
     .expect(promo.exists).ok()
-    .expect(promo.getAttribute('href')).eql('/solutions')
+    .expect(promo.find('a').getAttribute('href')).eql('/solutions')
     .click(promo);
 
   await t
@@ -257,11 +257,11 @@ test('should render the compare promo', async (t) => {
 test('should navigate to the compare page when the compare promo is clicked', async (t) => {
   await pageSetup({ t });
 
-  const promo = Selector('[data-test-id="compare-promo"] a');
+  const promo = Selector('[data-test-id="compare-promo"]');
 
   await t
     .expect(promo.exists).ok()
-    .expect(promo.getAttribute('href')).eql('/compare')
+    .expect(promo.find('a').getAttribute('href')).eql('/compare')
     .click(promo);
 
   await t
@@ -297,18 +297,14 @@ test('should render the order form promo', async (t) => {
     .expect(await extractInnerText(promo.find('p'))).eql(content.orderFormPromoDescription);
 });
 
-test('should navigate to the buying-catalogue-admin page when the admin promo is clicked', async (t) => {
+test('should have buying-catalogue-admin page as href on admin promo', async (t) => {
   await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
 
   const promo = Selector('[data-test-id="admin-promo"]');
 
   await t
     .expect(promo.exists).ok()
-    .expect(promo.find('a').getAttribute('href')).eql(`${buyingCatalogueAdminHost}/organisations`)
-    .click(promo);
-
-  await t
-    .expect(getLocation()).contains(`${buyingCatalogueAdminHost}/organisations`);
+    .expect(promo.find('a').getAttribute('href')).eql(`${buyingCatalogueAdminHost}/organisations`);
 });
 
 test('should not render the admin promo when user is authenticated but does not have the organisation claim in the cookie', async (t) => {
