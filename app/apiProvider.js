@@ -4,7 +4,6 @@ import { buyingCatalogueApiHost, documentApiHost, oidcBaseUri } from './config';
 
 const getHeaders = accessToken => (accessToken ? { headers: { Authorization: `Bearer ${accessToken}` } } : {});
 
-
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
   if (filterType === 'all') {
     return `${apiHostUrl}/api/v1/Solutions`;
@@ -25,7 +24,8 @@ const endpoints = {
   getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
   getCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Capabilities`,
   // GET Documents endpoint
-  getDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
+  getSolutionDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
+  getDocument: options => `${documentApiHost}/api/v1/api/v1/documents/${options.documentName}`,
   // POST endpoints
   postSelectedCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Solutions`,
 };
@@ -38,8 +38,8 @@ export const getData = async ({ endpointLocator, options, accessToken }) => {
   return response.data || null;
 };
 
-export const getDocument = (options) => {
-  const endpoint = endpoints.getDocument(options);
+export const getDocument = ({ options, endpointLocator }) => {
+  const endpoint = endpoints[endpointLocator](options);
   logger.info(`api called: [GET] ${endpoint}`);
   return axios.get(endpoint, { responseType: 'stream' });
 };
