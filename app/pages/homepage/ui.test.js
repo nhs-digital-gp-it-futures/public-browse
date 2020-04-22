@@ -208,6 +208,19 @@ test('should render the guidance promo', async (t) => {
     .expect(await extractInnerText(guidancePromo.find('p'))).eql(content.guidePromoDescription);
 });
 
+test('should navigate to the guide page when the guide promo is clicked', async (t) => {
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+
+  const guidancePromo = Selector('[data-test-id="guidance-promo"] a');
+
+  await t
+    .expect(guidancePromo.getAttribute('href')).eql('/guide')
+    .click(guidancePromo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/guide');
+});
+
 test('should render the browse promo', async (t) => {
   await pageSetup({ t });
   const browsePromo = Selector('[data-test-id="browse-promo"]');
@@ -217,6 +230,19 @@ test('should render the browse promo', async (t) => {
     .expect(await extractInnerText(browsePromo.find('p'))).eql(content.viewSolutionsPromoDescription);
 });
 
+test('should navigate to the solutions page when the browse promo is clicked', async (t) => {
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+
+  const browsePromo = Selector('[data-test-id="browse-promo"] a');
+
+  await t
+    .expect(browsePromo.getAttribute('href')).eql('/solutions')
+    .click(browsePromo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/solutions');
+});
+
 test('should render the compare promo', async (t) => {
   await pageSetup({ t });
   const promo = Selector('[data-test-id="compare-promo"]');
@@ -224,6 +250,19 @@ test('should render the compare promo', async (t) => {
     .expect(promo.count).eql(1)
     .expect(await extractInnerText(promo.find('h3'))).eql(content.comparePromoHeading)
     .expect(await extractInnerText(promo.find('p'))).eql(content.comparePromoDescription);
+});
+
+test('should navigate to the compare page when the compare promo is clicked', async (t) => {
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+
+  const adminPromo = Selector('[data-test-id="compare-promo"] a');
+
+  await t
+    .expect(adminPromo.getAttribute('href')).eql('/compare')
+    .click(adminPromo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/compare');
 });
 
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
