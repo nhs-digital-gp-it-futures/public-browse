@@ -253,13 +253,13 @@ test('should render the compare promo', async (t) => {
 });
 
 test('should navigate to the compare page when the compare promo is clicked', async (t) => {
-  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+  await pageSetup({ t });
 
-  const adminPromo = Selector('[data-test-id="compare-promo"] a');
+  const promo = Selector('[data-test-id="compare-promo"] a');
 
   await t
-    .expect(adminPromo.getAttribute('href')).eql('/compare')
-    .click(adminPromo);
+    .expect(promo.getAttribute('href')).eql('/compare')
+    .click(promo);
 
   await t
     .expect(getLocation()).eql('http://localhost:1234/compare');
