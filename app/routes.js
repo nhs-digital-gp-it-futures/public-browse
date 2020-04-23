@@ -77,10 +77,10 @@ export const routes = (authProvider) => {
   });
 
   router.get('/compare/document', async (req, res) => {
-    logger.info('downloading olution comparison document');
+    logger.info('downloading solution comparison document');
     const response = await getDocument({
       endpointLocator: 'getDocument',
-      options: { documentName: 'comparesolutions.xlsx' },
+      options: { documentName: 'compare-solutions.xlsx' },
     });
     res.setHeader('Content-type', 'application/xlsx');
     response.data.pipe(res);
