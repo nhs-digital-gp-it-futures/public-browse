@@ -25,7 +25,7 @@ const endpoints = {
   getCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Capabilities`,
   // GET Documents endpoint
   getSolutionDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
-  getDocument: options => `${documentApiHost}/api/v1/api/v1/documents/${options.documentName}`,
+  getDocument: options => `${documentApiHost}/api/v1/documents/${options.documentName}`,
   // POST endpoints
   postSelectedCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Solutions`,
 };
