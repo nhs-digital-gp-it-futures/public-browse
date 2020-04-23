@@ -62,7 +62,7 @@ describe('browse solutions page', () => {
   it('should render go back link', createTestHarness(setup, (harness) => {
     const context = {
       ...content,
-      pageTitle: 'some page title',
+      title: 'some page title',
     };
 
     harness.request(context, ($) => {

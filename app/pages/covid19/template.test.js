@@ -9,19 +9,19 @@ const setup = {
 describe('covid19 page', () => {
   it('should render the covid19 page title', createTestHarness(setup, (harness) => {
     const context = {
-      pageTitle: 'Covid-19 page title',
+      title: 'Covid-19 page title',
     };
 
     harness.request(context, ($) => {
       const covid19Title = $('[data-test-id="general-page-title"]');
       expect(covid19Title.length).toEqual(1);
-      expect(covid19Title.text().trim()).toEqual(context.pageTitle);
+      expect(covid19Title.text().trim()).toEqual(context.title);
     });
   }));
 
   it('should render covid19 go back link', createTestHarness(setup, (harness) => {
     const context = {
-      pageTitle: 'Covid-19 page title',
+      title: 'Covid-19 page title',
       backLinkPath: '/backlink/path',
     };
 

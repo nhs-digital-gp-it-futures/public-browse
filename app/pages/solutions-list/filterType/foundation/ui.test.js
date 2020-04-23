@@ -30,10 +30,10 @@ fixture('Show Foundation Solution List Page')
 
 test('should display the page title', async (t) => {
   await pageSetup(t);
-  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('h1[data-test-id="general-page-title"]');
   await t
-    .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql('Foundation Solution Sets – results');
+    .expect(title.exists).ok()
+    .expect(await extractInnerText(title)).eql('Foundation Solution Sets – results');
 });
 
 test('should display the page description', async (t) => {
