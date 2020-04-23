@@ -1,6 +1,7 @@
 import { createViewSolutionPageContext } from './solutionPageContext';
 
 const expectedContext = {
+  title: 'Write on Time',
   solutionHeader: {
     id: '100000-001',
     name: 'Write on Time',

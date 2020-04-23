@@ -37,6 +37,7 @@ describe('view-solution controller', () => {
 
     it('should return the context when preview data is returned by getData', async () => {
       const expectedContext = {
+        title: 'Write on Time',
         solutionHeader: {
           id: '100000-001',
           name: 'Write on Time',
