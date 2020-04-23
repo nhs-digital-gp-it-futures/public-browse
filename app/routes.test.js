@@ -1,9 +1,9 @@
 import request from 'supertest';
 import { createReadStream, readFileSync } from 'fs';
 import path from 'path';
+import { FakeAuthProvider } from 'buying-catalogue-library';
 import { App } from './app';
 import { routes } from './routes';
-import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
 import { getCsrfTokenFromGet, setFakeCookie } from './test-utils/helper';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
