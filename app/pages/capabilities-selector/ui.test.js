@@ -23,6 +23,8 @@ fixture('Capabilities Selector Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 

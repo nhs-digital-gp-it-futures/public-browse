@@ -15,7 +15,11 @@ fixture('Compare Page')
   .page('http://localhost:1234/healthcheck')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
-    if (!isDone) nock.cleanAll();
+    if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
+      nock.cleanAll();
+    }
 
     await t.expect(isDone).ok('Not all nock interceptors were used!');
   });
@@ -57,20 +61,6 @@ test('should render the compare button', async (t) => {
 
   await t
     .expect(button.exists).ok()
-    .expect(button.getAttribute('href')).eql('#')
+    .expect(button.getAttribute('href')).eql('/compare/document')
     .expect(await extractInnerText(button)).eql(manifest.compareButtonText);
-});
-
-test('should navigate to # when the compare button is clicked', async (t) => {
-  await pageSetup({ t });
-
-  const button = Selector('[data-test-id="compare-button"] a');
-
-  await t
-    .expect(button.exists).ok()
-
-    .click(button);
-
-  await t
-    .expect(getLocation()).eql('http://localhost:1234/compare#');
 });

@@ -2,5 +2,5 @@ import manifest from './manifest.json';
 
 export const getContext = () => ({
   ...manifest,
-  compareButtonHref: '#',
+  compareButtonHref: '/compare/document',
 });
