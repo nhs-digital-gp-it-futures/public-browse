@@ -22,13 +22,13 @@ jest.mock('./apiProvider', () => ({
 }));
 
 const mockFoundationSolutionsContext = {
-  pageTitle: 'Foundation',
+  title: 'Foundation',
   pageDescription: 'These foundation solutions',
   solutions: [],
 };
 
 const mockFilteredSolutions = {
-  pageTitle: 'Custom',
+  title: 'Custom',
   pageDescription: 'These are solutions which match the selected capabilities',
   solutions: [],
 };

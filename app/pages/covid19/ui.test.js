@@ -12,10 +12,10 @@ fixture('Show covid19 Page');
 
 test('should display the covid19 page title', async (t) => {
   await pageSetup(t);
-  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('h1[data-test-id="general-page-title"]');
   await t
-    .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql(manifest.title);
+    .expect(title.exists).ok()
+    .expect(await extractInnerText(title)).eql(manifest.title);
 });
 
 test('should display the covid19 page description', async (t) => {

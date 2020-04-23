@@ -21,7 +21,7 @@ describe('solutions list page', () => {
 
   it('should render go back link', createTestHarness(setup, (harness) => {
     const context = {
-      pageTitle: 'some page title',
+      title: 'some page title',
       backLinkPath: '/backlink/path',
     };
 

@@ -19,7 +19,7 @@ export const createCovid19SolutionListPageContext = ({
 
   return {
     backLinkPath: '/',
-    pageTitle: manifest.title,
+    title: manifest.title,
     pageDescription: manifest.description,
     insetText: manifest.insetText,
     buttonText: manifest.buttonText,
