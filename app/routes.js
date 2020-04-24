@@ -70,13 +70,19 @@ export const routes = (authProvider) => {
     res.render('pages/guide/template.njk', addConfig({ context, user: req.user }));
   });
 
-  router.get('/compare', (req, res) => {
+  router.get('/solutions', (req, res) => {
+    const context = getBrowseSolutionsPageContext();
+    logger.info('navigating to browse solutions');
+    res.render('pages/browse-solutions/template.njk', addConfig({ context, user: req.user }));
+  });
+
+  router.get('/solutions/compare', (req, res) => {
     const context = getComparePageContext();
     logger.info('navigating to compare');
     res.render('pages/compare/template.njk', addConfig({ context, user: req.user }));
   });
 
-  router.get('/compare/document', async (req, res) => {
+  router.get('/solutions/compare/document', async (req, res) => {
     logger.info('downloading solution comparison document');
     const response = await getDocument({
       endpointLocator: 'getDocument',
@@ -84,12 +90,6 @@ export const routes = (authProvider) => {
     });
     res.setHeader('Content-type', 'application/xlsx');
     response.data.pipe(res);
-  });
-
-  router.get('/solutions', (req, res) => {
-    const context = getBrowseSolutionsPageContext();
-    logger.info('navigating to browse solutions');
-    res.render('pages/browse-solutions/template.njk', addConfig({ context, user: req.user }));
   });
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {

@@ -12,6 +12,6 @@ describe('getContext for compare', () => {
 
   it('should add compareButtonHref', () => {
     const context = getContext();
-    expect(context.compareButtonHref).toEqual('/compare/document');
+    expect(context.compareButtonHref).toEqual('/solutions/compare/document');
   });
 });
