@@ -65,22 +65,6 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the compare promo', createTestHarness(setup, (harness) => {
-    const context = content;
-
-    harness.request(context, ($) => {
-      const promo = $('[data-test-id="compare-promo"]');
-      expect(promo.length).toEqual(1);
-      expect(promo.find('a').attr('href')).toEqual('/compare');
-      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
-      expect(promo.find('h3').text().trim()).toEqual(content.comparePromoHeading);
-      expect(promo.find('p').text().trim()).toEqual(content.comparePromoDescription);
-    });
-  }));
-
   it('should render the admin promo when showAdminTile is true', createTestHarness(setup, (harness) => {
     const context = {
       ...content,

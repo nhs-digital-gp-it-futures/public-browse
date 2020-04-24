@@ -245,29 +245,6 @@ test('should navigate to the solutions page when the browse promo is clicked', a
     .expect(getLocation()).eql('http://localhost:1234/solutions');
 });
 
-test('should render the compare promo', async (t) => {
-  await pageSetup({ t });
-  const promo = Selector('[data-test-id="compare-promo"]');
-  await t
-    .expect(promo.exists).ok()
-    .expect(await extractInnerText(promo.find('h3'))).eql(content.comparePromoHeading)
-    .expect(await extractInnerText(promo.find('p'))).eql(content.comparePromoDescription);
-});
-
-test('should navigate to the compare page when the compare promo is clicked', async (t) => {
-  await pageSetup({ t });
-
-  const promo = Selector('[data-test-id="compare-promo"]');
-
-  await t
-    .expect(promo.exists).ok()
-    .expect(promo.find('a').getAttribute('href')).eql('/compare')
-    .click(promo);
-
-  await t
-    .expect(getLocation()).eql('http://localhost:1234/compare');
-});
-
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
   await pageSetup({ t });
   const promo = Selector('[data-test-id="browse-promo"] a h3');

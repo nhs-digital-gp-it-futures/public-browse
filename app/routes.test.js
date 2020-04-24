@@ -188,7 +188,7 @@ describe('routes', () => {
     });
   });
 
-  describe('GET /compare', () => {
+  describe('GET /solutions/compare', () => {
     afterEach(() => {
       comparePageContext.getContext.mockReset();
     });
@@ -198,7 +198,7 @@ describe('routes', () => {
         .mockImplementation(() => Promise.resolve({}));
 
       return request(setUpFakeApp())
-        .get('/compare')
+        .get('/solutions/compare')
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="compare-page-title"')).toEqual(true);
@@ -207,10 +207,10 @@ describe('routes', () => {
     });
   });
 
-  describe('GET /compare/document', () => {
+  describe('GET /solutions/compare/document', () => {
     it('should call getDocument with the correct params', () => {
       request(setUpFakeApp())
-        .get('/compare/document')
+        .get('/solutions/compare/document')
         .expect(200)
         .then(() => {
           expect(apiProvider.getDocument.mock.calls.length).toEqual(1);
