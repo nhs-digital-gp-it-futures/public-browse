@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 import content from './manifest.json';
 
@@ -9,7 +9,7 @@ const setup = {
 };
 
 describe('browse solutions page', () => {
-  it('should render the view solution section', createTestHarness(setup, (harness) => {
+  it('should render the view solution section', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -23,7 +23,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render the browse foundation solutions promo', createTestHarness(setup, (harness) => {
+  it('should render the browse foundation solutions promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -41,7 +41,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render the browse all solutions promo', createTestHarness(setup, (harness) => {
+  it('should render the browse all solutions promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -60,7 +60,7 @@ describe('browse solutions page', () => {
   }));
 
 
-  it('should render the compare promo', createTestHarness(setup, (harness) => {
+  it('should render the compare promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -76,7 +76,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render go back link', createTestHarness(setup, (harness) => {
+  it('should render go back link', componentTester(setup, (harness) => {
     const context = {
       ...content,
       title: 'some page title',
@@ -91,7 +91,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render buyers guide information', createTestHarness(setup, (harness) => {
+  it('should render buyers guide information', componentTester(setup, (harness) => {
     const context = {
       ...content,
     };
@@ -104,7 +104,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render buyers guide link', createTestHarness(setup, (harness) => {
+  it('should render buyers guide link', componentTester(setup, (harness) => {
     const context = {
       ...content,
     };

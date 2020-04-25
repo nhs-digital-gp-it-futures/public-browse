@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('solutions list page', () => {
-  it('should render the solution list page title', createTestHarness(setup, (harness) => {
+  it('should render the solution list page title', componentTester(setup, (harness) => {
     const context = {
       title: 'some page title',
     };
@@ -19,7 +19,7 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should render go back link', createTestHarness(setup, (harness) => {
+  it('should render go back link', componentTester(setup, (harness) => {
     const context = {
       title: 'some page title',
       backLinkPath: '/backlink/path',
@@ -33,7 +33,7 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should render the solution list page description', createTestHarness(setup, (harness) => {
+  it('should render the solution list page description', componentTester(setup, (harness) => {
     const context = {
       description: 'some page description',
     };
@@ -45,7 +45,7 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should render the compare description if it is in the context', createTestHarness(setup, (harness) => {
+  it('should render the compare description if it is in the context', componentTester(setup, (harness) => {
     const context = {
       compareSolutionsDescription: 'some compare description',
     };
@@ -57,7 +57,7 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should not render the compare description if it is not in the context', createTestHarness(setup, (harness) => {
+  it('should not render the compare description if it is not in the context', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -66,7 +66,7 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should render the compare button if compareSolutionsDescription is in the context', createTestHarness(setup, (harness) => {
+  it('should render the compare button if compareSolutionsDescription is in the context', componentTester(setup, (harness) => {
     const context = {
       compareSolutionsDescription: 'some compare description',
       compareButtonText: 'compare button text',
@@ -80,7 +80,7 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should not render the compare button if compareSolutionsDescription is not in the context', createTestHarness(setup, (harness) => {
+  it('should not render the compare button if compareSolutionsDescription is not in the context', componentTester(setup, (harness) => {
     const context = {
       compareButtonText: 'compare button text',
     };
@@ -92,7 +92,7 @@ describe('solutions list page', () => {
   }));
 
   describe('solution cards', () => {
-    it('should render 0 cards if no solutions are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 0 cards if no solutions are provided in the context', componentTester(setup, (harness) => {
       const context = {
         solutions: [],
       };
@@ -103,7 +103,7 @@ describe('solutions list page', () => {
       });
     }));
 
-    it('should render 1 card if only 1 solution is provided context', createTestHarness(setup, (harness) => {
+    it('should render 1 card if only 1 solution is provided context', componentTester(setup, (harness) => {
       const context = {
         solutions: [
           {
@@ -119,7 +119,7 @@ describe('solutions list page', () => {
       });
     }));
 
-    it('should render 3 cards if 3 solutions are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 3 cards if 3 solutions are provided in the context', componentTester(setup, (harness) => {
       const context = {
         solutions: [
           {

@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('view solution', () => {
-  it('should render back-link component with correct href', createTestHarness(setup, (harness) => {
+  it('should render back-link component with correct href', componentTester(setup, (harness) => {
     const context = { };
 
     harness.request(context, ($) => {
@@ -16,7 +16,7 @@ describe('view solution', () => {
     });
   }));
 
-  it('should render the viewSolution component', createTestHarness(setup, (harness) => {
+  it('should render the viewSolution component', componentTester(setup, (harness) => {
     const context = {
       solutionHeader: {
         id: '100000-001',
