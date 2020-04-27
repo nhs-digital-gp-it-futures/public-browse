@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../test-utils/testHarness';
+import { componentTester } from '../../../test-utils/componentTester';
 
 const setup = {
   component: {
@@ -8,7 +8,7 @@ const setup = {
 };
 
 describe('covid19-solution-card', () => {
-  it('should render the covid19 tag', createTestHarness(setup, (harness) => {
+  it('should render the covid19 tag', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {},
@@ -22,7 +22,7 @@ describe('covid19-solution-card', () => {
     });
   }));
 
-  it('should render the view this solution link', createTestHarness(setup, (harness) => {
+  it('should render the view this solution link', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -40,7 +40,7 @@ describe('covid19-solution-card', () => {
     });
   }));
 
-  it('should render the supplier name', createTestHarness(setup, (harness) => {
+  it('should render the supplier name', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -56,7 +56,7 @@ describe('covid19-solution-card', () => {
     });
   }));
 
-  it('should render the solution name', createTestHarness(setup, (harness) => {
+  it('should render the solution name', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -73,7 +73,7 @@ describe('covid19-solution-card', () => {
     });
   }));
 
-  it('should render the solution summary', createTestHarness(setup, (harness) => {
+  it('should render the solution summary', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -90,7 +90,7 @@ describe('covid19-solution-card', () => {
     });
   }));
 
-  it('should render the solution covid19 title', createTestHarness(setup, (harness) => {
+  it('should render the solution covid19 title', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -110,7 +110,7 @@ describe('covid19-solution-card', () => {
   }));
 
   describe('covid19 list', () => {
-    it('should render 0 in list if no items are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 0 in list if no items are provided in the context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -129,7 +129,7 @@ describe('covid19-solution-card', () => {
       });
     }));
 
-    it('should render 1 in list if only 1 item is provided in context', createTestHarness(setup, (harness) => {
+    it('should render 1 in list if only 1 item is provided in context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -151,7 +151,7 @@ describe('covid19-solution-card', () => {
       });
     }));
 
-    it('should render 3 item names if 3 capabilities are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 3 item names if 3 capabilities are provided in the context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {

@@ -1,4 +1,4 @@
-import { createTestHarness } from '../test-utils/testHarness';
+import { componentTester } from '../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('header', () => {
-  it('should render the terms banner with beta tag', createTestHarness(setup, (harness) => {
+  it('should render the terms banner with beta tag', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -28,7 +28,7 @@ describe('header', () => {
     });
   }));
 
-  it('should render the general terms link', createTestHarness(setup, (harness) => {
+  it('should render the general terms link', componentTester(setup, (harness) => {
     const context = {
       config: {
         blobstoreHost: 'www.some-blob-store.com',
@@ -43,7 +43,7 @@ describe('header', () => {
     });
   }));
 
-  it('should render the header banner', createTestHarness(setup, (harness) => {
+  it('should render the header banner', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -57,7 +57,7 @@ describe('header', () => {
     // when login is on by default
     describe('when login is enabled by default', () => {
       describe('when username is provided', () => {
-        it('should render username', createTestHarness(setup, (harness) => {
+        it('should render username', componentTester(setup, (harness) => {
           const context = {
             username: 'user 1',
             loginEnabled: 'true',
@@ -70,7 +70,7 @@ describe('header', () => {
           });
         }));
 
-        it('should render logout link', createTestHarness(setup, (harness) => {
+        it('should render logout link', componentTester(setup, (harness) => {
           const context = {
             username: 'user 1',
             loginEnabled: true,
@@ -84,7 +84,7 @@ describe('header', () => {
         }));
 
         describe('when username is not provided', () => {
-          it('should render login link', createTestHarness(setup, (harness) => {
+          it('should render login link', componentTester(setup, (harness) => {
             const context = {
               loginEnabled: true,
             };
@@ -101,7 +101,7 @@ describe('header', () => {
 
     // TODO: LOGIN_ENABLED Remove test below when login is on by default
     describe('when login is disabled by default', () => {
-      it('should not render the login component', createTestHarness(setup, (harness) => {
+      it('should not render the login component', componentTester(setup, (harness) => {
         const context = {
           loginEnabled: false,
         };
@@ -113,7 +113,7 @@ describe('header', () => {
       }));
     });
 
-    it('should render the covid19 global warning if feature flag set', createTestHarness(setup, (harness) => {
+    it('should render the covid19 global warning if feature flag set', componentTester(setup, (harness) => {
       const context = {
         config: {
           showCovid19: 'true',
@@ -133,7 +133,7 @@ describe('header', () => {
       });
     }));
 
-    it('should not render the covid19 global warning if feature flag is not set', createTestHarness(setup, (harness) => {
+    it('should not render the covid19 global warning if feature flag is not set', componentTester(setup, (harness) => {
       const context = {
         config: {
           showCovid19: 'false',

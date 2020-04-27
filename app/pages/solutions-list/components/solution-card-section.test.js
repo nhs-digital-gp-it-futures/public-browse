@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../test-utils/testHarness';
+import { componentTester } from '../../../test-utils/componentTester';
 
 const setup = {
   component: {
@@ -8,7 +8,7 @@ const setup = {
 };
 
 describe('solution-card', () => {
-  it('should render the title of the section', createTestHarness(setup, (harness) => {
+  it('should render the title of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -25,7 +25,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should not render the title of the section if the showTitle flag is false', createTestHarness(setup, (harness) => {
+  it('should not render the title of the section if the showTitle flag is false', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -42,7 +42,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should render the title of the section as an anchor', createTestHarness(setup, (harness) => {
+  it('should render the title of the section as an anchor', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -60,7 +60,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should not render the title of the section as an anchor if showAnchor is false', createTestHarness(setup, (harness) => {
+  it('should not render the title of the section as an anchor if showAnchor is false', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -77,7 +77,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should render the value of the section', createTestHarness(setup, (harness) => {
+  it('should render the value of the section', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -95,7 +95,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should render all the values of the section when it is an array', createTestHarness(setup, (harness) => {
+  it('should render all the values of the section when it is an array', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {
@@ -121,7 +121,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should render the values in columns if the displayType of the section is config', createTestHarness(setup, (harness) => {
+  it('should render the values in columns if the displayType of the section is config', componentTester(setup, (harness) => {
     const context = {
       params: {
         section: {

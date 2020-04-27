@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -7,7 +7,7 @@ const setup = {
 };
 
 describe('covid19 page', () => {
-  it('should render the covid19 page title', createTestHarness(setup, (harness) => {
+  it('should render the covid19 page title', componentTester(setup, (harness) => {
     const context = {
       title: 'Covid-19 page title',
     };
@@ -19,7 +19,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render covid19 go back link', createTestHarness(setup, (harness) => {
+  it('should render covid19 go back link', componentTester(setup, (harness) => {
     const context = {
       title: 'Covid-19 page title',
       backLinkPath: '/backlink/path',
@@ -33,7 +33,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render the covid19 page description', createTestHarness(setup, (harness) => {
+  it('should render the covid19 page description', componentTester(setup, (harness) => {
     const context = {
       pageDescription: 'Covid-19 page description',
     };
@@ -45,7 +45,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render the covid19 page inset text', createTestHarness(setup, (harness) => {
+  it('should render the covid19 page inset text', componentTester(setup, (harness) => {
     const context = {
       insetText: [
         'some inset text 1',
@@ -61,7 +61,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render the covid19 compare button', createTestHarness(setup, (harness) => {
+  it('should render the covid19 compare button', componentTester(setup, (harness) => {
     const context = {
       config: {
         blobstoreHost: 'blobstore',
@@ -78,7 +78,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render the covid19 subtext', createTestHarness(setup, (harness) => {
+  it('should render the covid19 subtext', componentTester(setup, (harness) => {
     const context = {
       subtext: 'Covid-19 subtext',
     };
@@ -90,7 +90,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render 0 covid19 cards if no solutions are provided in the context', createTestHarness(setup, (harness) => {
+  it('should render 0 covid19 cards if no solutions are provided in the context', componentTester(setup, (harness) => {
     const context = {
       solutions: [],
     };
@@ -101,7 +101,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render 1 covid19 card if 1 solution is provided in context', createTestHarness(setup, (harness) => {
+  it('should render 1 covid19 card if 1 solution is provided in context', componentTester(setup, (harness) => {
     const context = {
       solutions: [
         {
@@ -117,7 +117,7 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render 3 covid19 cards if 3 solutions are provided in context', createTestHarness(setup, (harness) => {
+  it('should render 3 covid19 cards if 3 solutions are provided in context', componentTester(setup, (harness) => {
     const context = {
       filterType: 'covid19',
       solutions: [

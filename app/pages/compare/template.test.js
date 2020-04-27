@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 import manifest from './manifest.json';
 
 const setup = {
@@ -13,7 +13,7 @@ const context = {
 };
 
 describe('compare page', () => {
-  it('should render a backLink', createTestHarness(setup, (harness) => {
+  it('should render a backLink', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       const backlink = $('[data-test-id="go-back-link"]');
       expect(backlink.length).toEqual(1);
@@ -22,7 +22,7 @@ describe('compare page', () => {
     });
   }));
 
-  it('should render a title', createTestHarness(setup, (harness) => {
+  it('should render a title', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       const title = $('h1[data-test-id="compare-page-title"]');
       expect(title.length).toEqual(1);
@@ -30,7 +30,7 @@ describe('compare page', () => {
     });
   }));
 
-  it('should render a description', createTestHarness(setup, (harness) => {
+  it('should render a description', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       const description = $('[data-test-id="compare-page-description"]');
       expect(description.length).toEqual(1);
@@ -38,7 +38,7 @@ describe('compare page', () => {
     });
   }));
 
-  it('should render a compare button', createTestHarness(setup, (harness) => {
+  it('should render a compare button', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       const button = $('[data-test-id="compare-button"] a');
       expect(button.length).toEqual(1);

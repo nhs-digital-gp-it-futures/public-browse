@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../test-utils/testHarness';
+import { componentTester } from '../../../test-utils/componentTester';
 
 const setup = {
   component: {
@@ -8,7 +8,7 @@ const setup = {
 };
 
 describe('capabilitiesSelector', () => {
-  it('should render the checkbox options for column1', createTestHarness(setup, (harness) => {
+  it('should render the checkbox options for column1', componentTester(setup, (harness) => {
     const context = {
       params: {
         capabilities: {
@@ -33,7 +33,7 @@ describe('capabilitiesSelector', () => {
     });
   }));
 
-  it('should render the checkbox options for column2', createTestHarness(setup, (harness) => {
+  it('should render the checkbox options for column2', componentTester(setup, (harness) => {
     const context = {
       params: {
         capabilities: {

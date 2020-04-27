@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 import content from './manifest.json';
 
@@ -9,7 +9,7 @@ const setup = {
 };
 
 describe('home page', () => {
-  it('should render the homepage hero', createTestHarness(setup, (harness) => {
+  it('should render the homepage hero', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -22,7 +22,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the about us section', createTestHarness(setup, (harness) => {
+  it('should render the about us section', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -32,7 +32,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the guidance promo', createTestHarness(setup, (harness) => {
+  it('should render the guidance promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -49,7 +49,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the browse promo', createTestHarness(setup, (harness) => {
+  it('should render the browse promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -65,7 +65,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the admin promo when showAdminTile is true', createTestHarness(setup, (harness) => {
+  it('should render the admin promo when showAdminTile is true', componentTester(setup, (harness) => {
     const context = {
       ...content,
       showAdminTile: true,
@@ -85,7 +85,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should not render the admin promo when showAdminTile is falsey', createTestHarness(setup, (harness) => {
+  it('should not render the admin promo when showAdminTile is falsey', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -94,7 +94,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the covid19 promo when the showCovid19 flag is set', createTestHarness(setup, (harness) => {
+  it('should render the covid19 promo when the showCovid19 flag is set', componentTester(setup, (harness) => {
     const context = {
       ...content,
       config: {
@@ -116,7 +116,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should not render the covid19 promo when the showCovid19 flag is not set', createTestHarness(setup, (harness) => {
+  it('should not render the covid19 promo when the showCovid19 flag is not set', componentTester(setup, (harness) => {
     const context = {
       ...content,
       config: {
@@ -130,7 +130,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the order form promo when the showOrderForm flag is set', createTestHarness(setup, (harness) => {
+  it('should render the order form promo when the showOrderForm flag is set', componentTester(setup, (harness) => {
     const context = {
       ...content,
       orderFormUrl: 'http://localhost:3006',
@@ -152,7 +152,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should not render the order form promo when the showOrderForm flag is not set', createTestHarness(setup, (harness) => {
+  it('should not render the order form promo when the showOrderForm flag is not set', componentTester(setup, (harness) => {
     const context = {
       ...content,
       config: {
