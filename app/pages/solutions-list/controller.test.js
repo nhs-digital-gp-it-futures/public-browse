@@ -93,8 +93,7 @@ describe('solutions-list controller', () => {
         await getSolutionListPageContext({ filterType: 'unknown' });
       } catch (err) {
         expect(err).toEqual(new ErrorContext({
-          status: 404,
-          description: 'No manifest found for filter type: unknown',
+          status: 500,
         }));
       }
     });
