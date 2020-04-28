@@ -63,7 +63,7 @@ test('should display General Terms of Use text', async (t) => {
 
 test('should navigate to home page header banner', async (t) => {
   await t.navigateTo('http://localhost:1234/guide');
-  const headerBannerLink = Selector('[data-test-id="header-banner"] a');
+  const headerBannerLink = Selector('header[data-test-id="header-banner"] .nhsuk-header__logo a');
 
   await t
     .expect(headerBannerLink.exists).ok()
