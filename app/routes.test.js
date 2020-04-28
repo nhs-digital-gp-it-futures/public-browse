@@ -164,7 +164,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('<div class="nhsuk-hero" data-test-id="homepage-hero">')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -183,7 +183,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="guide-page-body"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -202,7 +202,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="compare-page-title"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -237,7 +237,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="browse-solutions"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -256,7 +256,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
 
@@ -269,7 +269,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
 
@@ -282,7 +282,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -301,7 +301,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes(`<h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">${mockGetPublicSolutionById.name}</h1>`)).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
 
@@ -314,7 +314,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes(`<h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">${mockGetPublicSolutionById.name}</h1>`)).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -411,7 +411,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text).toEqual(readFileSync(path.resolve(__dirname, 'data.pdf'), 'utf8'));
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
           apiProvider.getDocument.mockReset();
         });
     });
@@ -427,7 +427,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(true);
           solutionListPageContext.getSolutionListPageContext.mockReset();
         });
     });
@@ -441,7 +441,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(true);
           solutionListPageContext.getSolutionsForSelectedCapabilities.mockReset();
         });
     });
@@ -455,7 +455,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="dashboard"')).toEqual(false);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(true);
           viewSolutionController.getPublicSolutionById.mockReset();
         });
     });
@@ -467,7 +467,8 @@ describe('routes', () => {
         .get('/aaaa')
         .expect(200)
         .then((res) => {
-          expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-padding-left-3" data-test-id="error-page-title">Error: Incorrect url /aaaa - please check it is valid and try again</h1>')).toEqual(true);
+          expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-margin-top-5" data-test-id="error-title">Incorrect url /aaaa</h1>')).toEqual(true);
+          expect(res.text.includes('<p data-test-id="error-description">Please check it is valid and try again</p>')).toEqual(true);
         })));
   });
 

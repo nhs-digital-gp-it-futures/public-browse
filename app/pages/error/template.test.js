@@ -7,46 +7,41 @@ const setup = {
 };
 
 describe('error page', () => {
+  it('should render the error backLink', componentTester(setup, (harness) => {
+    const context = {
+      backLinkText: 'Error backLinkText',
+      backLinkHref: 'http://errorBackLinkHref.com',
+    };
+
+    harness.request(context, ($) => {
+      const errorBackLink = $('[data-test-id="error-back-link"] a');
+      expect(errorBackLink.length).toEqual(1);
+      expect(errorBackLink.text().trim()).toEqual(context.backLinkText);
+      expect(errorBackLink.attr('href')).toEqual(context.backLinkHref);
+    });
+  }));
+
   it('should render the error title', componentTester(setup, (harness) => {
-    const context = { message: 'an error message' };
+    const context = {
+      title: 'Error Title',
+    };
 
     harness.request(context, ($) => {
-      const errorTitle = $('[data-test-id="error-page-title"]');
+      const errorTitle = $('[data-test-id="error-title"]');
       expect(errorTitle.length).toEqual(1);
-      expect(errorTitle.text().trim()).toEqual(`Error: ${context.message}`);
+      expect(errorTitle.text().trim()).toEqual(context.title);
     });
   }));
 
-  it('should render a backLink to the home page', componentTester(setup, (harness) => {
-    const context = {};
+  it('should render the error description', componentTester(setup, (harness) => {
+    const context = {
+      description: 'Error Description',
+    };
 
     harness.request(context, ($) => {
-      const homepageBackLink = $('[data-test-id="go-to-home-page-link"]');
-      expect(homepageBackLink.length).toEqual(1);
-      expect(homepageBackLink.text().trim()).toEqual('Go to Home Page');
-      expect($(homepageBackLink).find('a').attr('href')).toEqual('/');
-    });
-  }));
-
-  it('should render a backLink to all solutions page', componentTester(setup, (harness) => {
-    const context = {};
-
-    harness.request(context, ($) => {
-      const homepageBackLink = $('[data-test-id="go-to-capabilities-selector-link"]');
-      expect(homepageBackLink.length).toEqual(1);
-      expect(homepageBackLink.text().trim()).toEqual('Go to Select Capabilities');
-      expect($(homepageBackLink).find('a').attr('href')).toEqual('/solutions/capabilities-selector');
-    });
-  }));
-
-  it('should render a backLink to foundation solutions page', componentTester(setup, (harness) => {
-    const context = {};
-
-    harness.request(context, ($) => {
-      const homepageBackLink = $('[data-test-id="go-to-foundation-solutions-link"]');
-      expect(homepageBackLink.length).toEqual(1);
-      expect(homepageBackLink.text().trim()).toEqual('Go to Foundation Solutions');
-      expect($(homepageBackLink).find('a').attr('href')).toEqual('/solutions/foundation');
+      const errorDescription = $('[data-test-id="error-description"]');
+      expect(errorDescription.length).toEqual(1);
+      expect(errorDescription.text().trim()).toEqual(context.description);
     });
   }));
 });

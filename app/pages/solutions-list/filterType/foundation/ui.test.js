@@ -114,7 +114,7 @@ test('should navigate to the foundation solution view page when clicking on the 
 test('should render the error page when receiving an error from the foundation solution list api endpoint', async (t) => {
   await pageSetup(t, 500, {});
 
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
+  const errorTitle = Selector('[data-test-id="error-title"]');
 
   await t
     .expect(errorTitle.exists).ok();

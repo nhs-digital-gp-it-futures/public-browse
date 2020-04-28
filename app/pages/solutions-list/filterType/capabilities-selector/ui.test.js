@@ -339,7 +339,7 @@ fixture('Show Capability Selector Solution List Page Error')
 test('should render the error page when receiving an error from the solution api endpoint', async (t) => {
   await pageSetup({ t, responseStatus: 500, responseBody: {} });
 
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
+  const errorTitle = Selector('[data-test-id="error-title"]');
 
   await t
     .expect(errorTitle.exists).ok();
