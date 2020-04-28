@@ -52,6 +52,17 @@ describe('header', () => {
     });
   }));
 
+  it('should render logo with correct href and aria-label', componentTester(setup, (harness) => {
+    const context = {};
+
+    harness.request(context, ($) => {
+      const logoLink = $('header[data-test-id="header-banner"] .nhsuk-header__logo a');
+      expect(logoLink.length).toEqual(1);
+      expect(logoLink.attr('href')).toEqual('');
+      expect(logoLink.attr('aria-label')).toEqual('Buying Catalogue Homepage');
+    });
+  }));
+
   describe('login/logout component', () => {
     // TODO: LOGIN_ENABLED Remove describe block surrounding the tests below
     // when login is on by default

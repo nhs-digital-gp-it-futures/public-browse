@@ -30,7 +30,11 @@
 {{ bcHeader({
   dataTestId: "header-banner",
   innerComponent: innerComponent,
-  classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2"
+  classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2",
+  logoLink: {
+    href: config.baseUrl,
+    ariaLabel: "Buying Catalogue Homepage"
+  }
 }) }}
 
 {% if config.showCovid19 === 'true' %}
