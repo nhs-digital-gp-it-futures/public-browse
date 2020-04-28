@@ -1,3 +1,4 @@
+import { ErrorContext } from 'buying-catalogue-library';
 import { getCapabilitiesContext } from './controller';
 import * as apiProvider from '../../apiProvider';
 import manifest from './manifest.json';
@@ -73,7 +74,10 @@ describe('capabilities-selector controller', () => {
       try {
         await getCapabilitiesContext();
       } catch (err) {
-        expect(err).toEqual(new Error('No data returned'));
+        expect(err).toEqual(new ErrorContext({
+          status: 404,
+          description: 'No data returned',
+        }));
       }
     });
   });

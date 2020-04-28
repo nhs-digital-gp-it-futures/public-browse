@@ -1,4 +1,5 @@
 import express from 'express';
+import { ErrorContext, errorHandler } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -6,7 +7,6 @@ import { getHomepageContext } from './pages/homepage/context';
 import { getGuidePageContext } from './pages/guide/context';
 import { getComparePageContext } from './pages/compare/controller';
 import { getCapabilitiesContext } from './pages/capabilities-selector/controller';
-import { errorHandler } from './pages/error/errorHandler';
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
@@ -15,7 +15,7 @@ import { withCatch, getCapabilitiesParam, determineContentType } from './helpers
 import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 
-const addConfig = ({ context, user, csrfToken }) => ({
+const addContext = ({ context, user, csrfToken }) => ({
   ...context,
   ...includesContext,
   username: user && user.name,
@@ -61,25 +61,25 @@ export const routes = (authProvider) => {
   router.get('/', (req, res) => {
     const context = getHomepageContext({ user: req.user });
     logger.info('navigating to home page');
-    res.render('pages/homepage/template.njk', addConfig({ context, user: req.user }));
+    res.render('pages/homepage/template.njk', addContext({ context, user: req.user }));
   });
 
   router.get('/guide', (req, res) => {
     const context = getGuidePageContext();
     logger.info('navigating to guide');
-    res.render('pages/guide/template.njk', addConfig({ context, user: req.user }));
+    res.render('pages/guide/template.njk', addContext({ context, user: req.user }));
   });
 
   router.get('/solutions', (req, res) => {
     const context = getBrowseSolutionsPageContext();
     logger.info('navigating to browse solutions');
-    res.render('pages/browse-solutions/template.njk', addConfig({ context, user: req.user }));
+    res.render('pages/browse-solutions/template.njk', addContext({ context, user: req.user }));
   });
 
   router.get('/solutions/compare', (req, res) => {
     const context = getComparePageContext();
     logger.info('navigating to compare');
-    res.render('pages/compare/template.njk', addConfig({ context, user: req.user }));
+    res.render('pages/compare/template.njk', addContext({ context, user: req.user }));
   });
 
   router.get('/solutions/compare/document', async (req, res) => {
@@ -102,7 +102,7 @@ export const routes = (authProvider) => {
   router.get('/solutions/covid19', withCatch(async (req, res) => {
     const context = await getCovid19SolutionListPageContext();
     logger.info('navigating to covid19 page');
-    return res.render('pages/covid19/template.njk', addConfig({ context, user: req.user }));
+    return res.render('pages/covid19/template.njk', addContext({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?', withCatch(async (req, res) => {
@@ -114,24 +114,24 @@ export const routes = (authProvider) => {
         if (config.useCapabilitiesSelector === 'false') return res.redirect('/solutions/capabilities-selector.all');
         const context = await getCapabilitiesContext();
         logger.info('navigating to capabilities-selector page');
-        return res.render('pages/capabilities-selector/template.njk', addConfig({ context, user: req.user, csrfToken: req.csrfToken() }));
+        return res.render('pages/capabilities-selector/template.njk', addContext({ context, user: req.user, csrfToken: req.csrfToken() }));
       }
       const context = await getSolutionsForSelectedCapabilities({
         capabilitiesSelected: capabilities,
       });
       logger.info(`navigating to solution-list (with ${capabilities} selected) page`);
-      return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
+      return res.render('pages/solutions-list/template.njk', addContext({ context, user: req.user }));
     }
     const context = await getSolutionListPageContext({ filterType });
     logger.info(`navigating to ${filterType} solution-list page`);
-    return res.render('pages/solutions-list/template.njk', addConfig({ context, user: req.user }));
+    return res.render('pages/solutions-list/template.njk', addContext({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?/:solutionId', withCatch(async (req, res) => {
     const { solutionId } = req.params;
     logger.info(`navigating to Solution ${solutionId} page`);
     const context = await getPublicSolutionById({ solutionId });
-    res.render('pages/view-solution/template.njk', addConfig({ context, user: req.user }));
+    res.render('pages/view-solution/template.njk', addContext({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
@@ -144,22 +144,17 @@ export const routes = (authProvider) => {
     res.setHeader('Content-type', determineContentType(documentName));
     response.data.pipe(res);
   });
-
-  router.get('*', (req, res, next) => {
-    next({
+  router.get('*', (req) => {
+    throw new ErrorContext({
       status: 404,
-      message: `Incorrect url ${req.originalUrl} - please check it is valid and try again`,
+      title: `Incorrect url ${req.originalUrl}`,
+      description: 'Please check it is valid and try again',
     });
   });
 
-  router.use((err, req, res, next) => {
-    if (err) {
-      const context = errorHandler(err);
-      logger.error(context.message);
-      res.render('pages/error/template.njk', addConfig({ context, user: req.user }));
-    } else {
-      next();
-    }
+  errorHandler(router, (error, req, res) => {
+    logger.error(`${error.title} - ${error.description}`);
+    return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
   });
 
   return router;
