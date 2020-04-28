@@ -7,8 +7,7 @@ export const getSolutionListManifest = (type) => {
 
   if (!fs.existsSync(path.join(__dirname, filePath))) {
     throw new ErrorContext({
-      status: 404,
-      description: `No manifest found for filter type: ${type}`,
+      status: 500,
     });
   }
   const manifestFileContent = fs.readFileSync(path.join(__dirname, filePath));
