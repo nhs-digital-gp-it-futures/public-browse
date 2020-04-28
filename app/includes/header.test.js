@@ -58,7 +58,7 @@ describe('header', () => {
     harness.request(context, ($) => {
       const logoLink = $('header[data-test-id="header-banner"] .nhsuk-header__logo a');
       expect(logoLink.length).toEqual(1);
-      expect(logoLink.attr('href')).toEqual('');
+      expect(logoLink.attr('href')).toEqual('/');
       expect(logoLink.attr('aria-label')).toEqual('Buying Catalogue Homepage');
     });
   }));
