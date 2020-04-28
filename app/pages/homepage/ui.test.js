@@ -65,7 +65,7 @@ test('should navigate to home page header banner', async (t) => {
   await t.navigateTo('http://localhost:1234/guide');
   const headerBannerLink = Selector('header[data-test-id="header-banner"] .nhsuk-header__logo a');
 
-  await t.debug()
+  await t
     .expect(headerBannerLink.exists).ok()
     .click(headerBannerLink)
     .expect(getLocation()).eql('http://localhost:1234/');
