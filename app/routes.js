@@ -1,5 +1,5 @@
 import express from 'express';
-import { ErrorContext, errorHandler } from 'buying-catalogue-library';
+import { ErrorContext, errorHandler, health } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -10,7 +10,6 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
-import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam, determineContentType } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
@@ -26,7 +25,31 @@ const addContext = ({ context, user, csrfToken }) => ({
 export const routes = (authProvider) => {
   const router = express.Router();
 
-  router.use('/health', healthRoutes);
+  const dependencies = [
+    {
+      name: 'Buying Catalogue API',
+      endpoint: `${config.buyingCatalogueApiHost}/health/ready`,
+      critical: true,
+    },
+    {
+      name: 'Document API',
+      endpoint: `${config.documentApiHost}/health/ready`,
+    },
+  ];
+
+  if (config.loginEnabled === 'true') {
+    const isapiDependency = {
+      name: 'Identity Server',
+      endpoint: `${config.oidcBaseUri}/health/ready`,
+      critical: true,
+    };
+
+    dependencies.push(isapiDependency);
+  }
+
+  console.log('depende', dependencies);
+
+  health({ router, dependencies, logger });
 
   if (authProvider) {
     router.get('/login', authProvider.login());
@@ -153,7 +176,7 @@ export const routes = (authProvider) => {
   });
 
   errorHandler(router, (error, req, res) => {
-    logger.error(`${error.title} - ${error.description}`);
+    logger.error(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
     return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
   });
 
