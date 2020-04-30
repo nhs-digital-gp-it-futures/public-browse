@@ -1,6 +1,7 @@
-import { getData } from '../../../apiProvider';
+import { getData } from 'buying-catalogue-library';
 import { status } from '../status';
 import { logger } from '../../../logger';
+import { getEndpoint } from '../../../endpoints';
 
 export const getReadyStatus = async (loginEnabled) => {
   let buyingCatalogueApi;
@@ -8,14 +9,16 @@ export const getReadyStatus = async (loginEnabled) => {
   let identityApi = status.healthy.message;
 
   try {
-    buyingCatalogueApi = await getData({ endpointLocator: 'getBuyingCatalogueApiHealth' });
+    const endpoint = getEndpoint({ endpointLocator: 'getBuyingCatalogueApiHealth' });
+    buyingCatalogueApi = await getData({ endpoint, logger });
   } catch (e) {
     logger.error('Buying Catalogue Api is not healthy');
     buyingCatalogueApi = status.unhealthy.message;
   }
 
   try {
-    documentApi = await getData({ endpointLocator: 'getDocumentApiHealth' });
+    const endpoint = getEndpoint({ endpointLocator: 'getDocumentApiHealth' });
+    documentApi = await getData({ endpoint, logger });
   } catch (e) {
     logger.error('Document Api is not healthy');
     documentApi = status.unhealthy.message;
@@ -23,7 +26,8 @@ export const getReadyStatus = async (loginEnabled) => {
 
   if (loginEnabled === 'true') {
     try {
-      identityApi = await getData({ endpointLocator: 'getIdentityApiHealth' });
+      const endpoint = getEndpoint({ endpointLocator: 'getIdentityApiHealth' });
+      identityApi = await getData({ endpoint, logger });
     } catch (e) {
       logger.error('Identity Api is not healthy');
       identityApi = status.unhealthy.message;
