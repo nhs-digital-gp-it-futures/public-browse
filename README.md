@@ -12,6 +12,7 @@ Install the long-term support (LTS) version of <a href="https://nodejs.org/en/">
 git clone https://github.com/nhs-digital-gp-it-futures/public-browse.git
 cd public-browse
 npm install
+npm run build
 ```
 
 ## Running the tests
