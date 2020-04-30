@@ -12,7 +12,7 @@ module.exports = {
   port: process.env.PORT || 3000,
 
   // The base uri the app is running on to pass to identity service for redirection
-  appBaseUri: process.env.APP_BASE_URI || 'http://docker.for.mac.localhost:3000',
+  appBaseUri: process.env.APP_BASE_URI || 'http://localhost:3000',
 
   // BUYING_CATALOGUE_ADMIN_HOST
   buyingCatalogueAdminHost: process.env.BUYING_CATALOGUE_ADMIN_HOST || 'http://localhost:3005/admin',
@@ -60,7 +60,7 @@ module.exports = {
   showOrderForm: process.env.SHOW_ORDER_FORM || 'true',
 
   // The secret needed for encoding and decoding the cookie
-  cookieSecret: process.env.COOKIE_SECRET || 'secret squirrel',
+  cookieSecret: process.env.COOKIE_SECRET,
 
   // Boolean to indicate if we show the COVID-19 feature
   showCovid19: process.env.SHOW_COVID19 || 'true',

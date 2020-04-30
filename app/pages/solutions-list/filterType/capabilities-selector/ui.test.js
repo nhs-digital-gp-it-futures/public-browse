@@ -66,7 +66,7 @@ test('should display the compare solutions button', async (t) => {
   await t
     .expect(button.exists).ok()
     .expect(await extractInnerText(button)).eql(manifest.compareButtonText)
-    .expect(button.getAttribute('href')).eql('/compare/document');
+    .expect(button.getAttribute('href')).eql('/solutions/compare/document');
 });
 
 test('should display the capabilities heading', async (t) => {
