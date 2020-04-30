@@ -20,9 +20,19 @@ npm run build
 - Integration Tests - `npm run test:integration`
 
 ## Running the application via the cluster
+Update the cluster to disable pb via the cluster and a disabledUrl is set. In you `local-overrides.yaml` it will look something like this;
+```javascript
+pb: 
+  enabled: false 
+  disabledUrl: "http://localhost:3000/"
+```
+
 All environment variables are provided a default to work with your local cluster in `config.js` except;
+
 `OIDC_CLIENT_SECRET` and `COOKIE_SECRET`
+
 Add these to your `.env` file in project root. Ask a colleague for their values
+
 Run the app with `npm run start:dev`
 Application should now be running on <a href="http://localhost:3000">http://localhost:3000</a>.
 
