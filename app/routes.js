@@ -88,7 +88,7 @@ export const routes = (authProvider) => {
       endpointLocator: 'getDocument',
       options: { documentName: 'compare-solutions.xlsx' },
     });
-    res.setHeader('Content-type', 'application/xlsx');
+    res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     response.data.pipe(res);
   });
 
