@@ -1,5 +1,5 @@
 import express from 'express';
-import { ErrorContext, errorHandler, health } from 'buying-catalogue-library';
+import { ErrorContext, errorHandler, healthRoutes } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -49,7 +49,7 @@ export const routes = (authProvider) => {
 
   console.log('depende', dependencies);
 
-  health({ router, dependencies, logger });
+  healthRoutes({ router, dependencies, logger });
 
   if (authProvider) {
     router.get('/login', authProvider.login());
