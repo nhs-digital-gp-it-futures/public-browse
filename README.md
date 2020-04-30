@@ -48,9 +48,6 @@ On a seperate terminal run the app with `npm run start:dev`
 Application should now be running on <a href="http://localhost:3000">http://localhost:3000</a>.
 
 ## Dependencies
-### Buying Catalogue API
 [Buying Catalogue API](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueService).
-### Document API
 [Document API](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueDocumentService).
-### Identity Server
 [Identity Server](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueIdentity).
