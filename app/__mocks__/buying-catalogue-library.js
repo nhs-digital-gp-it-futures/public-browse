@@ -1,7 +1,7 @@
 // Let Jest create the mock.
 const buyingCatalogueLibrary = jest.genMockFromModule('buying-catalogue-library');
 
-// Get the unmocked chop method.
+// Get the unmocked methods.
 const {
   FakeAuthProvider, ErrorContext, createTestHarness, errorHandler,
 } = require.requireActual('buying-catalogue-library');
