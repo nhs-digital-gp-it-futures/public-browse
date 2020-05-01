@@ -10,7 +10,7 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
-import { withCatch, getCapabilitiesParam, determineContentType } from './helpers/routerHelper';
+import { withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 
@@ -25,31 +25,7 @@ const addContext = ({ context, user, csrfToken }) => ({
 export const routes = (authProvider) => {
   const router = express.Router();
 
-  const dependencies = [
-    {
-      name: 'Buying Catalogue API',
-      endpoint: `${config.buyingCatalogueApiHost}/health/ready`,
-      critical: true,
-    },
-    {
-      name: 'Document API',
-      endpoint: `${config.documentApiHost}/health/ready`,
-    },
-  ];
-
-  if (config.loginEnabled === 'true') {
-    const isapiDependency = {
-      name: 'Identity Server',
-      endpoint: `${config.oidcBaseUri}/health/ready`,
-      critical: true,
-    };
-
-    dependencies.push(isapiDependency);
-  }
-
-  console.log('depende', dependencies);
-
-  healthRoutes({ router, dependencies, logger });
+  healthRoutes({ router, dependencies: getHealthCheckDependencies(config), logger });
 
   if (authProvider) {
     router.get('/login', authProvider.login());

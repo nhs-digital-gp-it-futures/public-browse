@@ -23,3 +23,29 @@ export const determineContentType = (documentName) => {
   const documentType = documentNameSplit[documentNameSplit.length - 1];
   return `application/${documentType}`;
 };
+
+export const getHealthCheckDependencies = (config) => {
+  const dependencies = [
+    {
+      name: 'Buying Catalogue API',
+      endpoint: `${config.buyingCatalogueApiHost}/health/ready`,
+      critical: true,
+    },
+    {
+      name: 'Document API',
+      endpoint: `${config.documentApiHost}/health/ready`,
+    },
+  ];
+
+  if (config.loginEnabled === 'true') {
+    const isapiDependency = {
+      name: 'Identity Server',
+      endpoint: `${config.oidcBaseUri}/health/ready`,
+      critical: true,
+    };
+
+    dependencies.push(isapiDependency);
+  }
+
+  return dependencies;
+};
