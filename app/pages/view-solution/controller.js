@@ -1,10 +1,11 @@
-import { ErrorContext } from 'buying-catalogue-library';
-import { getData } from '../../apiProvider';
+import { ErrorContext, getData } from 'buying-catalogue-library';
 import { createViewSolutionPageContext } from './solutionPageContext';
 import { logger } from '../../logger';
+import { getEndpoint } from '../../endpoints';
 
 export const getPublicSolutionById = async ({ solutionId }) => {
-  const solutionData = await getData({ endpointLocator: 'getPublicSolutionById', options: { solutionId } });
+  const endpoint = getEndpoint({ endpointLocator: 'getPublicSolutionById', options: { solutionId } });
+  const solutionData = await getData({ endpoint, logger });
 
   if (solutionData) {
     logger.info(`Solution ${solutionId}: ${solutionData.name} returned`);
