@@ -1,8 +1,8 @@
-import { ErrorContext } from 'buying-catalogue-library';
+import { ErrorContext, getData, postData } from 'buying-catalogue-library';
 import { getSolutionListManifest } from './filterType/manifestProvider';
-import { getData, postData } from '../../apiProvider';
 import { createSolutionListPageContext } from './context';
 import { logger } from '../../logger';
+import { getEndpoint } from '../../endpoints';
 
 const transformCapabilities = ({ capabilitiesSelected }) => {
   if (!capabilitiesSelected) return { capabilities: [] };
@@ -17,7 +17,8 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 
 export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = getSolutionListManifest(filterType);
-  const solutionListResponse = await getData({ endpointLocator: 'getSolutionListData', options: { filterType } });
+  const endpoint = getEndpoint({ endpointLocator: 'getSolutionListData', options: { filterType } });
+  const solutionListResponse = await getData({ endpoint, logger });
 
   if (solutionListResponse && solutionListResponse.solutions) {
     logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filterType}`);
@@ -41,7 +42,8 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
     capabilitiesSelected: formattedCapabilities,
   });
 
-  const solutionsData = await postData({ endpointLocator: 'postSelectedCapabilities', body: transformedCapabilities });
+  const endpoint = getEndpoint({ endpointLocator: 'postSelectedCapabilities' });
+  const solutionsData = await postData({ endpoint, body: transformedCapabilities, logger });
 
   return createSolutionListPageContext({
     filterType: 'capabilities-selector',
