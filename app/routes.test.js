@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { createReadStream, readFileSync } from 'fs';
 import path from 'path';
-import { FakeAuthProvider } from 'buying-catalogue-library';
+import { FakeAuthProvider, getDocument } from 'buying-catalogue-library';
 import { App } from './app';
 import { routes } from './routes';
 import { getCsrfTokenFromGet, setFakeCookie } from './test-utils/helper';
@@ -12,14 +12,10 @@ import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 import * as comparePageContext from './pages/compare/controller';
-import * as apiProvider from './apiProvider';
 import config from './config';
+import { logger } from './logger';
 
 jest.mock('./logger');
-
-jest.mock('./apiProvider', () => ({
-  getDocument: jest.fn().mockResolvedValue({ data: { pipe: () => {} } }),
-}));
 
 const mockFoundationSolutionsContext = {
   title: 'Foundation',
@@ -209,16 +205,17 @@ describe('routes', () => {
 
   describe('GET /solutions/compare/document', () => {
     it('should call getDocument with the correct params', () => {
+      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
       request(setUpFakeApp())
         .get('/solutions/compare/document')
         .expect(200)
         .then(() => {
-          expect(apiProvider.getDocument.mock.calls.length).toEqual(1);
-          expect(apiProvider.getDocument).toHaveBeenCalledWith({
-            endpointLocator: 'getDocument',
-            options: { documentName: 'comparesolutions.xlsx' },
+          expect(getDocument.mock.calls.length).toEqual(1);
+          expect(getDocument).toHaveBeenCalledWith({
+            endpoint: `${config.documentApiHost}/api/v1/documents/compare-solutions.xlsx`,
+            logger,
           });
-          apiProvider.getDocument.mockReset();
+          getDocument.mockRestore();
         });
     });
   });
@@ -404,7 +401,7 @@ describe('routes', () => {
 
   describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
     it('should return the correct status and text if there is no error', () => {
-      apiProvider.getDocument
+      getDocument
         .mockResolvedValueOnce({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
       request(setUpFakeApp())
         .get('/solutions/foundation/1/document/somedoc')
@@ -412,7 +409,7 @@ describe('routes', () => {
         .then((res) => {
           expect(res.text).toEqual(readFileSync(path.resolve(__dirname, 'data.pdf'), 'utf8'));
           expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
-          apiProvider.getDocument.mockReset();
+          getDocument.mockRestore();
         });
     });
   });
