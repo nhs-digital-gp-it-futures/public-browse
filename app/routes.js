@@ -10,9 +10,11 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
-import { withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies } from './helpers/routerHelper';
 import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
+import {
+  withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
+} from './helpers/routerHelper';
 
 const addContext = ({ context, user, csrfToken }) => ({
   ...context,
