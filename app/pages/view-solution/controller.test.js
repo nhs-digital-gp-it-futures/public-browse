@@ -64,10 +64,7 @@ describe('view-solution controller', () => {
       try {
         await getPublicSolutionById({ solutionId: 'some-solution-id' });
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 404,
-          description: 'No data returned',
-        }));
+        expect(err).toEqual(new Error());
       }
     });
   });

@@ -89,7 +89,7 @@ export const routes = (authProvider) => {
     logger.info('downloading solution comparison document');
     const endpoint = getEndpoint({
       endpointLocator: 'getDocument',
-      options: { documentName: 'compare-solutions-432342.xlsx' },
+      options: { documentName: 'compare-solutions.xlsx' },
     });
     try {
       const response = await getDocument({ endpoint, logger });
@@ -99,11 +99,12 @@ export const routes = (authProvider) => {
       if (err.response && err.response.status === 404) {
         throw new ErrorContext({
           status: 404,
+          backLinkHref: '/solutions/compare',
+          backLinkText: 'Back',
           description: 'Document not found',
         });
-      } else {
-        throw err;
       }
+      throw err;
     }
   }));
 
@@ -170,7 +171,7 @@ export const routes = (authProvider) => {
   });
 
   errorHandler(router, (error, req, res) => {
-    logger.error(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
+    logger.warn(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
     return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
   });
 
