@@ -1,4 +1,6 @@
 import { ErrorContext } from 'buying-catalogue-library';
+import { getEndpoint } from '../endpoints';
+
 
 export const withCatch = route => async (req, res, next) => {
   try {
@@ -28,19 +30,19 @@ export const getHealthCheckDependencies = (config) => {
   const dependencies = [
     {
       name: 'Buying Catalogue API',
-      endpoint: `${config.buyingCatalogueApiHost}/health/ready`,
+      endpoint: getEndpoint({ endpointLocator: 'getBuyingCatalogueApiHealth' }),
       critical: true,
     },
     {
       name: 'Document API',
-      endpoint: `${config.documentApiHost}/health/ready`,
+      endpoint: getEndpoint({ endpointLocator: 'getDocumentApiHealth' }),
     },
   ];
 
   if (config.loginEnabled === 'true') {
     const isapiDependency = {
       name: 'Identity Server',
-      endpoint: `${config.oidcBaseUri}/health/ready`,
+      endpoint: getEndpoint({ endpointLocator: 'getIdentityApiHealth' }),
       critical: true,
     };
 
