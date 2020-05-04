@@ -1,5 +1,5 @@
 import express from 'express';
-import { ErrorContext, errorHandler } from 'buying-catalogue-library';
+import { ErrorContext, errorHandler, getDocument } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -12,8 +12,8 @@ import config from './config';
 import { includesContext } from './includes/contextCreator';
 import healthRoutes from './pages/health/routes';
 import { withCatch, getCapabilitiesParam, determineContentType } from './helpers/routerHelper';
-import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
+import { getEndpoint } from './endpoints';
 
 const addContext = ({ context, user, csrfToken }) => ({
   ...context,
@@ -84,10 +84,11 @@ export const routes = (authProvider) => {
 
   router.get('/solutions/compare/document', async (req, res) => {
     logger.info('downloading solution comparison document');
-    const response = await getDocument({
+    const endpoint = getEndpoint({
       endpointLocator: 'getDocument',
       options: { documentName: 'compare-solutions.xlsx' },
     });
+    const response = await getDocument({ endpoint, logger });
     res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     response.data.pipe(res);
   });
@@ -137,13 +138,15 @@ export const routes = (authProvider) => {
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
     logger.info(`downloading Solution ${solutionId} document ${documentName}`);
-    const response = await getDocument({
+    const endpoint = getEndpoint({
       endpointLocator: 'getSolutionDocument',
       options: { solutionId, documentName },
     });
+    const response = await getDocument({ endpoint, logger });
     res.setHeader('Content-type', determineContentType(documentName));
     response.data.pipe(res);
   });
+
   router.get('*', (req) => {
     throw new ErrorContext({
       status: 404,
