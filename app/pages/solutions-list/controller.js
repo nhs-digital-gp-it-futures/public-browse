@@ -1,4 +1,4 @@
-import { ErrorContext, getData, postData } from 'buying-catalogue-library';
+import { getData, postData } from 'buying-catalogue-library';
 import { getSolutionListManifest } from './filterType/manifestProvider';
 import { createSolutionListPageContext } from './context';
 import { logger } from '../../logger';
@@ -29,10 +29,8 @@ export const getSolutionListPageContext = async ({ filterType }) => {
       solutionsData: solutionListResponse.solutions,
     });
   }
-  throw new ErrorContext({
-    status: 404,
-    description: `No endpoint found for filter type: ${filterType}`,
-  });
+  logger.error(`No solutions found for filter type: ${filterType}`);
+  throw new Error();
 };
 
 export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected }) => {

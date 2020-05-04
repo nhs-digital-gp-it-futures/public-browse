@@ -85,16 +85,28 @@ export const routes = (authProvider) => {
     res.render('pages/compare/template.njk', addContext({ context, user: req.user }));
   });
 
-  router.get('/solutions/compare/document', async (req, res) => {
+  router.get('/solutions/compare/document', withCatch(async (req, res) => {
     logger.info('downloading solution comparison document');
     const endpoint = getEndpoint({
       endpointLocator: 'getDocument',
       options: { documentName: 'compare-solutions.xlsx' },
     });
-    const response = await getDocument({ endpoint, logger });
-    res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    response.data.pipe(res);
-  });
+    try {
+      const response = await getDocument({ endpoint, logger });
+      res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      response.data.pipe(res);
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        throw new ErrorContext({
+          status: 404,
+          backLinkHref: '/solutions/compare',
+          backLinkText: 'Back',
+          description: 'Document not found',
+        });
+      }
+      throw err;
+    }
+  }));
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
     const capabilitiesParam = getCapabilitiesParam(req.body.capabilities);
@@ -159,7 +171,7 @@ export const routes = (authProvider) => {
   });
 
   errorHandler(router, (error, req, res) => {
-    logger.error(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
+    logger.warn(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
     return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
   });
 

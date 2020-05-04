@@ -1,4 +1,4 @@
-import { ErrorContext, getData, postData } from 'buying-catalogue-library';
+import { getData, postData } from 'buying-catalogue-library';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './controller';
 import * as createContext from './context';
 import foundationContent from './filterType/foundation/manifest.json';
@@ -77,10 +77,7 @@ describe('solutions-list controller', () => {
       try {
         await getSolutionListPageContext({ filterType: 'foundation' });
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 404,
-          description: 'No endpoint found for filter type: foundation',
-        }));
+        expect(err).toEqual(new Error());
       }
     });
 
@@ -90,9 +87,7 @@ describe('solutions-list controller', () => {
       try {
         await getSolutionListPageContext({ filterType: 'unknown' });
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 500,
-        }));
+        expect(err).toEqual(new Error());
       }
     });
   });
