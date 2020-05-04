@@ -1,4 +1,4 @@
-import { ErrorContext, getData } from 'buying-catalogue-library';
+import { getData } from 'buying-catalogue-library';
 import { getCapabilitiesContext } from './controller';
 import manifest from './manifest.json';
 import { logger } from '../../logger';

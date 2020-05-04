@@ -1,4 +1,4 @@
-import { ErrorContext, getData, postData } from 'buying-catalogue-library';
+import { getData, postData } from 'buying-catalogue-library';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './controller';
 import * as createContext from './context';
 import foundationContent from './filterType/foundation/manifest.json';

@@ -1,4 +1,4 @@
-import { ErrorContext, getData } from 'buying-catalogue-library';
+import { getData } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './controller';
 import { logger } from '../../logger';
 import { buyingCatalogueApiHost } from '../../config';
