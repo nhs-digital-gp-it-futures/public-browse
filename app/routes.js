@@ -1,5 +1,7 @@
 import express from 'express';
-import { ErrorContext, errorHandler, getDocument } from 'buying-catalogue-library';
+import {
+  ErrorContext, errorHandler, getDocument, healthRoutes,
+} from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -10,9 +12,10 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
-import healthRoutes from './pages/health/routes';
-import { withCatch, getCapabilitiesParam, determineContentType } from './helpers/routerHelper';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
+import {
+  withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
+} from './helpers/routerHelper';
 import { getEndpoint } from './endpoints';
 
 const addContext = ({ context, user, csrfToken }) => ({
@@ -26,7 +29,7 @@ const addContext = ({ context, user, csrfToken }) => ({
 export const routes = (authProvider) => {
   const router = express.Router();
 
-  router.use('/health', healthRoutes);
+  healthRoutes({ router, dependencies: getHealthCheckDependencies(config), logger });
 
   if (authProvider) {
     router.get('/login', authProvider.login());
@@ -156,7 +159,7 @@ export const routes = (authProvider) => {
   });
 
   errorHandler(router, (error, req, res) => {
-    logger.error(`${error.title} - ${error.description}`);
+    logger.error(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
     return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
   });
 
