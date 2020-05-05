@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  ErrorContext, errorHandler, getDocument, healthRoutes,
+  ErrorContext, errorHandler, getDocument, healthRoutes, authenticationRoutes,
 } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
@@ -32,27 +32,8 @@ export const routes = (authProvider) => {
   healthRoutes({ router, dependencies: getHealthCheckDependencies(config), logger });
 
   if (authProvider) {
-    router.get('/login', authProvider.login());
-
-    router.get('/oauth/callback', authProvider.loginCallback());
-
-    router.get('/logout', async (req, res) => {
-      const idToken = req.session && req.session.accessToken && req.session.accessToken.id_token;
-      const url = await authProvider.logout({ req, idToken });
-      res.redirect(url);
-    });
-
-    router.get('/signout-callback-oidc', async (req, res) => {
-      if (req.logout) req.logout();
-      req.session = null;
-
-      if (req.headers.cookie) {
-        req.headers.cookie.split(';')
-          .map(cookie => cookie.split('=')[0])
-          .forEach(cookieKey => res.clearCookie(cookieKey));
-      }
-
-      res.redirect(config.logoutRedirectPath);
+    authenticationRoutes({
+      router, authProvider, tokenType: 'id', logoutRedirectPath: config.logoutRedirectPath, logger,
     });
 
     router.get('/back-from-admin', (req, res, next) => {
