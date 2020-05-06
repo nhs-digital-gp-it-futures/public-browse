@@ -49,14 +49,14 @@ fixture('Header')
 
 test('should display BETA banner', async (t) => {
   await pageSetup({ t });
-  const betaBanner = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(1)');
+  const betaBanner = Selector('[data-test-id="beta-banner"] > div > div > div:nth-child(1)');
   await t
     .expect(await extractInnerText(betaBanner)).eql('BETA');
 });
 
 test('should display General Terms of Use text', async (t) => {
   await pageSetup({ t });
-  const termsOfUseText = Selector('[data-test-id="terms-banner"] > div > div > div:nth-child(2)');
+  const termsOfUseText = Selector('[data-test-id="beta-banner"] > div > div > div:nth-child(2)');
   await t
     .expect(await extractInnerText(termsOfUseText)).eql('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
 });
