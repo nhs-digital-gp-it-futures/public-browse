@@ -1,11 +1,10 @@
-import { ErrorContext } from 'buying-catalogue-library';
+import { getData } from 'buying-catalogue-library';
 import { getCapabilitiesContext } from './controller';
-import * as apiProvider from '../../apiProvider';
 import manifest from './manifest.json';
+import { logger } from '../../logger';
+import { buyingCatalogueApiHost } from '../../config';
 
-jest.mock('../../apiProvider', () => ({
-  getData: jest.fn(),
-}));
+jest.mock('buying-catalogue-library');
 
 const mockedCapabilitiesData = {
   capabilities: [{
@@ -29,16 +28,16 @@ const mockedCapabilitiesData = {
 describe('capabilities-selector controller', () => {
   describe('getCapabilitiesContext', () => {
     afterEach(() => {
-      apiProvider.getData.mockReset();
+      getData.mockReset();
     });
 
     it('should call getData once with the correct params', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce(mockedCapabilitiesData);
 
       await getCapabilitiesContext();
-      expect(apiProvider.getData.mock.calls.length).toEqual(1);
-      expect(apiProvider.getData).toHaveBeenCalledWith({ endpointLocator: 'getCapabilities' });
+      expect(getData.mock.calls.length).toEqual(1);
+      expect(getData).toHaveBeenCalledWith({ endpoint: `${buyingCatalogueApiHost}/api/v1/Capabilities`, logger });
     });
 
     it('should return the context when capabilities data is returned by the ApiProvider', async () => {
@@ -59,7 +58,7 @@ describe('capabilities-selector controller', () => {
         },
       };
 
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce(mockedCapabilitiesData);
 
       const context = await getCapabilitiesContext();
@@ -68,16 +67,13 @@ describe('capabilities-selector controller', () => {
     });
 
     it('should throw an error when no data is returned from the ApiProvider', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce({});
 
       try {
         await getCapabilitiesContext();
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 404,
-          description: 'No data returned',
-        }));
+        expect(err).toEqual(new Error());
       }
     });
   });

@@ -1,10 +1,9 @@
-import { ErrorContext } from 'buying-catalogue-library';
+import { getData } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './controller';
-import * as apiProvider from '../../apiProvider';
+import { logger } from '../../logger';
+import { buyingCatalogueApiHost } from '../../config';
 
-jest.mock('../../apiProvider', () => ({
-  getData: jest.fn(),
-}));
+jest.mock('buying-catalogue-library');
 
 const mockedSolutionData = {
   id: '100000-001',
@@ -22,17 +21,17 @@ const mockedSolutionData = {
 describe('view-solution controller', () => {
   describe('getPublicSolutionById', () => {
     afterEach(() => {
-      apiProvider.getData.mockReset();
+      getData.mockReset();
     });
 
     it('should call getData once with the correct params', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce(mockedSolutionData);
 
       await getPublicSolutionById({ solutionId: '100000-001' });
-      expect(apiProvider.getData).toHaveBeenCalledWith({
-        endpointLocator: 'getPublicSolutionById',
-        options: { solutionId: '100000-001' },
+      expect(getData).toHaveBeenCalledWith({
+        endpoint: `${buyingCatalogueApiHost}/api/v1/Solutions/100000-001/Public`,
+        logger,
       });
     });
 
@@ -53,22 +52,19 @@ describe('view-solution controller', () => {
         },
       };
 
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce(mockedSolutionData);
       const context = await getPublicSolutionById({ solutionId: '100000-001' });
       expect(context).toEqual(expectedContext);
     });
 
     it('should throw an error when no data is returned from getData', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce();
       try {
         await getPublicSolutionById({ solutionId: 'some-solution-id' });
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 404,
-          description: 'No data returned',
-        }));
+        expect(err).toEqual(new Error());
       }
     });
   });

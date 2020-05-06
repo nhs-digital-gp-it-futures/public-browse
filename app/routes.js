@@ -1,5 +1,7 @@
 import express from 'express';
-import { ErrorContext, errorHandler } from 'buying-catalogue-library';
+import {
+  ErrorContext, errorHandler, getDocument, healthRoutes, authenticationRoutes,
+} from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
 import { getBrowseSolutionsPageContext } from './pages/browse-solutions/context';
@@ -10,10 +12,11 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
-import healthRoutes from './pages/health/routes';
-import { withCatch, getCapabilitiesParam, determineContentType } from './helpers/routerHelper';
-import { getDocument } from './apiProvider';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
+import {
+  withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
+} from './helpers/routerHelper';
+import { getEndpoint } from './endpoints';
 
 const addContext = ({ context, user, csrfToken }) => ({
   ...context,
@@ -26,33 +29,14 @@ const addContext = ({ context, user, csrfToken }) => ({
 export const routes = (authProvider) => {
   const router = express.Router();
 
-  router.use('/health', healthRoutes);
+  healthRoutes({ router, dependencies: getHealthCheckDependencies(config), logger });
 
   if (authProvider) {
-    router.get('/login', authProvider.login());
-
-    router.get('/oauth/callback', authProvider.loginCallback());
-
-    router.get('/logout', async (req, res) => {
-      const idToken = req.session && req.session.accessToken && req.session.accessToken.id_token;
-      const url = await authProvider.logout({ req, idToken });
-      res.redirect(url);
+    authenticationRoutes({
+      router, authProvider, tokenType: 'id', logoutRedirectPath: config.logoutRedirectPath, logger,
     });
 
-    router.get('/signout-callback-oidc', async (req, res) => {
-      if (req.logout) req.logout();
-      req.session = null;
-
-      if (req.headers.cookie) {
-        req.headers.cookie.split(';')
-          .map(cookie => cookie.split('=')[0])
-          .forEach(cookieKey => res.clearCookie(cookieKey));
-      }
-
-      res.redirect(config.logoutRedirectPath);
-    });
-
-    router.get('/back-from-admin', (req, res, next) => {
+    router.get('/re-login', (req, res, next) => {
       req.headers.referer = `${config.appBaseUri}${config.baseUrl}/`;
       authProvider.login()(req, res, next);
     });
@@ -82,15 +66,28 @@ export const routes = (authProvider) => {
     res.render('pages/compare/template.njk', addContext({ context, user: req.user }));
   });
 
-  router.get('/solutions/compare/document', async (req, res) => {
+  router.get('/solutions/compare/document', withCatch(async (req, res) => {
     logger.info('downloading solution comparison document');
-    const response = await getDocument({
+    const endpoint = getEndpoint({
       endpointLocator: 'getDocument',
       options: { documentName: 'compare-solutions.xlsx' },
     });
-    res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    response.data.pipe(res);
-  });
+    try {
+      const response = await getDocument({ endpoint, logger });
+      res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      response.data.pipe(res);
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        throw new ErrorContext({
+          status: 404,
+          backLinkHref: '/solutions/compare',
+          backLinkText: 'Back',
+          description: 'Document not found',
+        });
+      }
+      throw err;
+    }
+  }));
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
     const capabilitiesParam = getCapabilitiesParam(req.body.capabilities);
@@ -137,13 +134,15 @@ export const routes = (authProvider) => {
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
     logger.info(`downloading Solution ${solutionId} document ${documentName}`);
-    const response = await getDocument({
+    const endpoint = getEndpoint({
       endpointLocator: 'getSolutionDocument',
       options: { solutionId, documentName },
     });
+    const response = await getDocument({ endpoint, logger });
     res.setHeader('Content-type', determineContentType(documentName));
     response.data.pipe(res);
   });
+
   router.get('*', (req) => {
     throw new ErrorContext({
       status: 404,
@@ -153,7 +152,7 @@ export const routes = (authProvider) => {
   });
 
   errorHandler(router, (error, req, res) => {
-    logger.error(`${error.title} - ${error.description}`);
+    logger.warn(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
     return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
   });
 

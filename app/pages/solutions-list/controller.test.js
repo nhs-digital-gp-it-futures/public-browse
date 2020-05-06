@@ -1,14 +1,12 @@
-import { ErrorContext } from 'buying-catalogue-library';
+import { getData, postData } from 'buying-catalogue-library';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './controller';
 import * as createContext from './context';
-import * as apiProvider from '../../apiProvider';
 import foundationContent from './filterType/foundation/manifest.json';
 import capabilitiesSelectorContent from './filterType/capabilities-selector/manifest.json';
+import { logger } from '../../logger';
+import { buyingCatalogueApiHost } from '../../config';
 
-jest.mock('../../apiProvider', () => ({
-  postData: jest.fn(),
-  getData: jest.fn(),
-}));
+jest.mock('buying-catalogue-library');
 
 jest.mock('./context', () => ({
   createSolutionListPageContext: jest.fn(),
@@ -42,23 +40,23 @@ const mockedSolutionData = {
 describe('solutions-list controller', () => {
   describe('getSolutionListPageContext', () => {
     afterEach(() => {
-      apiProvider.getData.mockReset();
+      getData.mockReset();
       createContext.createSolutionListPageContext.mockReset();
     });
 
     it('should call getData once with the correct params', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce(mockedSolutionData);
 
       await getSolutionListPageContext({ filterType: 'foundation' });
-      expect(apiProvider.getData).toHaveBeenCalledWith({
-        endpointLocator: 'getSolutionListData',
-        options: { filterType: 'foundation' },
+      expect(getData).toHaveBeenCalledWith({
+        endpoint: `${buyingCatalogueApiHost}/api/v1/Solutions/Foundation`,
+        logger,
       });
     });
 
     it('should call createSolutionListPageContext once with the correct params', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce(mockedSolutionData);
       createContext.createSolutionListPageContext
         .mockResolvedValueOnce();
@@ -74,64 +72,63 @@ describe('solutions-list controller', () => {
     });
 
     it('should throw an error when no data is returned from getData', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce();
       try {
         await getSolutionListPageContext({ filterType: 'foundation' });
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 404,
-          description: 'No endpoint found for filter type: foundation',
-        }));
+        expect(err).toEqual(new Error());
       }
     });
 
     it('should throw an error when no data is returned from getSolutionListManifest', async () => {
-      apiProvider.getData
+      getData
         .mockResolvedValueOnce();
       try {
         await getSolutionListPageContext({ filterType: 'unknown' });
       } catch (err) {
-        expect(err).toEqual(new ErrorContext({
-          status: 500,
-        }));
+        expect(err).toEqual(new Error());
       }
     });
   });
 
   describe('getSolutionsForSelectedCapabilities', () => {
     afterEach(() => {
-      apiProvider.postData.mockReset();
+      postData.mockReset();
       createContext.createSolutionListPageContext.mockReset();
     });
 
     it('should call postData once with the correct params when capabilitiesSelected is "all"', async () => {
-      apiProvider.postData
+      postData
         .mockResolvedValueOnce({ data: mockedSolutionData });
 
       await getSolutionsForSelectedCapabilities({ capabilitiesSelected: 'all' });
 
-      expect(apiProvider.postData.mock.calls.length).toEqual(1);
-      expect(apiProvider.postData).toHaveBeenCalledWith({
-        endpointLocator: 'postSelectedCapabilities',
-        body: { capabilities: [] },
+      expect(postData.mock.calls.length).toEqual(1);
+      expect(postData).toHaveBeenCalledWith({
+        endpoint: `${buyingCatalogueApiHost}/api/v1/Solutions`,
+        body: {
+          capabilities: [],
+        },
+        logger,
       });
     });
 
     it('should call postData once with the correct params when capabilities are selected', async () => {
-      apiProvider.postData
+      postData
         .mockResolvedValueOnce({ data: mockedSolutionData });
 
       await getSolutionsForSelectedCapabilities({ capabilitiesSelected: 'C1+C2' });
-      expect(apiProvider.postData.mock.calls.length).toEqual(1);
-      expect(apiProvider.postData).toHaveBeenCalledWith({
-        endpointLocator: 'postSelectedCapabilities',
+      expect(postData.mock.calls.length).toEqual(1);
+      expect(postData).toHaveBeenCalledWith({
+        endpoint: `${buyingCatalogueApiHost}/api/v1/Solutions`,
         body: { capabilities: [{ reference: 'C1' }, { reference: 'C2' }] },
+        logger,
       });
     });
 
     it('should call createSolutionListPageContext once with the correct params', async () => {
-      apiProvider.postData
+      postData
         .mockResolvedValueOnce({ data: mockedSolutionData });
       createContext.createSolutionListPageContext
         .mockResolvedValueOnce();
