@@ -36,7 +36,7 @@ export const routes = (authProvider) => {
       router, authProvider, tokenType: 'id', logoutRedirectPath: config.logoutRedirectPath, logger,
     });
 
-    router.get('/back-from-admin', (req, res, next) => {
+    router.get('/re-login', (req, res, next) => {
       req.headers.referer = `${config.appBaseUri}${config.baseUrl}/`;
       authProvider.login()(req, res, next);
     });

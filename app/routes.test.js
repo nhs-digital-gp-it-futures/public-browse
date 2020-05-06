@@ -73,10 +73,10 @@ describe('routes', () => {
     config.useCapabilitiesSelector = 'true';
   });
 
-  describe('GET /back-from-admin', () => {
+  describe('GET /re-login', () => {
     it('should return the correct status and redirect to the login route', () => (
       request(setUpFakeApp())
-        .get('/back-from-admin')
+        .get('/re-login')
         .expect(302)
         .then((res) => {
           expect(res.headers.location).toEqual('http://identity-server/login');
