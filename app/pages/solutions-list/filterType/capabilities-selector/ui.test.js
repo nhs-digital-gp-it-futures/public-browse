@@ -1,9 +1,9 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import aCustomSolutionList from '../../../../test-utils/fixtures/aCustomSolutionList.json';
 import capabilitiesList from '../../../../test-utils/fixtures/capabilitiesList.json';
 import publicSolutionNoData from '../../../../test-utils/fixtures/publicSolutionNoData.json';
-import { extractInnerText } from '../../../../test-utils/helper';
 import manifest from './manifest.json';
 
 const getLocation = ClientFunction(() => document.location.href);

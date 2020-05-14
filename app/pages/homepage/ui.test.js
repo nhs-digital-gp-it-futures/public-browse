@@ -1,7 +1,7 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction, RequestLogger } from 'testcafe';
 import content from './manifest.json';
-import { extractInnerText } from '../../test-utils/helper';
 import { buyingCatalogueAdminHost } from '../../config';
 
 const setfakeTokenCookie = ClientFunction((payload) => {

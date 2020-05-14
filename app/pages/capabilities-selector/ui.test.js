@@ -1,9 +1,9 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 import capabilitiesList from '../../test-utils/fixtures/capabilitiesList.json';
 import aCustomSolutionList from '../../test-utils/fixtures/aCustomSolutionList.json';
-import { extractInnerText } from '../../test-utils/helper';
 import { apiLocalhost } from '../../test-utils/config';
 
 const mocks = () => {

@@ -1,5 +1,5 @@
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
-import { extractInnerText } from '../../test-utils/helper';
 
 import manifest from './manifest.json';
 import covid19Data from './data/non-production/covid19-solutions.json';
