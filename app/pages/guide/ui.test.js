@@ -1,6 +1,6 @@
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector } from 'testcafe';
 import content from './manifest.json';
-import { extractInnerText } from '../../test-utils/helper';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/guide');

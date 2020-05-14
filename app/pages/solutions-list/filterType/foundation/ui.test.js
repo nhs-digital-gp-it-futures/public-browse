@@ -1,7 +1,7 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import aFoundationSolutionList from '../../../../test-utils/fixtures/aFoundationSolutionList.json';
-import { extractInnerText } from '../../../../test-utils/helper';
 
 const mocks = async (responseStatus, responseBody) => {
   await nock('http://localhost:5100')
