@@ -1,10 +1,9 @@
 import request from 'supertest';
 import { createReadStream, readFileSync } from 'fs';
 import path from 'path';
-import { FakeAuthProvider, getDocument } from 'buying-catalogue-library';
+import { FakeAuthProvider, getCsrfTokenFromGet, getDocument } from 'buying-catalogue-library';
 import { App } from './app';
 import { routes } from './routes';
-import { getCsrfTokenFromGet } from './test-utils/helper';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
 import * as solutionListPageContext from './pages/solutions-list/controller';
@@ -254,9 +253,11 @@ describe('routes', () => {
   });
 
   describe('POST /solutions/capabilities-selector', () => {
+    const pathToTest = '/solutions/capabilities-selector';
+
     it('should return 403 forbidden if no csrf token is available', () => (
       request(setUpFakeApp())
-        .post('/solutions/capabilities-selector')
+        .post(pathToTest)
         .type('form')
         .send({
           capabilities: 'C1',
@@ -270,10 +271,12 @@ describe('routes', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
-      const { cookies, csrfToken, app } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+      const { cookies, csrfToken } = await getCsrfTokenFromGet({
+        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+      });
 
-      return request(app)
-        .post('/solutions/capabilities-selector')
+      return request(setUpFakeApp())
+        .post(pathToTest)
         .type('form')
         .set('Cookie', cookies)
         .send({
@@ -294,7 +297,9 @@ describe('routes', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
-      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+      const { cookies, csrfToken } = await getCsrfTokenFromGet({
+        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+      });
 
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
@@ -318,7 +323,9 @@ describe('routes', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
-      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+      const { cookies, csrfToken } = await getCsrfTokenFromGet({
+        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+      });
 
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
