@@ -29,10 +29,23 @@ describe('homepage - context', () => {
     expect(context).toEqual(expectedContext);
   });
 
-  it('should return the content, orderFormUrl, adminUrl and showAdminTile as true if organisation claim is provided in user', () => {
+  it('should return the content, orderFormUrl, adminUrl and showAdminTile as true if organisation claim is manage', () => {
     const expectedContext = {
       ...content,
       showAdminTile: true,
+      adminUrl: `${buyingCatalogueAdminHost}/organisations`,
+      orderFormUrl: orderFormHost,
+    };
+
+    const context = getHomepageContext({ user: { organisation: 'manage' } });
+
+    expect(context).toEqual(expectedContext);
+  });
+
+  it('should return the content, orderFormUrl, adminUrl and showAdminTile as false if organisation claim is view', () => {
+    const expectedContext = {
+      ...content,
+      showAdminTile: false,
       adminUrl: `${buyingCatalogueAdminHost}/organisations`,
       orderFormUrl: orderFormHost,
     };
