@@ -8,9 +8,13 @@
     "The functionality of the Buying Catalogue will be enhanced and the number of Catalogue Solutions available will increase over time."
   ],
   "guidePromoHeading": "Buyer’s Guide",
-  "guidePromoDescription": "Our guide explains the terminology you’ll need to understand when procuring Catalogue Solutions.",
-  "viewSolutionsPromoHeading": "View Catalogue Solutions",
-  "viewSolutionsPromoDescription": "See what’s available on the Buying Catalogue that can meet your needs.",
+  "guidePromoDescription": "Terminology you’ll need to know when procuring Catalogue Solutions.",
+  "viewSolutionsPromoHeading": "View all Catalogue Solutions",
+  "viewSolutionsPromoDescription": "See what’s available on the Buying Catalogue to meet your needs.",
   "adminPromoHeading": "Manage organisations and users",
-  "adminPromoDescription": "Add new organisations and user accounts or edit existing details."
+  "adminPromoDescription": "Add new organisations and user accounts or edit existing details.",
+  "covid19PromoHeading": "Solutions to help with coronavirus",
+  "covid19PromoDescription": "Find Catalogue Solutions that can help prevent the spread of coronavirus.",
+  "orderFormPromoHeading": "Create or manage orders",
+  "orderFormPromoDescription": "Place a new order or complete an order you've already started (log in required)."
 }

@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -7,21 +7,21 @@ const setup = {
 };
 
 describe('solutions list page', () => {
-  it('should render the solution list page title', createTestHarness(setup, (harness) => {
+  it('should render the solution list page title', componentTester(setup, (harness) => {
     const context = {
-      pageTitle: 'some page title',
+      title: 'some page title',
     };
 
     harness.request(context, ($) => {
       const solutionListTitle = $('[data-test-id="general-page-title"]');
       expect(solutionListTitle.length).toEqual(1);
-      expect(solutionListTitle.text().trim()).toEqual(context.pageTitle);
+      expect(solutionListTitle.text().trim()).toEqual(context.title);
     });
   }));
 
-  it('should render go back link', createTestHarness(setup, (harness) => {
+  it('should render go back link', componentTester(setup, (harness) => {
     const context = {
-      pageTitle: 'some page title',
+      title: 'some page title',
       backLinkPath: '/backlink/path',
     };
 
@@ -33,20 +33,66 @@ describe('solutions list page', () => {
     });
   }));
 
-  it('should render the solution list page description', createTestHarness(setup, (harness) => {
+  it('should render the solution list page description', componentTester(setup, (harness) => {
     const context = {
-      pageDescription: 'some page description',
+      description: 'some page description',
     };
 
     harness.request(context, ($) => {
       const solutionListTitleSummary = $('h2[data-test-id="general-page-description"]');
       expect(solutionListTitleSummary.length).toEqual(1);
-      expect(solutionListTitleSummary.text().trim()).toEqual(context.pageDescription);
+      expect(solutionListTitleSummary.text().trim()).toEqual(context.description);
+    });
+  }));
+
+  it('should render the compare description if it is in the context', componentTester(setup, (harness) => {
+    const context = {
+      compareSolutionsDescription: 'some compare description',
+    };
+
+    harness.request(context, ($) => {
+      const description = $('div[data-test-id="compare-solutions-description"]');
+      expect(description.length).toEqual(1);
+      expect(description.text().trim()).toEqual(context.compareSolutionsDescription);
+    });
+  }));
+
+  it('should not render the compare description if it is not in the context', componentTester(setup, (harness) => {
+    const context = {};
+
+    harness.request(context, ($) => {
+      const description = $('div[data-test-id="compare-solutions-description"]');
+      expect(description.length).toEqual(0);
+    });
+  }));
+
+  it('should render the compare button if compareSolutionsDescription is in the context', componentTester(setup, (harness) => {
+    const context = {
+      compareSolutionsDescription: 'some compare description',
+      compareButtonText: 'compare button text',
+    };
+
+    harness.request(context, ($) => {
+      const button = $('div[data-test-id="compare-button"] a');
+      expect(button.length).toEqual(1);
+      expect(button.text().trim()).toEqual(context.compareButtonText);
+      expect(button.attr('href')).toEqual('/solutions/compare/document');
+    });
+  }));
+
+  it('should not render the compare button if compareSolutionsDescription is not in the context', componentTester(setup, (harness) => {
+    const context = {
+      compareButtonText: 'compare button text',
+    };
+
+    harness.request(context, ($) => {
+      const button = $('div[data-test-id="compare-button"] a');
+      expect(button.length).toEqual(0);
     });
   }));
 
   describe('solution cards', () => {
-    it('should render 0 cards if no solutions are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 0 cards if no solutions are provided in the context', componentTester(setup, (harness) => {
       const context = {
         solutions: [],
       };
@@ -57,7 +103,7 @@ describe('solutions list page', () => {
       });
     }));
 
-    it('should render 1 card if only 1 solution is provided context', createTestHarness(setup, (harness) => {
+    it('should render 1 card if only 1 solution is provided context', componentTester(setup, (harness) => {
       const context = {
         solutions: [
           {
@@ -73,7 +119,7 @@ describe('solutions list page', () => {
       });
     }));
 
-    it('should render 3 cards if 3 solutions are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 3 cards if 3 solutions are provided in the context', componentTester(setup, (harness) => {
       const context = {
         solutions: [
           {

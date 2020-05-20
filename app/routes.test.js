@@ -1,26 +1,29 @@
 import request from 'supertest';
+import { createReadStream, readFileSync } from 'fs';
+import path from 'path';
+import { FakeAuthProvider, getCsrfTokenFromGet, getDocument } from 'buying-catalogue-library';
 import { App } from './app';
 import { routes } from './routes';
-import { FakeAuthProvider } from './test-utils/FakeAuthProvider';
-import { getCsrfTokenFromGet, setFakeCookie } from './test-utils/helper';
 import * as homepageContext from './pages/homepage/context';
 import * as viewSolutionController from './pages/view-solution/controller';
 import * as solutionListPageContext from './pages/solutions-list/controller';
 import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
+import * as comparePageContext from './pages/compare/controller';
 import config from './config';
+import { logger } from './logger';
 
 jest.mock('./logger');
 
 const mockFoundationSolutionsContext = {
-  pageTitle: 'Foundation',
+  title: 'Foundation',
   pageDescription: 'These foundation solutions',
   solutions: [],
 };
 
 const mockFilteredSolutions = {
-  pageTitle: 'Custom',
+  title: 'Custom',
   pageDescription: 'These are solutions which match the selected capabilities',
   solutions: [],
 };
@@ -68,68 +71,15 @@ describe('routes', () => {
   beforeEach(() => {
     config.useCapabilitiesSelector = 'true';
   });
-  describe('GET /login', () => {
-    it('should return the correct status and redirect to the login page when not authenticated', () => (
+
+  describe('GET /re-login', () => {
+    it('should return the correct status and redirect to the login route', () => (
       request(setUpFakeApp())
-        .get('/login')
+        .get('/re-login')
         .expect(302)
         .then((res) => {
-          expect(res.redirect).toEqual(true);
           expect(res.headers.location).toEqual('http://identity-server/login');
         })));
-  });
-
-  describe('GET /logout', () => {
-    it('should redirect to the url provided by authProvider', async () => request(setUpFakeApp())
-      .get('/logout')
-      .expect(302)
-      .then((res) => {
-        expect(res.redirect).toEqual(true);
-        expect(res.headers.location).toEqual('/signout-callback-oidc');
-      }));
-  });
-
-  describe('GET /signout-callback-oidc', () => {
-    afterEach(() => {
-      mockLogoutMethod.mockReset();
-    });
-
-    it('should redirect to /', async () => {
-      homepageContext.getHomepageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
-      return request(setUpFakeApp())
-        .get('/signout-callback-oidc')
-        .expect(302)
-        .then((res) => {
-          expect(res.redirect).toEqual(true);
-          expect(res.headers.location).toEqual('/');
-        });
-    });
-
-    it('should call req.logout', async () => {
-      homepageContext.getHomepageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
-      return request(setUpFakeApp())
-        .get('/signout-callback-oidc')
-        .expect(302)
-        .then(() => {
-          expect(mockLogoutMethod.mock.calls.length).toEqual(1);
-        });
-    });
-
-    it('should delete cookies', async () => {
-      homepageContext.getHomepageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
-      const { modifiedApp, cookies } = await setFakeCookie(setUpFakeApp(), '/signout-callback-oidc');
-      expect(cookies.length).toEqual(2);
-
-      return request(modifiedApp)
-        .get('/')
-        .expect(200)
-        .then((res) => {
-          expect(res.headers['set-cookie'].length).toEqual(1);
-        });
-    });
   });
 
   describe('GET /', () => {
@@ -146,7 +96,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('<div class="nhsuk-hero" data-test-id="homepage-hero">')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -165,7 +115,43 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="guide-page-body"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
+        });
+    });
+  });
+
+  describe('GET /solutions/compare', () => {
+    afterEach(() => {
+      comparePageContext.getContext.mockReset();
+    });
+
+    it('should return the correct status and text if there is no error', () => {
+      comparePageContext.getContext = jest.fn()
+        .mockImplementation(() => Promise.resolve({}));
+
+      return request(setUpFakeApp())
+        .get('/solutions/compare')
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="compare-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
+        });
+    });
+  });
+
+  describe('GET /solutions/compare/document', () => {
+    it('should call getDocument with the correct params', () => {
+      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
+      request(setUpFakeApp())
+        .get('/solutions/compare/document')
+        .expect(200)
+        .then(() => {
+          expect(getDocument.mock.calls.length).toEqual(1);
+          expect(getDocument).toHaveBeenCalledWith({
+            endpoint: `${config.documentApiHost}/api/v1/documents/compare-solutions.xlsx`,
+            logger,
+          });
+          getDocument.mockRestore();
         });
     });
   });
@@ -184,7 +170,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="browse-solutions"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -203,7 +189,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
 
@@ -216,7 +202,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="capabilities-selector"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
 
@@ -229,7 +215,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
@@ -248,7 +234,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes(`<h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">${mockGetPublicSolutionById.name}</h1>`)).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
 
@@ -261,15 +247,17 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes(`<h1 data-test-id="view-solution-page-solution-name" class="nhsuk-u-margin-bottom-2">${mockGetPublicSolutionById.name}</h1>`)).toEqual(true);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(false);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
         });
     });
   });
 
   describe('POST /solutions/capabilities-selector', () => {
+    const pathToTest = '/solutions/capabilities-selector';
+
     it('should return 403 forbidden if no csrf token is available', () => (
       request(setUpFakeApp())
-        .post('/solutions/capabilities-selector')
+        .post(pathToTest)
         .type('form')
         .send({
           capabilities: 'C1',
@@ -283,10 +271,12 @@ describe('routes', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
-      const { cookies, csrfToken, app } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+      const { cookies, csrfToken } = await getCsrfTokenFromGet({
+        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+      });
 
-      return request(app)
-        .post('/solutions/capabilities-selector')
+      return request(setUpFakeApp())
+        .post(pathToTest)
         .type('form')
         .set('Cookie', cookies)
         .send({
@@ -307,7 +297,9 @@ describe('routes', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
-      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+      const { cookies, csrfToken } = await getCsrfTokenFromGet({
+        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+      });
 
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
@@ -331,7 +323,9 @@ describe('routes', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
-      const { cookies, csrfToken } = await getCsrfTokenFromGet(setUpFakeApp(), '/solutions/capabilities-selector');
+      const { cookies, csrfToken } = await getCsrfTokenFromGet({
+        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+      });
 
       return request(setUpFakeApp())
         .post('/solutions/capabilities-selector')
@@ -349,6 +343,21 @@ describe('routes', () => {
     });
   });
 
+  describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
+    it('should return the correct status and text if there is no error', () => {
+      getDocument
+        .mockResolvedValueOnce({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
+      request(setUpFakeApp())
+        .get('/solutions/foundation/1/document/somedoc')
+        .expect(200)
+        .then((res) => {
+          expect(res.text).toEqual(readFileSync(path.resolve(__dirname, 'data.pdf'), 'utf8'));
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
+          getDocument.mockRestore();
+        });
+    });
+  });
+
   describe('Error handler', () => {
     it('should return error page if there is an error from /solutions/:filterType.:capabilities? route', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
@@ -359,7 +368,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(true);
           solutionListPageContext.getSolutionListPageContext.mockReset();
         });
     });
@@ -373,7 +382,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="solutions-list-body"')).toEqual(false);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(true);
           solutionListPageContext.getSolutionsForSelectedCapabilities.mockReset();
         });
     });
@@ -387,7 +396,7 @@ describe('routes', () => {
         .expect(200)
         .then((res) => {
           expect(res.text.includes('data-test-id="dashboard"')).toEqual(false);
-          expect(res.text.includes('data-test-id="error-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(true);
           viewSolutionController.getPublicSolutionById.mockReset();
         });
     });
@@ -399,7 +408,8 @@ describe('routes', () => {
         .get('/aaaa')
         .expect(200)
         .then((res) => {
-          expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-padding-left-3" data-test-id="error-page-title">Error: Incorrect url /aaaa - please check it is valid and try again</h1>')).toEqual(true);
+          expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-margin-top-5" data-test-id="error-title">Incorrect url /aaaa</h1>')).toEqual(true);
+          expect(res.text.includes('<p data-test-id="error-description">Please check it is valid and try again</p>')).toEqual(true);
         })));
   });
 

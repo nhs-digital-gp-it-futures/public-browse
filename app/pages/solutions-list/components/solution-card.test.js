@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../test-utils/testHarness';
+import { componentTester } from '../../../test-utils/componentTester';
 
 const setup = {
   component: {
@@ -8,7 +8,7 @@ const setup = {
 };
 
 describe('solution-card', () => {
-  it('should render the foundation tag if isFoundation is true', createTestHarness(setup, (harness) => {
+  it('should render the foundation tag if isFoundation is true', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -24,7 +24,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should not render the foundation tag if isFoundation is false', createTestHarness(setup, (harness) => {
+  it('should not render the foundation tag if isFoundation is false', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -38,7 +38,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should render the view this solution link', createTestHarness(setup, (harness) => {
+  it('should render the view this solution link', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -56,7 +56,7 @@ describe('solution-card', () => {
     });
   }));
 
-  it('should render the supplier name', createTestHarness(setup, (harness) => {
+  it('should render the supplier name', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -73,7 +73,7 @@ describe('solution-card', () => {
   }));
 
   describe('solution name', () => {
-    it('should render the solution name', createTestHarness(setup, (harness) => {
+    it('should render the solution name', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -90,7 +90,7 @@ describe('solution-card', () => {
       });
     }));
 
-    it('should have correct href when there is filterType key in context', createTestHarness(setup, (harness) => {
+    it('should have correct href when there is filterType key in context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -108,7 +108,7 @@ describe('solution-card', () => {
     }));
   });
 
-  it('should render the solution summary', createTestHarness(setup, (harness) => {
+  it('should render the solution summary', componentTester(setup, (harness) => {
     const context = {
       params: {
         solution: {
@@ -126,7 +126,7 @@ describe('solution-card', () => {
   }));
 
   describe('capability list', () => {
-    it('should render 0 capability names if no capabilities are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 0 capability names if no capabilities are provided in the context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -145,7 +145,7 @@ describe('solution-card', () => {
       });
     }));
 
-    it('should render 1 capability name if only 1 capability is provided context', createTestHarness(setup, (harness) => {
+    it('should render 1 capability name if only 1 capability is provided context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {
@@ -167,7 +167,7 @@ describe('solution-card', () => {
       });
     }));
 
-    it('should render 3 capability names if 3 capabilities are provided in the context', createTestHarness(setup, (harness) => {
+    it('should render 3 capability names if 3 capabilities are provided in the context', componentTester(setup, (harness) => {
       const context = {
         params: {
           solution: {

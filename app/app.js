@@ -11,6 +11,7 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
 const dateFilter = require('nunjucks-date-filter');
+const connectSlashes = require('connect-slashes');
 
 // Local dependencies
 const config = require('./config');
@@ -45,8 +46,8 @@ export class App {
     this.app.use(helmet());
 
     // Middleware to serve static assets
-    this.app.use(express.static(path.join(__dirname, '/../public/')));
-    this.app.use('/nhsuk-frontend', express.static(path.join(__dirname, '/../node_modules/nhsuk-frontend/packages')));
+    this.app.use(config.baseUrl ? config.baseUrl : '/', express.static(path.join(__dirname, '/../public/')));
+    this.app.use(`${config.baseUrl}/nhsuk-frontend`, express.static(path.join(__dirname, '/../node_modules/nhsuk-frontend/packages')));
 
     // View engine (Nunjucks)
     this.app.set('view engine', 'njk');
@@ -54,11 +55,17 @@ export class App {
     // Use local variables
     this.app.use(locals(config));
 
+    // Remove trailing slashes from url
+    this.app.use(connectSlashes(false));
+
     // Nunjucks configuration
     const appViews = [
       path.join(__dirname, '/views/'),
       __dirname,
       path.join(__dirname, '/../node_modules/buying-catalogue-components/app/'),
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/components/general/'),
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/components/input/'),
+      path.join(__dirname, '/../node_modules/buying-catalogue-components/app/components/view/'),
       path.join(__dirname, '/../node_modules/nhsuk-frontend/packages/'),
     ];
 

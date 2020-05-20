@@ -1,11 +1,11 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import publicSolutionWithData from '../../test-utils/fixtures/publicSolutionWithData.json';
 import publicSolutionNoData from '../../test-utils/fixtures/publicSolutionNoData.json';
 import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
 
 import { apiLocalhost, apiPath, clientLocalhost } from '../../test-utils/config';
-import { extractInnerText } from '../../test-utils/helper';
 
 const getLocation = ClientFunction(() => document.location.href);
 

@@ -1,4 +1,5 @@
 export const createViewSolutionPageContext = ({ solutionData }) => ({
+  title: solutionData.name,
   solutionHeader: {
     id: solutionData.id,
     name: solutionData.name,
