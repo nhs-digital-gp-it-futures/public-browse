@@ -1,0 +1,234 @@
+{
+  "solutions": [
+    {
+      "id": "10035-001",
+      "name": "Evergreen Life",
+      "summary": "Evergreen Life is facilitating remote digital consultations including video appointments for GPs in the UK, with patient record access to clinicians with or without access to the practice system in England. The app lets patients access GP online services & curate a personal health record.",
+      "supplier": {
+        "id": "10035",
+        "name": "Evergreen Life"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows scheduling of video consultations",
+          "Supports sharing of medical records",
+          "Secure remote working for healthcare professionals",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution's Additional Service has fully met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10000-054",
+      "name": "Online and Video Consult",
+      "summary": "Our online triaging system allows patients to easily access self-help advice, and fill out forms containing their requests and queries that go into their practice's workflow. Helping to improve access to services, Online Consult is configurable, and integrates with all leading GP Clinical Systems.",
+      "supplier": {
+        "id": "10000",
+        "name": "EMIS Health"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Supports triage via video",
+          "Provides access to self-help advice",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has partially met an eConsultations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10000-062",
+      "name": "Video Consult",
+      "summary": "Offer patients an effective appointment alternative with Video Consult. Available on multiple platforms, including desktop, and native iOS and Android apps, Video Consult can be used alongside any GP clinical system and offers additional integration with EMIS Web and Patient Access.",
+      "supplier": {
+        "id": "10000",
+        "name": "EMIS Health"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Works alongside a wide range of clinical systems",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+
+        ]
+      }
+    },
+    {
+      "id": "10000-002",
+      "name": "Anywhere Consult",
+      "summary": "EMIS' mobile working solution designed to provide full access to EMIS Web & other essential NHS digital services via a portable 2-in-1 device. Connectivity via WAN, Wi-Fi or 4G helps maintain real-time access to vital patient information at the point of care, supporting informed decision making.",
+      "supplier": {
+        "id": "10000",
+        "name": "EMIS Health"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows clinicians remote access to essential NHS digital services",
+          "Provides real-time access to patient records",
+          "Supports more informed decision making",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10029-003",
+      "name": "RIVIAM Secure Video Services",
+      "summary": "RIVIAM Secure Video Service with TPP SystmOne™ integration provides real-time video & audio-conferencing services between RIVIAM users & external users (patients, family, carers & professionals).",
+      "supplier": {
+        "id": "10029",
+        "name": "Targett Business Technology Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows access to a patient’s medical record",
+          "Key outcomes of consultations are automatically added to patient’s medical record",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10047-001",
+      "name": "askmyGP",
+      "summary": "askmyGP provides online consultation and workflow tools to maintain doctor-patient relationships and keeps patients in touch with their registered practice. Clinicians use askmyGP to prioritise and deliver care by secure message, telephone, video or face-to-face appointment.",
+      "supplier": {
+        "id": "10047",
+        "name": "GP Access"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Supports triage via video",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10020-001",
+      "name": "Q doctor",
+      "summary": "Q doctor is a secure video consultation platform used around the NHS nationwide, allowing remote consultations by clinicians and patients.",
+      "supplier": {
+        "id": "10020",
+        "name": "MyMed Ltd"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Works alongside a wide range of clinical systems ",
+          "Works across PCNs allowing different types of healthcare professionals to consult",
+          "Allows secure remote working for healthcare professionals and the use of digital locum GPs",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10062-001",
+      "name": "FootFall",
+      "summary": "FootFall is a complete digital practice that enables patients to engage with all areas of the practice online. With the option to operate in Digital Triage mode, FootFall can transform the way your patients access care and how you manage demands on the practice.",
+      "supplier": {
+        "id": "10062",
+        "name": "Silicon Practice Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Video consultations available via appointment or on-demand if the clinician deems it necessary",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10033-001",
+      "name": "AlldayDr",
+      "summary": "AlldayDr allows patients to consult with a GP by a secure video consultation. Connection can be either via a web browser and mobile app. Outcome of the consultation is fed back. The app also has the ability for the patient to enter a query or other information and can be securely transmitted.",
+      "supplier": {
+        "id": "10033",
+        "name": "AlldayDr Group Ltd"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "A cloud-based platform that supports digital patient engagement, video consultations,  appointment booking, prescription ordering, health tracking and care navigation via patient-facing apps",
+          "Customisable Patient Management System for use by clinicians",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10030-001",
+      "name": "AccuRx Chain",
+      "summary": "AccuRx is a communication platform built around patients and healthcare professionals. Whether you’re a Doctor, Nurse, or Administrator, you can video call or message patients & other healthcare professionals simply & quickly. AccuRx also allows you to send patient questionnaires & documents.",
+      "supplier": {
+        "id": "10030",
+        "name": "AccuRx Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows patient messaging",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has fully met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10073-009",
+      "name": "Remote Consultation",
+      "summary": "Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
+      "supplier": {
+        "id": "10073",
+        "name": "iPLATO"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows appointment triage based on what a patient needs from a consultation",
+          "Supports online appointment booking and prescription ordering",
+          "Provides health tracking and access to medical records",
+          "Can be used from any device or location",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10052-002",
+      "name": "SystmOne GP",
+      "summary": "SystmOne GP has been evolving for over 20 years, with continuous clinical input. It is one of the most advanced clinical systems in the world and is used by more than 2,700 GP practices nationwide. SystmOne GP is the ideal solution to meet the ever-changing needs of modern General Practice.",
+      "supplier": {
+        "id": "10052",
+        "name": "TPP – The Phoenix Partnership (Leeds) Ltd"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows access to a patient’s medical record",
+          "Key outcomes of consultations can be added to patient’s medical record",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has fully met a Productivity Capability"
+        ]
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 import content from './manifest.json';
 
@@ -9,7 +9,7 @@ const setup = {
 };
 
 describe('browse solutions page', () => {
-  it('should render the view solution section', createTestHarness(setup, (harness) => {
+  it('should render the view solution section', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -23,7 +23,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render the browse foundation solutions promo', createTestHarness(setup, (harness) => {
+  it('should render the browse foundation solutions promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -41,7 +41,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render the browse all solutions promo', createTestHarness(setup, (harness) => {
+  it('should render the browse all solutions promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -59,10 +59,27 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render go back link', createTestHarness(setup, (harness) => {
+
+  it('should render the compare promo', componentTester(setup, (harness) => {
+    const context = content;
+
+    harness.request(context, ($) => {
+      const promo = $('[data-test-id="compare-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/solutions/compare');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.comparePromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.comparePromoDescription);
+    });
+  }));
+
+  it('should render go back link', componentTester(setup, (harness) => {
     const context = {
       ...content,
-      pageTitle: 'some page title',
+      title: 'some page title',
     };
 
     harness.request(context, ($) => {
@@ -70,11 +87,11 @@ describe('browse solutions page', () => {
 
       expect(goBackLink.length).toEqual(1);
       expect(goBackLink.text().trim()).toEqual('Go back to previous page');
-      expect(goBackLink.attr('href')).toEqual('/');
+      expect(goBackLink.attr('href')).toEqual('./');
     });
   }));
 
-  it('should render buyers guide information', createTestHarness(setup, (harness) => {
+  it('should render buyers guide information', componentTester(setup, (harness) => {
     const context = {
       ...content,
     };
@@ -87,7 +104,7 @@ describe('browse solutions page', () => {
     });
   }));
 
-  it('should render buyers guide link', createTestHarness(setup, (harness) => {
+  it('should render buyers guide link', componentTester(setup, (harness) => {
     const context = {
       ...content,
     };

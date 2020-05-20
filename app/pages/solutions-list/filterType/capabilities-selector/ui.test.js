@@ -1,9 +1,9 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import aCustomSolutionList from '../../../../test-utils/fixtures/aCustomSolutionList.json';
 import capabilitiesList from '../../../../test-utils/fixtures/capabilitiesList.json';
 import publicSolutionNoData from '../../../../test-utils/fixtures/publicSolutionNoData.json';
-import { extractInnerText } from '../../../../test-utils/helper';
 import manifest from './manifest.json';
 
 const getLocation = ClientFunction(() => document.location.href);
@@ -28,6 +28,8 @@ fixture('Show Capability Selector Solution List Page - one capability selected')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -36,10 +38,10 @@ fixture('Show Capability Selector Solution List Page - one capability selected')
 
 test('should display the page title', async (t) => {
   await pageSetup({ t, capabilities: ['C1'] });
-  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('h1[data-test-id="general-page-title"]');
   await t
-    .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql(manifest.title);
+    .expect(title.exists).ok()
+    .expect(await extractInnerText(title)).eql(manifest.title);
 });
 
 test('should display the page description', async (t) => {
@@ -48,6 +50,23 @@ test('should display the page description', async (t) => {
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);
+});
+
+test('should display the compare description', async (t) => {
+  await pageSetup({ t, capabilities: ['C1'] });
+  const compareDescription = Selector('div[data-test-id="compare-solutions-description"]');
+  await t
+    .expect(compareDescription.exists).ok()
+    .expect(await extractInnerText(compareDescription)).eql(manifest.compareSolutionsDescription);
+});
+
+test('should display the compare solutions button', async (t) => {
+  await pageSetup({ t, capabilities: ['C1'] });
+  const button = Selector('div[data-test-id="compare-button"] a');
+  await t
+    .expect(button.exists).ok()
+    .expect(await extractInnerText(button)).eql(manifest.compareButtonText)
+    .expect(button.getAttribute('href')).eql('/solutions/compare/document');
 });
 
 test('should display the capabilities heading', async (t) => {
@@ -120,6 +139,8 @@ fixture('Show Capability Selector Solution List Page - multiple capabilities sel
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -128,10 +149,10 @@ fixture('Show Capability Selector Solution List Page - multiple capabilities sel
 
 test('should display the page title', async (t) => {
   await pageSetup({ t, capabilities: ['C1', 'C2'] });
-  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('h1[data-test-id="general-page-title"]');
   await t
-    .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql(manifest.title);
+    .expect(title.exists).ok()
+    .expect(await extractInnerText(title)).eql(manifest.title);
 });
 
 test('should display the page description', async (t) => {
@@ -212,6 +233,8 @@ fixture('Show Capability Selector Solution List Page - no capabilities selected'
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -220,10 +243,10 @@ fixture('Show Capability Selector Solution List Page - no capabilities selected'
 
 test('should display the page title', async (t) => {
   await pageSetup({ t });
-  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('h1[data-test-id="general-page-title"]');
   await t
-    .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql(manifest.title);
+    .expect(title.exists).ok()
+    .expect(await extractInnerText(title)).eql(manifest.title);
 });
 
 test('should display the page description', async (t) => {
@@ -305,6 +328,8 @@ fixture('Show Capability Selector Solution List Page Error')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -314,7 +339,7 @@ fixture('Show Capability Selector Solution List Page Error')
 test('should render the error page when receiving an error from the solution api endpoint', async (t) => {
   await pageSetup({ t, responseStatus: 500, responseBody: {} });
 
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
+  const errorTitle = Selector('[data-test-id="error-title"]');
 
   await t
     .expect(errorTitle.exists).ok();

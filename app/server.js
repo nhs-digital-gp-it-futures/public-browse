@@ -1,27 +1,37 @@
 require('dotenv').config();
 const config = require('./config');
 const { App } = require('./app');
-const { AuthProvider } = require('./authProvider');
 const { routes } = require('./routes');
 const { logger } = require('./logger');
+const { isIdentityReady } = require('./helpers/isIdentityReady');
+const { createAuthProvider } = require('./helpers/createAuthProvider');
 
-Object.keys(config).map((configKey) => {
-  if (config[configKey]) {
-    logger.info(`${configKey} set to ${config[configKey]}`);
-  } else {
-    logger.error(`${configKey} not set`);
+(async () => {
+  Object.keys(config).map((configKey) => {
+    if (config[configKey]) {
+      logger.info(`${configKey} set to ${config[configKey]}`);
+    } else {
+      logger.error(`${configKey} not set`);
+    }
+  });
+
+  const appType = config.loginEnabled === 'true' && await isIdentityReady() ? 'auth' : 'basic';
+
+  const authProvider = appType === 'auth' ? createAuthProvider({ config }) : undefined;
+  const app = new App(authProvider).createApp();
+
+  app.use(config.baseUrl ? config.baseUrl : '/', routes(authProvider));
+  if (config.baseUrl) {
+    app.use('/', (req, res) => {
+      res.redirect(config.baseUrl);
+    });
   }
-});
 
-const authProvider = new AuthProvider();
-const app = new App(authProvider).createApp();
-
-app.use('/', routes(authProvider));
-
-// Run application on configured port
-if (config.env === 'development') {
-  logger.info(`Public browse - \x1b[35m${config.appBaseUri}/\x1b[0m`);
-} else {
-  logger.info(`App listening on port ${config.port} - Public browse`);
-}
-app.listen(config.port);
+  // Run application on configured port
+  if (config.env === 'development') {
+    logger.info(`Public browse - \x1b[35m${config.appBaseUri}${config.baseUrl}/\x1b[0m`);
+  } else {
+    logger.info(`App listening on port ${config.port} - Public browse`);
+  }
+  app.listen(config.port);
+})();

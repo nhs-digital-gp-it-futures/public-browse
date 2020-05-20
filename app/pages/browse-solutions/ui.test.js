@@ -1,9 +1,9 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import content from './manifest.json';
 import aSolutionList from '../../test-utils/fixtures/aSolutionList.json';
 import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
-import { extractInnerText } from '../../test-utils/helper';
 
 const pageSetup = async (t) => {
   await t.navigateTo('http://localhost:1234/solutions');
@@ -15,6 +15,8 @@ fixture('Browse Solutions Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -52,6 +54,29 @@ test('should render Browse Foundation Solutions container', async (t) => {
     .expect(foundationSolutions.exists).ok()
     .expect(await extractInnerText(foundationSolutions.find('h3'))).eql(content.foundationPromoHeading)
     .expect(await extractInnerText(foundationSolutions.find('p'))).eql(content.foundationPromoDescription);
+});
+
+test('should render the compare promo', async (t) => {
+  await pageSetup(t);
+  const promo = Selector('[data-test-id="compare-promo"]');
+  await t
+    .expect(promo.exists).ok()
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.comparePromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.comparePromoDescription);
+});
+
+test('should navigate to the compare page when the compare promo is clicked', async (t) => {
+  await pageSetup(t);
+
+  const promo = Selector('[data-test-id="compare-promo"]');
+
+  await t
+    .expect(promo.exists).ok()
+    .expect(promo.find('a').getAttribute('href')).eql('/solutions/compare')
+    .click(promo);
+
+  await t
+    .expect(getLocation()).eql('http://localhost:1234/solutions/compare');
 });
 
 test('should render buyers guide information', async (t) => {

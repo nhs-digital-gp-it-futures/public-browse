@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 import manifest from './manifest.json';
 
 const setup = {
@@ -8,18 +8,18 @@ const setup = {
 };
 
 describe('capabilities-selector page', () => {
-  it('should render a backLink to the solutions page', createTestHarness(setup, (harness) => {
+  it('should render a backLink to the solutions page', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
       const backLink = $('[data-test-id="go-back-link"]');
       expect(backLink.length).toEqual(1);
       expect(backLink.text().trim()).toEqual('Go back to previous page');
-      expect(backLink.find('a').attr('href')).toEqual('/solutions');
+      expect(backLink.find('a').attr('href')).toEqual('./');
     });
   }));
 
-  it('should render the title', createTestHarness(setup, (harness) => {
+  it('should render the title', componentTester(setup, (harness) => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {
@@ -29,7 +29,7 @@ describe('capabilities-selector page', () => {
     });
   }));
 
-  it('should render the description', createTestHarness(setup, (harness) => {
+  it('should render the description', componentTester(setup, (harness) => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {
@@ -39,7 +39,7 @@ describe('capabilities-selector page', () => {
     });
   }));
 
-  it('should render the capabilities selector', createTestHarness(setup, (harness) => {
+  it('should render the capabilities selector', componentTester(setup, (harness) => {
     const context = {
       ...manifest,
       column1: [{
@@ -56,7 +56,7 @@ describe('capabilities-selector page', () => {
     });
   }));
 
-  it('should render the button', createTestHarness(setup, (harness) => {
+  it('should render the button', componentTester(setup, (harness) => {
     const context = { ...manifest };
 
     harness.request(context, ($) => {

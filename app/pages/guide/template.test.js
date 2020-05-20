@@ -1,5 +1,5 @@
 import content from './manifest.json';
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -8,18 +8,18 @@ const setup = {
 };
 
 describe('guide', () => {
-  it('should render a backLink to the home page', createTestHarness(setup, (harness) => {
+  it('should render a backLink to the home page', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
       const goBacklLink = $('[data-test-id="go-back-link"]');
       expect(goBacklLink.length).toEqual(1);
       expect(goBacklLink.text().trim()).toEqual('Go back to homepage');
-      expect($(goBacklLink).find('a').attr('href')).toEqual('/');
+      expect($(goBacklLink).find('a').attr('href')).toEqual('./');
     });
   }));
 
-  it('should render the guide title, description and subtext', createTestHarness(setup, (harness) => {
+  it('should render the guide title, description and subtext', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -37,7 +37,7 @@ describe('guide', () => {
     });
   }));
 
-  it('should render a title, and subsection for each section', createTestHarness(setup, (harness) => {
+  it('should render a title, and subsection for each section', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {

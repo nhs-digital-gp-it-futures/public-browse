@@ -1,4 +1,4 @@
-import { createTestHarness } from '../test-utils/testHarness';
+import { componentTester } from '../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -7,43 +7,13 @@ const setup = {
 };
 
 describe('header', () => {
-  it('should render the terms banner with beta tag', createTestHarness(setup, (harness) => {
-    const context = {};
-
-    harness.request(context, ($) => {
-      const termsBanner = $('[data-test-id="terms-banner"] > div');
-      expect(termsBanner.hasClass('nhsuk-u-margin-top-0')).toEqual(true);
-      expect(termsBanner.hasClass('nhsuk-u-margin-bottom-0')).toEqual(true);
-      expect(termsBanner.hasClass('nhsuk-u-padding-top-3')).toEqual(true);
-      expect(termsBanner.hasClass('nhsuk-u-padding-bottom-3')).toEqual(true);
-      expect(termsBanner.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(termsBanner.hasClass('nhsuk-panel--grey')).toEqual(true);
-      expect(termsBanner.hasClass('nhsuk-width-container')).toEqual(true);
-
-      const termsBannerText = $('[data-test-id="terms-banner-text"]');
-      expect(termsBannerText.text().trim()).toEqual('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
-
-      const betaTag = $('[data-test-id="beta-tag"]');
-      expect(betaTag.hasClass('bc-c-tag-beta')).toEqual(true);
+  it('should render the beta banner', componentTester(setup, (harness) => {
+    harness.request({}, ($) => {
+      expect($('[data-test-id="beta-banner"]').length).toEqual(1);
     });
   }));
 
-  it('should render the general terms link', createTestHarness(setup, (harness) => {
-    const context = {
-      config: {
-        blobstoreHost: 'www.some-blob-store.com',
-      },
-    };
-
-    harness.request(context, ($) => {
-      const generalTermsLink = $('[data-test-id="general-terms-link"]');
-
-      expect(generalTermsLink.text().trim()).toEqual('downloading this PDF');
-      expect(generalTermsLink.attr('href')).toEqual('www.some-blob-store.com/$web/content/terms-of-use.pdf');
-    });
-  }));
-
-  it('should render the header banner', createTestHarness(setup, (harness) => {
+  it('should render the header banner', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
@@ -52,12 +22,23 @@ describe('header', () => {
     });
   }));
 
+  it('should render logo with correct href and aria-label', componentTester(setup, (harness) => {
+    const context = {};
+
+    harness.request(context, ($) => {
+      const logoLink = $('header[data-test-id="header-banner"] .nhsuk-header__logo a');
+      expect(logoLink.length).toEqual(1);
+      expect(logoLink.attr('href')).toEqual('/');
+      expect(logoLink.attr('aria-label')).toEqual('Buying Catalogue Homepage');
+    });
+  }));
+
   describe('login/logout component', () => {
     // TODO: LOGIN_ENABLED Remove describe block surrounding the tests below
     // when login is on by default
     describe('when login is enabled by default', () => {
       describe('when username is provided', () => {
-        it('should render username', createTestHarness(setup, (harness) => {
+        it('should render username', componentTester(setup, (harness) => {
           const context = {
             username: 'user 1',
             loginEnabled: 'true',
@@ -70,7 +51,7 @@ describe('header', () => {
           });
         }));
 
-        it('should render logout link', createTestHarness(setup, (harness) => {
+        it('should render logout link', componentTester(setup, (harness) => {
           const context = {
             username: 'user 1',
             loginEnabled: true,
@@ -84,7 +65,7 @@ describe('header', () => {
         }));
 
         describe('when username is not provided', () => {
-          it('should render login link', createTestHarness(setup, (harness) => {
+          it('should render login link', componentTester(setup, (harness) => {
             const context = {
               loginEnabled: true,
             };
@@ -101,7 +82,7 @@ describe('header', () => {
 
     // TODO: LOGIN_ENABLED Remove test below when login is on by default
     describe('when login is disabled by default', () => {
-      it('should not render the login component', createTestHarness(setup, (harness) => {
+      it('should not render the login component', componentTester(setup, (harness) => {
         const context = {
           loginEnabled: false,
         };
@@ -112,5 +93,38 @@ describe('header', () => {
         });
       }));
     });
+
+    it('should render the covid19 global warning if feature flag set', componentTester(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'true',
+        },
+      };
+
+      harness.request(context, ($) => {
+        const globalAlert = $('[data-test-id="covid19-global-alert"]');
+        const title = globalAlert.find('div').find('h2');
+        const paragraph = globalAlert.find('div').find('p');
+        const link = paragraph.find('a');
+
+        expect(globalAlert.hasClass('bc-c-global-alert')).toEqual(true);
+        expect(title.text().trim()).toEqual('Coronavirus (COVID-19)');
+        expect(paragraph.text().trim()).toEqual('View Catalogue Solutions that can help prevent the spread of coronavirus.');
+        expect(link.attr('href')).toEqual('/solutions/covid19');
+      });
+    }));
+
+    it('should not render the covid19 global warning if feature flag is not set', componentTester(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'false',
+        },
+      };
+
+      harness.request(context, ($) => {
+        const globalAlert = $('[data-test-id="covid19-global-alert"]');
+        expect(globalAlert.length).toEqual(0);
+      });
+    }));
   });
 });

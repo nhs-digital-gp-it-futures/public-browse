@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../../test-utils/testHarness';
+import { componentTester } from '../../../test-utils/componentTester';
 
 const context = {
   params: {
@@ -32,13 +32,13 @@ const setup = {
 };
 
 describe('subsection', () => {
-  it('should render a title if provided', createTestHarness(setup, (harness) => {
+  it('should render a title if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="subsection-title-1"]').text().trim()).toEqual(context.params.subSection.title);
     });
   }));
 
-  it('should not render a title if not provided', createTestHarness(setup, (harness) => {
+  it('should not render a title if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.subSection.title;
     harness.request(newContext, ($) => {
@@ -46,7 +46,7 @@ describe('subsection', () => {
     });
   }));
 
-  it('should render a description if provided', createTestHarness(setup, (harness) => {
+  it('should render a description if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       const description = $('[data-test-id="subsection-1"]');
       context.params.subSection.description.forEach((descriptionText, i) => {
@@ -55,7 +55,7 @@ describe('subsection', () => {
     });
   }));
 
-  it('should render a link within description if provided', createTestHarness(setup, (harness) => {
+  it('should render a link within description if provided', componentTester(setup, (harness) => {
     const testCaseContext = {
       params: {
         subSection: {
@@ -90,7 +90,7 @@ describe('subsection', () => {
     });
   }));
 
-  it('should not render a description if not provided', createTestHarness(setup, (harness) => {
+  it('should not render a description if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.subSection.description;
 
@@ -99,7 +99,7 @@ describe('subsection', () => {
     });
   }));
 
-  it('should render a bulletlist if provided', createTestHarness(setup, (harness) => {
+  it('should render a bulletlist if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       const bulletList = $('ul[data-test-id="subsection-bulletlist"]');
       context.params.subSection.bulletlist.map((bulletListText, i) => {
@@ -108,7 +108,7 @@ describe('subsection', () => {
     });
   }));
 
-  it('should not render a bulletlist if not provided', createTestHarness(setup, (harness) => {
+  it('should not render a bulletlist if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.subSection.bulletlist;
 
@@ -118,14 +118,14 @@ describe('subsection', () => {
   }));
 
 
-  it('should render a button if provided', createTestHarness(setup, (harness) => {
+  it('should render a button if provided', componentTester(setup, (harness) => {
     harness.request(context, ($) => {
       expect($('[data-test-id="subsection-button"]').text().trim()).toEqual(context.params.subSection.button.text);
       expect($('[data-test-id="subsection-button"] a').attr('href')).toEqual('www.someblobstore.com/path-to-blob');
     });
   }));
 
-  it('should not render a button if not provided', createTestHarness(setup, (harness) => {
+  it('should not render a button if not provided', componentTester(setup, (harness) => {
     const newContext = { ...context };
     delete newContext.params.subSection.button;
     harness.request(newContext, ($) => {

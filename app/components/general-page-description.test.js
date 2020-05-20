@@ -1,4 +1,4 @@
-import { createTestHarness } from '../test-utils/testHarness';
+import { componentTester } from '../test-utils/componentTester';
 
 const setup = {
   component: {
@@ -8,7 +8,7 @@ const setup = {
 };
 
 describe('general-page-description', () => {
-  it('should render the title if provided', createTestHarness(setup, (harness) => {
+  it('should render the title if provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         titleText: 'a title',
@@ -22,7 +22,7 @@ describe('general-page-description', () => {
     });
   }));
 
-  it('should not render the title if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the title if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {},
     };
@@ -32,7 +32,7 @@ describe('general-page-description', () => {
     });
   }));
 
-  it('should render the description if provided', createTestHarness(setup, (harness) => {
+  it('should render the description if provided', componentTester(setup, (harness) => {
     const context = {
       params: {
         descriptionText: 'a description',
@@ -46,7 +46,7 @@ describe('general-page-description', () => {
     });
   }));
 
-  it('should not render the description if not provided', createTestHarness(setup, (harness) => {
+  it('should not render the description if not provided', componentTester(setup, (harness) => {
     const context = {
       params: {},
     };

@@ -1,7 +1,7 @@
 import nock from 'nock';
+import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
 import aFoundationSolutionList from '../../../../test-utils/fixtures/aFoundationSolutionList.json';
-import { extractInnerText } from '../../../../test-utils/helper';
 
 const mocks = async (responseStatus, responseBody) => {
   await nock('http://localhost:5100')
@@ -20,6 +20,8 @@ fixture('Show Foundation Solution List Page')
   .afterEach(async (t) => {
     const isDone = nock.isDone();
     if (!isDone) {
+      // eslint-disable-next-line no-console
+      console.error(`pending mocks: ${nock.pendingMocks()}`);
       nock.cleanAll();
     }
 
@@ -28,10 +30,10 @@ fixture('Show Foundation Solution List Page')
 
 test('should display the page title', async (t) => {
   await pageSetup(t);
-  const pageTitle = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('h1[data-test-id="general-page-title"]');
   await t
-    .expect(pageTitle.exists).ok()
-    .expect(await extractInnerText(pageTitle)).eql('Foundation Solution Sets – results');
+    .expect(title.exists).ok()
+    .expect(await extractInnerText(title)).eql('Foundation Solution Sets – results');
 });
 
 test('should display the page description', async (t) => {
@@ -40,6 +42,20 @@ test('should display the page description', async (t) => {
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');
+});
+
+test('should not display the compare description', async (t) => {
+  await pageSetup(t);
+  const compareDescription = Selector('div[data-test-id="compare-solutions-description"]');
+  await t
+    .expect(compareDescription.exists).notOk();
+});
+
+test('should not display the compare solutions button', async (t) => {
+  await pageSetup(t);
+  const button = Selector('div[data-test-id="compare-button"] a');
+  await t
+    .expect(button.exists).notOk();
 });
 
 test('should display the capabilities heading', async (t) => {
@@ -98,7 +114,7 @@ test('should navigate to the foundation solution view page when clicking on the 
 test('should render the error page when receiving an error from the foundation solution list api endpoint', async (t) => {
   await pageSetup(t, 500, {});
 
-  const errorTitle = Selector('[data-test-id="error-page-title"]');
+  const errorTitle = Selector('[data-test-id="error-title"]');
 
   await t
     .expect(errorTitle.exists).ok();

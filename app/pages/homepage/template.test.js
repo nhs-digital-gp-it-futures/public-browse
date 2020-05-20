@@ -1,4 +1,4 @@
-import { createTestHarness } from '../../test-utils/testHarness';
+import { componentTester } from '../../test-utils/componentTester';
 
 import content from './manifest.json';
 
@@ -9,7 +9,7 @@ const setup = {
 };
 
 describe('home page', () => {
-  it('should render the homepage hero', createTestHarness(setup, (harness) => {
+  it('should render the homepage hero', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -22,7 +22,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the about us section', createTestHarness(setup, (harness) => {
+  it('should render the about us section', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
@@ -32,38 +32,40 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the guidance promo', createTestHarness(setup, (harness) => {
+  it('should render the guidance promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
-      const guidancePromo = $('[data-test-id="guidance-promo"]');
-      expect(guidancePromo.length).toEqual(1);
-      expect(guidancePromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(guidancePromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(guidancePromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(guidancePromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      const promo = $('[data-test-id="guidance-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/guide');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
 
-      expect(guidancePromo.find('h3').text().trim()).toEqual(content.guidePromoHeading);
-      expect(guidancePromo.find('p').text().trim()).toEqual(content.guidePromoDescription);
+      expect(promo.find('h3').text().trim()).toEqual(content.guidePromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.guidePromoDescription);
     });
   }));
 
-  it('should render the browse promo', createTestHarness(setup, (harness) => {
+  it('should render the browse promo', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
-      const browsePromo = $('[data-test-id="browse-promo"]');
-      expect(browsePromo.length).toEqual(1);
-      expect(browsePromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(browsePromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(browsePromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(browsePromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
-      expect(browsePromo.find('h3').text().trim()).toEqual(content.viewSolutionsPromoHeading);
-      expect(browsePromo.find('p').text().trim()).toEqual(content.viewSolutionsPromoDescription);
+      const promo = $('[data-test-id="browse-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/solutions');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.viewSolutionsPromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.viewSolutionsPromoDescription);
     });
   }));
 
-  it('should render the admin promo when showAdminTile is true', createTestHarness(setup, (harness) => {
+  it('should render the admin promo when showAdminTile is true', componentTester(setup, (harness) => {
     const context = {
       ...content,
       showAdminTile: true,
@@ -71,24 +73,96 @@ describe('home page', () => {
     };
 
     harness.request(context, ($) => {
-      const adminPromo = $('[data-test-id="admin-promo"]');
-      expect(adminPromo.length).toEqual(1);
-      expect(adminPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(adminPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(adminPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(adminPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
-      expect(adminPromo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
-      expect(adminPromo.find('p').text().trim()).toEqual(content.adminPromoDescription);
-      expect(adminPromo.find('a').attr('href')).toEqual(context.adminUrl);
+      const promo = $('[data-test-id="admin-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('http://admin-page');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.adminPromoDescription);
+      expect(promo.find('a').attr('href')).toEqual(context.adminUrl);
     });
   }));
 
-  it('should not render the admin promo when showAdminTile is falsey', createTestHarness(setup, (harness) => {
+  it('should not render the admin promo when showAdminTile is falsey', componentTester(setup, (harness) => {
     const context = content;
 
     harness.request(context, ($) => {
       const adminPromo = $('[data-test-id="admin-promo"]');
       expect(adminPromo.length).toEqual(0);
+    });
+  }));
+
+  it('should render the covid19 promo when the showCovid19 flag is set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showCovid19: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const promo = $('[data-test-id="covid19-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.covid19PromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.covid19PromoDescription);
+      expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
+    });
+  }));
+
+  it('should not render the covid19 promo when the showCovid19 flag is not set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showCovid19: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const covid19Promo = $('[data-test-id="covid19-promo"]');
+      expect(covid19Promo.length).toEqual(0);
+    });
+  }));
+
+  it('should render the order form promo when the showOrderForm flag is set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      orderFormUrl: 'http://localhost:3006',
+      config: {
+        showOrderForm: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const orderFormPromo = $('[data-test-id="order-form-promo"]');
+      expect(orderFormPromo.length).toEqual(1);
+      expect(orderFormPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(orderFormPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(orderFormPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(orderFormPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(orderFormPromo.find('h3').text().trim()).toEqual(content.orderFormPromoHeading);
+      expect(orderFormPromo.find('p').text().trim()).toEqual(content.orderFormPromoDescription);
+      expect(orderFormPromo.find('a').attr('href')).toEqual(context.orderFormUrl);
+    });
+  }));
+
+  it('should not render the order form promo when the showOrderForm flag is not set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showOrderForm: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const orderFormPromo = $('[data-test-id="order-form-promo"]');
+      expect(orderFormPromo.length).toEqual(0);
     });
   }));
 });
