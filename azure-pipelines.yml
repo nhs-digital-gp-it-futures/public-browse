@@ -52,7 +52,7 @@ jobs:
   - script: npx webpack --config webpack.config.js
     displayName: 'NPX Webpack'
 
-  - script: run test
+  - script: npm run test
     displayName: 'Unit test'
 
   - task: PublishTestResults@2
