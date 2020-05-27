@@ -10,8 +10,8 @@ image:
   repository: gpitfuturesdevacr.azurecr.io/nhsd/buying-catalogue/publicbrowse
   pullPolicy: Always
 
-imagePullSecrets: 
-- name: regcredlocal
+imagePullSecrets:
+
 nameOverride: "public-browse"
 fullnameOverride: "gpitfutures-bc-pb"
 
