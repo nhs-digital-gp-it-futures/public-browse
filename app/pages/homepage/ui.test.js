@@ -209,7 +209,7 @@ test('should render the guidance promo', async (t) => {
 });
 
 test('should navigate to the guide page when the guide promo is clicked', async (t) => {
-  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'manage' } });
 
   const promo = Selector('[data-test-id="guidance-promo"]');
 
@@ -232,7 +232,7 @@ test('should render the browse promo', async (t) => {
 });
 
 test('should navigate to the solutions page when the browse promo is clicked', async (t) => {
-  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'manage' } });
 
   const promo = Selector('[data-test-id="browse-promo"]');
 
@@ -255,7 +255,7 @@ test('should navigate to the browse solution page when clicking on the browse pr
 });
 
 test('should render the admin promo when user is authenticated and has an organisation claim', async (t) => {
-  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'manage' } });
 
   const promo = Selector('[data-test-id="admin-promo"]');
 
@@ -275,7 +275,7 @@ test('should render the order form promo', async (t) => {
 });
 
 test('should have buying-catalogue-admin page as href on admin promo', async (t) => {
-  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'view' } });
+  await pageSetup({ t, cookiePayload: { id: '88421113', name: 'Cool Dude', organisation: 'manage' } });
 
   const promo = Selector('[data-test-id="admin-promo"]');
 
