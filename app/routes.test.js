@@ -272,7 +272,8 @@ describe('routes', () => {
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
       const { cookies, csrfToken } = await getCsrfTokenFromGet({
-        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+        app: request(setUpFakeApp()),
+        getPath: pathToTest,
       });
 
       return request(setUpFakeApp())
@@ -298,7 +299,8 @@ describe('routes', () => {
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
       const { cookies, csrfToken } = await getCsrfTokenFromGet({
-        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+        app: request(setUpFakeApp()),
+        getPath: pathToTest,
       });
 
       return request(setUpFakeApp())
@@ -324,7 +326,8 @@ describe('routes', () => {
         .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
 
       const { cookies, csrfToken } = await getCsrfTokenFromGet({
-        app: request(setUpFakeApp()), csrfPagePath: pathToTest,
+        app: request(setUpFakeApp()),
+        getPath: pathToTest,
       });
 
       return request(setUpFakeApp())
