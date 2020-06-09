@@ -11,10 +11,12 @@ import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 import * as comparePageContext from './pages/compare/controller';
+import * as documentController from './documentController';
 import config from './config';
 import { logger } from './logger';
 
 jest.mock('./logger');
+jest.mock('buying-catalogue-library');
 
 const mockFoundationSolutionsContext = {
   title: 'Foundation',
@@ -57,7 +59,7 @@ const mockCapabilitiesContext = {
   },
 };
 
-const mockLogoutMethod = jest.fn().mockImplementation(() => Promise.resolve({}));
+const mockLogoutMethod = jest.fn().mockResolvedValue({});
 
 const setUpFakeApp = () => {
   const authProvider = new FakeAuthProvider(mockLogoutMethod);
@@ -89,7 +91,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       homepageContext.getHomepageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
+        .mockResolvedValue({});
 
       return request(setUpFakeApp())
         .get('/')
@@ -101,6 +103,23 @@ describe('routes', () => {
     });
   });
 
+  describe('GET /document/:documentName', () => {
+    it('should call getDocument with the correct params', async () => {
+      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
+      return request(setUpFakeApp())
+        .get('/document/a-document.pdf')
+        .expect(200)
+        .then(() => {
+          expect(getDocument.mock.calls.length).toEqual(1);
+          expect(getDocument).toHaveBeenCalledWith({
+            endpoint: `${config.documentApiHost}/api/v1/documents/a-document.pdf`,
+            logger,
+          });
+          getDocument.mockReset();
+        });
+    });
+  });
+
   describe('GET /guide', () => {
     afterEach(() => {
       guidePageContext.getGuidePageContext.mockReset();
@@ -108,7 +127,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       guidePageContext.getGuidePageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
+        .mockResolvedValue({})
 
       return request(setUpFakeApp())
         .get('/guide')
@@ -127,7 +146,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       comparePageContext.getContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
+        .mockResolvedValue({})
 
       return request(setUpFakeApp())
         .get('/solutions/compare')
@@ -140,9 +159,9 @@ describe('routes', () => {
   });
 
   describe('GET /solutions/compare/document', () => {
-    it('should call getDocument with the correct params', () => {
+    it('should call getDocument with the correct params', async () => {
       getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
-      request(setUpFakeApp())
+      return request(setUpFakeApp())
         .get('/solutions/compare/document')
         .expect(200)
         .then(() => {
@@ -151,7 +170,7 @@ describe('routes', () => {
             endpoint: `${config.documentApiHost}/api/v1/documents/compare-solutions.xlsx`,
             logger,
           });
-          getDocument.mockRestore();
+          getDocument.mockReset();
         });
     });
   });
@@ -163,7 +182,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       browseSolutionsPageContext.getBrowseSolutionsPageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve({}));
+        .mockResolvedValue({});
 
       return request(setUpFakeApp())
         .get('/solutions')
@@ -182,7 +201,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error for foundation', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
+        .mockResolvedValue(mockFoundationSolutionsContext);
 
       return request(setUpFakeApp())
         .get('/solutions/foundation')
@@ -195,7 +214,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error for capabilities-selector ', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+        .mockResolvedValue(mockCapabilitiesContext);
 
       return request(setUpFakeApp())
         .get('/solutions/capabilities-selector')
@@ -208,7 +227,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error for capabilities-selector with capabilities and capabilities are selected', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockFoundationSolutionsContext));
+        .mockResolvedValue(mockFoundationSolutionsContext);
 
       return request(setUpFakeApp())
         .get('/solutions/capabilities-selector.C1')
@@ -227,7 +246,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockGetPublicSolutionById));
+        .mockResolvedValue(mockGetPublicSolutionById);
 
       return request(setUpFakeApp())
         .get('/solutions/foundation/1')
@@ -240,7 +259,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error with capabilities', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockGetPublicSolutionById));
+        .mockResolvedValue(mockGetPublicSolutionById);
 
       return request(setUpFakeApp())
         .get('/solutions/capabilities-selector.C1/1')
@@ -266,10 +285,10 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error and one capability selected', async () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+        .mockResolvedValue(mockCapabilitiesContext);
 
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
+        .mockResolvedValue(mockFilteredSolutions);
 
       const { cookies, csrfToken } = await getCsrfTokenFromGet({
         app: request(setUpFakeApp()),
@@ -293,10 +312,10 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error and many capabilities selected', async () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+        .mockResolvedValue(mockCapabilitiesContext);
 
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
+        .mockResolvedValue(mockFilteredSolutions);
 
       const { cookies, csrfToken } = await getCsrfTokenFromGet({
         app: request(setUpFakeApp()),
@@ -320,10 +339,10 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error and capabilities not selected', async () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+        .mockResolvedValue(mockCapabilitiesContext);
 
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockFilteredSolutions));
+        .mockResolvedValue(mockFilteredSolutions);
 
       const { cookies, csrfToken } = await getCsrfTokenFromGet({
         app: request(setUpFakeApp()),
@@ -347,16 +366,18 @@ describe('routes', () => {
   });
 
   describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
-    it('should return the correct status and text if there is no error', () => {
-      getDocument
-        .mockResolvedValueOnce({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
-      request(setUpFakeApp())
-        .get('/solutions/foundation/1/document/somedoc')
+    it('should call getDocument with the correct params', () => {
+      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
+      return request(setUpFakeApp())
+        .get('/solutions/foundation/1/document/some-doc')
         .expect(200)
-        .then((res) => {
-          expect(res.text).toEqual(readFileSync(path.resolve(__dirname, 'data.pdf'), 'utf8'));
-          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
-          getDocument.mockRestore();
+        .then(() => {
+          expect(getDocument.mock.calls.length).toEqual(1);
+          expect(getDocument).toHaveBeenCalledWith({
+            endpoint: `${config.documentApiHost}/api/v1/Solutions/1/documents/some-doc`,
+            logger,
+          });
+          getDocument.mockReset();
         });
     });
   });
@@ -364,7 +385,7 @@ describe('routes', () => {
   describe('Error handler', () => {
     it('should return error page if there is an error from /solutions/:filterType.:capabilities? route', () => {
       solutionListPageContext.getSolutionListPageContext = jest.fn()
-        .mockImplementation(() => Promise.reject());
+        .mockRejectedValue({});
 
       return request(setUpFakeApp())
         .get('/solutions/foundation')
@@ -378,7 +399,7 @@ describe('routes', () => {
 
     it('should return error page if there is an error from /solutions/:filterType.:capabilities? route with capabilities', () => {
       solutionListPageContext.getSolutionsForSelectedCapabilities = jest.fn()
-        .mockImplementation(() => Promise.reject());
+        .mockRejectedValue({});
 
       return request(setUpFakeApp())
         .get('/solutions/capabilities-selector.C1')
@@ -392,7 +413,7 @@ describe('routes', () => {
 
     it('should return error page if there is an error from the /solutions/:filterType.:capabilities?/:solutionId route', () => {
       viewSolutionController.getPublicSolutionById = jest.fn()
-        .mockImplementation(() => Promise.reject());
+        .mockRejectedValue({});
 
       return request(setUpFakeApp())
         .get('/solutions/foundation/1')
@@ -423,7 +444,7 @@ describe('routes', () => {
     });
     it('should return the correct status and redirect to capabilities-selector.all if there is no errors', () => {
       capabilitiesContext.getCapabilitiesContext = jest.fn()
-        .mockImplementation(() => Promise.resolve(mockCapabilitiesContext));
+        .mockResolvedValue(mockCapabilitiesContext);
 
       return request(setUpFakeApp())
         .get('/solutions/capabilities-selector')
