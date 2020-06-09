@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { createReadStream, readFileSync } from 'fs';
+import { createReadStream } from 'fs';
 import path from 'path';
 import { FakeAuthProvider, getCsrfTokenFromGet, getDocument } from 'buying-catalogue-library';
 import { App } from './app';
@@ -11,7 +11,6 @@ import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 import * as comparePageContext from './pages/compare/controller';
-import * as documentController from './documentController';
 import config from './config';
 import { logger } from './logger';
 
@@ -127,7 +126,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       guidePageContext.getGuidePageContext = jest.fn()
-        .mockResolvedValue({})
+        .mockResolvedValue({});
 
       return request(setUpFakeApp())
         .get('/guide')
@@ -146,7 +145,7 @@ describe('routes', () => {
 
     it('should return the correct status and text if there is no error', () => {
       comparePageContext.getContext = jest.fn()
-        .mockResolvedValue({})
+        .mockResolvedValue({});
 
       return request(setUpFakeApp())
         .get('/solutions/compare')
