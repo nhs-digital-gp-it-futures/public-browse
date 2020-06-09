@@ -37,10 +37,7 @@
           <div class="nhsuk-grid-row nhsuk-u-padding-left-3 nhsuk-u-padding-right-3">
             <div data-test-id="guide-section-subsection" class="nhsuk-grid-column-two-thirds">
               {% for subSection in section.subsections %}
-                {{ subsection({
-                  subSection: subSection,
-                  blobstoreHost: config.blobstoreHost
-                }) }}
+                {{ subsection({ subSection: subSection }) }}
               {% endfor %}
             </div>
           </div>
