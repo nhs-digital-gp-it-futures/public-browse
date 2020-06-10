@@ -13,7 +13,8 @@ export const getDocumentByFileName = async ({
   try {
     const response = await getDocument({ endpoint, logger });
     res.setHeader('Content-type', contentType);
-    return response.data.pipe(res);
+    response.data.pipe(res);
+    return res;
   } catch (err) {
     if (err.response && err.response.status === 404) {
       throw new ErrorContext({
