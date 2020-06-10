@@ -15,9 +15,6 @@ import config from './config';
 jest.mock('./logger');
 jest.mock('buying-catalogue-library');
 
-documentController.getDocumentByFileName = jest.fn()
-  .mockResolvedValue({});
-
 const mockFoundationSolutionsContext = {
   title: 'Foundation',
   pageDescription: 'These foundation solutions',
@@ -72,6 +69,8 @@ describe('routes', () => {
   // TODO: USE_CAPABILITIES_SELECTOR Remove beforeEach when capabilities selector is on by default
   beforeEach(() => {
     config.useCapabilitiesSelector = 'true';
+    documentController.getDocumentByFileName = jest.fn()
+      .mockResolvedValue({ on: (a, b) => b() });
   });
 
   afterEach(() => {
@@ -376,7 +375,7 @@ describe('routes', () => {
   });
 
   describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
-    it('should call getDocumentByFileName with the correct params when the user is authorised', () => request(setUpFakeApp())
+    it('should call getDocumentByFileName with the correct params when the user is authorised', async () => request(setUpFakeApp())
       .get('/solutions/foundation/1/document/some-doc')
       .then(() => {
         expect(documentController.getDocumentByFileName.mock.calls.length).toEqual(1);

@@ -45,8 +45,8 @@ export const routes = (authProvider) => {
   router.get('/document/:documentName', withCatch(async (req, res) => {
     const { documentName } = req.params;
     const contentType = 'application/pdf';
-    await getDocumentByFileName({ res, documentName, contentType });
-    res.end();
+    const stream = await getDocumentByFileName({ res, documentName, contentType });
+    stream.on('close', () => res.end());
   }));
 
   router.get('/', (req, res) => {
@@ -76,8 +76,8 @@ export const routes = (authProvider) => {
   router.get('/solutions/compare/document', withCatch(async (req, res) => {
     const documentName = 'compare-solutions.xlsx';
     const contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-    await getDocumentByFileName({ res, documentName, contentType });
-    res.end();
+    const stream = await getDocumentByFileName({ res, documentName, contentType });
+    stream.on('close', () => res.end());
   }));
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
@@ -125,10 +125,11 @@ export const routes = (authProvider) => {
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
     const contentType = determineContentType(documentName);
-    await getDocumentByFileName({
+
+    const stream = await getDocumentByFileName({
       res, documentName, contentType, solutionId,
     });
-    res.end();
+    stream.on('close', () => res.end());
   });
 
   router.get('*', (req) => {
