@@ -46,6 +46,7 @@ export const routes = (authProvider) => {
     const { documentName } = req.params;
     const contentType = 'application/pdf';
     await getDocumentByFileName({ res, documentName, contentType });
+    res.end();
   }));
 
   router.get('/', (req, res) => {
@@ -76,6 +77,7 @@ export const routes = (authProvider) => {
     const documentName = 'compare-solutions.xlsx';
     const contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
     await getDocumentByFileName({ res, documentName, contentType });
+    res.end();
   }));
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
@@ -126,6 +128,7 @@ export const routes = (authProvider) => {
     await getDocumentByFileName({
       res, documentName, contentType, solutionId,
     });
+    res.end();
   });
 
   router.get('*', (req) => {
