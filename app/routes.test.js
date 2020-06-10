@@ -11,11 +11,16 @@ import * as capabilitiesContext from './pages/capabilities-selector/controller';
 import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 import * as comparePageContext from './pages/compare/controller';
+import * as documentController from './documentController';
+
 import config from './config';
 import { logger } from './logger';
 
 jest.mock('./logger');
 jest.mock('buying-catalogue-library');
+
+documentController.getDocumentByFileName = jest.fn()
+  .mockResolvedValue({});
 
 const mockFoundationSolutionsContext = {
   title: 'Foundation',
@@ -73,6 +78,10 @@ describe('routes', () => {
     config.useCapabilitiesSelector = 'true';
   });
 
+  afterEach(() => {
+    documentController.getDocumentByFileName.mockReset();
+  });
+
   describe('GET /re-login', () => {
     it('should return the correct status and redirect to the login route', () => (
       request(setUpFakeApp())
@@ -103,20 +112,23 @@ describe('routes', () => {
   });
 
   describe('GET /document/:documentName', () => {
-    it('should call getDocument with the correct params', async () => {
-      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
-      return request(setUpFakeApp())
-        .get('/document/a-document.pdf')
-        .expect(200)
-        .then(() => {
-          expect(getDocument.mock.calls.length).toEqual(1);
-          expect(getDocument).toHaveBeenCalledWith({
-            endpoint: `${config.documentApiHost}/api/v1/documents/a-document.pdf`,
-            logger,
-          });
-          getDocument.mockReset();
+    it('should call getDocumentByFileName with the correct params when the user is authorised', () => request(setUpFakeApp())
+      .get('/document/a-document')
+      .then(() => {
+        expect(documentController.getDocumentByFileName.mock.calls.length).toEqual(1);
+        expect(documentController.getDocumentByFileName).toHaveBeenCalledWith({
+          res: expect.any(Object),
+          documentName: 'a-document',
+          contentType: 'application/pdf',
         });
-    });
+      }));
+
+    it('should return the correct status and text when the user is authorised', () => request(setUpFakeApp())
+      .get('/document/a-document')
+      .expect(200)
+      .then((res) => {
+        expect(res.text.includes('data-test-id="error-title"')).toBeFalsy();
+      }));
   });
 
   describe('GET /guide', () => {
@@ -158,20 +170,23 @@ describe('routes', () => {
   });
 
   describe('GET /solutions/compare/document', () => {
-    it('should call getDocument with the correct params', async () => {
-      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
-      return request(setUpFakeApp())
-        .get('/solutions/compare/document')
-        .expect(200)
-        .then(() => {
-          expect(getDocument.mock.calls.length).toEqual(1);
-          expect(getDocument).toHaveBeenCalledWith({
-            endpoint: `${config.documentApiHost}/api/v1/documents/compare-solutions.xlsx`,
-            logger,
-          });
-          getDocument.mockReset();
+    it('should call getDocumentByFileName with the correct params when the user is authorised', () => request(setUpFakeApp())
+      .get('/solutions/compare/document')
+      .then(() => {
+        expect(documentController.getDocumentByFileName.mock.calls.length).toEqual(1);
+        expect(documentController.getDocumentByFileName).toHaveBeenCalledWith({
+          res: expect.any(Object),
+          documentName: 'compare-solutions.xlsx',
+          contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         });
-    });
+      }));
+
+    it('should return the correct status and text when the user is authorised', () => request(setUpFakeApp())
+      .get('/solutions/compare/document')
+      .expect(200)
+      .then((res) => {
+        expect(res.text.includes('data-test-id="error-title"')).toBeFalsy();
+      }));
   });
 
   describe('GET /solutions', () => {
@@ -365,20 +380,24 @@ describe('routes', () => {
   });
 
   describe('GET /solutions/:filterType.:capabilities?/:solutionId/document/:documentName', () => {
-    it('should call getDocument with the correct params', () => {
-      getDocument.mockResolvedValue({ data: createReadStream(path.resolve(__dirname, 'data.pdf')) });
-      return request(setUpFakeApp())
-        .get('/solutions/foundation/1/document/some-doc')
-        .expect(200)
-        .then(() => {
-          expect(getDocument.mock.calls.length).toEqual(1);
-          expect(getDocument).toHaveBeenCalledWith({
-            endpoint: `${config.documentApiHost}/api/v1/Solutions/1/documents/some-doc`,
-            logger,
-          });
-          getDocument.mockReset();
+    it('should call getDocumentByFileName with the correct params when the user is authorised', () => request(setUpFakeApp())
+      .get('/solutions/foundation/1/document/some-doc')
+      .then(() => {
+        expect(documentController.getDocumentByFileName.mock.calls.length).toEqual(1);
+        expect(documentController.getDocumentByFileName).toHaveBeenCalledWith({
+          res: expect.any(Object),
+          documentName: 'some-doc',
+          contentType: 'application/some-doc',
+          solutionId: '1',
         });
-    });
+      }));
+
+    it('should return the correct status and text when the user is authorised', () => request(setUpFakeApp())
+      .get('/solutions/foundation/1/document/some-doc')
+      .expect(200)
+      .then((res) => {
+        expect(res.text.includes('data-test-id="error-title"')).toBeFalsy();
+      }));
   });
 
   describe('Error handler', () => {
