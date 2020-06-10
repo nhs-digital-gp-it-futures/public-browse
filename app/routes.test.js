@@ -1,7 +1,5 @@
 import request from 'supertest';
-import { createReadStream } from 'fs';
-import path from 'path';
-import { FakeAuthProvider, getCsrfTokenFromGet, getDocument } from 'buying-catalogue-library';
+import { FakeAuthProvider, getCsrfTokenFromGet } from 'buying-catalogue-library';
 import { App } from './app';
 import { routes } from './routes';
 import * as homepageContext from './pages/homepage/context';
@@ -12,9 +10,7 @@ import * as browseSolutionsPageContext from './pages/browse-solutions/context';
 import * as guidePageContext from './pages/guide/context';
 import * as comparePageContext from './pages/compare/controller';
 import * as documentController from './documentController';
-
 import config from './config';
-import { logger } from './logger';
 
 jest.mock('./logger');
 jest.mock('buying-catalogue-library');
