@@ -26,9 +26,6 @@ module.exports = {
   // DOCUMENT_HOST
   documentApiHost: process.env.DOCUMENT_HOST || 'http://localhost:5101',
 
-  // BLOBSTORE_HOST
-  blobstoreHost: process.env.BLOBSTORE_HOST || 'https://gpitfuturesdevsa.blob.core.windows.net',
-
   // LOGGER_LEVEL options are info, warn, error, off
   loggerLevel: process.env.LOGGER_LEVEL || 'error',
 
