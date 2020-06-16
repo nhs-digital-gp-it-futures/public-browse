@@ -28,14 +28,4 @@
       {% endfor %}
     </ul>
   {% endif %}
-
-  {% if params.subSection.button %}
-    <div data-test-id="subsection-button">
-      {{ button({
-        "text": params.subSection.button.text,
-        "classes": "nhsuk-button--secondary nhsuk-u-margin-bottom-0",
-        "href": params.blobstoreHost + params.subSection.button.href
-      }) }}
-    </div>
-  {% endif %}
 {% endmacro %}

@@ -63,9 +63,6 @@ describe('covid19 page', () => {
 
   it('should render the covid19 compare button', componentTester(setup, (harness) => {
     const context = {
-      config: {
-        blobstoreHost: 'blobstore',
-      },
       buttonText: 'Covid-19 button text',
       buttonHref: '/link-to-doc',
     };
@@ -74,7 +71,7 @@ describe('covid19 page', () => {
       const covid19CompareButton = $('[data-test-id="covid19-compare-button"] a');
       expect(covid19CompareButton.length).toEqual(1);
       expect(covid19CompareButton.text().trim()).toEqual(context.buttonText);
-      expect(covid19CompareButton.attr('href')).toEqual(context.config.blobstoreHost + context.buttonHref);
+      expect(covid19CompareButton.attr('href')).toEqual(context.buttonHref);
     });
   }));
 

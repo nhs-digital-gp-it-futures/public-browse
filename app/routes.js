@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  ErrorContext, errorHandler, getDocument, healthRoutes, authenticationRoutes,
+  errorHandler, healthRoutes, authenticationRoutes, ErrorContext,
 } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
@@ -16,7 +16,7 @@ import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 import {
   withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
 } from './helpers/routerHelper';
-import { getEndpoint } from './endpoints';
+import { getDocumentByFileName } from './documentController';
 
 const addContext = ({ context, user, csrfToken }) => ({
   ...context,
@@ -41,6 +41,13 @@ export const routes = (authProvider) => {
       authProvider.login()(req, res, next);
     });
   }
+
+  router.get('/document/:documentName', withCatch(async (req, res) => {
+    const { documentName } = req.params;
+    const contentType = 'application/pdf';
+    const stream = await getDocumentByFileName({ res, documentName, contentType });
+    stream.on('close', () => res.end());
+  }));
 
   router.get('/', (req, res) => {
     const context = getHomepageContext({ user: req.user });
@@ -67,26 +74,10 @@ export const routes = (authProvider) => {
   });
 
   router.get('/solutions/compare/document', withCatch(async (req, res) => {
-    logger.info('downloading solution comparison document');
-    const endpoint = getEndpoint({
-      endpointLocator: 'getDocument',
-      options: { documentName: 'compare-solutions.xlsx' },
-    });
-    try {
-      const response = await getDocument({ endpoint, logger });
-      res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-      response.data.pipe(res);
-    } catch (err) {
-      if (err.response && err.response.status === 404) {
-        throw new ErrorContext({
-          status: 404,
-          backLinkHref: '/solutions/compare',
-          backLinkText: 'Back',
-          description: 'Document not found',
-        });
-      }
-      throw err;
-    }
+    const documentName = 'compare-solutions.xlsx';
+    const contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+    const stream = await getDocumentByFileName({ res, documentName, contentType });
+    stream.on('close', () => res.end());
   }));
 
   router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
@@ -133,14 +124,12 @@ export const routes = (authProvider) => {
 
   router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
     const { solutionId, documentName } = req.params;
-    logger.info(`downloading Solution ${solutionId} document ${documentName}`);
-    const endpoint = getEndpoint({
-      endpointLocator: 'getSolutionDocument',
-      options: { solutionId, documentName },
+    const contentType = determineContentType(documentName);
+
+    const stream = await getDocumentByFileName({
+      res, documentName, contentType, solutionId,
     });
-    const response = await getDocument({ endpoint, logger });
-    res.setHeader('Content-type', determineContentType(documentName));
-    response.data.pipe(res);
+    stream.on('close', () => res.end());
   });
 
   router.get('*', (req) => {

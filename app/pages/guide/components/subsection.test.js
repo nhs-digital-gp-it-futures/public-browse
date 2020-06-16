@@ -20,7 +20,6 @@ const context = {
         href: '/path-to-blob',
       },
     },
-    blobstoreHost: 'www.someblobstore.com',
   },
 };
 
@@ -114,22 +113,6 @@ describe('subsection', () => {
 
     harness.request(newContext, ($) => {
       expect($('[data-test-id="subsection-bulletlist"]').length).toEqual(0);
-    });
-  }));
-
-
-  it('should render a button if provided', componentTester(setup, (harness) => {
-    harness.request(context, ($) => {
-      expect($('[data-test-id="subsection-button"]').text().trim()).toEqual(context.params.subSection.button.text);
-      expect($('[data-test-id="subsection-button"] a').attr('href')).toEqual('www.someblobstore.com/path-to-blob');
-    });
-  }));
-
-  it('should not render a button if not provided', componentTester(setup, (harness) => {
-    const newContext = { ...context };
-    delete newContext.params.subSection.button;
-    harness.request(newContext, ($) => {
-      expect($('[data-test-id="subsection-button"]').length).toEqual(0);
     });
   }));
 });
