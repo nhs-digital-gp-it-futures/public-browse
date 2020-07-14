@@ -1,13 +1,15 @@
 import { ErrorContext } from 'buying-catalogue-library';
 import { getEndpoint } from '../endpoints';
 
-export const withCatch = route => async (req, res, next) => {
+export const withCatch = (logger, route) => async (req, res, next) => {
   try {
     return await route(req, res, next);
   } catch (err) {
     if (err instanceof ErrorContext) {
       return next(err);
     }
+    logger.error(`Unexpected Error:\n${err.stack}`);
+
     const defaultError = new ErrorContext({ status: 500 });
     return next(defaultError);
   }

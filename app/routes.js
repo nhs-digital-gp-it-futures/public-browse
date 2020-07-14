@@ -42,7 +42,7 @@ export const routes = (authProvider) => {
     });
   }
 
-  router.get('/document/:documentName', withCatch(async (req, res) => {
+  router.get('/document/:documentName', withCatch(logger, async (req, res) => {
     const { documentName } = req.params;
     const contentType = 'application/pdf';
     const stream = await getDocumentByFileName({ res, documentName, contentType });
@@ -73,27 +73,27 @@ export const routes = (authProvider) => {
     res.render('pages/compare/template.njk', addContext({ context, user: req.user }));
   });
 
-  router.get('/solutions/compare/document', withCatch(async (req, res) => {
+  router.get('/solutions/compare/document', withCatch(logger, async (req, res) => {
     const documentName = 'compare-solutions.xlsx';
     const contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
     const stream = await getDocumentByFileName({ res, documentName, contentType });
     stream.on('close', () => res.end());
   }));
 
-  router.post('/solutions/capabilities-selector', withCatch(async (req, res) => {
+  router.post('/solutions/capabilities-selector', withCatch(logger, async (req, res) => {
     const capabilitiesParam = getCapabilitiesParam(req.body.capabilities);
     logger.info(`capabilities submitted - ${capabilitiesParam}`);
     res.redirect(`/solutions/capabilities-selector${capabilitiesParam}`);
   }));
 
   // TODO: SHOW_COVID19 Remove when covid19 is no longer needed.
-  router.get('/solutions/covid19', withCatch(async (req, res) => {
+  router.get('/solutions/covid19', withCatch(logger, async (req, res) => {
     const context = await getCovid19SolutionListPageContext();
     logger.info('navigating to covid19 page');
     return res.render('pages/covid19/template.njk', addContext({ context, user: req.user }));
   }));
 
-  router.get('/solutions/:filterType.:capabilities?', withCatch(async (req, res) => {
+  router.get('/solutions/:filterType.:capabilities?', withCatch(logger, async (req, res) => {
     const { filterType, capabilities } = req.params;
     if (filterType === 'capabilities-selector') {
       if (!capabilities) {
@@ -115,14 +115,14 @@ export const routes = (authProvider) => {
     return res.render('pages/solutions-list/template.njk', addContext({ context, user: req.user }));
   }));
 
-  router.get('/solutions/:filterType.:capabilities?/:solutionId', withCatch(async (req, res) => {
+  router.get('/solutions/:filterType.:capabilities?/:solutionId', withCatch(logger, async (req, res) => {
     const { solutionId } = req.params;
     logger.info(`navigating to Solution ${solutionId} page`);
     const context = await getPublicSolutionById({ solutionId });
     res.render('pages/view-solution/template.njk', addContext({ context, user: req.user }));
   }));
 
-  router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', async (req, res) => {
+  router.get('/solutions/:filterType.:capabilities?/:solutionId/document/:documentName', withCatch(logger, async (req, res) => {
     const { solutionId, documentName } = req.params;
     const contentType = determineContentType(documentName);
 
@@ -130,7 +130,7 @@ export const routes = (authProvider) => {
       res, documentName, contentType, solutionId,
     });
     stream.on('close', () => res.end());
-  });
+  }));
 
   router.get('*', (req) => {
     throw new ErrorContext({
