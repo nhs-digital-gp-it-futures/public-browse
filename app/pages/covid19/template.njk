@@ -27,18 +27,6 @@
       {% endfor %}
     </div>
 
-    <div data-test-id="covid19-compare-button">
-      {{ button({
-        "text": buttonText,
-        "classes": "nhsuk-button--secondary",
-        "href": buttonHref
-      }) }}
-    </div>
-
-    <p data-test-id="covid19-subtext">
-      {{ subtext }}
-    </p>
-
     <div data-test-id="solution-cards-covid19" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
       {% for solution in solutions %}
         {{ covid19SolutionCard({
