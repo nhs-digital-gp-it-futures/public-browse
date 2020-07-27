@@ -61,32 +61,6 @@ describe('covid19 page', () => {
     });
   }));
 
-  it('should render the covid19 compare button', componentTester(setup, (harness) => {
-    const context = {
-      buttonText: 'Covid-19 button text',
-      buttonHref: '/link-to-doc',
-    };
-
-    harness.request(context, ($) => {
-      const covid19CompareButton = $('[data-test-id="covid19-compare-button"] a');
-      expect(covid19CompareButton.length).toEqual(1);
-      expect(covid19CompareButton.text().trim()).toEqual(context.buttonText);
-      expect(covid19CompareButton.attr('href')).toEqual(context.buttonHref);
-    });
-  }));
-
-  it('should render the covid19 subtext', componentTester(setup, (harness) => {
-    const context = {
-      subtext: 'Covid-19 subtext',
-    };
-
-    harness.request(context, ($) => {
-      const covid19Subtext = $('[data-test-id="covid19-subtext"]');
-      expect(covid19Subtext.length).toEqual(1);
-      expect(covid19Subtext.text().trim()).toEqual(context.subtext);
-    });
-  }));
-
   it('should render 0 covid19 cards if no solutions are provided in the context', componentTester(setup, (harness) => {
     const context = {
       solutions: [],
