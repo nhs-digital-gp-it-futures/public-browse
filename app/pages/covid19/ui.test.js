@@ -34,14 +34,6 @@ test('should display the covid19 page inset text', async (t) => {
     .expect(pageInsetText.find('p').count).eql(manifest.insetText.length);
 });
 
-test('should display the covid19 page compare button', async (t) => {
-  await pageSetup(t);
-  const pageCompareButton = Selector('[data-test-id="covid19-compare-button"] a');
-  await t
-    .expect(pageCompareButton.exists).ok()
-    .expect(await extractInnerText(pageCompareButton)).eql(manifest.buttonText);
-});
-
 test('should display the covid19 solution cards', async (t) => {
   await pageSetup(t);
   await t
