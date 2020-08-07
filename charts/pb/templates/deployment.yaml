@@ -132,6 +132,13 @@ spec:
                 secretKeyRef:
                   name: {{ .clientSecret.name }}
                   key: {{ .clientSecret.key }}
+            {{- end }}
+            {{- with .Values.serviceDependencies.isapi }}
+            - name: IDENTITY_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .name | quote }}
+                  key: {{ .key | quote }}             
             {{- end }}          
             {{- end }}                
             {{- if .Values.env.values }}
