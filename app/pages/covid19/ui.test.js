@@ -80,8 +80,9 @@ test('should navigate to the covid19 solution view page when clicking on the tit
   await pageSetup(t);
   const getLocation = ClientFunction(() => document.location.href);
   const solutionCardTitleLink = Selector('div[data-test-id="solution-card-covid19"]:nth-child(1) a');
+  const firstSolutionId = covid19Data.solutions[0].id;
   await t
     .expect(solutionCardTitleLink.exists).ok()
     .click(solutionCardTitleLink)
-    .expect(getLocation()).contains('/solutions/covid19/100000-001');
+    .expect(getLocation()).contains(`/solutions/covid19/${firstSolutionId}`);
 });
