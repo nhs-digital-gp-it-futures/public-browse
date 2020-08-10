@@ -226,7 +226,7 @@
           "Key outcomes of consultations can be added to patient’s medical record",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
           "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has met a Productivity Capability"
-		     ]
+        ]
       }
     },
     {
@@ -243,10 +243,10 @@
           "This Catalogue Solution has been assessed for video consultation",
           "Allows scheduling of video consultations",
           "Allows read/write back to patient medical records",
-		  "Supports online appointment booking",
+          "Supports online appointment booking",
           "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
           "This Catalogue Solution has met a Productivity Capability"
-		     ]
+        ]
       }
     },
     {
@@ -265,7 +265,7 @@
           "Allows appointment triage based on what a patient needs from a consultation",
           "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
           "This Catalogue Solution has met an eConsultation Capability"
-		     ]
+        ]
       }
     },
     {
@@ -284,7 +284,7 @@
           "Secure patient ID verification",
           "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
           "This Catalogue Solution has met a Productivity Capability"
-		     ]
+        ]
       }
     },
     {
