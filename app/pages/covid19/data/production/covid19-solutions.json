@@ -232,7 +232,7 @@
     {
       "id": "10072-003",
       "name": "Push Consult",
-      "summary": "SConsult remotely with your patients via video. Our web based app allows you to seamlessly connect to your patients with full read/write back to patient medical records. Streamline your sessions with our invitation system that allows you to specify appointment times or allow patients to book at a time that suits them. Our patient management system provides automated device checks, pre-appointment reminders and a virtual waiting room to reduce DNAs and ensure that your patient is ready to consult when you are. We operate a secure ID verification process for patient safeguarding, including integration with NHS Spine demographics service for accurate patient identification. Used alongside EMIS/TPP with smartcard access with ability to view, update and prescribe.",
+      "summary": "Push Consult is our interop video consultation platform. Leveraging NHS integrations, we are able to offer a range of health & social care workers the ability to work remotely or from a tablet device with access to the full patient record and the ability to update the record electronically.",
       "supplier": {
         "id": "10072",
         "name": "Push Dr Ltd"
