@@ -356,7 +356,7 @@ test('should render capabilities and standards link', async (t) => {
 
   await t
     .expect(capabilitiesAndStandardsLink.exists).ok()
-    .expect(await extractInnerText(capabilitiesAndStandardsLink)).eql('Capabilities & Standards Model')
+    .expect(await extractInnerText(capabilitiesAndStandardsLink)).eql('Capabilities and Standards Model')
     .expect(capabilitiesAndStandardsLink.getAttribute('href')).eql('https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview');
 });
 

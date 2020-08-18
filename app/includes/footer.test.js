@@ -27,10 +27,6 @@ const footerLinks = [
     label: 'Capabilities & Standards Model',
     URL: 'https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview',
   },
-  {
-    label: 'Terms & Conditions',
-    URL: '/document/terms-of-use.pdf',
-  },
 ];
 
 describe('footer', () => {
