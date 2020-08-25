@@ -45,6 +45,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
+    "jest-sonar-reporter": "^2.0.0",
     "nhsuk-frontend": "3.1.0",
     "nunjucks": "^3.2.2",
     "nunjucks-date-filter": "^0.1.1",
@@ -82,7 +83,8 @@
       "/node_modules/",
       "((\\.|/)(ui.test))\\.js$"
     ],
-    "testResultsProcessor": "./node_modules/jest-nunit-reporter"
+    "collectCoverage": true,
+    "testResultsProcessor": "jest-sonar-reporter"
   },
   "jestNunitReporter": {
     "outputFilename": "unit-test-report.xml"
