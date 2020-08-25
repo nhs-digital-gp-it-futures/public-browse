@@ -40,6 +40,12 @@ jobs:
     inputs:
       versionSpec: '14.x'
     displayName: 'Install Node.js'
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonar-cloud'
+    organization: 'nhs-digital-gp-it-futures'
+    scannerMode: 'CLI'
+    configMode: 'file'
 
   - script: |
       npm install -g webpack webpack-cli --save-dev
@@ -52,6 +58,8 @@ jobs:
 
   - script: npm run test
     displayName: 'Unit test'
+
+  - task: SonarCloudAnalyze@1
 
   - task: PublishTestResults@2
     displayName: Publish unit test results
