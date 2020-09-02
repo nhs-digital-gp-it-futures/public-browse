@@ -269,25 +269,6 @@
       }
     },
     {
-      "id": "10072-004",
-      "name": "Digital Locum",
-      "summary": "Patients are able to view and book appointments via their app. Practices are able to schedule appointments to appropriate patients. Includes automated tech checks, ID checks and pre-appointment reminders and a virtual waiting room.",
-      "supplier": {
-        "id": "10072",
-        "name": "Push Dr Ltd"
-      },
-      "covid19": {
-        "title": "How this Catalogue Solution can help with coronavirus",
-        "list": [
-          "This Catalogue Solution has been assessed for video consultation",
-          "Allows patients to view and book appointments online",
-          "Secure patient ID verification",
-          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
-          "This Catalogue Solution has met a Productivity Capability"
-        ]
-      }
-    },
-    {
       "id": "10063-002",
       "name": "forms4health",
       "summary": "forms4health™ is an intuitive, easily integrated, electronic smart forms platform, facilitating paperless working across health and social care. forms4health is a responsive, versatile and interoperable platform that delivers digital transformation.",
