@@ -285,6 +285,25 @@
           "This Catalogue Solution has met a Productivity Capability and partially met two eConsultation Capabilities"
         ]
       }
+    },
+    {
+      "id": "10046-006",
+      "name": "PATCHES",
+      "summary": "PATCHS is a complete online consultation and triage solution designed by GPs and academics to help manage patient workload. It enables practices to implement a Total Triage model, and set up Virtual Hubs/eHubs for federated working.",
+      "supplier": {
+        "id": "10046",
+        "name": "Advanced Health and Care Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Provides two-way messaging between healthcare professionals and patients in real-time",
+          "Allows appointment triage based on what a patient needs from a consultation",
+          "An Additional Service allows video consultations",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
     }
   ]
 }
