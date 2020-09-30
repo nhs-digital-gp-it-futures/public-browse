@@ -78,25 +78,6 @@
       }
     },
     {
-      "id": "10029-003",
-      "name": "RIVIAM Secure Video Services",
-      "summary": "RIVIAM Secure Video Service with TPP SystmOne™ integration provides real-time video & audio-conferencing services between RIVIAM users & external users (patients, family, carers & professionals).",
-      "supplier": {
-        "id": "10029",
-        "name": "Targett Business Technology Limited"
-      },
-      "covid19": {
-        "title": "How this Catalogue Solution can help with coronavirus",
-        "list": [
-          "This Catalogue Solution has been assessed for video consultation",
-          "Allows access to a patient’s medical record",
-          "Key outcomes of consultations are automatically added to patient’s medical record",
-          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
-        ]
-      }
-    },
-    {
       "id": "10047-001",
       "name": "askmyGP",
       "summary": "askmyGP provides online consultation and workflow tools to maintain doctor-patient relationships and keeps patients in touch with their registered practice. Clinicians use askmyGP to prioritise and deliver care by secure message, telephone, video or face-to-face appointment.",
