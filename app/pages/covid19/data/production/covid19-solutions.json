@@ -285,6 +285,25 @@
           "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
         ]
       }
+    },
+    {
+      "id": "10022-001",
+      "name": "Dermicus Telehealth Platform",
+      "summary": "The Dermicus® digital telehealth platform is a CE Class I medical device and provides a secure link for collaboration from primary care clinicians to specialist consultants and experts capable of remotely diagnosing and triaging skin cancer, general skin lesions and wounds.",
+      "supplier": {
+        "id": "10022",
+        "name": "Gnosco"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Allows secure collaboration between healthcare professionals",
+          "Supports remote diagnosis and wound management",
+          "Integrates with patient records systems",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
     }
   ]
 }
