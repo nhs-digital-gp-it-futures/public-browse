@@ -304,6 +304,25 @@
           "This Catalogue Solution has met an eConsultation Capability"
         ]
       }
+    },
+    {
+      "id": "10064-003",
+      "name": "Medloop Patient Management Optimiser",
+      "summary": "Medloop PMO is a population management tool that gives primary care clinicians an overview of their entire patient population, tools to cluster patients according to disease categories and co-morbidities and the ability to use eConsult features to communicate with and notify patients in real-time.",
+      "supplier": {
+        "id": "10064",
+        "name": "Medloop Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Provides two-way messaging between healthcare professionals and patients in real-time",
+          "Supports online appointment booking and prescription ordering",
+          "Helps avoid unnecessary visits to GP practices",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
     }
   ]
 }
