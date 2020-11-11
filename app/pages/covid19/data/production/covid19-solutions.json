@@ -172,8 +172,8 @@
     },
     {
       "id": "10073-009",
-      "name": "Remote Consultation",
-      "summary": "Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
+      "name": "myGP Remote Consultation",
+      "summary": "myGP Remote Consultation is a solution integrated into the iPLATO platform and myGP app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
       "supplier": {
         "id": "10073",
         "name": "iPLATO"
