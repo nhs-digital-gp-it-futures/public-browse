@@ -78,31 +78,12 @@
       }
     },
     {
-      "id": "10029-003",
-      "name": "RIVIAM Secure Video Services",
-      "summary": "RIVIAM Secure Video Service with TPP SystmOne™ integration provides real-time video & audio-conferencing services between RIVIAM users & external users (patients, family, carers & professionals).",
-      "supplier": {
-        "id": "10029",
-        "name": "Targett Business Technology Limited"
-      },
-      "covid19": {
-        "title": "How this Catalogue Solution can help with coronavirus",
-        "list": [
-          "This Catalogue Solution has been assessed for video consultation",
-          "Allows access to a patient’s medical record",
-          "Key outcomes of consultations are automatically added to patient’s medical record",
-          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
-        ]
-      }
-    },
-    {
       "id": "10047-001",
       "name": "askmyGP",
       "summary": "askmyGP provides online consultation and workflow tools to maintain doctor-patient relationships and keeps patients in touch with their registered practice. Clinicians use askmyGP to prioritise and deliver care by secure message, telephone, video or face-to-face appointment.",
       "supplier": {
         "id": "10047",
-        "name": "GP Access"
+        "name": "Salvie Ltd"
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
@@ -191,8 +172,8 @@
     },
     {
       "id": "10073-009",
-      "name": "Remote Consultation",
-      "summary": "Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
+      "name": "myGP Remote Consultation",
+      "summary": "myGP Remote Consultation is a solution integrated into the iPLATO platform and myGP app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
       "supplier": {
         "id": "10073",
         "name": "iPLATO"
@@ -204,9 +185,8 @@
           "Allows appointment triage based on what a patient needs from a consultation",
           "Supports online appointment booking and prescription ordering",
           "Provides health tracking and access to medical records",
-          "Can be used from any device or location",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
         ]
       }
     },
@@ -283,6 +263,63 @@
           "Quick and easy implementation",
           "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
           "This Catalogue Solution has met a Productivity Capability and partially met two eConsultation Capabilities"
+        ]
+      }
+    },
+    {
+      "id": "10046-006",
+      "name": "PATCHS",
+      "summary": "PATCHS is a complete online consultation and triage solution designed by GPs and academics to help manage patient workload. It enables practices to implement a Total Triage model, and set up Virtual Hubs/eHubs for federated working.",
+      "supplier": {
+        "id": "10046",
+        "name": "Advanced Health and Care Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Provides two-way messaging between healthcare professionals and patients in real-time",
+          "Allows appointment triage based on what a patient needs from a consultation",
+          "An Additional Service allows video consultations",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
+    },
+    {
+      "id": "10022-001",
+      "name": "Dermicus Telehealth Platform",
+      "summary": "The Dermicus® digital telehealth platform is a CE Class I medical device and provides a secure link for collaboration from primary care clinicians to specialist consultants and experts capable of remotely diagnosing and triaging skin cancer, general skin lesions and wounds.",
+      "supplier": {
+        "id": "10022",
+        "name": "Gnosco"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Allows secure collaboration between healthcare professionals",
+          "Supports remote diagnosis and wound management",
+          "Integrates with patient records systems",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
+    },
+    {
+      "id": "10064-003",
+      "name": "Medloop Patient Management Optimiser",
+      "summary": "Medloop PMO is a population management tool that gives primary care clinicians an overview of their entire patient population, tools to cluster patients according to disease categories and co-morbidities and the ability to use eConsult features to communicate with and notify patients in real-time.",
+      "supplier": {
+        "id": "10064",
+        "name": "Medloop Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Provides two-way messaging between healthcare professionals and patients in real-time",
+          "Supports online appointment booking and prescription ordering",
+          "Helps avoid unnecessary visits to GP practices",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
         ]
       }
     }
