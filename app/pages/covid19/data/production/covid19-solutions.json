@@ -78,6 +78,26 @@
       }
     },
     {
+      "id": "10000-051",
+      "name": "Keystone",
+      "summary": "Keystone is a middleware solution that facilitates the movement of clinical data & messaging (to international standards) between Secondary & Primary Care providers and other organisations (e.g. NHS/PHE Laboratories), using nationally defined transport mechanisms.",
+      "supplier": {
+        "id": "10000",
+        "name": "EMIS Health"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Supports integration between primary care and laboratory information management systems",
+          "Provides secure messaging to NHS mandated standards",
+          "Allows GPs to send and receive clinical data, such as test results",
+          "Allows sending of clinical correspondence, such as discharge letters",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met a productivity Capability"
+        ]
+      }
+    },
+    {
       "id": "10047-001",
       "name": "askmyGP",
       "summary": "askmyGP provides online consultation and workflow tools to maintain doctor-patient relationships and keeps patients in touch with their registered practice. Clinicians use askmyGP to prioritise and deliver care by secure message, telephone, video or face-to-face appointment.",
