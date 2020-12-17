@@ -65,6 +65,22 @@ describe('home page', () => {
     });
   }));
 
+  it('should render the vaccinations promo', componentTester(setup, (harness) => {
+    const context = content;
+
+    harness.request(context, ($) => {
+      const promo = $('[data-test-id="vaccinations-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.find('a').attr('href')).toEqual('/vaccinations');
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
+      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.vaccinationsPromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.vaccinationsPromoDescription);
+    });
+  }));
+
   it('should render the admin promo when showAdminTile is true', componentTester(setup, (harness) => {
     const context = {
       ...content,
