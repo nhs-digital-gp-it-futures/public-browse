@@ -71,7 +71,7 @@ describe('home page', () => {
     harness.request(context, ($) => {
       const promo = $('[data-test-id="vaccinations-promo"]');
       expect(promo.length).toEqual(1);
-      expect(promo.find('a').attr('href')).toEqual('/vaccinations');
+      expect(promo.find('a').attr('href')).toEqual('/solutions/vaccinations');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
       expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
       expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
