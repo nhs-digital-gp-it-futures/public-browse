@@ -11,12 +11,12 @@
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
         "list": [
-          "This Catalogue Solution has been assessed for video consultation",
+          "This Catalogue Solution provides an Additional Service that has been assessed for video consultation",
           "Allows scheduling of video consultations",
           "Supports sharing of medical records",
           "Secure remote working for healthcare professionals",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution's Additional Service has fully met a Productivity Capability"
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has met a Productivity Capability"
         ]
       }
     },
@@ -34,7 +34,7 @@
           "This Catalogue Solution has been assessed for video consultation",
           "Supports triage via video",
           "Provides access to self-help advice",
-          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
           "A Capability Assessment is ongoing, but at present this Catalogue Solution has partially met an eConsultations Capability"
         ]
       }
@@ -53,8 +53,7 @@
           "This Catalogue Solution has been assessed for video consultation",
           "Works alongside a wide range of clinical systems",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
-
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
         ]
       }
     },
@@ -74,26 +73,27 @@
           "Provides real-time access to patient records",
           "Supports more informed decision making",
           "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
         ]
       }
     },
     {
-      "id": "10029-003",
-      "name": "RIVIAM Secure Video Services",
-      "summary": "RIVIAM Secure Video Service with TPP SystmOne™ integration provides real-time video & audio-conferencing services between RIVIAM users & external users (patients, family, carers & professionals).",
+      "id": "10000-051",
+      "name": "Keystone",
+      "summary": "Keystone is a middleware solution that facilitates the movement of clinical data & messaging (to international standards) between Secondary & Primary Care providers and other organisations (e.g. NHS/PHE Laboratories), using nationally defined transport mechanisms.",
       "supplier": {
-        "id": "10029",
-        "name": "Targett Business Technology Limited"
+        "id": "10000",
+        "name": "EMIS Health"
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
         "list": [
-          "This Catalogue Solution has been assessed for video consultation",
-          "Allows access to a patient’s medical record",
-          "Key outcomes of consultations are automatically added to patient’s medical record",
+          "Supports integration between primary care and laboratory information management systems",
+          "Provides secure messaging to NHS mandated standards",
+          "Allows GPs to send and receive clinical data, such as test results",
+          "Allows sending of clinical correspondence, such as discharge letters",
           "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+          "This Catalogue Solution has met a productivity Capability"
         ]
       }
     },
@@ -103,15 +103,15 @@
       "summary": "askmyGP provides online consultation and workflow tools to maintain doctor-patient relationships and keeps patients in touch with their registered practice. Clinicians use askmyGP to prioritise and deliver care by secure message, telephone, video or face-to-face appointment.",
       "supplier": {
         "id": "10047",
-        "name": "GP Access"
+        "name": "Salvie Ltd"
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
         "list": [
           "This Catalogue Solution has been assessed for video consultation",
           "Supports triage via video",
-          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met an eConsultations Capability"
         ]
       }
     },
@@ -131,7 +131,7 @@
           "Works across PCNs allowing different types of healthcare professionals to consult",
           "Allows secure remote working for healthcare professionals and the use of digital locum GPs",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met an eConsultations Capability"
         ]
       }
     },
@@ -149,7 +149,7 @@
           "This Catalogue Solution has been assessed for video consultation",
           "Video consultations available via appointment or on-demand if the clinician deems it necessary",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met an eConsultations Capability"
         ]
       }
     },
@@ -167,8 +167,8 @@
           "This Catalogue Solution has been assessed for video consultation",
           "A cloud-based platform that supports digital patient engagement, video consultations,  appointment booking, prescription ordering, health tracking and care navigation via patient-facing apps",
           "Customisable Patient Management System for use by clinicians",
-          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met an eConsultations Capability"
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution has met an eConsultations Capability"
         ]
       }
     },
@@ -183,17 +183,17 @@
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
         "list": [
-          "This Catalogue Solution has been assessed for video consultation",
+          "This Catalogue Solution provides an Additional Service that has been assessed for video consultation",
           "Allows patient messaging",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has fully met a Productivity Capability"
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has met a Productivity Capability"
         ]
       }
     },
     {
       "id": "10073-009",
-      "name": "Remote Consultation",
-      "summary": "Remote Consultation is a solution integrated into the iPLATO platform and myGP® app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
+      "name": "myGP Remote Consultation",
+      "summary": "myGP Remote Consultation is a solution integrated into the iPLATO platform and myGP app that helps GP practices avoid unnecessary appointments and supports remote consultation via chat, video and voice. It allows practices to communicate with patients via video, audio and asynchronous messaging.",
       "supplier": {
         "id": "10073",
         "name": "iPLATO"
@@ -205,9 +205,8 @@
           "Allows appointment triage based on what a patient needs from a consultation",
           "Supports online appointment booking and prescription ordering",
           "Provides health tracking and access to medical records",
-          "Can be used from any device or location",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution has fully met a Productivity Capability"
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met a Productivity Capability"
         ]
       }
     },
@@ -222,11 +221,125 @@
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
         "list": [
-          "This Catalogue Solution has been assessed for video consultation",
+          "This Catalogue Solution provides an Additional Service that has been assessed for video consultation",
           "Allows access to a patient’s medical record",
           "Key outcomes of consultations can be added to patient’s medical record",
           "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has fully met a Productivity Capability"
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10072-003",
+      "name": "Push Consult",
+      "summary": "Push Consult is our interop video consultation platform. Leveraging NHS integrations, we are able to offer a range of health & social care workers the ability to work remotely or from a tablet device with access to the full patient record and the ability to update the record electronically.",
+      "supplier": {
+        "id": "10072",
+        "name": "Push Dr Ltd"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Allows scheduling of video consultations",
+          "Allows read/write back to patient medical records",
+          "Supports online appointment booking",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met a Productivity Capability"
+        ]
+      }
+    },
+    {
+      "id": "10072-006",
+      "name": "Push Access",
+      "summary": "Push Access allows a patient to request and receive support relating to their healthcare concerns online. Allowing the Healthcare professional dealing with the request to triage requests effectively and invite the patient for a phone, video or face-2-face consultation if appropriate.",
+      "supplier": {
+        "id": "10072",
+        "name": "Push Dr Ltd"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Lets patients request support online",
+          "Allows appointment triage based on what a patient needs from a consultation",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
+    },
+    {
+      "id": "10063-002",
+      "name": "forms4health",
+      "summary": "forms4health™ is an intuitive, easily integrated, electronic smart forms platform, facilitating paperless working across health and social care. forms4health is a responsive, versatile and interoperable platform that delivers digital transformation.",
+      "supplier": {
+        "id": "10063",
+        "name": "Aire Logic"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Allows the design of bespoke eConsultations",
+          "Quick and easy implementation",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met a Productivity Capability and partially met two eConsultation Capabilities"
+        ]
+      }
+    },
+    {
+      "id": "10046-006",
+      "name": "PATCHS",
+      "summary": "PATCHS is a complete online consultation and triage solution designed by GPs and academics to help manage patient workload. It enables practices to implement a Total Triage model, and set up Virtual Hubs/eHubs for federated working.",
+      "supplier": {
+        "id": "10046",
+        "name": "Advanced Health and Care Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Provides two-way messaging between healthcare professionals and patients in real-time",
+          "Allows appointment triage based on what a patient needs from a consultation",
+          "An Additional Service allows video consultations",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
+    },
+    {
+      "id": "10022-001",
+      "name": "Dermicus Telehealth Platform",
+      "summary": "The Dermicus® digital telehealth platform is a CE Class I medical device and provides a secure link for collaboration from primary care clinicians to specialist consultants and experts capable of remotely diagnosing and triaging skin cancer, general skin lesions and wounds.",
+      "supplier": {
+        "id": "10022",
+        "name": "Gnosco"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Allows secure collaboration between healthcare professionals",
+          "Supports remote diagnosis and wound management",
+          "Integrates with patient records systems",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met an eConsultation Capability"
+        ]
+      }
+    },
+    {
+      "id": "10064-003",
+      "name": "Medloop Patient Management Optimiser",
+      "summary": "Medloop PMO is a population management tool that gives primary care clinicians an overview of their entire patient population, tools to cluster patients according to disease categories and co-morbidities and the ability to use eConsult features to communicate with and notify patients in real-time.",
+      "supplier": {
+        "id": "10064",
+        "name": "Medloop Limited"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "Provides two-way messaging between healthcare professionals and patients in real-time",
+          "Supports online appointment booking and prescription ordering",
+          "Helps avoid unnecessary visits to GP practices",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "An assessment against required Standards is ongoing, but at present this Catalogue Solution has met an eConsultation Capability"
         ]
       }
     }

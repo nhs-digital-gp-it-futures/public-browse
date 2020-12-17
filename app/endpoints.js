@@ -1,4 +1,4 @@
-import { buyingCatalogueApiHost, documentApiHost, oidcBaseUri } from './config';
+import { buyingCatalogueApiHost, documentApiHost, identityServerUrl } from './config';
 
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
   if (filterType === 'all') {
@@ -14,7 +14,7 @@ const endpoints = {
   // GET endpoints
   getBuyingCatalogueApiHealth: () => `${buyingCatalogueApiHost}/health/ready`,
   getDocumentApiHealth: () => `${documentApiHost}/health/ready`,
-  getIdentityApiHealth: () => `${oidcBaseUri}/health/ready`,
+  getIdentityApiHealth: () => `${identityServerUrl}/health/ready`,
   getSolutionListData:
     options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
   getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,

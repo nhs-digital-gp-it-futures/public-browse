@@ -58,7 +58,7 @@ test('should display General Terms of Use text', async (t) => {
   await pageSetup({ t });
   const termsOfUseText = Selector('[data-test-id="beta-banner"] > div > div > div:nth-child(2)');
   await t
-    .expect(await extractInnerText(termsOfUseText)).eql('By using this site you are accepting the General Terms of Use which you can view by downloading this PDF. The Cookies Policy and Privacy Policy can be accessed using the links at the bottom of the page.');
+    .expect(await extractInnerText(termsOfUseText)).eql('This is a new service - your feedback will help us improve it.');
 });
 
 test('should navigate to home page header banner', async (t) => {
@@ -356,7 +356,7 @@ test('should render capabilities and standards link', async (t) => {
 
   await t
     .expect(capabilitiesAndStandardsLink.exists).ok()
-    .expect(await extractInnerText(capabilitiesAndStandardsLink)).eql('Capabilities & Standards Model')
+    .expect(await extractInnerText(capabilitiesAndStandardsLink)).eql('Capabilities and Standards Model')
     .expect(capabilitiesAndStandardsLink.getAttribute('href')).eql('https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview');
 });
 
