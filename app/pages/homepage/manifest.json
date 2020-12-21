@@ -1,20 +1,22 @@
 {
   "heroHeading": "Buying Catalogue",
-  "heroText": "The GP IT Futures procurement framework has replaced GP Systems of Choice (GPSoC). Use the Buying Catalogue to find out what clinical information systems are available from the framework.",
+  "heroText": "Find out what clinical information solutions are available from procurement frameworks on the Buying Catalogue",
   "title": "About the Buying Catalogue",
   "description": [
     "The NHS Digital Buying Catalogue is an online marketplace where you can purchase clinical information systems that meet the digital needs of primary care.",
     "All the listed products – known as Catalogue Solutions – have been assessed against a set of Capabilities defined by the NHS and a set of Standards defined by NHS Digital.",
     "The functionality of the Buying Catalogue will be enhanced and the number of Catalogue Solutions available will increase over time."
   ],
-  "guidePromoHeading": "Buyer’s Guide",
-  "guidePromoDescription": "Terminology you’ll need to know when procuring Catalogue Solutions.",
-  "viewSolutionsPromoHeading": "View all Catalogue Solutions",
-  "viewSolutionsPromoDescription": "See what’s available on the Buying Catalogue to meet your needs.",
   "adminPromoHeading": "Manage organisations and users",
-  "adminPromoDescription": "Add new organisations and user accounts or edit existing details.",
-  "covid19PromoHeading": "Solutions to help with coronavirus",
-  "covid19PromoDescription": "Find Catalogue Solutions that can help prevent the spread of coronavirus.",
+  "adminPromoDescription": "Add new organisations and user accounts or edit existing details",
+  "covid19PromoHeading": "Reduce GP visits",
+  "covid19PromoDescription": "Find Catalogue Solutions that can help prevent the spread of coronavirus",
+  "guidePromoHeading": "Buyer’s Guide",
+  "guidePromoDescription": "Terminology you’ll need to know when procuring Catalogue Solutions",
   "orderFormPromoHeading": "Create or manage orders",
-  "orderFormPromoDescription": "Place a new order or complete an order you've already started (log in required)."
+  "orderFormPromoDescription": "Place a new order or complete an order you've already started (log in required)",
+  "vaccinationsPromoHeading": "Coronavirus vaccinations",
+  "vaccinationsPromoDescription": "Find Catalogue Solutions that help organise coronavirus vaccinations",
+  "viewSolutionsPromoHeading": "GP IT Futures framework",
+  "viewSolutionsPromoDescription": "Find and compare Catalogue solutions available on the GP IT Futures framework"
 }
