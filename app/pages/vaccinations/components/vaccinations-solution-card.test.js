@@ -41,10 +41,11 @@ describe('vaccinations-solution-card', () => {
   }));
 
   it('should render the supplier name', componentTester(setup, (harness) => {
+    const supplierName = 'some supplier name';
     const context = {
       params: {
         solution: {
-          supplierName: 'some supplier name',
+          supplierName,
         },
       },
     };
@@ -52,16 +53,17 @@ describe('vaccinations-solution-card', () => {
     harness.request(context, ($) => {
       const solutionsupplierName = $('[data-test-id="solution-card-supplier"]');
       expect(solutionsupplierName.length).toEqual(1);
-      expect(solutionsupplierName.text().trim()).toEqual('some supplier name');
+      expect(solutionsupplierName.text().trim()).toEqual(supplierName);
     });
   }));
 
   it('should render the solution name', componentTester(setup, (harness) => {
+    const name = 'some solution name';
     const context = {
       params: {
         solution: {
           id: '0001',
-          name: 'some solution name',
+          name,
         },
       },
     };
@@ -69,15 +71,16 @@ describe('vaccinations-solution-card', () => {
     harness.request(context, ($) => {
       const solutionName = $('[data-test-id="solution-card-name"]');
       expect(solutionName.length).toEqual(1);
-      expect(solutionName.text().trim()).toEqual('some solution name');
+      expect(solutionName.text().trim()).toEqual(name);
     });
   }));
 
   it('should render the solution summary', componentTester(setup, (harness) => {
+    const summary = 'some solution summary';
     const context = {
       params: {
         solution: {
-          summary: 'some solution summary',
+          summary,
         },
       },
     };
@@ -86,16 +89,17 @@ describe('vaccinations-solution-card', () => {
       const solutionName = $('[data-test-id="solution-card-summary"]');
 
       expect(solutionName.length).toEqual(1);
-      expect(solutionName.text().trim()).toEqual('some solution summary');
+      expect(solutionName.text().trim()).toEqual(summary);
     });
   }));
 
   it('should render the solution vaccinations title', componentTester(setup, (harness) => {
+    const title = 'some vaccinations title';
     const context = {
       params: {
         solution: {
           vaccinations: {
-            title: 'some vaccinations title',
+            title,
           },
         },
       },
@@ -105,7 +109,7 @@ describe('vaccinations-solution-card', () => {
       const vaccinationsTitle = $('[data-test-id="solution-card-vaccinations-title"]');
 
       expect(vaccinationsTitle.length).toEqual(1);
-      expect(vaccinationsTitle.text().trim()).toEqual('some vaccinations title');
+      expect(vaccinationsTitle.text().trim()).toEqual(title);
     });
   }));
 
@@ -130,13 +134,14 @@ describe('vaccinations-solution-card', () => {
     }));
 
     it('should render 1 in list if only 1 item is provided in context', componentTester(setup, (harness) => {
+      const list = [
+        'some list item',
+      ];
       const context = {
         params: {
           solution: {
             vaccinations: {
-              list: [
-                'some list item',
-              ],
+              list,
             },
           },
         },
@@ -147,20 +152,21 @@ describe('vaccinations-solution-card', () => {
 
         expect(vaccinationsList.length).toEqual(1);
         expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]').length).toEqual(1);
-        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(1)').text().trim()).toEqual('some list item');
+        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(1)').text().trim()).toEqual(list[0]);
       });
     }));
 
     it('should render 3 item names if 3 capabilities are provided in the context', componentTester(setup, (harness) => {
+      const list = [
+        'some first list item',
+        'some second list item',
+        'some third list item',
+      ];
       const context = {
         params: {
           solution: {
             vaccinations: {
-              list: [
-                'some first list item',
-                'some second list item',
-                'some third list item',
-              ],
+              list,
             },
           },
         },
@@ -171,9 +177,9 @@ describe('vaccinations-solution-card', () => {
 
         expect(vaccinationsList.length).toEqual(1);
         expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]').length).toEqual(3);
-        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(1)').text().trim()).toEqual('some first list item');
-        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(2)').text().trim()).toEqual('some second list item');
-        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(3)').text().trim()).toEqual('some third list item');
+        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(1)').text().trim()).toEqual(list[0]);
+        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(2)').text().trim()).toEqual(list[1]);
+        expect(vaccinationsList.find('[data-test-id="vaccinations-list-item"]:nth-child(3)').text().trim()).toEqual(list[2]);
       });
     }));
   });

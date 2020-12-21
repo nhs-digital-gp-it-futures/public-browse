@@ -9,6 +9,11 @@ const defaultExpectedContext = {
   backLinkPath: '/',
   solutions: [],
 };
+const defaultSolution = {
+  id: '00001',
+  name: 'The first solution',
+  summary: 'Some solution summary',
+};
 
 describe('createVaccinationsSolutionListPageContext - vaccinations', () => {
   it('should create a context for the vaccinations page with one solution', () => {
@@ -16,9 +21,7 @@ describe('createVaccinationsSolutionListPageContext - vaccinations', () => {
       ...defaultExpectedContext,
       solutions: [
         {
-          id: '00001',
-          name: 'The first solution',
-          summary: 'Some solution summary',
+          ...defaultSolution,
           supplierName: 'Some supplier',
           vaccinations: {
             title: 'Some title',
@@ -36,9 +39,7 @@ describe('createVaccinationsSolutionListPageContext - vaccinations', () => {
     const data = {
       solutions: [
         {
-          id: '00001',
-          name: 'The first solution',
-          summary: 'Some solution summary',
+          ...defaultSolution,
           supplier: {
             id: '1',
             name: 'Some supplier',
@@ -65,9 +66,7 @@ describe('createVaccinationsSolutionListPageContext - vaccinations', () => {
       ...defaultExpectedContext,
       solutions: [
         {
-          id: '00001',
-          name: 'The first solution',
-          summary: 'Some solution summary',
+          ...defaultSolution,
           supplierName: 'Some supplier',
           vaccinations: {
             title: 'Some title',
@@ -81,9 +80,7 @@ describe('createVaccinationsSolutionListPageContext - vaccinations', () => {
     const data = {
       solutions: [
         {
-          id: '00001',
-          name: 'The first solution',
-          summary: 'Some solution summary',
+          ...defaultSolution,
           supplier: {
             id: '1',
             name: 'Some supplier',
