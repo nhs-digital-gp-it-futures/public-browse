@@ -1,0 +1,24 @@
+{
+  "solutions": [
+    {
+      "id": "10035-001",
+      "name": "Evergreen Life",
+      "summary": "Evergreen Life is facilitating remote digital consultations including video appointments for GPs in the UK, with patient record access to clinicians with or without access to the practice system in England. The app lets patients access GP online services & curate a personal health record.",
+      "supplier": {
+        "id": "10035",
+        "name": "Evergreen Life"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution provides an Additional Service that has been assessed for video consultation",
+          "Allows scheduling of video consultations",
+          "Supports sharing of medical records",
+          "Secure remote working for healthcare professionals",
+          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
+          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has met a Productivity Capability"
+        ]
+      }
+    }
+  ]
+}
