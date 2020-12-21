@@ -12,6 +12,7 @@ import { getCapabilitiesContext } from './pages/capabilities-selector/controller
 import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
+import { getVaccinationsSolutionListPageContext } from './pages/vaccinations/controller';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 import {
   withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
@@ -86,7 +87,13 @@ export const routes = (authProvider) => {
     res.redirect(`/solutions/capabilities-selector${capabilitiesParam}`);
   }));
 
-  // TODO: SHOW_COVID19 Remove when covid19 is no longer needed.
+  // TODO: SHOW_VACCINATIONS Remove when vaccinations is no longer needed.
+  router.get('/solutions/vaccinations', withCatch(logger, async (req, res) => {
+    const context = await getVaccinationsSolutionListPageContext();
+    logger.info('navigating to vaccinations page');
+    return res.render('pages/vaccinations/template.njk', addContext({ context, user: req.user }));
+  }));
+
   router.get('/solutions/covid19', withCatch(logger, async (req, res) => {
     const context = await getCovid19SolutionListPageContext();
     logger.info('navigating to covid19 page');
