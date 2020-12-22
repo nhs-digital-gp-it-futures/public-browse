@@ -22,6 +22,7 @@ export const createVaccinationsSolutionListPageContext = ({
     title: manifest.title,
     pageDescription: manifest.description,
     insetText: manifest.insetText,
+    insetTextLink: manifest.insetTextLink,
     solutions: createVaccinationsSolutionsContext({
       solutions,
     }),
