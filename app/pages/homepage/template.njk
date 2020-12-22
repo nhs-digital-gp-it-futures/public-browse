@@ -16,6 +16,15 @@
   <div data-test-id="homepage-promo-group">
     <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container nhsuk-u-padding-top-5">
 
+      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="vaccinations-promo">
+        {{ promo({
+          "href": "/solutions/vaccinations",
+          "heading": vaccinationsPromoHeading,
+          "classes": "nhsuk-u-margin-top-5",
+          "description": vaccinationsPromoDescription
+        }) }}
+      </div>
+
       {% if (config.showCovid19 === 'true') %}
         <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="covid19-promo">
           {{ promo({
