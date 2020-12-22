@@ -1,10 +1,10 @@
 {
-  "title": "View Catalogue Solutions",
-  "description": "There are two types of Catalogue Solution on the Buying Catalogue. You can choose to view all those available or only the ones which have all 6 Foundation Capabilities - the minimum requirement to enable a GP practice to operate.",
+  "title": "GP IT Futures framework",
+  "description": "There are two types of Catalogue Solution on the GP IT Futures framework. You can choose to view all those available or only the ones which have all 6 Foundation Capabilities - the minimum requirement to enable a GP practice to operate.",
   "foundationPromoHeading": "View Foundation Solutions",
-  "foundationPromoDescription": "Find Catalogue Solutions that meet all Foundation Capabilities.",
+  "foundationPromoDescription": "Find Catalogue Solutions that meet all Foundation Capabilities",
   "allPromoHeading": "View all Catalogue Solutions",
-  "allPromoDescription": "Find Catalogue Solutions with the Capabilities to meet your needs.",
+  "allPromoDescription": "Find Catalogue Solutions with the Capabilities to meet your needs",
   "comparePromoHeading": "Compare all Catalogue Solutions",
-  "comparePromoDescription": "Get an overview of all the Catalogue Solutions available and filter them by the Capabilities they offer."
+  "comparePromoDescription": "Get an overview of all the Catalogue Solutions available and filter them by the Capabilities they offer"
 }
