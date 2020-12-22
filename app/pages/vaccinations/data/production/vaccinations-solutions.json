@@ -1,22 +1,43 @@
 {
   "solutions": [
     {
-      "id": "10035-001",
-      "name": "Evergreen Life",
-      "summary": "Evergreen Life is facilitating remote digital consultations including video appointments for GPs in the UK, with patient record access to clinicians with or without access to the practice system in England. The app lets patients access GP online services & curate a personal health record.",
+      "id": "10064-004",
+      "name": "Medloop Integrated Covid-19 Vaccine Manager (IVCM)",
+      "summary": "The ICVM is a COVID-19 vaccine appointment management solution that enables healthcare professionals to upload patient lists and invite patients (via SMS) to book their first and second vaccination appointment based on the default setting of the vaccine type. The solution also offers an intuitive calendar that has the ability to mark open time slots, book patients in and record any adverse reactions from the vaccination directly into the patient record.",
       "supplier": {
-        "id": "10035",
-        "name": "Evergreen Life"
+        "id": "10064",
+        "name": "Medloop Limited"
       },
       "vaccinations": {
         "title": "How this Catalogue Solution can help with coronavirus vaccinations",
         "list": [
-          "This Catalogue Solution provides an Additional Service that has been assessed for video consultation",
-          "Allows scheduling of video consultations",
-          "Supports sharing of medical records",
-          "Secure remote working for healthcare professionals",
-          "We've executed a central contract for provision with this supplier, so you may access this service without charge (all costs are covered centrally). You do not need to execute a separate contract to access this service",
-          "A Capability Assessment is ongoing, but at present this Catalogue Solution’s Additional Service has met a Productivity Capability"
+          "This Catalogue Solution has been assessed for appointments management",
+          "Tracks availability of COVID-19 vaccination appointments",
+          "Allows bulk sending of vaccination appointment invites and reminders via SMS",
+          "Automatically sends appointment cancellation notifications via SMS",
+          "Enables patients to book and cancel their own vaccination appointments",
+          "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10030-001",
+      "name": "accuRx",
+      "summary": "accuRx offers vaccine appointment management functionality via its accuBook Additional Service. accuBook allows the sending of vaccination invite communications, appointment notification, reminders, and the ability for patients to manage their own vaccination appointments.",
+      "supplier": {
+        "id": "10030",
+        "name": "accuRx Limited"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution provides an Additional Service that has been assessed for appointments management",
+          "Tracks availability of COVID-19 vaccination appointments",
+          "Allows bulk sending of vaccination appointment invites and reminders via SMS",
+          "Enables patients to book their own vaccination appointments",
+          "Automatically tracks which patients have received COVID-19 vaccination appointments",
+          "Automatically sends appointment cancellation notifications via SMS",
+          "This Catalogue Solution has an Additional Service that has met the Appointments Management - COVID-19 Vaccinations Capability"
         ]
       }
     }
