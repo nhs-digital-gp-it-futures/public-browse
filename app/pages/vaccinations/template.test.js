@@ -49,15 +49,17 @@ describe('vaccinations page', () => {
     const context = {
       insetText: [
         'some inset text 1',
-        'some inset text 2',
-        'some inset text 3',
+        ' some inset text 2',
       ],
+      insetTextLink: 'link text',
     };
 
     harness.request(context, ($) => {
       const vaccinationsInsetText = $('[data-test-id="vaccinations-inset-text"]');
       const vaccinationsInsetTextParagraph = vaccinationsInsetText.find('p');
-      expect(vaccinationsInsetTextParagraph.length).toEqual(3);
+      expect(vaccinationsInsetTextParagraph.text().trim()).toContain(context.insetText[0]);
+      expect(vaccinationsInsetTextParagraph.text().trim()).toContain(context.insetTextLink);
+      expect(vaccinationsInsetTextParagraph.text().trim()).toContain(context.insetText[1]);
     });
   }));
 

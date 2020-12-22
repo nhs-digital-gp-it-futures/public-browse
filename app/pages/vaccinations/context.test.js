@@ -6,6 +6,7 @@ const defaultExpectedContext = {
   title: manifest.title,
   pageDescription: manifest.description,
   insetText: manifest.insetText,
+  insetTextLink: manifest.insetTextLink,
   backLinkPath: '/',
   solutions: [],
 };

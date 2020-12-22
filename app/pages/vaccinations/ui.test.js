@@ -31,7 +31,7 @@ test('should display the vaccinations page inset text', async (t) => {
   const pageInsetText = Selector('[data-test-id="vaccinations-inset-text"]');
   await t
     .expect(pageInsetText.exists).ok()
-    .expect(pageInsetText.find('p').count).eql(manifest.insetText.length);
+    .expect(await extractInnerText(pageInsetText.find('p'))).eql(`${manifest.insetText[0]}${manifest.insetTextLink}${manifest.insetText[1]}`);
 });
 
 test('should display the vaccinations solution cards', async (t) => {
