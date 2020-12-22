@@ -1,0 +1,38 @@
+{% extends 'includes/layouts/contained.njk' %}
+{% from 'components/back-link/macro.njk' import backLink %}
+{% from 'components/general-page-description.njk' import generalPageDescription %}
+{% from 'components/button/macro.njk' import button %}
+
+{% from './components/vaccinations-solution-card.njk' import vaccinationsSolutionCard %}
+
+{% block body %}
+  <div class="nhsuk-grid-row nhsuk-width-container" data-test-id="solutions-list-body">
+
+    <div class="nhsuk-u-padding-top-5" data-test-id="go-back-link">
+      {{ backLink({
+        "href": backLinkPath,
+        "text": "Go back to previous page"
+      }) }}
+    </div>
+
+    {{ generalPageDescription({
+      titleText: title,
+      descriptionText: pageDescription
+    }) }}
+
+    <div data-test-id="vaccinations-inset-text" class="nhsuk-inset-text nhsuk-u-padding-2 nhsuk-u-padding-right-4 nhsuk-u-padding-left-4 nhsuk-u-margin-top-2 nhsuk-u-margin-bottom-6">
+      <span class="nhsuk-u-visually-hidden">Information: </span>
+        <p class="nhsuk-u-font-size-14">{{ insetText[0] }}<a href="https://gpitbjss.atlassian.net/wiki/spaces/BG/pages/10584916017/Solutions+to+support+coronavirus+vaccination+rollout+in+Primary+Care+Networks+COVID+Vaccine">
+          {{ insetTextLink }}</a>{{ insetText[1] }}</p>
+    </div>
+
+    <div data-test-id="solution-cards-vaccinations" class="nhsuk-u-margin-bottom-7 nhsuk-u-margin-top-7">
+      {% for solution in solutions %}
+        {{ vaccinationsSolutionCard({
+          solution: solution
+        }) }}
+      {% endfor %}
+      <div class="bc-t-border-top--blue" />
+    </div>
+  </div>
+{% endblock %}

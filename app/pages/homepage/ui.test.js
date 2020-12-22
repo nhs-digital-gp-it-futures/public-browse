@@ -222,6 +222,15 @@ test('should navigate to the guide page when the guide promo is clicked', async 
     .expect(getLocation()).eql('http://localhost:1234/guide');
 });
 
+test('should render the vaccinations promo', async (t) => {
+  await pageSetup({ t });
+  const promo = Selector('[data-test-id="vaccinations-promo"]');
+  await t
+    .expect(promo.exists).ok()
+    .expect(await extractInnerText(promo.find('h3'))).eql(content.vaccinationsPromoHeading)
+    .expect(await extractInnerText(promo.find('p'))).eql(content.vaccinationsPromoDescription);
+});
+
 test('should render the covid19 promo', async (t) => {
   await pageSetup({ t });
   const promo = Selector('[data-test-id="covid19-promo"]');
