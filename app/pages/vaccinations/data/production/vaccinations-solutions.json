@@ -2,7 +2,7 @@
   "solutions": [
     {
       "id": "10064-004",
-      "name": "Medloop Integrated Covid-19 Vaccine Manager (IVCM)",
+      "name": "Medloop Integrated Covid-19 Vaccine Manager (ICVM)",
       "summary": "The ICVM is a COVID-19 vaccine appointment management solution that enables healthcare professionals to upload patient lists and invite patients (via SMS) to book their first and second vaccination appointment based on the default setting of the vaccine type. The solution also offers an intuitive calendar that has the ability to mark open time slots, book patients in and record any adverse reactions from the vaccination directly into the patient record.",
       "supplier": {
         "id": "10064",
