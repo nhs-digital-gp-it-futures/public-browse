@@ -30,7 +30,6 @@ const pageSetup = async ({ t, cookiePayload = undefined }) => {
 
 const getCookies = ClientFunction(() => document.cookie);
 
-
 const url = 'http://localhost:1234/';
 
 const logger = RequestLogger({ url, method: 'get' }, {
@@ -130,7 +129,7 @@ test
       .expect(logoutComponent.exists).ok()
       .expect(await getCookies()).contains(`fakeToken=${JSON.stringify({ id: '88421113', name: 'Cool Dude' })}`)
       .click(logoutComponent)
-      .expect(logger.contains(r => r.response.statusCode === 200)).ok()
+      .expect(logger.contains((r) => r.response.statusCode === 200)).ok()
       .expect(logger.requests[0].request.headers.cookie).eql(undefined);
   });
 

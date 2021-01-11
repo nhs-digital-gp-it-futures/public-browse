@@ -75,7 +75,7 @@ export class App {
       noCache: true,
     });
 
-    env.addFilter('isArray', value => Array.isArray(value));
+    env.addFilter('isArray', (value) => Array.isArray(value));
     env.addFilter('dateTime', dateFilter);
 
     if (this.authProvider) {

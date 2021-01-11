@@ -12,7 +12,9 @@ const createSolutionsContext = ({
     name: solution.name,
     summary: solution.summary,
     supplierName: solution.supplier && solution.supplier.name,
-    capabilities: solution.capabilities && solution.capabilities.map(capability => capability.name),
+    capabilities: solution.capabilities && solution.capabilities.map(
+      (capability) => capability.name,
+    ),
     isFoundation: solution.isFoundation,
     viewSolutionUrl,
   });

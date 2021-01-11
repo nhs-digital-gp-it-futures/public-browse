@@ -16,12 +16,12 @@ const endpoints = {
   getDocumentApiHealth: () => `${documentApiHost}/health/ready`,
   getIdentityApiHealth: () => `${identityServerUrl}/health/ready`,
   getSolutionListData:
-    options => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
-  getPublicSolutionById: options => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
+    (options) => getSolutionListDataEndpoint(buyingCatalogueApiHost, options.filterType),
+  getPublicSolutionById: (options) => `${buyingCatalogueApiHost}/api/v1/Solutions/${options.solutionId}/Public`,
   getCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Capabilities`,
   // GET Documents endpoint
-  getSolutionDocument: options => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
-  getDocument: options => `${documentApiHost}/api/v1/documents/${options.documentName}`,
+  getSolutionDocument: (options) => `${documentApiHost}/api/v1/Solutions/${options.solutionId}/documents/${options.documentName}`,
+  getDocument: (options) => `${documentApiHost}/api/v1/documents/${options.documentName}`,
   // POST endpoints
   postSelectedCapabilities: () => `${buyingCatalogueApiHost}/api/v1/Solutions`,
 };
