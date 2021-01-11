@@ -323,7 +323,6 @@ test('should navigate back to the capabilities-selector when backlink is clicked
     .expect(Selector('[data-test-id="capabilities-selector-page-title"]').exists).ok();
 });
 
-
 fixture('Show Capability Selector Solution List Page Error')
   .afterEach(async (t) => {
     const isDone = nock.isDone();

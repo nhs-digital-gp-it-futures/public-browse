@@ -59,7 +59,6 @@ describe('browse solutions page', () => {
     });
   }));
 
-
   it('should render the compare promo', componentTester(setup, (harness) => {
     const context = content;
 
