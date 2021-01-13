@@ -1,6 +1,6 @@
 {
   "name": "public-browse",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Nodejs express app for Buying Catalogue - Public Browse",
   "main": "server.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "buying-catalogue-components": "^3.3.3",
-    "buying-catalogue-library": "^1.2.4",
+    "buying-catalogue-library": "^1.2.5",
     "compression": "^1.7.4",
     "connect-slashes": "^1.4.0",
     "cookie-parser": "^1.4.4",
