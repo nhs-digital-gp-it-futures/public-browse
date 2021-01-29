@@ -84,10 +84,7 @@
       "((\\.|/)(ui.test))\\.js$"
     ],
     "collectCoverage": true,
-    "testResultsProcessor": "./node_modules/jest-nunit-reporter"
-  },
-  "jestNunitReporter": {
-    "outputFilename": "unit-test-report.xml"
+    "testResultsProcessor": "jest-sonar-reporter"
   },
   "jestNunitReporter": {
     "outputFilename": "unit-test-report.xml"
