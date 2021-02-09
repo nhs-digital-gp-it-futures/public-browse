@@ -1,6 +1,25 @@
 {
   "solutions": [
     {
+      "id": "10042-001",
+      "name": "Engage Consult",
+      "summary": "Engage Consult allows patients to communicate securely and safely online with their practice about non-emergency medical conditions or admin questions. The solution offers 24/7 access to self-help information, other local NHS and self-care services.",
+      "supplier": {
+        "id": "10042",
+        "name": "Engage Health Systems"
+      },
+      "covid19": {
+        "title": "How this Catalogue Solution can help with coronavirus",
+        "list": [
+          "This Catalogue Solution has been assessed for video consultation",
+          "Supports triage via video",
+          "Allows secure collaboration between healthcare professionals",
+          "This Catalogue Solution is not covered by a central contract and would therefore need to be purchased directly in the usual way",
+          "This Catalogue Solution has met two eConsultation Capabilities"
+        ]
+      }
+    },
+    {
       "id": "10035-001",
       "name": "Evergreen Life",
       "summary": "Evergreen Life is facilitating remote digital consultations including video appointments for GPs in the UK, with patient record access to clinicians with or without access to the practice system in England. The app lets patients access GP online services & curate a personal health record.",
