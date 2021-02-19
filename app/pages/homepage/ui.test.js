@@ -48,14 +48,14 @@ fixture('Header')
 
 test('should display BETA banner', async (t) => {
   await pageSetup({ t });
-  const betaBanner = Selector('[data-test-id="beta-banner"] > div > div > div:nth-child(1)');
+  const betaBanner = Selector('[data-test-id="beta-tag"]');
   await t
     .expect(await extractInnerText(betaBanner)).eql('BETA');
 });
 
 test('should display General Terms of Use text', async (t) => {
   await pageSetup({ t });
-  const termsOfUseText = Selector('[data-test-id="beta-banner"] > div > div > div:nth-child(2)');
+  const termsOfUseText = Selector('[data-test-id="beta-banner-text"]');
   await t
     .expect(await extractInnerText(termsOfUseText)).eql('This is a new service - your feedback will help us improve it.');
 });
