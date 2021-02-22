@@ -39,7 +39,7 @@ describe('vaccinations page', () => {
     };
 
     harness.request(context, ($) => {
-      const vaccinationsDescription = $('h2[data-test-id="general-page-description"]');
+      const vaccinationsDescription = $('[data-test-id="general-page-description"]');
       expect(vaccinationsDescription.length).toEqual(1);
       expect(vaccinationsDescription.text().trim()).toEqual(context.pageDescription);
     });
