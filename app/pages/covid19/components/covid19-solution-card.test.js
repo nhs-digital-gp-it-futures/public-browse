@@ -27,6 +27,7 @@ describe('covid19-solution-card', () => {
       params: {
         solution: {
           id: 'S1',
+          name: 'solution name here',
           viewSolutionUrl: '/solutions/covid19/S1',
         },
       },
@@ -35,8 +36,27 @@ describe('covid19-solution-card', () => {
     harness.request(context, ($) => {
       const viewSolutionLink = $('[data-test-id="solution-card-view-link"]');
       expect(viewSolutionLink.length).toEqual(1);
-      expect(viewSolutionLink.text().trim()).toEqual('View this solution');
+      expect(viewSolutionLink.text().trim()).toEqual(`View this solution for ${context.params.solution.name}`);
       expect(viewSolutionLink.find('a').attr('href')).toEqual(context.params.solution.viewSolutionUrl);
+    });
+  }));
+
+  it('should render the view this solution link with span tag with class nhsuk-u-visually-hidden', componentTester(setup, (harness) => {
+    const context = {
+      params: {
+        solution: {
+          id: 'S1',
+          viewSolutionUrl: '/solutions/covid19/S1',
+        },
+      },
+    };
+
+    harness.request(context, ($) => {
+      const viewSolutionLink = $('[data-test-id="solution-card-view-link"]');
+      const spanTag = viewSolutionLink.find('a').children()[0];
+
+      expect(spanTag.name).toEqual('span');
+      expect(spanTag.attribs.class).toEqual('nhsuk-u-visually-hidden');
     });
   }));
 
