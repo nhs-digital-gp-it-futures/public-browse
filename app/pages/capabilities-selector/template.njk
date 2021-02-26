@@ -15,10 +15,17 @@
     <form method="post">
       <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
       <div class="nhsuk-grid-row">
-      <h2 class="nhsuk-u-font-size-22 nhsuk-u-padding-bottom-5 nhsuk-grid-column-two-thirds" data-test-id="capabilities-selector-page-description">{{ description }}</h2>
-      {{ capabilitiesSelector({
-        capabilities: capabilities
-      }) }}
+        <fieldset class="nhsuk-fieldset" aria-describedby="capabilities-hint" data-test-id="capabilities-selector-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h2 class="nhsuk-u-font-size-22 nhsuk-grid-column-two-thirds" data-test-id="capabilities-selector-page-description">{{ description }}</h2>
+          </legend>
+          <div class="nhsuk-hint" id="capabilities-hint">
+            Select all options that are relevant to you.
+          </div>
+          {{ capabilitiesSelector({
+              capabilities: capabilities
+            }) }}
+        </fieldset>
       </div>
       <div data-test-id="capabilities-selector-continue-button">
         {{ button({
