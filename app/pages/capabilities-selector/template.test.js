@@ -39,6 +39,27 @@ describe('capabilities-selector page', () => {
     });
   }));
 
+  it('should have a fieldset', componentTester(setup, (harness) => {
+    const context = { ...manifest };
+
+    harness.request(context, ($) => {
+      const fieldset = $('[data-test-id="capabilities-selector-fieldset"]');
+      expect(fieldset.length).toEqual(1);
+      expect(fieldset[0].name).toEqual('fieldset');
+    });
+  }));
+
+  it('should have the fieldset containing the capabilities selector', componentTester(setup, (harness) => {
+    const context = { ...manifest };
+
+    harness.request(context, ($) => {
+      const fieldset = $('[data-test-id="capabilities-selector-fieldset"]');
+      const capabilitiesSelector = fieldset.find('[data-test-id="capabilities-selector"]');
+      expect(capabilitiesSelector.length).toEqual(1);
+      expect(capabilitiesSelector[0].attribs.id).toEqual('capabilities-selector');
+    });
+  }));
+
   it('should render the capabilities selector', componentTester(setup, (harness) => {
     const context = {
       ...manifest,
