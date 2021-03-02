@@ -5,9 +5,10 @@ import nhsuk_skipLink from 'nhsuk-frontend/packages/components/skip-link/skip-li
 import autocomplete from 'nhsuk-frontend/packages/components/header/headerAutoComplete';
 
 // HTML5 polyfills
-import 'nhsuk-frontend/packages/components/details/details';
+import nhsuk_details from 'nhsuk-frontend/packages/components/details/details';
 
 // Initialise components
 nhsuk_header();
 nhsuk_skipLink();
 autocomplete();
+nhsuk_details();
