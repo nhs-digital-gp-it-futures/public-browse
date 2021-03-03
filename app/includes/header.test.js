@@ -13,6 +13,12 @@ describe('header', () => {
     });
   }));
 
+  it('renders correctly', componentTester(setup, (harness) => {
+    harness.request({}, ($) => {
+      expect($('[data-test-id="beta-banner"]').html()).toMatchSnapshot();
+    });
+  }));
+
   it('should render the header banner', componentTester(setup, (harness) => {
     const context = {};
 
