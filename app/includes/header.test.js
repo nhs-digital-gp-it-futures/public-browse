@@ -1,30 +1,33 @@
 import { componentTester } from '../test-utils/componentTester';
 
+const cheerio = require('cheerio');
+
 const setup = {
   template: {
     path: 'includes/header.njk',
   },
 };
 
-describe('header', () => {
+fdescribe('header', () => {
   it('should render the beta banner', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
       expect($('[data-test-id="beta-banner"]').length).toEqual(1);
     });
   }));
 
-  it('renders correctly', componentTester(setup, (harness) => {
+  it('should render the beta banner to toMatchSnapshot', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
       expect($('[data-test-id="beta-banner"]').html()).toMatchSnapshot();
     });
   }));
 
-  it('should render the header banner', componentTester(setup, (harness) => {
+  fit('should render the header banner', componentTester(setup, (harness) => {
     const context = {};
 
     harness.request(context, ($) => {
       const headerBanner = $('header[data-test-id="header-banner"]');
-      expect(headerBanner.length).toEqual(1);
+      const html = cheerio.html($.root().html(headerBanner));
+      expect(html).toMatchSnapshot();
     });
   }));
 
