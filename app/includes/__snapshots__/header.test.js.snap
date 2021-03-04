@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`header should render the beta banner 1`] = `
+"<span data-test-id=\\"beta-banner\\">
+      
+  <div class=\\"bc-flex-container bc-align-items-center nhsuk-width-container nhsuk-u-padding-bottom-3 nhsuk-u-padding-top-3\\">
+    <div class=\\"bc-c-tag-beta\\" data-test-id=\\"beta-tag\\">BETA</div>
+    <div data-test-id=\\"beta-banner-text\\">
+      This is a new service - your <a data-test-id=\\"feedback-link\\" target=\\"_blank\\" href=\\"https://forms.office.com/Pages/ResponsePage.aspx?id=Hwf2UP67GkCIA2c3SOYp4nDHKEWnXcFHiqdJhf0fCJtUNDNFRUFZVFU5RkRQTEpWU0RQVlVXMUpRQi4u\\">feedback</a> will help us improve it.
+    </div>
+  </div>
+
+    </span>"
+`;
+
 exports[`header should render the header banner 1`] = `
 "<header data-test-id=\\"header-banner\\" class=\\"bc-c-header nhsuk-header nhsuk-header--organisation nhsuk-header--white nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2\\" role=\\"banner\\">
     <div class=\\"nhsuk-width-container\\">

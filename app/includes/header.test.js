@@ -1,6 +1,4 @@
-import { componentTester } from '../test-utils/componentTester';
-
-const cheerio = require('cheerio');
+import { componentTester, snapshotTest } from '../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -11,23 +9,15 @@ const setup = {
 fdescribe('header', () => {
   it('should render the beta banner', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
-      expect($('[data-test-id="beta-banner"]').length).toEqual(1);
+      const snapshot = snapshotTest($, '[data-test-id="beta-banner"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 
-  it('should render the beta banner to toMatchSnapshot', componentTester(setup, (harness) => {
+  it('should render the header banner', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
-      expect($('[data-test-id="beta-banner"]').html()).toMatchSnapshot();
-    });
-  }));
-
-  fit('should render the header banner', componentTester(setup, (harness) => {
-    const context = {};
-
-    harness.request(context, ($) => {
-      const headerBanner = $('header[data-test-id="header-banner"]');
-      const html = cheerio.html($.root().html(headerBanner));
-      expect(html).toMatchSnapshot();
+      const snapshot = snapshotTest($, '[data-test-id="header-banner"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 
