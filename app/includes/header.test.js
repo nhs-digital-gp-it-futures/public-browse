@@ -6,7 +6,7 @@ const setup = {
   },
 };
 
-fdescribe('header', () => {
+describe('header', () => {
   it('should render the beta banner', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
       const snapshot = snapshotTest($, '[data-test-id="beta-banner"]');
