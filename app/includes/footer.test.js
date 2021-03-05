@@ -1,4 +1,4 @@
-import { componentTester } from '../test-utils/componentTester';
+import { componentTester, snapshotTest } from '../test-utils/componentTester';
 
 const setup = {
   template: {
@@ -34,15 +34,8 @@ describe('footer', () => {
     const context = { footerLinks };
 
     harness.request(context, ($) => {
-      const footer = $('[data-test-id="footer"]');
-      const footerComponent = footer.find('[data-test-id="footer-component"]');
-
-      expect(footer.length).toEqual(1);
-      expect(footerComponent.length).toEqual(1);
-
-      footerLinks.map((link, i) => {
-        expect(footerComponent.find(`li:nth-child(${i + 1})`).text().trim()).toEqual(link.label);
-      });
+      const snapshot = snapshotTest($, '[data-test-id="footer-component"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 
@@ -50,13 +43,8 @@ describe('footer', () => {
     const context = { showLegalPane: false };
 
     harness.request(context, ($) => {
-      const footer = $('[data-test-id="footer"]');
-      const legalPanel = footer.find('[data-test-id="legal-panel"]');
-      expect(footer.length).toEqual(1);
-      expect(legalPanel.length).toEqual(1);
-      expect(legalPanel.find('span:nth-child(1)').text().trim()).toEqual('Legal');
-      expect(legalPanel.find('span:nth-child(2)').text().trim()).toEqual('Privacy and Cookies');
-      expect(legalPanel.find('span:nth-child(2) > a').attr('href')).toEqual('https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies');
+      const snapshot = snapshotTest($, '[data-test-id="legal-panel"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 });
