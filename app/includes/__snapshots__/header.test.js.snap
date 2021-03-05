@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`header should render the beta banner 1`] = `
-"<span data-test-id=\\"beta-banner\\">
+exports[`header beta banner should render the beta banner with same snapshot 1`] = `
+"<div data-test-id=\\"beta-banner\\">
       
-  <div class=\\"bc-flex-container bc-align-items-center nhsuk-width-container nhsuk-u-padding-bottom-3 nhsuk-u-padding-top-3\\">
-    <div class=\\"bc-c-tag-beta\\" data-test-id=\\"beta-tag\\">BETA</div>
+  <section class=\\"bc-flex-container bc-align-items-center nhsuk-width-container nhsuk-u-padding-bottom-3 nhsuk-u-padding-top-3\\" aria-labelledby=\\"beta-tag\\" role=\\"banner\\">
+    <h2 class=\\"bc-c-tag-beta bc-body-r\\" data-test-id=\\"beta-tag\\" id=\\"beta-tag\\">BETA</h2>
     <div data-test-id=\\"beta-banner-text\\">
       This is a new service - your <a data-test-id=\\"feedback-link\\" target=\\"_blank\\" href=\\"https://forms.office.com/Pages/ResponsePage.aspx?id=Hwf2UP67GkCIA2c3SOYp4nDHKEWnXcFHiqdJhf0fCJtUNDNFRUFZVFU5RkRQTEpWU0RQVlVXMUpRQi4u\\">feedback</a> will help us improve it.
     </div>
-  </div>
+  </section>
 
-    </span>"
+    </div>"
 `;
 
 exports[`header should render the header banner 1`] = `

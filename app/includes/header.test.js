@@ -7,12 +7,20 @@ const setup = {
 };
 
 describe('header', () => {
-  it('should render the beta banner', componentTester(setup, (harness) => {
-    harness.request({}, ($) => {
-      const snapshot = snapshotTest($, '[data-test-id="beta-banner"]');
-      expect(snapshot).toMatchSnapshot();
-    });
-  }));
+  describe('beta banner', () => {
+    it('should render the beta banner', componentTester(setup, (harness) => {
+      harness.request({}, ($) => {
+        expect($('[data-test-id="beta-banner"]').length).toEqual(1);
+      });
+    }));
+
+    it('should render the beta banner with same snapshot', componentTester(setup, (harness) => {
+      harness.request({}, ($) => {
+        const snapshot = snapshotTest($, '[data-test-id="beta-banner"]');
+        expect(snapshot).toMatchSnapshot();
+      });
+    }));
+  });
 
   it('should render the header banner', componentTester(setup, (harness) => {
     harness.request({}, ($) => {
