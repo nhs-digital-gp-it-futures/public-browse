@@ -98,7 +98,7 @@ test('should navigate to browse all solutions page', async (t) => {
 
   await pageSetup(t);
 
-  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] a h3');
+  const browseAllSolutionsLink = Selector('[data-test-id="all-solutions-promo"] h3 a');
 
   await t
     .expect(browseAllSolutionsLink.exists).ok()
@@ -114,7 +114,7 @@ test('should navigate to browse foundation solutions page', async (t) => {
 
   await pageSetup(t);
 
-  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] a h3');
+  const foundationSolutionsLink = Selector('[data-test-id="foundation-solutions-promo"] h3 a');
 
   await t
     .expect(foundationSolutionsLink.exists).ok()

@@ -40,9 +40,7 @@ describe('home page', () => {
       expect(promo.length).toEqual(1);
       expect(promo.find('a').attr('href')).toEqual('/guide');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
 
       expect(promo.find('h3').text().trim()).toEqual(content.guidePromoHeading);
       expect(promo.find('p').text().trim()).toEqual(content.guidePromoDescription);
@@ -57,9 +55,7 @@ describe('home page', () => {
       expect(promo.length).toEqual(1);
       expect(promo.find('a').attr('href')).toEqual('/solutions');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(promo.find('h3').text().trim()).toEqual(content.viewSolutionsPromoHeading);
       expect(promo.find('p').text().trim()).toEqual(content.viewSolutionsPromoDescription);
     });
@@ -73,9 +69,7 @@ describe('home page', () => {
       expect(promo.length).toEqual(1);
       expect(promo.find('a').attr('href')).toEqual('/solutions/vaccinations');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(promo.find('h3').text().trim()).toEqual(content.vaccinationsPromoHeading);
       expect(promo.find('p').text().trim()).toEqual(content.vaccinationsPromoDescription);
     });
@@ -93,8 +87,7 @@ describe('home page', () => {
       expect(promo.length).toEqual(1);
       expect(promo.find('a').attr('href')).toEqual('http://admin-page');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(promo.find('h3').text().trim()).toEqual(content.adminPromoHeading);
       expect(promo.find('p').text().trim()).toEqual(content.adminPromoDescription);
       expect(promo.find('a').attr('href')).toEqual(context.adminUrl);
@@ -123,9 +116,7 @@ describe('home page', () => {
       expect(promo.length).toEqual(1);
       expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(promo.find('h3').text().trim()).toEqual(content.covid19PromoHeading);
       expect(promo.find('p').text().trim()).toEqual(content.covid19PromoDescription);
       expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
@@ -159,9 +150,7 @@ describe('home page', () => {
       const orderFormPromo = $('[data-test-id="order-form-promo"]');
       expect(orderFormPromo.length).toEqual(1);
       expect(orderFormPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(orderFormPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(orderFormPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(orderFormPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(orderFormPromo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(orderFormPromo.find('h3').text().trim()).toEqual(content.orderFormPromoHeading);
       expect(orderFormPromo.find('p').text().trim()).toEqual(content.orderFormPromoDescription);
       expect(orderFormPromo.find('a').attr('href')).toEqual(context.orderFormUrl);
