@@ -1,5 +1,5 @@
 {% extends 'includes/layouts/contained.njk' %}
-{% from 'components/promo/macro.njk' import promo %}
+{% from 'components/card/macro.njk' import card %}
 {% from 'components/back-link/macro.njk' import backLink %}
 {% from '../../components/general-page-description.njk' import generalPageDescription %}
 
@@ -17,32 +17,35 @@
           descriptionText: description
       }) }}
     </div>
-    <div class="nhsuk-grid-row nhsuk-promo-group" data-test-id="browse-solutions-promo-group">
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="all-solutions-promo">
-        {{ promo({
+    <ul class="nhsuk-grid-row nhsuk-card-group" data-test-id="browse-solutions-promo-group">
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="all-solutions-promo">
+        {{ card({
           "href": "/solutions/capabilities-selector",
+          "headingLevel": 3,
+          "clickable": "true",
           "heading": allPromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
           "description": allPromoDescription
         }) }}
-      </div>
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="foundation-solutions-promo">
-        {{ promo({
+      </li>
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="foundation-solutions-promo">
+        {{ card({
           "href": "/solutions/foundation",
+          "headingLevel": 3,
+          "clickable": "true",
           "heading": foundationPromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
           "description": foundationPromoDescription
         }) }}
-      </div>
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="compare-promo">
-        {{ promo({
+      </li>
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="compare-promo">
+        {{ card({
           "href": "/solutions/compare",
+          "headingLevel": 3,
+          "clickable": "true",
           "heading": comparePromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
           "description": comparePromoDescription
         }) }}
-      </div>
-    </div>
+      </li>
+    </ul>
     <div class="nhsuk-u-padding-bottom-2" data-test-id="browse-solutions-buyers-guide-information">
       <p>Find more information in our <a data-test-id='buyers-guide-link' href="{{ '/guide'  }}">Buyer's Guide</a>.</p>
     </div>
