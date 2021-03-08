@@ -264,7 +264,7 @@ test('should navigate to the solutions page when the browse promo is clicked', a
 
 test('should navigate to the browse solution page when clicking on the browse promo', async (t) => {
   await pageSetup({ t });
-  const promo = Selector('[data-test-id="browse-promo"] a h3');
+  const promo = Selector('[data-test-id="browse-promo"] h3 a');
   await t
     .expect(promo.exists).ok()
     .click(promo)

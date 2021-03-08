@@ -1,6 +1,6 @@
 {% extends 'includes/layouts/fluid.njk' %}
 {% from 'components/hero/macro.njk' import hero %}
-{% from 'components/promo/macro.njk' import promo %}
+{% from 'components/card/macro.njk' import card %}
 
 {% block body %}
   <div class="nhsuk-hero" data-test-id="homepage-hero">
@@ -13,72 +13,76 @@
       </div>
     </div>
   </div>
-  <div data-test-id="homepage-promo-group">
-    <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container nhsuk-u-padding-top-5">
+  <div data-test-id="homepage-promo-group" class="nhsuk-width-container nhsuk-u-padding-top-5">
+    <ul class="nhsuk-grid-row nhsuk-card-group nhsuk-u-margin-top-5">
 
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="vaccinations-promo">
-        {{ promo({
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
+        {{ card({
           "href": "/solutions/vaccinations",
+          "headingLevel": 3,
+          "clickable": "true",
           "heading": vaccinationsPromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
           "description": vaccinationsPromoDescription
         }) }}
-      </div>
+      </li>
 
       {% if (config.showCovid19 === 'true') %}
-        <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="covid19-promo">
-          {{ promo({
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="covid19-promo">
+          {{ card({
             "href": "/solutions/covid19",
+            "headingLevel": 3,
+            "clickable": "true",
             "heading": covid19PromoHeading,
-            "classes": "nhsuk-u-margin-top-5",
             "description": covid19PromoDescription
           }) }}
-        </div>
+        </li>
       {% endif %}
 
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="browse-promo">
-        {{ promo({
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="browse-promo">
+        {{ card({
           "href": "/solutions",
+          "headingLevel": 3,
+          "clickable": "true",
           "heading": viewSolutionsPromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
           "description": viewSolutionsPromoDescription
         }) }}
-      </div>
+      </li>
 
-      <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="guidance-promo">
-        {{ promo({
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="guidance-promo">
+        {{ card({
           "href": "/guide",
+          "headingLevel": 3,
+          "clickable": "true",
           "heading": guidePromoHeading,
-          "classes": "nhsuk-u-margin-top-5",
           "description": guidePromoDescription
         }) }}
-      </div>
+      </li>
 
       {% if (config.showOrderForm === 'true') %}
-        <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="order-form-promo">
-          {{ promo({
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="order-form-promo">
+          {{ card({
             "href": orderFormUrl,
+            "headingLevel": 3,
+            "clickable": "true",
             "heading": orderFormPromoHeading,
-            "classes": "nhsuk-u-margin-top-5",
             "description": orderFormPromoDescription
           }) }}
-        </div>
+        </li>
       {% endif %}
-    </div>
-
-    {% if (showAdminTile) %}
-      <div class="nhsuk-grid-row nhsuk-promo-group nhsuk-width-container">
-        <div class="nhsuk-grid-column-one-half nhsuk-promo-group__item nhsuk-u-padding-left-0" data-test-id="admin-promo">
-          {{ promo({
+      {% if (showAdminTile) %}
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="admin-promo">
+          {{ card({
             "href": adminUrl,
+            "headingLevel": 3,
+            "clickable": "true",
             "heading": adminPromoHeading,
             "description": adminPromoDescription
           }) }}
-        </div>
-      </div>
-    {% endif %}
+        </li>
+      {% endif %}
+    </ul>
 
-    <div class="nhsuk-width-container" data-test-id="about-us">
+    <div data-test-id="about-us">
       <div class="nhsuk-grid-row">
         <div class="nhsuk-grid-column-two-thirds nhsuk-u-margin-top-5">
           <h3>{{ title }}</h3>
