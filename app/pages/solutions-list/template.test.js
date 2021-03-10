@@ -39,7 +39,7 @@ describe('solutions list page', () => {
     };
 
     harness.request(context, ($) => {
-      const solutionListTitleSummary = $('h2[data-test-id="general-page-description"]');
+      const solutionListTitleSummary = $('p[data-test-id="general-page-description"]');
       expect(solutionListTitleSummary.length).toEqual(1);
       expect(solutionListTitleSummary.text().trim()).toEqual(context.description);
     });

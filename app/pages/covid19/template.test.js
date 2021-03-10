@@ -39,7 +39,7 @@ describe('covid19 page', () => {
     };
 
     harness.request(context, ($) => {
-      const covid19Description = $('h2[data-test-id="general-page-description"]');
+      const covid19Description = $('p[data-test-id="general-page-description"]');
       expect(covid19Description.length).toEqual(1);
       expect(covid19Description.text().trim()).toEqual(context.pageDescription);
     });
