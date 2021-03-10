@@ -5,11 +5,13 @@ const { routes } = require('./routes');
 const { logger } = require('./logger');
 const { isIdentityReady } = require('./helpers/isIdentityReady');
 const { createAuthProvider } = require('./helpers/createAuthProvider');
+const { getConfigKeyValue } = require('./helpers/configKeyHelper');
 
 (async () => {
   Object.keys(config).map((configKey) => {
     if (config[configKey]) {
-      logger.info(`${configKey} set to ${config[configKey]}`);
+      const value = getConfigKeyValue(configKey, config[configKey]);
+      logger.info(`${configKey} set to ${value}`);
     } else {
       logger.error(`${configKey} not set`);
     }
