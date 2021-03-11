@@ -31,9 +31,7 @@ describe('browse solutions page', () => {
 
       expect(foundationSolutionsPromo.length).toEqual(1);
       expect(foundationSolutionsPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(foundationSolutionsPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(foundationSolutionsPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(foundationSolutionsPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(foundationSolutionsPromo.hasClass('nhsuk-card-group__item')).toEqual(true);
 
       expect(foundationSolutionsPromo.find('h3').text().trim()).toEqual(content.foundationPromoHeading);
       expect(foundationSolutionsPromo.find('p').text().trim()).toEqual(content.foundationPromoDescription);
@@ -49,9 +47,7 @@ describe('browse solutions page', () => {
 
       expect(allSolutionsPromo.length).toEqual(1);
       expect(allSolutionsPromo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(allSolutionsPromo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(allSolutionsPromo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(allSolutionsPromo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(allSolutionsPromo.hasClass('nhsuk-card-group__item')).toEqual(true);
 
       expect(allSolutionsPromo.find('h3').text().trim()).toEqual(content.allPromoHeading);
       expect(allSolutionsPromo.find('p').text().trim()).toEqual(content.allPromoDescription);
@@ -67,9 +63,7 @@ describe('browse solutions page', () => {
       expect(promo.length).toEqual(1);
       expect(promo.find('a').attr('href')).toEqual('/solutions/compare');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
-      expect(promo.hasClass('nhsuk-promo-group__item')).toEqual(true);
-      expect(promo.hasClass('nhsuk-u-padding-left-0')).toEqual(true);
-      expect(promo.find('> div').hasClass('nhsuk-u-margin-top-5')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(promo.find('h3').text().trim()).toEqual(content.comparePromoHeading);
       expect(promo.find('p').text().trim()).toEqual(content.comparePromoDescription);
     });
