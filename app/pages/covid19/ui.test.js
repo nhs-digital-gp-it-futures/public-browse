@@ -20,7 +20,7 @@ test('should display the covid19 page title', async (t) => {
 
 test('should display the covid19 page description', async (t) => {
   await pageSetup(t);
-  const pageDescription = Selector('h2[data-test-id="general-page-description"]');
+  const pageDescription = Selector('p[data-test-id="general-page-description"]');
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);
