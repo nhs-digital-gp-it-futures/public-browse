@@ -47,7 +47,7 @@ test('should render the title', async (t) => {
 
 test('should render the description', async (t) => {
   await pageSetup({ t });
-  const description = Selector('h2[data-test-id="compare-page-description"]');
+  const description = Selector('p[data-test-id="compare-page-description"]');
 
   await t
     .expect(description.exists).ok()

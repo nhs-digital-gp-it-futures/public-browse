@@ -179,7 +179,7 @@ test('should render the homepage hero', async (t) => {
   await pageSetup({ t });
   const homepageSection = Selector('[data-test-id="homepage-hero"]');
   const title = homepageSection.find('h1');
-  const description = homepageSection.find('h2');
+  const description = homepageSection.find('p');
 
   await t
     .expect(homepageSection.exists).ok()
@@ -379,8 +379,8 @@ test('should render capabilities and standards link', async (t) => {
 
 test('should render legal banner', async (t) => {
   await pageSetup({ t });
-  const legalText = Selector('[data-test-id="legal-panel"] span:nth-child(1)');
-  const privacyAndCookiesLink = Selector('[data-test-id="legal-panel"] span:nth-child(2) > a');
+  const legalText = Selector('[data-test-id="legal-panel"] li:nth-child(1)');
+  const privacyAndCookiesLink = Selector('[data-test-id="legal-panel"] li:nth-child(2) > a');
 
   await t
     .expect(legalText.exists).ok()
@@ -438,7 +438,7 @@ test('should navigate to capabilities & standards page', async (t) => {
 
 test('should navigate to privacy and cookies page', async (t) => {
   await pageSetup({ t });
-  const privacyAndCookiesLink = Selector('[data-test-id="legal-panel"] span:nth-child(2) > a');
+  const privacyAndCookiesLink = Selector('[data-test-id="legal-panel"] li:nth-child(2) > a');
 
   await t
     .expect(privacyAndCookiesLink.exists).ok()
