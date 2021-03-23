@@ -103,20 +103,6 @@ describe('home page', () => {
     });
   }));
 
-  it('should not render the covid19 promo when the showCovid19 flag is not set', componentTester(setup, (harness) => {
-    const context = {
-      ...content,
-      config: {
-        showCovid19: 'false',
-      },
-    };
-
-    harness.request(context, ($) => {
-      const covid19Promo = $('[data-test-id="covid19-promo"]');
-      expect(covid19Promo.length).toEqual(0);
-    });
-  }));
-
   it('should render the order form promo when the showOrderForm flag is set', componentTester(setup, (harness) => {
     const context = {
       ...content,
