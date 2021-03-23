@@ -188,4 +188,18 @@ describe('home page', () => {
       expect(card.find('a').attr('href')).toEqual('/solutions/dfocvc');
     });
   }));
+
+  it('should not render the DFOCVC Framework tile when the dfocvc flag is not set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showDfocvc: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const card = $('[data-test-id="dfocvc-card"]');
+      expect(card.length).toEqual(0);
+    });
+  }));
 });
