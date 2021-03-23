@@ -16,13 +16,13 @@
   <div data-test-id="homepage-promo-group" class="nhsuk-width-container nhsuk-u-padding-top-5">
     <ul class="nhsuk-grid-row nhsuk-card-group nhsuk-u-margin-top-5">
 
-      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="browse-promo">
         {{ card({
-          "href": "/solutions/vaccinations",
+          "href": "/solutions",
           "headingLevel": 3,
           "clickable": "true",
-          "heading": vaccinationsPromoHeading,
-          "description": vaccinationsPromoDescription
+          "heading": viewSolutionsPromoHeading,
+          "description": viewSolutionsPromoDescription
         }) }}
       </li>
 
@@ -38,13 +38,13 @@
         </li>
       {% endif %}
 
-      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="browse-promo">
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
         {{ card({
-          "href": "/solutions",
+          "href": "/solutions/vaccinations",
           "headingLevel": 3,
           "clickable": "true",
-          "heading": viewSolutionsPromoHeading,
-          "description": viewSolutionsPromoDescription
+          "heading": vaccinationsPromoHeading,
+          "description": vaccinationsPromoDescription
         }) }}
       </li>
 
