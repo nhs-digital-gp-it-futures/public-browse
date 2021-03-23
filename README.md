@@ -58,3 +58,7 @@ Application should now be running on <http://localhost:3000>.
 [Buying Catalogue API](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueService).
 [Document API](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueDocumentService).
 [Identity Server](https://github.com/nhs-digital-gp-it-futures/BuyingCatalogueIdentity).
+
+### Ingress
+
+Moved to ingress v1 configuration
