@@ -38,18 +38,6 @@
         </li>
       {% endif %}
 
-      {% if (config.showCovid19 === 'true') %}
-        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="covid19-promo">
-          {{ card({
-            "href": "/solutions/covid19",
-            "headingLevel": 3,
-            "clickable": "true",
-            "heading": covid19PromoHeading,
-            "description": covid19PromoDescription
-          }) }}
-        </li>
-      {% endif %}
-
       <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="browse-promo">
         {{ card({
           "href": "/solutions",
