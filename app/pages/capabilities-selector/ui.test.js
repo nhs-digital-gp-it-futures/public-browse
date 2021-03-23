@@ -1,7 +1,5 @@
 import nock from 'nock';
-import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
-import content from './manifest.json';
 import capabilitiesList from '../../test-utils/fixtures/capabilitiesList.json';
 import aCustomSolutionList from '../../test-utils/fixtures/aCustomSolutionList.json';
 import { apiLocalhost } from '../../test-utils/config';
@@ -39,45 +37,8 @@ test('should navigate to solutions when click Go back to previous page', async (
   await t
     .expect(goBackLink.exists).ok()
     .click(goBackLink)
-    .expect(getLocation()).eql('http://localhost:1234/solutions');
-});
-
-test('should render capabilities-selector title', async (t) => {
-  await pageSetup(t);
-
-  const title = Selector('[data-test-id="capabilities-selector-page-title"]');
-
-  await t
-    .expect(title.exists).ok()
-    .expect(await extractInnerText(title)).eql(content.title);
-});
-
-test('should render capabilities-selector component', async (t) => {
-  await pageSetup(t);
-
-  const capabilitiesSelectorComponent = Selector('[data-test-id="capabilities-selector"]');
-  const column1 = capabilitiesSelectorComponent.find('[data-test-id="capabilities-checkbox-column-1"]');
-  const column2 = capabilitiesSelectorComponent.find('[data-test-id="capabilities-checkbox-column-2"]');
-
-  await t
-    .expect(capabilitiesSelectorComponent.exists).ok()
-    .expect(column1.exists).ok()
-    .expect(column1.find('label').count).eql(2)
-    .expect(await extractInnerText(column1.find('label').nth(0))).eql(capabilitiesList.capabilities[0].name)
-    .expect(await extractInnerText(column1.find('label').nth(1))).eql(capabilitiesList.capabilities[1].name)
-    .expect(column2.find('label').count).eql(1)
-    .expect(await extractInnerText(column2.find('label').nth(0))).eql(capabilitiesList.capabilities[2].name);
-});
-
-test('should render continue button', async (t) => {
-  await pageSetup(t);
-
-  const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"] button');
-
-  await t
-    .expect(continueButton.exists).ok()
-    .expect(await extractInnerText(continueButton)).eql('Continue')
-    .expect(continueButton.hasClass('nhsuk-button--secondary')).ok();
+    .expect(getLocation())
+    .eql('http://localhost:1234/solutions');
 });
 
 test('should navigate to the view-solution page when capabilities have been selected and continue clicked', async (t) => {
@@ -90,14 +51,19 @@ test('should navigate to the view-solution page when capabilities have been sele
   const capabilityC2Checkbox = Selector('input[value="C2"]');
   const continueButton = Selector('[data-test-id="capabilities-selector-continue-button"] button');
   await t
-    .expect(capabilityC1Checkbox.exists).ok()
+    .expect(capabilityC1Checkbox.exists)
+    .ok()
     .click(capabilityC1Checkbox)
-    .expect(capabilityC2Checkbox.exists).ok()
+    .expect(capabilityC2Checkbox.exists)
+    .ok()
     .click(capabilityC2Checkbox)
-    .expect(continueButton.exists).ok()
+    .expect(continueButton.exists)
+    .ok()
     .click(continueButton)
-    .expect(getLocation()).contains('/solutions/capabilities-selector.C1+C2')
-    .expect(Selector('[data-test-id="solution-card"]').count).eql(2);
+    .expect(getLocation())
+    .contains('/solutions/capabilities-selector.C1+C2')
+    .expect(Selector('[data-test-id="solution-card"]').count)
+    .eql(2);
 });
 
 test('should navigate back to browse solutions page when backlink is clicked', async (t) => {
@@ -105,8 +71,28 @@ test('should navigate back to browse solutions page when backlink is clicked', a
 
   const backLink = Selector('[data-test-id="go-back-link"] a');
   await t
-    .expect(backLink.exists).ok()
+    .expect(backLink.exists)
+    .ok()
     .click(backLink)
-    .expect(getLocation()).contains('/solutions')
-    .expect(Selector('[data-test-id="browse-solutions"]').exists).ok();
+    .expect(getLocation())
+    .contains('/solutions')
+    .expect(Selector('[data-test-id="browse-solutions"]').exists)
+    .ok();
+});
+
+const defaultSections = {
+  'should render the page title': '[data-test-id="capabilities-selector-page-title"]',
+  'should render the page description': '[data-test-id="capabilities-selector-page-description"]',
+  'should render a fieldset': 'fieldset[data-test-id="capabilities-selector-fieldset"]',
+  'should have the fieldset containing the capabilities selector': 'fieldset[data-test-id="capabilities-selector-fieldset"] [data-test-id="capabilities-selector"]',
+  'should render the continue button': '[data-test-id="capabilities-selector-continue-button"]',
+};
+
+Object.keys(defaultSections).forEach((key) => {
+  test(key, async (t) => {
+    await pageSetup(t);
+    const element = Selector(defaultSections[key]);
+    await t
+      .expect(element.exists).ok();
+  });
 });

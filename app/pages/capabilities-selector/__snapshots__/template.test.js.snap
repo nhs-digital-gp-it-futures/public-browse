@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`capabilities-selector page should render the content 1`] = `
+"<main class=\\"nhsuk-main-wrapper\\" id=\\"maincontent\\" data-test-id=\\"main-content\\">
+
+    
+  <div class=\\"nhsuk-width-container\\">
+    <div class=\\"nhsuk-u-padding-top-5\\" data-test-id=\\"go-back-link\\">
+      <div class=\\"nhsuk-back-link\\">
+  <a class=\\"nhsuk-back-link__link\\" href=\\"./\\">
+  <svg class=\\"nhsuk-icon nhsuk-icon__chevron-left\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\">
+    <path d=\\"M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z\\"></path>
+  </svg>
+  Go back to previous page</a>
+</div>
+
+    </div>
+    <h1 class=\\"nhsuk-u-margin-top-6 nhsuk-u-margin-bottom-4\\" data-test-id=\\"capabilities-selector-page-title\\">Catalogue Solutions – Capabilities selector</h1>
+    <form method=\\"post\\">
+      <input type=\\"hidden\\" name=\\"_csrf\\" value=\\"\\">
+      <div class=\\"nhsuk-grid-row\\">
+        <fieldset class=\\"nhsuk-fieldset\\" aria-describedby=\\"capabilities-hint\\" data-test-id=\\"capabilities-selector-fieldset\\">
+          <legend class=\\"nhsuk-fieldset__legend nhsuk-fieldset__legend--l\\">
+            <h2 class=\\"nhsuk-u-font-size-22 nhsuk-grid-column-two-thirds\\" data-test-id=\\"capabilities-selector-page-description\\">Select the Capabilities that match the needs of your organisation. Any Catalogue Solutions found will have proven they can address these needs and, in some cases, will do even more.</h2>
+          </legend>
+          <div class=\\"nhsuk-hint nhsuk-grid-column-two-thirds\\" id=\\"capabilities-hint\\">
+            Select all options that are relevant to you.
+          </div>
+          
+  <div id=\\"capabilities-selector\\" data-test-id=\\"capabilities-selector\\">
+    <div data-test-id=\\"capabilities-checkbox-column-1\\" class=\\"nhsuk-grid-column-one-half\\">
+      
+
+
+
+
+
+  
+
+  
+<div class=\\"nhsuk-form-group\\">
+
+  <div class=\\"nhsuk-checkboxes\\">
+    
+    
+    
+    
+    
+    
+    <div class=\\"nhsuk-checkboxes__item\\">
+      <input class=\\"nhsuk-checkboxes__input\\" id=\\"column-1-1\\" name=\\"capabilities\\" type=\\"checkbox\\" value=\\"C1\\">
+      <label class=\\"nhsuk-label nhsuk-checkboxes__label\\" for=\\"column-1-1\\">
+        Capability 1
+      </label>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class=\\"nhsuk-checkboxes__item\\">
+      <input class=\\"nhsuk-checkboxes__input\\" id=\\"column-1-2\\" name=\\"capabilities\\" type=\\"checkbox\\" value=\\"C2\\">
+      <label class=\\"nhsuk-label nhsuk-checkboxes__label\\" for=\\"column-1-2\\">
+        Capability 2
+      </label>
+    </div>
+    
+    
+    
+  </div>
+
+</div>
+
+    </div>
+    <div data-test-id=\\"capabilities-checkbox-column-2\\" class=\\"nhsuk-grid-column-one-half\\">
+      
+
+
+
+
+
+  
+<div class=\\"nhsuk-form-group\\">
+
+  <div class=\\"nhsuk-checkboxes\\">
+    
+    
+    
+    
+    
+    
+    <div class=\\"nhsuk-checkboxes__item\\">
+      <input class=\\"nhsuk-checkboxes__input\\" id=\\"column-2-1\\" name=\\"capabilities\\" type=\\"checkbox\\" value=\\"C3\\">
+      <label class=\\"nhsuk-label nhsuk-checkboxes__label\\" for=\\"column-2-1\\">
+        Capability 3
+      </label>
+    </div>
+    
+    
+    
+  </div>
+
+</div>
+
+    </div>
+  </div>
+
+        </fieldset>
+      </div>
+      <div data-test-id=\\"capabilities-selector-continue-button\\">
+        
+
+
+  
+    
+  
+
+
+
+
+<button class=\\"nhsuk-button nhsuk-button--secondary\\" type=\\"submit\\">
+  Continue
+</button>
+
+
+
+        </div>
+      </form>
+    </div>
+
+
+  </main>"
+`;

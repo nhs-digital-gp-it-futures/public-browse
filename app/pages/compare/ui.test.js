@@ -7,7 +7,7 @@ const url = 'http://localhost:1234/solutions/compare';
 
 const getLocation = ClientFunction(() => document.location.href);
 
-const pageSetup = async ({ t }) => {
+const pageSetup = async (t) => {
   await t.navigateTo(url);
 };
 
@@ -25,7 +25,7 @@ fixture('Compare Page')
   });
 
 test('should navigate to /solutions when click on Back', async (t) => {
-  await pageSetup({ t });
+  await pageSetup(t);
 
   const goBackLink = Selector('[data-test-id="go-back-link"] a');
 
@@ -33,34 +33,21 @@ test('should navigate to /solutions when click on Back', async (t) => {
     .expect(goBackLink.exists).ok()
     .expect(await extractInnerText(goBackLink)).eql(manifest.backLinkText)
     .click(goBackLink)
-    .expect(getLocation()).eql('http://localhost:1234/solutions');
+    .expect(getLocation())
+    .eql('http://localhost:1234/solutions');
 });
 
-test('should render the title', async (t) => {
-  await pageSetup({ t });
-  const title = Selector('h1[data-test-id="compare-page-title"]');
+const defaultSections = {
+  'should render the title': '[data-test-id="compare-page-title"]',
+  'should render the description': '[data-test-id="compare-page-description"]',
+  'should render the compare button': '[data-test-id="compare-button"]',
+};
 
-  await t
-    .expect(title.exists).ok()
-    .expect(await extractInnerText(title)).eql(manifest.title);
-});
-
-test('should render the description', async (t) => {
-  await pageSetup({ t });
-  const description = Selector('h2[data-test-id="compare-page-description"]');
-
-  await t
-    .expect(description.exists).ok()
-    .expect(await extractInnerText(description)).eql(manifest.description);
-});
-
-test('should render the compare button', async (t) => {
-  await pageSetup({ t });
-
-  const button = Selector('[data-test-id="compare-button"] a');
-
-  await t
-    .expect(button.exists).ok()
-    .expect(button.getAttribute('href')).eql('/solutions/compare/document')
-    .expect(await extractInnerText(button)).eql(manifest.compareButtonText);
+Object.keys(defaultSections).forEach((key) => {
+  test(key, async (t) => {
+    await pageSetup(t);
+    const element = Selector(defaultSections[key]);
+    await t
+      .expect(element.exists).ok();
+  });
 });
