@@ -38,7 +38,7 @@ fixture('Show Capability Selector Solution List Page - one capability selected')
 
 test('should display the page title', async (t) => {
   await pageSetup({ t, capabilities: ['C1'] });
-  const title = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('[data-test-id="general-description"] h1');
   await t
     .expect(title.exists).ok()
     .expect(await extractInnerText(title)).eql(manifest.title);
@@ -46,7 +46,7 @@ test('should display the page title', async (t) => {
 
 test('should display the page description', async (t) => {
   await pageSetup({ t, capabilities: ['C1'] });
-  const pageDescription = Selector('h2[data-test-id="general-page-description"]');
+  const pageDescription = Selector('[data-test-id="general-description"] p');
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);
@@ -149,7 +149,7 @@ fixture('Show Capability Selector Solution List Page - multiple capabilities sel
 
 test('should display the page title', async (t) => {
   await pageSetup({ t, capabilities: ['C1', 'C2'] });
-  const title = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('[data-test-id="general-description"] h1');
   await t
     .expect(title.exists).ok()
     .expect(await extractInnerText(title)).eql(manifest.title);
@@ -157,7 +157,7 @@ test('should display the page title', async (t) => {
 
 test('should display the page description', async (t) => {
   await pageSetup({ t, capabilities: ['C1', 'C2'] });
-  const pageDescription = Selector('h2[data-test-id="general-page-description"]');
+  const pageDescription = Selector('[data-test-id="general-description"] p');
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);
@@ -243,7 +243,7 @@ fixture('Show Capability Selector Solution List Page - no capabilities selected'
 
 test('should display the page title', async (t) => {
   await pageSetup({ t });
-  const title = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('[data-test-id="general-description"] h1');
   await t
     .expect(title.exists).ok()
     .expect(await extractInnerText(title)).eql(manifest.title);
@@ -251,7 +251,7 @@ test('should display the page title', async (t) => {
 
 test('should display the page description', async (t) => {
   await pageSetup({ t });
-  const pageDescription = Selector('h2[data-test-id="general-page-description"]');
+  const pageDescription = Selector('[data-test-id="general-description"] p');
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql(manifest.description);

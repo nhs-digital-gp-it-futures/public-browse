@@ -22,7 +22,7 @@ test('should navigate to the vaccinations solution view page when clicking on th
 
 const defaultSections = {
   'should render the title': '[data-test-id="general-description"] h1',
-  'should render the description': '[data-test-id="general-description"] h2',
+  'should render the description': '[data-test-id="general-description"] p',
   'should display the vaccinations solution details of a solution card': '[data-test-id="solution-cards-vaccinations"]',
   'should display the vaccinations card title': '[data-test-id="solution-card-vaccinations-title"]',
   'should display the vaccinations card list': '[data-test-id="solution-card-vaccinations-list"]',

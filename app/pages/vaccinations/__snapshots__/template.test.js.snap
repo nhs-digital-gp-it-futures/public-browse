@@ -24,7 +24,7 @@ exports[`vaccinations page should render the content 1`] = `
         <h1 class=\\"nhsuk-u-margin-top-3 nhsuk-u-margin-bottom-3\\">Catalogue Solutions to help with coronavirus vaccinations</h1>
       
       
-        <h2 class=\\"nhsuk-u-font-size-22\\">The Catalogue Solutions listed below have been assured by NHS Digital and can help manage coronavirus vaccinations.</h2>
+        <p class=\\"nhsuk-heading-l nhsuk-u-font-size-22\\">The Catalogue Solutions listed below have been assured by NHS Digital and can help manage coronavirus vaccinations.</p>
       
     </div>
   </div>

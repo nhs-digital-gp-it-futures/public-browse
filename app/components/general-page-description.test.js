@@ -40,7 +40,7 @@ describe('general-page-description', () => {
     };
 
     harness.request(context, ($) => {
-      const description = $('[data-test-id="general-description"] h2');
+      const description = $('[data-test-id="general-description"] p');
       expect(description.length).toEqual(1);
       expect(description.text().trim()).toEqual('a description');
     });
@@ -52,7 +52,7 @@ describe('general-page-description', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('[data-test-id="general-description"] h2').length).toEqual(0);
+      expect($('[data-test-id="general-description"] p').length).toEqual(0);
     });
   }));
 });
