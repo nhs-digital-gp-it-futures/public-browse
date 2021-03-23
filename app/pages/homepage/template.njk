@@ -26,6 +26,18 @@
         }) }}
       </li>
 
+      {% if (config.showDfocvc === 'true') %}
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="dfocvc-card">
+          {{ card({
+            "href": "/solutions/dfocvc",
+            "headingLevel": 3,
+            "clickable": "true",
+            "heading": dfocvcHeading,
+            "description": dfocvcDescription
+          }) }}
+        </li>
+      {% endif %}
+
       {% if (config.showCovid19 === 'true') %}
         <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="covid19-promo">
           {{ card({

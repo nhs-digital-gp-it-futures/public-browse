@@ -169,4 +169,23 @@ describe('home page', () => {
       expect(orderFormPromo.length).toEqual(0);
     });
   }));
+
+  it('should render the DFOCVC Framework tile when the dfocvc flag is set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showDfocvc: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const card = $('[data-test-id="dfocvc-card"]');
+      expect(card.length).toEqual(1);
+      expect(card.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(card.hasClass('nhsuk-card-group__item')).toEqual(true);
+      expect(card.find('h3').text().trim()).toEqual(content.dfocvcHeading);
+      expect(card.find('p').text().trim()).toEqual(content.dfocvcDescription);
+      expect(card.find('a').attr('href')).toEqual('/solutions/dfocvc');
+    });
+  }));
 });
