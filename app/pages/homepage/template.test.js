@@ -114,7 +114,6 @@ describe('home page', () => {
     harness.request(context, ($) => {
       const promo = $('[data-test-id="covid19-promo"]');
       expect(promo.length).toEqual(1);
-      expect(promo.find('a').attr('href')).toEqual('/solutions/covid19');
       expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
       expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(promo.find('h3').text().trim()).toEqual(content.covid19PromoHeading);
