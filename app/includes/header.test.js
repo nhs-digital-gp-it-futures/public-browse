@@ -106,13 +106,11 @@ describe('header', () => {
         const title = globalAlert.find('div').find('h2');
         const paragraph = globalAlert.find('div').find('p');
         const vaccinationsLink = paragraph.find('[data-test-id="vaccinations"]');
-        const covid19Link = paragraph.find('[data-test-id="covid19"]');
 
         expect(globalAlert.hasClass('bc-c-global-alert')).toEqual(true);
         expect(title.text().trim()).toEqual('Coronavirus (COVID-19)');
-        expect(paragraph.text().trim()).toEqual('View Catalogue Solutions that help with coronavirus by organising vaccinations or reducing visits to GP practices.');
+        expect(paragraph.text().trim()).toEqual('View Catalogue Solutions that help with coronavirus by organising vaccinations.');
         expect(vaccinationsLink.attr('href')).toEqual('/solutions/vaccinations');
-        expect(covid19Link.attr('href')).toEqual('/solutions/covid19');
       });
     }));
 
