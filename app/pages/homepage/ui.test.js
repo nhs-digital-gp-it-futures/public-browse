@@ -230,15 +230,6 @@ test('should render the vaccinations promo', async (t) => {
     .expect(await extractInnerText(promo.find('p'))).eql(content.vaccinationsPromoDescription);
 });
 
-test('should render the covid19 promo', async (t) => {
-  await pageSetup({ t });
-  const promo = Selector('[data-test-id="covid19-promo"]');
-  await t
-    .expect(promo.exists).ok()
-    .expect(await extractInnerText(promo.find('h3'))).eql(content.covid19PromoHeading)
-    .expect(await extractInnerText(promo.find('p'))).eql(content.covid19PromoDescription);
-});
-
 test('should render the browse promo', async (t) => {
   await pageSetup({ t });
   const promo = Selector('[data-test-id="browse-promo"]');
