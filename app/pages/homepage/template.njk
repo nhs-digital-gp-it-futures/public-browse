@@ -38,15 +38,17 @@
         </li>
       {% endif %}
 
-      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
-        {{ card({
-          "href": "/solutions/vaccinations",
-          "headingLevel": 3,
-          "clickable": "true",
-          "heading": vaccinationsPromoHeading,
-          "description": vaccinationsPromoDescription
-        }) }}
-      </li>
+      {% if (config.showCovid19 === 'true') %}
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
+          {{ card({
+            "href": "/solutions/vaccinations",
+            "headingLevel": 3,
+            "clickable": "true",
+            "heading": vaccinationsPromoHeading,
+            "description": vaccinationsPromoDescription
+          }) }}
+        </li>
+      {% endif %}
 
       <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="guidance-promo">
         {{ card({

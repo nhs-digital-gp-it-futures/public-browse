@@ -103,6 +103,39 @@ describe('home page', () => {
     });
   }));
 
+  it('should render the vaccinations tile when the showCovid19 flag is set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showCovid19: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const promo = $('[data-test-id="vaccinations-promo"]');
+      expect(promo.length).toEqual(1);
+      expect(promo.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(promo.hasClass('nhsuk-card-group__item')).toEqual(true);
+      expect(promo.find('h3').text().trim()).toEqual(content.vaccinationsPromoHeading);
+      expect(promo.find('p').text().trim()).toEqual(content.vaccinationsPromoDescription);
+      expect(promo.find('a').attr('href')).toEqual('/solutions/vaccinations');
+    });
+  }));
+
+  it('should not render the covid19 promo when the showCovid19 flag is not set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showCovid19: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const covid19Promo = $('[data-test-id="covid19-promo"]');
+      expect(covid19Promo.length).toEqual(0);
+    });
+  }));
+
   it('should render the order form promo when the showOrderForm flag is set', componentTester(setup, (harness) => {
     const context = {
       ...content,
