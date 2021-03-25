@@ -468,4 +468,23 @@ describe('routes', () => {
         });
     });
   });
+
+  describe('GET /solutions/dfocvc', () => {
+    afterEach(() => {
+      comparePageContext.getContext.mockReset();
+    });
+
+    it('should return the correct status and text if there is no error', () => {
+      comparePageContext.getContext = jest.fn()
+        .mockResolvedValue({});
+
+      return request(setUpFakeApp())
+        .get('/solutions/dfocvc')
+        .expect(200)
+        .then((res) => {
+          expect(res.text.includes('data-test-id="dfocvc-page-title"')).toEqual(true);
+          expect(res.text.includes('data-test-id="error-title"')).toEqual(false);
+        });
+    });
+  });
 });

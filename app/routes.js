@@ -14,6 +14,7 @@ import config from './config';
 import { includesContext } from './includes/contextCreator';
 import { getVaccinationsSolutionListPageContext } from './pages/vaccinations/controller';
 import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
+import { getDfocvcPageContext } from './pages/dfocvc/context';
 import {
   withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
 } from './helpers/routerHelper';
@@ -98,6 +99,12 @@ export const routes = (authProvider) => {
     const context = await getCovid19SolutionListPageContext();
     logger.info('navigating to covid19 page');
     return res.render('pages/covid19/template.njk', addContext({ context, user: req.user }));
+  }));
+
+  router.get('/solutions/dfocvc', withCatch(logger, async (req, res) => {
+    const context = await getDfocvcPageContext();
+    logger.info('navigating to dfocvc page');
+    return res.render('pages/dfocvc/template.njk', addContext({ context, user: req.user }));
   }));
 
   router.get('/solutions/:filterType.:capabilities?', withCatch(logger, async (req, res) => {
