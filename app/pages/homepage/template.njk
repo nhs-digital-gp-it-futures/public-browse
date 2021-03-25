@@ -16,15 +16,27 @@
   <div data-test-id="homepage-promo-group" class="nhsuk-width-container nhsuk-u-padding-top-5">
     <ul class="nhsuk-grid-row nhsuk-card-group nhsuk-u-margin-top-5">
 
-      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="browse-promo">
         {{ card({
-          "href": "/solutions/vaccinations",
+          "href": "/solutions",
           "headingLevel": 3,
           "clickable": "true",
-          "heading": vaccinationsPromoHeading,
-          "description": vaccinationsPromoDescription
+          "heading": viewSolutionsPromoHeading,
+          "description": viewSolutionsPromoDescription
         }) }}
       </li>
+
+      {% if (config.showDfocvc === 'true') %}
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="dfocvc-card">
+          {{ card({
+            "href": "/solutions/dfocvc",
+            "headingLevel": 3,
+            "clickable": "true",
+            "heading": dfocvcHeading,
+            "description": dfocvcDescription
+          }) }}
+        </li>
+      {% endif %}
 
       {% if (config.showCovid19 === 'true') %}
         <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="covid19-promo">
@@ -38,15 +50,17 @@
         </li>
       {% endif %}
 
-      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="browse-promo">
-        {{ card({
-          "href": "/solutions",
-          "headingLevel": 3,
-          "clickable": "true",
-          "heading": viewSolutionsPromoHeading,
-          "description": viewSolutionsPromoDescription
-        }) }}
-      </li>
+      {% if (config.showCovid19 === 'true') %}
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">
+          {{ card({
+            "href": "/solutions/vaccinations",
+            "headingLevel": 3,
+            "clickable": "true",
+            "heading": vaccinationsPromoHeading,
+            "description": vaccinationsPromoDescription
+          }) }}
+        </li>
+      {% endif %}
 
       <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="guidance-promo">
         {{ card({

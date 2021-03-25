@@ -14,7 +14,7 @@ describe('capabilities-selector page', () => {
     harness.request(context, ($) => {
       const backLink = $('[data-test-id="go-back-link"]');
       expect(backLink.length).toEqual(1);
-      expect(backLink.text().trim()).toEqual('Go back to previous page');
+      expect(backLink.text().trim()).toEqual('Go back');
       expect(backLink.find('a').attr('href')).toEqual('./');
     });
   }));

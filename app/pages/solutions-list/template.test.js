@@ -28,7 +28,7 @@ describe('solutions list page', () => {
     harness.request(context, ($) => {
       const goBackLink = $('[data-test-id="go-back-link"] a');
       expect(goBackLink.length).toEqual(1);
-      expect(goBackLink.text().trim()).toEqual('Go back to previous page');
+      expect(goBackLink.text().trim()).toEqual('Go back');
       expect(goBackLink.attr('href')).toEqual(context.backLinkPath);
     });
   }));
