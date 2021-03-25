@@ -21,6 +21,24 @@
       }
     },
     {
+      "id": "10034-029",
+      "name": "CHS Vaccination Appointment Management",
+      "summary": "The CHS Vaccination Appointments Management app supports vaccination delivery within GP practices, primary care networks and shared care settings, ensuring the smooth running of all aspects of your vaccination sessions. Using our intelligent appointment tools, you can quickly arrange and manage your appointments sessions and efficiently manage patient arrivals and appointments processing.",
+      "supplier": {
+        "id": "10034",
+        "name": "Cegedim Healthcare Solutions"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution has been assessed for appointments management",
+          "Tracks availability of COVID-19 vaccination appointments",
+          "Records when a COVID-19 vaccination appointment is completed",
+          "This Catalogue Solution has partially met the Appointments Management - COVID-19 Vaccinations Capability"
+        ]
+      }
+    },
+    {
       "id": "10030-001",
       "name": "accuRx",
       "summary": "accuRx offers vaccine appointment management functionality via its accuBook Additional Service. accuBook allows the sending of vaccination invite communications, appointment notification, reminders, and the ability for patients to manage their own vaccination appointments.",

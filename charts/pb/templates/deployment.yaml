@@ -56,6 +56,8 @@ spec:
               value: {{ .Values.featureFlags.showCovid19 | default "false" | quote }}
             - name: SHOW_ORDER_FORM
               value: {{ .Values.featureFlags.showOrderForm | default "false" | quote }}              
+            - name: SHOW_DFOCVC
+              value: {{ .Values.featureFlags.showDfocvc | default "false" | quote }}
             - name: NODE_ENV
               value: "production"
             - name: APP_BASE_URI

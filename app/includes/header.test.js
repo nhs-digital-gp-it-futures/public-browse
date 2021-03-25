@@ -94,10 +94,11 @@ describe('header', () => {
       }));
     });
 
-    it('should render the covid19 global warning if feature flag set', componentTester(setup, (harness) => {
+    it('should render the covid19 global warning with reduce visits to gp practices if feature flag set AND showDfocvc flag is false', componentTester(setup, (harness) => {
       const context = {
         config: {
           showCovid19: 'true',
+          showDfocvc: 'false',
         },
       };
 
@@ -106,13 +107,11 @@ describe('header', () => {
         const title = globalAlert.find('div').find('h2');
         const paragraph = globalAlert.find('div').find('p');
         const vaccinationsLink = paragraph.find('[data-test-id="vaccinations"]');
-        const covid19Link = paragraph.find('[data-test-id="covid19"]');
 
         expect(globalAlert.hasClass('bc-c-global-alert')).toEqual(true);
         expect(title.text().trim()).toEqual('Coronavirus (COVID-19)');
         expect(paragraph.text().trim()).toEqual('View Catalogue Solutions that help with coronavirus by organising vaccinations or reducing visits to GP practices.');
         expect(vaccinationsLink.attr('href')).toEqual('/solutions/vaccinations');
-        expect(covid19Link.attr('href')).toEqual('/solutions/covid19');
       });
     }));
 
@@ -126,6 +125,27 @@ describe('header', () => {
       harness.request(context, ($) => {
         const globalAlert = $('[data-test-id="covid19-global-alert"]');
         expect(globalAlert.length).toEqual(0);
+      });
+    }));
+
+    it('should render the covid19 global warning without "coronavirus by organising..." text if showDfocvc flag is set to true', componentTester(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'true',
+          showDfocvc: 'true',
+        },
+      };
+
+      harness.request(context, ($) => {
+        const globalAlert = $('[data-test-id="covid19-global-alert"]');
+        const title = globalAlert.find('div').find('h2');
+        const paragraph = globalAlert.find('div').find('p');
+        const vaccinationsLink = paragraph.find('[data-test-id="vaccinations"]');
+
+        expect(globalAlert.hasClass('bc-c-global-alert')).toEqual(true);
+        expect(title.text().trim()).toEqual('Coronavirus (COVID-19)');
+        expect(paragraph.text().trim()).toEqual('View Catalogue Solutions that help with coronavirus by organising vaccinations.');
+        expect(vaccinationsLink.attr('href')).toEqual('/solutions/vaccinations');
       });
     }));
   });

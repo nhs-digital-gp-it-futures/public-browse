@@ -79,4 +79,6 @@ module.exports = {
 
   // The password to connect to redis
   redisPass: process.env.REDIS_PASS,
+
+  showDfocvc: process.env.SHOW_DFOCVC || 'true',
 };
