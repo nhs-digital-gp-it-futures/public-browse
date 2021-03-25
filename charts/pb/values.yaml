@@ -81,6 +81,7 @@ featureFlags:
   useCapabilitiesSelector: "true"
   showCovid19: "true"
   showOrderForm: "true"
+  showDfocvc: "true"
 
 serviceDependencies:
   adminUrlConfig:
