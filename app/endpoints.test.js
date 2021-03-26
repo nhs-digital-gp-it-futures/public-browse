@@ -28,5 +28,21 @@ describe('Endpoints', () => {
 
       expect(result).toBe(undefined);
     });
+
+    describe('solutions?frameworkId', () => {
+      test.each`
+        key             | expected
+        ${'NHSDGP001'}  | ${'http://localhost:5100/api/v1/Solutions?frameworkId=NHSDGP001'}
+        ${'DFOCVC001'}  | ${'http://localhost:5100/api/v1/Solutions?frameworkId=DFOCVC001'}
+
+    `('should return "$expected" when filterType is "$key"', ({ key, expected }) => {
+        const result = getEndpoint({
+          endpointLocator: 'getSolutionListData',
+          options: { filterType: key },
+        });
+
+        expect(result).toBe(expected);
+      });
+    });
   });
 });
