@@ -17,6 +17,7 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 
 export const getSolutionListPageContext = async ({ filterType }) => {
   const solutionListManifest = getSolutionListManifest(filterType);
+
   const endpoint = getEndpoint({ endpointLocator: 'getSolutionListData', options: { filterType } });
   const solutionListResponse = await getData({ endpoint, logger });
 
