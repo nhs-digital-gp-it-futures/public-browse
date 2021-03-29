@@ -185,7 +185,7 @@ describe('home page', () => {
       expect(card.hasClass('nhsuk-card-group__item')).toEqual(true);
       expect(card.find('h3').text().trim()).toEqual(content.dfocvcHeading);
       expect(card.find('p').text().trim()).toEqual(content.dfocvcDescription);
-      expect(card.find('a').attr('href')).toEqual('/solutions/dfocvc');
+      expect(card.find('a').attr('href')).toEqual('/solutions/dfocvc001');
     });
   }));
 
