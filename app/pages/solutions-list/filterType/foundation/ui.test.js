@@ -33,7 +33,7 @@ test('should display the page title', async (t) => {
   const title = Selector('[data-test-id="general-description"] h1');
   await t
     .expect(title.exists).ok()
-    .expect(await extractInnerText(title)).eql('Foundation Solution Sets – results');
+    .expect(await extractInnerText(title)).eql('Foundation Solution Sets on the GP IT Futures framework – results');
 });
 
 test('should display the page description', async (t) => {

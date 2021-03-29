@@ -1,5 +1,6 @@
 import { componentTester, snapshotTest } from '../../test-utils/componentTester';
 import { getHomepageContext } from './context';
+import content from './manifest.json';
 
 const setup = {
   template: {
@@ -34,7 +35,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the covid19 promo when the showCovid19 flag is set', componentTester(setup, (harness) => {
+  it('should render the vaccinations tile when the showCovid19 flag is set', componentTester(setup, (harness) => {
     const context = {
       config: {
         showCovid19: 'true',
@@ -42,7 +43,7 @@ describe('home page', () => {
     };
 
     harness.request(context, ($) => {
-      const promo = $('[data-test-id="covid19-promo"]');
+      const promo = $('[data-test-id="vaccinations-promo"]');
       expect(promo.length).toEqual(1);
     });
   }));
@@ -84,6 +85,39 @@ describe('home page', () => {
     harness.request(context, ($) => {
       const orderFormPromo = $('[data-test-id="order-form-promo"]');
       expect(orderFormPromo.length).toEqual(0);
+    });
+  }));
+
+  it('should render the DFOCVC Framework tile when the dfocvc flag is set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showDfocvc: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const card = $('[data-test-id="dfocvc-card"]');
+      expect(card.length).toEqual(1);
+      expect(card.hasClass('nhsuk-grid-column-one-half')).toEqual(true);
+      expect(card.hasClass('nhsuk-card-group__item')).toEqual(true);
+      expect(card.find('h3').text().trim()).toEqual(content.dfocvcHeading);
+      expect(card.find('p').text().trim()).toEqual(content.dfocvcDescription);
+      expect(card.find('a').attr('href')).toEqual('/solutions/dfocvc001');
+    });
+  }));
+
+  it('should not render the DFOCVC Framework tile when the dfocvc flag is not set', componentTester(setup, (harness) => {
+    const context = {
+      ...content,
+      config: {
+        showDfocvc: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const card = $('[data-test-id="dfocvc-card"]');
+      expect(card.length).toEqual(0);
     });
   }));
 });

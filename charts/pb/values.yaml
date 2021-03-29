@@ -43,14 +43,14 @@ ingress:
   enabled: true
   annotations: {}
   hosts:
-    - paths: 
+    - paths:
         - /
   tls: []
   #  - secretName: chart-exapble-tls
   #    hosts:
   #      - chart-exapble.local
 
-resources: 
+resources:
   requests:
     memory: 64Mi
     cpu: 25m
@@ -58,7 +58,7 @@ resources:
     cpu: 1000m
     memory: 300Mi
 
-hostAliases:  
+hostAliases:
 
 nodeSelector: {}
 
@@ -68,54 +68,55 @@ affinity: {}
 
 #custom variables
 appBaseUri:
-  name: 
+  name:
   key:
-baseUri: 
+baseUri:
 cookieSecret:
-  name: 
+  name:
   key:
 feedbackLinkUrl:
 
 featureFlags:
-  loginEnabled : "true"
+  loginEnabled: "true"
   useCapabilitiesSelector: "true"
   showCovid19: "true"
   showOrderForm: "true"
+  showDfocvc: "true"
 
 serviceDependencies:
   adminUrlConfig:
-    name: 
-    key: 
+    name:
+    key:
   bapiUrlConfig:
-    name: 
-    key: 
+    name:
+    key:
   dapiUrlConfig:
-    name: 
-    key:   
+    name:
+    key:
   isapi: # used for internal calls to isapi custom api
     name:
     key:
   oidc: # used for external references to isapi for oidc use
     baseUriConfig:
-      name: 
-      key:     
+      name:
+      key:
     clientId:
-    clientSecret: 
-      name: 
-      key: 
+    clientSecret:
+      name:
+      key:
   ofUrlConfig:
-    name: 
-    key:   
+    name:
+    key:
   redis:
     urlConfig:
-      name: 
-      key: 
+      name:
+      key:
     port: "6379"
     tls: false
     passSecret:
       name:
       key:
 env:
-  configmap:    
+  configmap:
   secrets:
   values:

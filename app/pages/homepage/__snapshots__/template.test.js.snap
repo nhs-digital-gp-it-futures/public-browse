@@ -17,18 +17,33 @@ exports[`home page should render the content 1`] = `
   <div data-test-id=\\"homepage-promo-group\\" class=\\"nhsuk-width-container nhsuk-u-padding-top-5\\">
     <ul class=\\"nhsuk-grid-row nhsuk-card-group nhsuk-u-margin-top-5\\">
 
-      <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"vaccinations-promo\\">
+      <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"browse-promo\\">
         
 <div class=\\"nhsuk-card nhsuk-card--clickable\\">
   <div class=\\"nhsuk-card__content\\">
     <h3 class=\\"nhsuk-card__heading\\">
-      <a class=\\"nhsuk-card__link\\" href=\\"/solutions/vaccinations\\">Coronavirus vaccinations</a>
+      <a class=\\"nhsuk-card__link\\" href=\\"/solutions\\">GP IT Futures framework</a>
     </h3>
-    <p class=\\"nhsuk-card__description\\">Find Catalogue Solutions that help organise coronavirus vaccinations</p>
+    <p class=\\"nhsuk-card__description\\">Find and compare Catalogue Solutions available on the GP IT Futures framework</p>
   </div>
 </div>
 
       </li>
+
+      
+        <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"dfocvc-card\\">
+          
+<div class=\\"nhsuk-card nhsuk-card--clickable\\">
+  <div class=\\"nhsuk-card__content\\">
+    <h3 class=\\"nhsuk-card__heading\\">
+      <a class=\\"nhsuk-card__link\\" href=\\"/solutions/dfocvc001\\">DFOCVC framework</a>
+    </h3>
+    <p class=\\"nhsuk-card__description\\">Find online and video consultation Catalogue Solutions on the DFOCVC framework</p>
+  </div>
+</div>
+
+        </li>
+      
 
       
         <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"covid19-promo\\">
@@ -45,18 +60,20 @@ exports[`home page should render the content 1`] = `
         </li>
       
 
-      <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"browse-promo\\">
-        
+      
+        <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"vaccinations-promo\\">
+          
 <div class=\\"nhsuk-card nhsuk-card--clickable\\">
   <div class=\\"nhsuk-card__content\\">
     <h3 class=\\"nhsuk-card__heading\\">
-      <a class=\\"nhsuk-card__link\\" href=\\"/solutions\\">GP IT Futures framework</a>
+      <a class=\\"nhsuk-card__link\\" href=\\"/solutions/vaccinations\\">Coronavirus vaccinations</a>
     </h3>
-    <p class=\\"nhsuk-card__description\\">Find and compare Catalogue solutions available on the GP IT Futures framework</p>
+    <p class=\\"nhsuk-card__description\\">Find Catalogue Solutions that help organise coronavirus vaccinations</p>
   </div>
 </div>
 
-      </li>
+        </li>
+      
 
       <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"guidance-promo\\">
         

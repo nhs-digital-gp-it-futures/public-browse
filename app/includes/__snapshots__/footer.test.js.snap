@@ -7,7 +7,7 @@ exports[`footer should render the footer 1`] = `
   <div class=\\"nhsuk-footer\\" id=\\"nhsuk-footer\\">
     <div class=\\"nhsuk-width-container\\">
       <h2 class=\\"nhsuk-u-visually-hidden\\">Support links</h2>
-      <ul class=\\"nhsuk-footer__list nhsuk-footer__list--three-columns\\">
+      <ul class=\\"nhsuk-footer__list\\">
         <li class=\\"nhsuk-footer__list-item\\"><a class=\\"nhsuk-footer__list-item-link\\" href=\\"/guide\\">Buyer's Guide</a></li>
         <li class=\\"nhsuk-footer__list-item\\"><a class=\\"nhsuk-footer__list-item-link\\" href=\\"/guide#contact-us\\">NHS Digital Helpdesk</a></li>
         <li class=\\"nhsuk-footer__list-item\\"><a class=\\"nhsuk-footer__list-item-link\\" href=\\"https://digital.nhs.uk/\\">NHS Digital</a></li>
@@ -26,7 +26,7 @@ exports[`footer should render the footer 1`] = `
       <ul data-test-id=\\"legal-panel\\" class=\\"bc-lh-r bc-body-r bc-list-none nhsuk-u-padding-0 nhsuk-u-padding-bottom-3 nhsuk-width-container\\">
         <li class=\\"bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2\\">Legal</li>
         <li class=\\"bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2\\"><a href=\\"https://digital.nhs.uk/about-nhs-digital/privacy-and-cookies\\">Privacy and Cookies</a></li>
-        <li class=\\"bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2\\"><a href=\\"/document/terms-of-use.pdf\\">Terms and Conditions</a></li>
+        <li class=\\"bc-u-display-inline nhsuk-u-margin-0 nhsuk-u-margin-right-2\\"><a href=\\"https://buyingcatalogue.digital.nhs.uk/document/terms-of-use.pdf\\">Terms and Conditions</a></li>
       </ul>
     
   </div>"
