@@ -82,7 +82,7 @@ describe('solutions-list controller', () => {
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
       expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
-        filterType: 'DFOCVC001',
+        filterType: 'dfocvc001',
         solutionListManifest: dfocvcManifest,
         solutionsData: mockedSolutionData.solutions,
       });
