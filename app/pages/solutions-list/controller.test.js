@@ -78,7 +78,7 @@ describe('solutions-list controller', () => {
       createContext.createSolutionListPageContext
         .mockResolvedValueOnce();
 
-      await getSolutionListPageContext({ filterType: 'dfocvc' });
+      await getSolutionListPageContext({ filterType: 'dfocvc001' });
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
       expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
