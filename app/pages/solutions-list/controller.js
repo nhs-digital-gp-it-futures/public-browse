@@ -17,7 +17,7 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 
 export const getSolutionListPageContext = async ({ filterType }) => {
   let filter = filterType;
-  if (filter === 'dfocvc') filter = 'DFOCVC001';
+  if (filter === 'dfocvc') filter = 'dfocvc001';
 
   const solutionListManifest = getSolutionListManifest(filter);
 
