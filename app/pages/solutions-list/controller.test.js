@@ -2,6 +2,7 @@ import { getData, postData } from 'buying-catalogue-library';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './controller';
 import * as createContext from './context';
 import foundationContent from './filterType/foundation/manifest.json';
+import dfocvcManifest from './filterType/dfocvc001/manifest.json';
 import capabilitiesSelectorContent from './filterType/capabilities-selector/manifest.json';
 import { logger } from '../../logger';
 import { buyingCatalogueApiHost } from '../../config';
@@ -67,6 +68,22 @@ describe('solutions-list controller', () => {
       expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
         filterType: 'foundation',
         solutionListManifest: foundationContent,
+        solutionsData: mockedSolutionData.solutions,
+      });
+    });
+
+    it('should call createSolutionListPageContext once with the correct params DFOCVC', async () => {
+      getData
+        .mockResolvedValueOnce(mockedSolutionData);
+      createContext.createSolutionListPageContext
+        .mockResolvedValueOnce();
+
+      await getSolutionListPageContext({ filterType: 'dfocvc' });
+
+      expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
+      expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
+        filterType: 'DFOCVC001',
+        solutionListManifest: dfocvcManifest,
         solutionsData: mockedSolutionData.solutions,
       });
     });
