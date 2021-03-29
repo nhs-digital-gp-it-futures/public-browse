@@ -1,13 +1,19 @@
 import { buyingCatalogueApiHost, documentApiHost, identityServerUrl } from './config';
 
 const getSolutionListDataEndpoint = (apiHostUrl, filterType) => {
-  if (filterType === 'all') {
-    return `${apiHostUrl}/api/v1/Solutions`;
+  const defaultUrl = `${apiHostUrl}/api/v1/Solutions`;
+
+  switch (filterType.toLowerCase()) {
+    case 'all':
+      return defaultUrl;
+    case 'foundation':
+      return `${defaultUrl}/Foundation`;
+    case 'nhsdgp001':
+    case 'dfocvc001':
+      return `${defaultUrl}?frameworkId=${filterType}`;
+    default:
+      return undefined;
   }
-  if (filterType === 'foundation') {
-    return `${apiHostUrl}/api/v1/Solutions/Foundation`;
-  }
-  return undefined;
 };
 
 const endpoints = {
