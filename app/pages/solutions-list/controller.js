@@ -16,20 +16,24 @@ const transformCapabilities = ({ capabilitiesSelected }) => {
 };
 
 export const getSolutionListPageContext = async ({ filterType }) => {
-  const solutionListManifest = getSolutionListManifest(filterType);
-  const endpoint = getEndpoint({ endpointLocator: 'getSolutionListData', options: { filterType } });
+  let filter = filterType;
+  if (filter === 'dfocvc') filter = 'DFOCVC001';
+
+  const solutionListManifest = getSolutionListManifest(filter);
+
+  const endpoint = getEndpoint({ endpointLocator: 'getSolutionListData', options: { filterType: filter } });
   const solutionListResponse = await getData({ endpoint, logger });
 
   if (solutionListResponse && solutionListResponse.solutions) {
-    logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filterType}`);
+    logger.info(`${solutionListResponse.solutions.length} solutions returned for type ${filter}`);
 
     return createSolutionListPageContext({
-      filterType,
+      filterType: filter,
       solutionListManifest,
       solutionsData: solutionListResponse.solutions,
     });
   }
-  logger.error(`No solutions found for filter type: ${filterType}`);
+  logger.error(`No solutions found for filter type: ${filter}`);
   throw new Error();
 };
 
