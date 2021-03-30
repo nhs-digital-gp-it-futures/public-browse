@@ -16,7 +16,7 @@ describe('general-page-description', () => {
     };
 
     harness.request(context, ($) => {
-      const title = $('[data-test-id="general-page-title"]');
+      const title = $('[data-test-id="general-description"] h1');
       expect(title.length).toEqual(1);
       expect(title.text().trim()).toEqual('a title');
     });
@@ -28,7 +28,7 @@ describe('general-page-description', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('[data-test-id="general-page-title"]').length).toEqual(0);
+      expect($('[data-test-id="general-description"] h1').length).toEqual(0);
     });
   }));
 
@@ -40,7 +40,7 @@ describe('general-page-description', () => {
     };
 
     harness.request(context, ($) => {
-      const description = $('[data-test-id="general-page-description"]');
+      const description = $('[data-test-id="general-description"] p');
       expect(description.length).toEqual(1);
       expect(description.text().trim()).toEqual('a description');
     });
@@ -52,7 +52,7 @@ describe('general-page-description', () => {
     };
 
     harness.request(context, ($) => {
-      expect($('[data-test-id="general-page-description"]').length).toEqual(0);
+      expect($('[data-test-id="general-description"] p').length).toEqual(0);
     });
   }));
 });

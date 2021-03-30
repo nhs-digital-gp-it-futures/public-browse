@@ -1,4 +1,5 @@
-import { componentTester } from '../../test-utils/componentTester';
+import { componentTester, snapshotTest } from '../../test-utils/componentTester';
+import { getSolutionListManifest } from './filterType/manifestProvider';
 
 const setup = {
   template: {
@@ -7,41 +8,19 @@ const setup = {
 };
 
 describe('solutions list page', () => {
-  it('should render the solution list page title', componentTester(setup, (harness) => {
-    const context = {
-      title: 'some page title',
-    };
-
+  it('should render the content for foundation filter type', componentTester(setup, async (harness) => {
+    const context = getSolutionListManifest('foundation');
     harness.request(context, ($) => {
-      const solutionListTitle = $('[data-test-id="general-page-title"]');
-      expect(solutionListTitle.length).toEqual(1);
-      expect(solutionListTitle.text().trim()).toEqual(context.title);
+      const snapshot = snapshotTest($, '[data-test-id="main-content"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 
-  it('should render go back link', componentTester(setup, (harness) => {
-    const context = {
-      title: 'some page title',
-      backLinkPath: '/backlink/path',
-    };
-
+  it('should render the content for capabilities-selector filter type', componentTester(setup, async (harness) => {
+    const context = getSolutionListManifest('capabilities-selector');
     harness.request(context, ($) => {
-      const goBackLink = $('[data-test-id="go-back-link"] a');
-      expect(goBackLink.length).toEqual(1);
-      expect(goBackLink.text().trim()).toEqual('Go back');
-      expect(goBackLink.attr('href')).toEqual(context.backLinkPath);
-    });
-  }));
-
-  it('should render the solution list page description', componentTester(setup, (harness) => {
-    const context = {
-      description: 'some page description',
-    };
-
-    harness.request(context, ($) => {
-      const solutionListTitleSummary = $('p[data-test-id="general-page-description"]');
-      expect(solutionListTitleSummary.length).toEqual(1);
-      expect(solutionListTitleSummary.text().trim()).toEqual(context.description);
+      const snapshot = snapshotTest($, '[data-test-id="main-content"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 
@@ -53,7 +32,6 @@ describe('solutions list page', () => {
     harness.request(context, ($) => {
       const description = $('div[data-test-id="compare-solutions-description"]');
       expect(description.length).toEqual(1);
-      expect(description.text().trim()).toEqual(context.compareSolutionsDescription);
     });
   }));
 
@@ -75,8 +53,6 @@ describe('solutions list page', () => {
     harness.request(context, ($) => {
       const button = $('div[data-test-id="compare-button"] a');
       expect(button.length).toEqual(1);
-      expect(button.text().trim()).toEqual(context.compareButtonText);
-      expect(button.attr('href')).toEqual('/solutions/compare/document');
     });
   }));
 

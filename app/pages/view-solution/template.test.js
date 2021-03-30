@@ -1,4 +1,6 @@
-import { componentTester } from '../../test-utils/componentTester';
+import { componentTester, snapshotTest } from '../../test-utils/componentTester';
+import publicSolutionWithData from '../../test-utils/fixtures/publicSolutionWithData.json';
+import publicSolutionNoData from '../../test-utils/fixtures/publicSolutionNoData.json';
 
 const setup = {
   template: {
@@ -7,28 +9,17 @@ const setup = {
 };
 
 describe('view solution', () => {
-  it('should render back-link component with correct href', componentTester(setup, (harness) => {
-    const context = { };
-
-    harness.request(context, ($) => {
-      expect($('[data-test-id="view-solution-page-back-link"]').length).toEqual(1);
-      expect($('[data-test-id="view-solution-page-back-link"]').find('a').attr('href')).toEqual('./');
+  it('should render the content with no data', componentTester(setup, async (harness) => {
+    harness.request(publicSolutionNoData, ($) => {
+      const snapshot = snapshotTest($, '[data-test-id="main-content"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 
-  it('should render the viewSolution component', componentTester(setup, (harness) => {
-    const context = {
-      solutionHeader: {
-        id: '100000-001',
-        name: 'Write on Time',
-        supplierName: 'Really Kool Corporation',
-        isFoundation: true,
-        lastUpdated: '1996-03-15T10:00:00',
-      },
-    };
-
-    harness.request(context, ($) => {
-      expect($('[data-test-id="view-solution-header"]').length).toBe(1);
+  it('should render the content with data', componentTester(setup, async (harness) => {
+    harness.request(publicSolutionWithData, ($) => {
+      const snapshot = snapshotTest($, '[data-test-id="main-content"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 });

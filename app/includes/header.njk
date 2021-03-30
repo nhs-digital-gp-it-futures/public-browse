@@ -2,26 +2,27 @@
 {% from 'components/login-logout/macro.njk' import loginLogout %}
 
 
-{% if loginEnabled %}
-  {% set innerComponent = loginLogout({
-      dataTestId: "login-logout-component",
-      username: username,
-      loginUrl: "/login",
-      logoutUrl: "/logout"
-    }) %}
-{% endif %}
+<div data-test-id="header-wrap">
+  {% if loginEnabled %}
+    {% set innerComponent = loginLogout({
+        dataTestId: "login-logout-component",
+        username: username,
+        loginUrl: "/login",
+        logoutUrl: "/logout"
+      }) %}
+  {% endif %}
 
-{{ bcHeader({
-  dataTestId: "header-banner",
-  innerComponent: innerComponent,
-  classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2",
-  logoLink: {
-    href: "/",
-    ariaLabel: "Buying Catalogue Homepage"
-  },
-  showBetaBanner: true,
-  termsHref: config.feedbackLinkUrl
-}) }}
+  {{ bcHeader({
+    dataTestId: "header-banner",
+    innerComponent: innerComponent,
+    classes: "nhsuk-u-padding-top-3 nhsuk-u-padding-bottom-2",
+    logoLink: {
+      href: "/",
+      ariaLabel: "Buying Catalogue Homepage"
+    },
+    showBetaBanner: true,
+    termsHref: config.feedbackLinkUrl
+  }) }}
 
 {% if config.showCovid19 === 'true' %}
   <section class="bc-c-global-alert" data-test-id="covid19-global-alert" aria-labelledby="covid-alert-heading" role="banner">

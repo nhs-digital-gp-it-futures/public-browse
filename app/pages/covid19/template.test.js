@@ -1,4 +1,5 @@
-import { componentTester } from '../../test-utils/componentTester';
+import { componentTester, snapshotTest } from '../../test-utils/componentTester';
+import { getCovid19SolutionListPageContext } from './controller';
 
 const setup = {
   template: {
@@ -7,41 +8,10 @@ const setup = {
 };
 
 describe('covid19 page', () => {
-  it('should render the covid19 page title', componentTester(setup, (harness) => {
-    const context = {
-      title: 'Covid-19 page title',
-    };
-
-    harness.request(context, ($) => {
-      const covid19Title = $('[data-test-id="general-page-title"]');
-      expect(covid19Title.length).toEqual(1);
-      expect(covid19Title.text().trim()).toEqual(context.title);
-    });
-  }));
-
-  it('should render covid19 go back link', componentTester(setup, (harness) => {
-    const context = {
-      title: 'Covid-19 page title',
-      backLinkPath: '/backlink/path',
-    };
-
-    harness.request(context, ($) => {
-      const goBackLink = $('[data-test-id="go-back-link"] a');
-      expect(goBackLink.length).toEqual(1);
-      expect(goBackLink.text().trim()).toEqual('Go back to previous page');
-      expect(goBackLink.attr('href')).toEqual(context.backLinkPath);
-    });
-  }));
-
-  it('should render the covid19 page description', componentTester(setup, (harness) => {
-    const context = {
-      pageDescription: 'Covid-19 page description',
-    };
-
-    harness.request(context, ($) => {
-      const covid19Description = $('p[data-test-id="general-page-description"]');
-      expect(covid19Description.length).toEqual(1);
-      expect(covid19Description.text().trim()).toEqual(context.pageDescription);
+  it('should render the content', componentTester(setup, (harness) => {
+    harness.request(getCovid19SolutionListPageContext(), ($) => {
+      const snapshot = snapshotTest($, '[data-test-id="main-content"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 

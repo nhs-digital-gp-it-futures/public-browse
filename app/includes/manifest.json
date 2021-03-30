@@ -21,5 +21,7 @@
       "URL": "https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview"
     }
   ],
-  "showLegalPanel": true
+  "showLegalPanel": true,
+  "solutionsVacination": "/solutions/vaccinations",
+  "solutionsCovid": "/solutions/covid19"
 }
