@@ -21,6 +21,7 @@
     "start:redis": "docker-compose -f \"docker-compose-redis.yml\" up -d",
     "test:ui": "cross-env NODE_ENV=test USE_CAPABILITIES_SELECTOR=true LOGIN_ENABLED=true LOGGER_LEVEL=off babel-node testcafeRunner.js",
     "test:integration": "cross-env NODE_ENV=pipeline USE_CAPABILITIES_SELECTOR=true LOGIN_ENABLED=true LOGGER_LEVEL=off babel-node testcafeRunner.js",
+    "test:snapshotreset": "npm run test -- -u",
     "test": "jest",
     "prewatch": "npm run build:css",
     "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\" \"npm start:dev\"",

@@ -30,7 +30,7 @@ fixture('Show Foundation Solution List Page')
 
 test('should display the page title', async (t) => {
   await pageSetup(t);
-  const title = Selector('h1[data-test-id="general-page-title"]');
+  const title = Selector('[data-test-id="general-description"] h1');
   await t
     .expect(title.exists).ok()
     .expect(await extractInnerText(title)).eql('Foundation Solution Sets on the GP IT Futures framework – results');
@@ -38,7 +38,7 @@ test('should display the page title', async (t) => {
 
 test('should display the page description', async (t) => {
   await pageSetup(t);
-  const pageDescription = Selector('[data-test-id="general-page-description"]');
+  const pageDescription = Selector('[data-test-id="general-description"] p');
   await t
     .expect(pageDescription.exists).ok()
     .expect(await extractInnerText(pageDescription)).eql('These Catalogue Solutions meet the 6 Foundation Capabilities that are the minimum requirement to enable a GP practice to operate.');

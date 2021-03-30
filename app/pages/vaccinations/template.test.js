@@ -1,4 +1,5 @@
-import { componentTester } from '../../test-utils/componentTester';
+import { componentTester, snapshotTest } from '../../test-utils/componentTester';
+import { getVaccinationsSolutionListPageContext } from './controller';
 
 const setup = {
   template: {
@@ -7,59 +8,11 @@ const setup = {
 };
 
 describe('vaccinations page', () => {
-  it('should render the vaccinations page title', componentTester(setup, (harness) => {
-    const context = {
-      title: 'Covid-19 page title',
-    };
-
+  it('should render the content', componentTester(setup, async (harness) => {
+    const context = await getVaccinationsSolutionListPageContext();
     harness.request(context, ($) => {
-      const vaccinationsTitle = $('[data-test-id="general-page-title"]');
-      expect(vaccinationsTitle.length).toEqual(1);
-      expect(vaccinationsTitle.text().trim()).toEqual(context.title);
-    });
-  }));
-
-  it('should render vaccinations go back link', componentTester(setup, (harness) => {
-    const context = {
-      title: 'Covid-19 page title',
-      backLinkPath: '/backlink/path',
-    };
-
-    harness.request(context, ($) => {
-      const goBackLink = $('[data-test-id="go-back-link"] a');
-      expect(goBackLink.length).toEqual(1);
-      expect(goBackLink.text().trim()).toEqual('Go back to previous page');
-      expect(goBackLink.attr('href')).toEqual(context.backLinkPath);
-    });
-  }));
-
-  it('should render the vaccinations page description', componentTester(setup, (harness) => {
-    const context = {
-      pageDescription: 'Covid-19 page description',
-    };
-
-    harness.request(context, ($) => {
-      const vaccinationsDescription = $('[data-test-id="general-page-description"]');
-      expect(vaccinationsDescription.length).toEqual(1);
-      expect(vaccinationsDescription.text().trim()).toEqual(context.pageDescription);
-    });
-  }));
-
-  it('should render the vaccinations page inset text', componentTester(setup, (harness) => {
-    const context = {
-      insetText: [
-        'some inset text 1',
-        ' some inset text 2',
-      ],
-      insetTextLink: 'link text',
-    };
-
-    harness.request(context, ($) => {
-      const vaccinationsInsetText = $('[data-test-id="vaccinations-inset-text"]');
-      const vaccinationsInsetTextParagraph = vaccinationsInsetText.find('p');
-      expect(vaccinationsInsetTextParagraph.text().trim()).toContain(context.insetText[0]);
-      expect(vaccinationsInsetTextParagraph.text().trim()).toContain(context.insetTextLink);
-      expect(vaccinationsInsetTextParagraph.text().trim()).toContain(context.insetText[1]);
+      const snapshot = snapshotTest($, '[data-test-id="main-content"]');
+      expect(snapshot).toMatchSnapshot();
     });
   }));
 

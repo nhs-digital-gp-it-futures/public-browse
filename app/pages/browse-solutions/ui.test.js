@@ -1,7 +1,5 @@
 import nock from 'nock';
-import { extractInnerText } from 'buying-catalogue-library';
 import { Selector, ClientFunction } from 'testcafe';
-import content from './manifest.json';
 import aSolutionList from '../../test-utils/fixtures/aSolutionList.json';
 import aFoundationSolutionList from '../../test-utils/fixtures/aFoundationSolutionList.json';
 
@@ -31,38 +29,8 @@ test('should navigate to home page when click Go back', async (t) => {
   await t
     .expect(goBackLink.exists).ok()
     .click(goBackLink)
-    .expect(getLocation()).eql('http://localhost:1234/');
-});
-
-test('should render Browse All Solutions container', async (t) => {
-  await pageSetup(t);
-
-  const allSolutions = Selector('[data-test-id="all-solutions-promo"]');
-
-  await t
-    .expect(allSolutions.exists).ok()
-    .expect(await extractInnerText(allSolutions.find('h3'))).eql(content.allPromoHeading)
-    .expect(await extractInnerText(allSolutions.find('p'))).eql(content.allPromoDescription);
-});
-
-test('should render Browse Foundation Solutions container', async (t) => {
-  await pageSetup(t);
-
-  const foundationSolutions = Selector('[data-test-id="foundation-solutions-promo"]');
-
-  await t
-    .expect(foundationSolutions.exists).ok()
-    .expect(await extractInnerText(foundationSolutions.find('h3'))).eql(content.foundationPromoHeading)
-    .expect(await extractInnerText(foundationSolutions.find('p'))).eql(content.foundationPromoDescription);
-});
-
-test('should render the compare promo', async (t) => {
-  await pageSetup(t);
-  const promo = Selector('[data-test-id="compare-promo"]');
-  await t
-    .expect(promo.exists).ok()
-    .expect(await extractInnerText(promo.find('h3'))).eql(content.comparePromoHeading)
-    .expect(await extractInnerText(promo.find('p'))).eql(content.comparePromoDescription);
+    .expect(getLocation())
+    .eql('http://localhost:1234/');
 });
 
 test('should navigate to the compare page when the compare promo is clicked', async (t) => {
@@ -79,18 +47,6 @@ test('should navigate to the compare page when the compare promo is clicked', as
     .expect(getLocation()).eql('http://localhost:1234/solutions/compare');
 });
 
-test('should render buyers guide information', async (t) => {
-  await pageSetup(t);
-
-  const buyersGuideInformation = Selector('[data-test-id="browse-solutions-buyers-guide-information"]');
-
-  await t
-    .expect(buyersGuideInformation.exists).ok()
-    .expect(await extractInnerText(buyersGuideInformation.find('p'))).eql("Find more information in our Buyer's Guide.")
-    .expect(await extractInnerText(buyersGuideInformation.find('a'))).eql("Buyer's Guide")
-    .expect(buyersGuideInformation.find('a').getAttribute('href')).eql('/guide');
-});
-
 test('should navigate to browse all solutions page', async (t) => {
   await nock('http://localhost:5100')
     .get('/api/v1/Capabilities')
@@ -104,7 +60,8 @@ test('should navigate to browse all solutions page', async (t) => {
     .expect(browseAllSolutionsLink.exists).ok()
     .expect(browseAllSolutionsLink.visible).ok()
     .click(browseAllSolutionsLink)
-    .expect(getLocation()).contains('/capabilities');
+    .expect(getLocation())
+    .contains('/capabilities');
 });
 
 test('should navigate to browse foundation solutions page', async (t) => {
@@ -119,5 +76,23 @@ test('should navigate to browse foundation solutions page', async (t) => {
   await t
     .expect(foundationSolutionsLink.exists).ok()
     .click(foundationSolutionsLink)
-    .expect(getLocation()).contains('/foundation');
+    .expect(getLocation())
+    .contains('/foundation');
+});
+
+const defaultSections = {
+  'should render the general description': '[data-test-id="general-description"]',
+  'should render Browse All Solutions promo': '[data-test-id="all-solutions-promo"]',
+  'should render Browse Foundation Solutions promo': '[data-test-id="foundation-solutions-promo"]',
+  'should render the compare promo': '[data-test-id="compare-promo"]',
+  'should render buyers guide information': '[data-test-id="browse-solutions-buyers-guide-information"]',
+};
+
+Object.keys(defaultSections).forEach((key) => {
+  test(key, async (t) => {
+    await pageSetup(t);
+    const element = Selector(defaultSections[key]);
+    await t
+      .expect(element.exists).ok();
+  });
 });
