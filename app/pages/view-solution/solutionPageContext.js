@@ -6,6 +6,7 @@ export const createViewSolutionPageContext = ({ solutionData }) => ({
     supplierName: solutionData.supplierName,
     isFoundation: solutionData.isFoundation,
     lastUpdated: solutionData.lastUpdated,
+    frameworks: solutionData.frameworks,
   },
   sections: Object.fromEntries(
     Object.entries(solutionData.sections).map(([key, sectionValue]) => {
