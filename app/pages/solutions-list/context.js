@@ -23,9 +23,13 @@ const createSolutionsContext = ({
 export const createSolutionListPageContext = ({
   filterType, solutionListManifest, solutionsData, capabilitiesSelected,
 }) => {
-  // TODO: USE_CAPABILITIES_SELECTOR Remove '&& config.useCapabilitiesSelector'
-  // when capabilities-selector is on by default
-  const backLinkPath = `/solutions${filterType === 'capabilities-selector' && useCapabilitiesSelector === 'true' ? '/capabilities-selector' : ''}`;
+  let backLinkPath = '/solutions';
+
+  if (filterType === 'capabilities-selector' && useCapabilitiesSelector === 'true') {
+    backLinkPath += '/capabilities-selector';
+  } else if (filterType === 'dfocvc001') {
+    backLinkPath = '/';
+  }
 
   return {
     backLinkPath,

@@ -759,3 +759,54 @@ describe('createSolutionListPageContext - Foundation', () => {
     expect(context).toEqual(expectedContext);
   });
 });
+
+describe('createSolutionListPageContext - DFOCVC', () => {
+  it('should create a context for the solution list page', () => {
+    const expectedContext = {
+      title: foundationPageTitle,
+      description: foundationPageDescription,
+      backLinkPath: '/',
+      solutions: [
+        {
+          id: '00001',
+          name: 'The first solution',
+          summary: 'Some solution summary',
+          supplierName: 'Some supplier',
+          capabilities: [
+            'Some capability',
+          ],
+          isFoundation: true,
+          viewSolutionUrl: '/solutions/dfocvc001/00001',
+        },
+      ],
+    };
+
+    const solutionsData = [
+      {
+        id: '00001',
+        name: 'The first solution',
+        summary: 'Some solution summary',
+        isFoundation: true,
+        supplier: {
+          id: '1',
+          name: 'Some supplier',
+        },
+        capabilities: [
+          {
+            id: '1',
+            name: 'Some capability',
+          },
+        ],
+      },
+    ];
+
+    const solutionListManifest = {
+      title: foundationPageTitle,
+      description: foundationPageDescription,
+    };
+
+    const context = createSolutionListPageContext({ filterType: 'dfocvc001', solutionListManifest, solutionsData });
+
+    expect(context).toEqual(expectedContext);
+  });
+});
