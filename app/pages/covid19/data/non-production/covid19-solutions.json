@@ -154,11 +154,11 @@
     },
     {
       "id": "10033-001",
-      "name": "AlldayDr",
-      "summary": "AlldayDr allows patients to consult with a GP by a secure video consultation. Connection can be either via a web browser and mobile app. Outcome of the consultation is fed back. The app also has the ability for the patient to enter a query or other information and can be securely transmitted.",
+      "name": "healthya Online and Video Consultation",
+      "summary": "healthya Online and Video Consultation allows patients to consult with a GP by a secure video consultation. Connection can be either via a web browser and mobile app. Outcome of the consultation is fed back. The app also has the ability for the patient to enter a query or other information and can be securely transmitted.",
       "supplier": {
         "id": "10033",
-        "name": "AlldayDr Group Ltd"
+        "name": "ADDVantage Technologies"
       },
       "covid19": {
         "title": "How this Catalogue Solution can help with coronavirus",
