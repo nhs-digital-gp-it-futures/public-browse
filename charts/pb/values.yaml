@@ -80,6 +80,7 @@ featureFlags:
   loginEnabled: "true"
   useCapabilitiesSelector: "true"
   showCovid19: "true"
+  showCovid19Banner: "true"
   showOrderForm: "true"
   showDfocvc: "true"
 

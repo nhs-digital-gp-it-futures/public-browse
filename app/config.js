@@ -65,8 +65,10 @@ module.exports = {
   // The secret needed for encoding and decoding the cookie
   cookieSecret: process.env.COOKIE_SECRET,
 
-  // Boolean to indicate if we show the COVID-19 feature
+  // Boolean to indicate if we show the COVID-19 tile
   showCovid19: process.env.SHOW_COVID19 || 'true',
+
+  showCovid19Banner: process.env.SHOW_COVID19_BANNER || 'true',
 
   // The url in which redis is running
   redisUrl: process.env.REDIS_URL || 'localhost',

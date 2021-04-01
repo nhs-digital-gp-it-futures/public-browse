@@ -54,6 +54,8 @@ spec:
               value: {{ .Values.featureFlags.useCapabilitiesSelector | default "false" | quote }}
             - name: SHOW_COVID19
               value: {{ .Values.featureFlags.showCovid19 | default "false" | quote }}
+						- name: SHOW_COVID19_BANNER
+              value: {{ .Values.featureFlags.showCovid19Banner | default "false" | quote }}
             - name: SHOW_ORDER_FORM
               value: {{ .Values.featureFlags.showOrderForm | default "false" | quote }}              
             - name: SHOW_DFOCVC
