@@ -46,19 +46,6 @@ exports[`home page should render the content 1`] = `
       
 
       
-        <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"covid19-promo\\">
-          
-<div class=\\"nhsuk-card nhsuk-card--clickable\\">
-  <div class=\\"nhsuk-card__content\\">
-    <h3 class=\\"nhsuk-card__heading\\">
-      <a class=\\"nhsuk-card__link\\" href=\\"/solutions/covid19\\">Reduce GP visits</a>
-    </h3>
-    <p class=\\"nhsuk-card__description\\">Find Catalogue Solutions that can help prevent the spread of coronavirus</p>
-  </div>
-</div>
-
-        </li>
-      
 
       
         <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"vaccinations-promo\\">
