@@ -19,7 +19,7 @@ describe('header', () => {
     it('should render the covid19 global warning if feature flag set', componentTester(setup, (harness) => {
       const context = {
         config: {
-          showCovid19Banner: 'true',
+          showCovid19: 'true',
         },
       };
 
@@ -32,7 +32,7 @@ describe('header', () => {
     it('should not render the covid19 global warning if feature flag is not set', componentTester(setup, (harness) => {
       const context = {
         config: {
-          showCovid19Banner: false,
+          showCovid19: false,
         },
       };
 
@@ -45,7 +45,7 @@ describe('header', () => {
     it('should render the covid19 global warning without "coronavirus by organising..." text if showDfocvc flag is set to true', componentTester(setup, (harness) => {
       const context = {
         config: {
-          showCovid19Banner: 'true',
+          showCovid19: 'true',
           showDfocvc: 'true',
         },
       };

@@ -68,8 +68,6 @@ module.exports = {
   // Boolean to indicate if we show the COVID-19 tile
   showCovid19: process.env.SHOW_COVID19 || 'true',
 
-  showCovid19Banner: process.env.SHOW_COVID19_BANNER || 'true',
-
   // The url in which redis is running
   redisUrl: process.env.REDIS_URL || 'localhost',
 
