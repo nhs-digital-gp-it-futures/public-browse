@@ -28,7 +28,7 @@
     "watch:scss": "npm run build:css -- -w",
     "watch:js": "webpack --w",
     "webpack": "webpack",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "author": "Buying catalogue",
   "repository": {
