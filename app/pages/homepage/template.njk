@@ -72,6 +72,18 @@
         }) }}
       </li>
 
+      {% if (config.showProxy === 'true') %}
+        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="proxy-card">
+          {{ card({
+            "href": "/nominate-organisation",
+            "headingLevel": 3,
+            "clickable": "true",
+            "heading": "Nominate an organisation",
+            "description": "Allow an organisation to create orders on your behalf"
+          }) }}
+        </li>
+      {% endif %}
+
       {% if (config.showOrderForm === 'true') %}
         <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="order-form-promo">
           {{ card({

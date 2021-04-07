@@ -89,6 +89,21 @@ exports[`home page should render the content 1`] = `
       </li>
 
       
+        <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"proxy-card\\">
+          
+<div class=\\"nhsuk-card nhsuk-card--clickable\\">
+  <div class=\\"nhsuk-card__content\\">
+    <h3 class=\\"nhsuk-card__heading\\">
+      <a class=\\"nhsuk-card__link\\" href=\\"/nominate-organisation\\">Nominate an organisation</a>
+    </h3>
+    <p class=\\"nhsuk-card__description\\">Allow an organisation to create orders on your behalf</p>
+  </div>
+</div>
+
+        </li>
+      
+
+      
         <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"order-form-promo\\">
           
 <div class=\\"nhsuk-card nhsuk-card--clickable\\">

@@ -120,4 +120,30 @@ describe('home page', () => {
       expect(card.length).toEqual(0);
     });
   }));
+
+  it('should render the proxy buying card when the showProxy flag is set', componentTester(setup, (harness) => {
+    const context = {
+      config: {
+        showProxy: 'true',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const promo = $('[data-test-id="proxy-card"]');
+      expect(promo.length).toEqual(1);
+    });
+  }));
+
+  it('should render the proxy buying card when the showProxy flag is set', componentTester(setup, (harness) => {
+    const context = {
+      config: {
+        showProxy: 'false',
+      },
+    };
+
+    harness.request(context, ($) => {
+      const promo = $('[data-test-id="proxy-card"]');
+      expect(promo.length).toEqual(0);
+    });
+  }));
 });
