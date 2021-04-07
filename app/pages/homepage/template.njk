@@ -38,7 +38,7 @@
         </li>
       {% endif %}
 
-      {% if (config.showCovid19 === 'true') %}
+      {% if (config.showCovid19 === 'true') and (config.showDfocvc !== 'true') %}
         <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="covid19-promo">
           {{ card({
             "href": "/solutions/covid19",

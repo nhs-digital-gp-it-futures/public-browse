@@ -141,7 +141,6 @@ const homepageSections = {
   'should render the about us section': '[data-test-id="about-us"]',
   'should render the guidance promo': '[data-test-id="guidance-promo"]',
   'should render the vaccinations promo': '[data-test-id="vaccinations-promo"]',
-  'should render the covid19 promo': '[data-test-id="covid19-promo"]',
   'should render the browse promo': '[data-test-id="browse-promo"]',
   'should render footer': '[data-test-id="footer"]',
   'show render the beta banner': '[data-test-id="beta-banner"]',
