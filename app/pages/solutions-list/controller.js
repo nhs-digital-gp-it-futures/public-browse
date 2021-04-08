@@ -42,7 +42,7 @@ export const getSolutionsForSelectedCapabilities = async ({ capabilitiesSelected
   });
 
   const endpoint = getEndpoint({ endpointLocator: 'postSelectedCapabilities' });
-  const solutionsData = await postData({ endpoint, body: transformedCapabilities, logger });
+  const solutionsData = await postData({ endpoint, body: { ...transformedCapabilities, frameworkId: 'NHSDGP001' }, logger });
 
   return createSolutionListPageContext({
     filterType: 'capabilities-selector',
