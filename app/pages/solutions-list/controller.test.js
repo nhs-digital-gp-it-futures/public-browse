@@ -126,6 +126,7 @@ describe('solutions-list controller', () => {
         endpoint: `${buyingCatalogueApiHost}/api/v1/Solutions`,
         body: {
           capabilities: [],
+          frameworkId: 'NHSDGP001',
         },
         logger,
       });
@@ -139,7 +140,10 @@ describe('solutions-list controller', () => {
       expect(postData.mock.calls.length).toEqual(1);
       expect(postData).toHaveBeenCalledWith({
         endpoint: `${buyingCatalogueApiHost}/api/v1/Solutions`,
-        body: { capabilities: [{ reference: 'C1' }, { reference: 'C2' }] },
+        body: {
+          capabilities: [{ reference: 'C1' }, { reference: 'C2' }],
+          frameworkId: 'NHSDGP001',
+        },
         logger,
       });
     });

@@ -48,18 +48,48 @@ describe('home page', () => {
     });
   }));
 
-  it('should not render the covid19 promo when the showCovid19 flag is not set', componentTester(setup, (harness) => {
-    const context = {
-      config: {
-        showCovid19: 'false',
-      },
-    };
+  describe('covid19-promo', () => {
+    it('should not render the covid19 promo when the showCovid19 flag is not set', componentTester(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'false',
+        },
+      };
 
-    harness.request(context, ($) => {
-      const covid19Promo = $('[data-test-id="covid19-promo"]');
-      expect(covid19Promo.length).toEqual(0);
-    });
-  }));
+      harness.request(context, ($) => {
+        const covid19Promo = $('[data-test-id="covid19-promo"]');
+        expect(covid19Promo.length).toEqual(0);
+      });
+    }));
+
+    it('should not render the covid19 promo when the showCovid19 flag is set AND showDfocvc is true', componentTester(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'true',
+          showDfocvc: 'true',
+        },
+      };
+
+      harness.request(context, ($) => {
+        const covid19Promo = $('[data-test-id="covid19-promo"]');
+        expect(covid19Promo.length).toEqual(0);
+      });
+    }));
+
+    it('should render the covid19 promo when the showCovid19 flag is set AND showDfocvc is false', componentTester(setup, (harness) => {
+      const context = {
+        config: {
+          showCovid19: 'true',
+          showDfocvc: 'false',
+        },
+      };
+
+      harness.request(context, ($) => {
+        const covid19Promo = $('[data-test-id="covid19-promo"]');
+        expect(covid19Promo.length).toEqual(1);
+      });
+    }));
+  });
 
   it('should render the order form promo when the showOrderForm flag is set', componentTester(setup, (harness) => {
     const context = {
