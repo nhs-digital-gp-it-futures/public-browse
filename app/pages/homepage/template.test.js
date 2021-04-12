@@ -164,7 +164,7 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the proxy buying card when the showProxy flag is set', componentTester(setup, (harness) => {
+  it('should not render the proxy buying card when the showProxy flag is set to false', componentTester(setup, (harness) => {
     const context = {
       config: {
         showProxy: 'false',
