@@ -100,6 +100,11 @@ export const routes = (authProvider) => {
     return res.render('pages/covid19/template.njk', addContext({ context, user: req.user }));
   }));
 
+  router.get('/nominate-organisation', withCatch(logger, async (req, res) => {
+    logger.info('navigating to proxy buying page');
+    return res.render('pages/proxy-buyer/template.njk', addContext({ user: req.user }));
+  }));
+
   router.get('/solutions/:filterType.:capabilities?', withCatch(logger, async (req, res) => {
     const { filterType, capabilities } = req.params;
     if (filterType === 'capabilities-selector') {

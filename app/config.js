@@ -81,4 +81,6 @@ module.exports = {
   redisPass: process.env.REDIS_PASS,
 
   showDfocvc: process.env.SHOW_DFOCVC || 'true',
+
+  showProxy: process.env.SHOW_PROXY || 'true',
 };

@@ -58,6 +58,8 @@ spec:
               value: {{ .Values.featureFlags.showOrderForm | default "false" | quote }}              
             - name: SHOW_DFOCVC
               value: {{ .Values.featureFlags.showDfocvc | default "false" | quote }}
+            - name: SHOW_PROXY
+              value: {{ .Values.featureFlags.showProxy | default "false" | quote }}
             - name: NODE_ENV
               value: "production"
             - name: APP_BASE_URI

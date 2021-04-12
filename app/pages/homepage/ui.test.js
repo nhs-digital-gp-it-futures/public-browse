@@ -142,6 +142,7 @@ const homepageSections = {
   'should render the guidance promo': '[data-test-id="guidance-promo"]',
   'should render the vaccinations promo': '[data-test-id="vaccinations-promo"]',
   'should render the browse promo': '[data-test-id="browse-promo"]',
+  'should render the proxy buying card': '[data-test-id="proxy-card"]',
   'should render footer': '[data-test-id="footer"]',
   'show render the beta banner': '[data-test-id="beta-banner"]',
   'should render the order form promo': '[data-test-id="order-form-promo"]',

@@ -82,6 +82,7 @@ featureFlags:
   showCovid19: "true"
   showOrderForm: "true"
   showDfocvc: "true"
+  showProxy: "true"
 
 serviceDependencies:
   adminUrlConfig:
