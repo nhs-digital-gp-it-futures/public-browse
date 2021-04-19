@@ -237,20 +237,20 @@ exports[`vaccinations page should render the content 1`] = `
 
         <h3 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-size-32\\" data-test-id=\\"solution-card-name\\">
           <a href=\\"/solutions/vaccinations/10020-001\\">
-            Q Doctor
+            Q doctor
           </a>
         </h3>
 
         <h4 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22\\" data-test-id=\\"solution-card-supplier\\">
-          MyMed Ltd
+          Q doctor (MyMed Ltd)
         </h4>
 
         <p data-test-id=\\"solution-card-summary\\" class=\\"nhsuk-u-font-size-16\\">
-          Q Doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.
+          Q doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.
         </p>
 
         <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
-          <a href=\\"/solutions/vaccinations/10020-001\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for Q Doctor</span></a>
+          <a href=\\"/solutions/vaccinations/10020-001\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for Q doctor</span></a>
         </div>
       </div>
 
