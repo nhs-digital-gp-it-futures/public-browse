@@ -61,11 +61,11 @@
     },
     {
       "id": "10020-001",
-      "name": "Q Doctor",
-      "summary": "Q Doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.",
+      "name": "Q doctor",
+      "summary": "Q doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.",
       "supplier": {
         "id": "10020",
-        "name": "MyMed Ltd"
+        "name": "Q doctor (MyMed Ltd)"
       },
       "vaccinations": {
         "title": "How this Catalogue Solution can help with coronavirus vaccinations",
