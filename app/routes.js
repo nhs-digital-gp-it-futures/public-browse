@@ -13,7 +13,6 @@ import { logger } from './logger';
 import config from './config';
 import { includesContext } from './includes/contextCreator';
 import { getVaccinationsSolutionListPageContext } from './pages/vaccinations/controller';
-import { getCovid19SolutionListPageContext } from './pages/covid19/controller';
 import {
   withCatch, getCapabilitiesParam, determineContentType, getHealthCheckDependencies,
 } from './helpers/routerHelper';
@@ -92,12 +91,6 @@ export const routes = (authProvider) => {
     const context = await getVaccinationsSolutionListPageContext();
     logger.info('navigating to vaccinations page');
     return res.render('pages/vaccinations/template.njk', addContext({ context, user: req.user }));
-  }));
-
-  router.get('/solutions/covid19', withCatch(logger, async (req, res) => {
-    const context = await getCovid19SolutionListPageContext();
-    logger.info('navigating to covid19 page');
-    return res.render('pages/covid19/template.njk', addContext({ context, user: req.user }));
   }));
 
   router.get('/nominate-organisation', withCatch(logger, async (req, res) => {
