@@ -147,7 +147,11 @@ export const routes = (authProvider) => {
 
   errorHandler(router, (error, req, res) => {
     logger.warn(`${error.title} - ${error.description} - ${JSON.stringify(error)}`);
-    return res.render('pages/error/template.njk', addContext({ context: error, user: req.user }));
+    const context = {
+      ...error,
+      isDevelopment: config.isDevelopment(),
+    };
+    return res.render('pages/error/template.njk', addContext({ context, user: req.user }));
   });
 
   return router;

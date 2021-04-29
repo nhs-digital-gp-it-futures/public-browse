@@ -8,9 +8,16 @@ export const withCatch = (logger, route) => async (req, res, next) => {
     if (err instanceof ErrorContext) {
       return next(err);
     }
+
     logger.error(`Unexpected Error:\n${err.stack}`);
 
-    const defaultError = new ErrorContext({ status: 500 });
+    const responseData = err.response ? err.response.data : undefined;
+    const defaultError = new ErrorContext({
+      status: 500,
+      stackTrace: err.stack,
+      data: responseData,
+    });
+
     return next(defaultError);
   }
 };
