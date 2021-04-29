@@ -26,29 +26,16 @@
         }) }}
       </li>
 
-      {% if (config.showDfocvc === 'true') %}
-        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="dfocvc-card">
-          {{ card({
-            "href": "/solutions/dfocvc001",
-            "headingLevel": 3,
-            "clickable": "true",
-            "heading": dfocvcHeading,
-            "description": dfocvcDescription
-          }) }}
-        </li>
-      {% endif %}
 
-      {% if (config.showCovid19 === 'true') and (config.showDfocvc !== 'true') %}
-        <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="covid19-promo">
-          {{ card({
-            "href": "/solutions/covid19",
-            "headingLevel": 3,
-            "clickable": "true",
-            "heading": covid19PromoHeading,
-            "description": covid19PromoDescription
-          }) }}
-        </li>
-      {% endif %}
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="dfocvc-card">
+        {{ card({
+          "href": "/solutions/dfocvc001",
+          "headingLevel": 3,
+          "clickable": "true",
+          "heading": dfocvcHeading,
+          "description": dfocvcDescription
+        }) }}
+      </li>
 
       {% if (config.showCovid19 === 'true') %}
         <li class="nhsuk-grid-column-one-half nhsuk-card-group__item" data-test-id="vaccinations-promo">

@@ -61,34 +61,6 @@ describe('home page', () => {
         expect(covid19Promo.length).toEqual(0);
       });
     }));
-
-    it('should not render the covid19 promo when the showCovid19 flag is set AND showDfocvc is true', componentTester(setup, (harness) => {
-      const context = {
-        config: {
-          showCovid19: 'true',
-          showDfocvc: 'true',
-        },
-      };
-
-      harness.request(context, ($) => {
-        const covid19Promo = $('[data-test-id="covid19-promo"]');
-        expect(covid19Promo.length).toEqual(0);
-      });
-    }));
-
-    it('should render the covid19 promo when the showCovid19 flag is set AND showDfocvc is false', componentTester(setup, (harness) => {
-      const context = {
-        config: {
-          showCovid19: 'true',
-          showDfocvc: 'false',
-        },
-      };
-
-      harness.request(context, ($) => {
-        const covid19Promo = $('[data-test-id="covid19-promo"]');
-        expect(covid19Promo.length).toEqual(1);
-      });
-    }));
   });
 
   it('should render the order form promo when the showOrderForm flag is set', componentTester(setup, (harness) => {
@@ -118,12 +90,9 @@ describe('home page', () => {
     });
   }));
 
-  it('should render the DFOCVC Framework tile when the dfocvc flag is set', componentTester(setup, (harness) => {
+  it('should render the DFOCVC Framework tile', componentTester(setup, (harness) => {
     const context = {
       ...content,
-      config: {
-        showDfocvc: 'true',
-      },
     };
 
     harness.request(context, ($) => {
@@ -134,20 +103,6 @@ describe('home page', () => {
       expect(card.find('h3').text().trim()).toEqual(content.dfocvcHeading);
       expect(card.find('p').text().trim()).toEqual(content.dfocvcDescription);
       expect(card.find('a').attr('href')).toEqual('/solutions/dfocvc001');
-    });
-  }));
-
-  it('should not render the DFOCVC Framework tile when the dfocvc flag is not set', componentTester(setup, (harness) => {
-    const context = {
-      ...content,
-      config: {
-        showDfocvc: 'false',
-      },
-    };
-
-    harness.request(context, ($) => {
-      const card = $('[data-test-id="dfocvc-card"]');
-      expect(card.length).toEqual(0);
     });
   }));
 

@@ -30,9 +30,9 @@ exports[`home page should render the content 1`] = `
 
       </li>
 
-      
-        <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"dfocvc-card\\">
-          
+
+      <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"dfocvc-card\\">
+        
 <div class=\\"nhsuk-card nhsuk-card--clickable\\">
   <div class=\\"nhsuk-card__content\\">
     <h3 class=\\"nhsuk-card__heading\\">
@@ -42,10 +42,7 @@ exports[`home page should render the content 1`] = `
   </div>
 </div>
 
-        </li>
-      
-
-      
+      </li>
 
       
         <li class=\\"nhsuk-grid-column-one-half nhsuk-card-group__item\\" data-test-id=\\"vaccinations-promo\\">

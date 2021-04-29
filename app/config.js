@@ -85,9 +85,6 @@ module.exports = {
   // The password to connect to redis
   redisPass: process.env.REDIS_PASS,
 
-  // tile on home page and changes text on covid-19 banner
-  showDfocvc: process.env.SHOW_DFOCVC || 'true',
-
   // proxy buyer to show organisations and alter user journey
   showProxy: process.env.SHOW_PROXY || 'true',
 };
