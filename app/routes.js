@@ -67,6 +67,14 @@ export const routes = (authProvider) => {
     res.render('pages/browse-solutions/template.njk', addContext({ context, user: req.user }));
   });
 
+  router.get('/solutions/covid19', () => {
+    throw new ErrorContext({
+      status: 410,
+      title: 'Page no longer available',
+      description: 'The page you are looking for is no longer available. Return to the <a href="/">Buying Catalogue homepage</a>.',
+    });
+  });
+
   router.get('/solutions/compare', (req, res) => {
     const context = getComparePageContext();
     logger.info('navigating to compare');
