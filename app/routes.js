@@ -67,7 +67,7 @@ export const routes = (authProvider) => {
     res.render('pages/browse-solutions/template.njk', addContext({ context, user: req.user }));
   });
 
-  router.get('/solutions/covid19', (req, res) => {
+  router.get('/solutions/covid19', () => {
     throw new ErrorContext({
       status: 410,
       title: 'Page no longer available',
