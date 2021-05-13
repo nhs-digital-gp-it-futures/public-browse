@@ -154,7 +154,7 @@ exports[`guide should render the content 1`] = `
           
             <p data-test-id=\\"guide-section-description-with-link\\" class=\\"nhsuk-u-margin-bottom-5\\">
               <span></span>
-                <a data-test-id=\\"guide-link\\" href=\\"https://gpitbjss.atlassian.net/wiki/spaces/GPITF/overview\\">Learn more about the Capability Model</a>
+                <a data-test-id=\\"guide-link\\" href=\\"https://gpitbjss.atlassian.net/wiki/spaces/DCSH/overview\\">Learn more about the Capabilities and Standards models for frameworks on the Buying Catalogue</a>
               <span></span>
             </p>
           
