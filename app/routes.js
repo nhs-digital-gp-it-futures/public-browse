@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  errorHandler, healthRoutes, authenticationRoutes, ErrorContext,
+  errorHandler, healthRoutes, authenticationRoutes, ErrorContext, cookiePolicyAgreed,
 } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
@@ -24,6 +24,7 @@ const addContext = ({ context, user, csrfToken }) => ({
   username: user && user.name,
   csrfToken,
   config,
+  cookiePrivacyAgreed: false,
 });
 
 export const routes = (authProvider) => {
@@ -41,6 +42,11 @@ export const routes = (authProvider) => {
       authProvider.login()(req, res, next);
     });
   }
+
+  router.get('/dismiss-cookie-banner', (req, res) => {
+    cookiePolicyAgreed({ res, logger });
+    res.redirect(req.headers.referer);
+  });
 
   router.get('/document/:documentName', withCatch(logger, async (req, res) => {
     const { documentName } = req.params;

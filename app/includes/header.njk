@@ -21,8 +21,14 @@
       ariaLabel: "Buying Catalogue Homepage"
     },
     showBetaBanner: true,
-    termsHref: config.feedbackLinkUrl
-  }) }}
+    termsHref: config.feedbackLinkUrl,
+    cookiePrivacy: {
+      showBanner: cookiePrivacyAgreed,
+      href: "/cookies-and-privacy-policy",
+      dismissHref: "/dismiss-cookie-banner"
+    }
+  })
+  }}
 
 {% if config.showCovid19 === 'true' %}
   <section class="bc-c-global-alert" data-test-id="covid19-global-alert" aria-labelledby="covid-alert-heading" role="banner">
