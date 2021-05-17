@@ -25,7 +25,7 @@ const addContext = ({ context, req, csrfToken }) => ({
   username: req && req.user && req.user.name,
   csrfToken,
   config,
-  cookiePrivacyAgreed: cookiePolicyExists({ req, logger }),
+  showCookieBanner: !cookiePolicyExists({ req, logger }),
 });
 
 export const routes = (authProvider) => {
