@@ -1,6 +1,7 @@
 import express from 'express';
 import {
-  errorHandler, healthRoutes, authenticationRoutes, ErrorContext, cookiePolicyAgreed,
+  errorHandler, healthRoutes, authenticationRoutes, ErrorContext,
+  cookiePolicyAgreed, cookiePolicyExists,
 } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
@@ -24,6 +25,7 @@ const addContext = ({ context, req, csrfToken }) => ({
   username: req && req.user && req.user.name,
   csrfToken,
   config,
+  cookiePrivacyAgreed: cookiePolicyExists({ req, logger }),
 });
 
 export const routes = (authProvider) => {
