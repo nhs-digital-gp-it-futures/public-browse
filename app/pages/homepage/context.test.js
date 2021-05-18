@@ -11,7 +11,7 @@ describe('homepage - context', () => {
       orderFormUrl: orderFormHost,
     };
 
-    const context = getHomepageContext({});
+    const context = getHomepageContext({ req: {} });
 
     expect(context).toEqual(expectedContext);
   });
@@ -24,7 +24,7 @@ describe('homepage - context', () => {
       orderFormUrl: orderFormHost,
     };
 
-    const context = getHomepageContext({ user: { name: 'some-name' } });
+    const context = getHomepageContext({ req: { user: { name: 'some-name' } } });
 
     expect(context).toEqual(expectedContext);
   });
@@ -50,7 +50,7 @@ describe('homepage - context', () => {
       orderFormUrl: orderFormHost,
     };
 
-    const context = getHomepageContext({ user: { organisation: 'view' } });
+    const context = getHomepageContext({ req: { user: { organisation: 'view' } } });
 
     expect(context).toEqual(expectedContext);
   });

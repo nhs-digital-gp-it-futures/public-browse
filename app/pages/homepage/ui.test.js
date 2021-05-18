@@ -146,6 +146,7 @@ const homepageSections = {
   'should render footer': '[data-test-id="footer"]',
   'show render the beta banner': '[data-test-id="beta-banner"]',
   'should render the order form promo': '[data-test-id="order-form-promo"]',
+  'should render the cookie banner': '[data-test-id="cookie-banner"]',
 };
 
 Object.keys(homepageSections).forEach((key) => {

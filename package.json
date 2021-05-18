@@ -1,6 +1,6 @@
 {
   "name": "public-browse",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "description": "Nodejs express app for Buying Catalogue - Public Browse",
   "main": "server.js",
   "private": true,
