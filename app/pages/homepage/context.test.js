@@ -37,7 +37,7 @@ describe('homepage - context', () => {
       orderFormUrl: orderFormHost,
     };
 
-    const context = getHomepageContext({ req: { user: { organisation: 'manage' } } });
+    const context = getHomepageContext({ user: { organisation: 'manage' } });
 
     expect(context).toEqual(expectedContext);
   });
