@@ -62,6 +62,11 @@ export const routes = (authProvider) => {
     res.render('pages/homepage/template.njk', addContext({ context, req }));
   });
 
+  router.get('/privacy-policy', withCatch(logger, async (req, res) => {
+    logger.info('navigating to privacy policy');
+    res.render('pages/privacy-policy/template.njk', addContext({ req }));
+  }));
+
   router.get('/guide', (req, res) => {
     const context = getGuidePageContext();
     logger.info('navigating to guide');
