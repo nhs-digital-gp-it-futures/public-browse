@@ -10,7 +10,7 @@ const setup = {
 
 describe('home page', () => {
   it('should render the content', componentTester(setup, (harness) => {
-    harness.request(getHomepageContext({ user: {} }), ($) => {
+    harness.request(getHomepageContext({ req: { user: {} } }), ($) => {
       const snapshot = snapshotTest($, '[data-test-id="main-content"]');
       expect(snapshot).toMatchSnapshot();
     });
