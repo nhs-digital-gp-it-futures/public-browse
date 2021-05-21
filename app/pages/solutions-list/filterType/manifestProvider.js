@@ -14,6 +14,7 @@ export const getSolutionListManifest = (type) => {
 
   const manifestFileContent = fs.readFileSync(path.join(__dirname, filePath));
   const manifest = JSON.parse(manifestFileContent);
+  manifest.showDfocvcContent = type.toLowerCase() === 'dfocvc001';
 
   return manifest;
 };
