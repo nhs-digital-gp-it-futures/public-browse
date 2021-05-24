@@ -65,6 +65,7 @@ describe('solutions-list controller', () => {
       await getSolutionListPageContext({ filterType: 'foundation' });
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
+      foundationContent.showDfocvcContent = false;
       expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
         filterType: 'foundation',
         solutionListManifest: foundationContent,
@@ -81,6 +82,7 @@ describe('solutions-list controller', () => {
       await getSolutionListPageContext({ filterType: 'dfocvc001' });
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
+      dfocvcManifest.showDfocvcContent = true;
       expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
         filterType: 'dfocvc001',
         solutionListManifest: dfocvcManifest,
@@ -157,6 +159,7 @@ describe('solutions-list controller', () => {
       await getSolutionsForSelectedCapabilities({ capabilitiesSelected: 'C1+C2' });
 
       expect(createContext.createSolutionListPageContext.mock.calls.length).toEqual(1);
+      capabilitiesSelectorContent.showDfocvcContent = false;
       expect(createContext.createSolutionListPageContext).toHaveBeenCalledWith({
         filterType: 'capabilities-selector',
         capabilitiesSelected: ['C1', 'C2'],
