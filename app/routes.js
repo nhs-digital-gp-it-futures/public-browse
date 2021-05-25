@@ -84,6 +84,9 @@ export const routes = (authProvider) => {
       status: 410,
       title: 'Page no longer available',
       description: 'The page you are looking for is no longer available. Return to the <a href="/">Buying Catalogue homepage</a>.',
+      data: {
+        hideBackLink: true,
+      },
     });
   });
 
