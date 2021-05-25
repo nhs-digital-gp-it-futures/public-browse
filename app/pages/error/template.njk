@@ -2,16 +2,27 @@
 {% from 'components/bc-error-page/macro.njk' import bcErrorPage %}
 
 {% block body %}
-  {{ bcErrorPage({
-    backLink: {
-      href: backLinkHref,
-      text: backLinkText
-    },
-    error: {
-      title: title,
-      description: description,
-      stackTrace: stackTrace if isDevelopment else null,
-      data: data if isDevelopment else null
-    }
-  }) }}
+  {% if (data) and (data.hideBackLink) and (data.hideBackLink === true) %}
+    {{ bcErrorPage({
+      error: {
+        title: title,
+        description: description,
+        stackTrace: stackTrace if isDevelopment else null,
+        data: data if isDevelopment else null
+      }
+    }) }}
+  {% else %}
+    {{ bcErrorPage({
+      backLink: {
+        href: backLinkHref,
+        text: backLinkText
+      },
+      error: {
+        title: title,
+        description: description,
+        stackTrace: stackTrace if isDevelopment else null,
+        data: data if isDevelopment else null
+      }
+    }) }}
+  {% endif %}
 {% endblock %}

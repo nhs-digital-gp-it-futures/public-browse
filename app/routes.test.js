@@ -456,6 +456,7 @@ describe('routes', () => {
         .get('/solutions/covid19')
         .expect(200)
         .then((res) => {
+          expect(res.text.includes('Go to Home Page')).toEqual(false);
           expect(res.text.includes('<h1 class="nhsuk-heading-l nhsuk-u-margin-top-5" data-test-id="error-title">Page no longer available</h1>')).toEqual(true);
           expect(res.text.includes('<p data-test-id="error-description">The page you are looking for is no longer available. Return to the <a href="/">Buying Catalogue homepage</a>.</p>')).toEqual(true);
         })));
