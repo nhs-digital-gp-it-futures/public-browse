@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   errorHandler, healthRoutes, authenticationRoutes, ErrorContext,
-  cookiePolicyAgreed, cookiePolicyExists,
+  cookiePolicyAgreed, cookiePolicyExists, consentCookieExpiration,
 } from 'buying-catalogue-library';
 import { getPublicSolutionById } from './pages/view-solution/controller';
 import { getSolutionListPageContext, getSolutionsForSelectedCapabilities } from './pages/solutions-list/controller';
@@ -32,6 +32,8 @@ export const routes = (authProvider) => {
   const router = express.Router();
 
   healthRoutes({ router, dependencies: getHealthCheckDependencies(config), logger });
+
+  consentCookieExpiration({ router, logger });
 
   if (authProvider) {
     authenticationRoutes({

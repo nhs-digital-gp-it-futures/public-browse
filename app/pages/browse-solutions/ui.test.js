@@ -21,6 +21,18 @@ fixture('Browse Solutions Page')
     await t.expect(isDone).ok('Not all nock interceptors were used!');
   });
 
+test('should render cookie policy banner and it should not re-render again after dismissing', async (t) => {
+  await pageSetup(t);
+  const cookieBanner = Selector('[data-test-id="cookie-banner"]');
+  const dismissButton = Selector('[data-test-id="cookie-dismiss"] a');
+  await t
+    .expect(cookieBanner.exists).ok()
+    .click(dismissButton);
+  await pageSetup(t);
+  await t
+    .expect(cookieBanner.exists).notOk();
+});
+
 test('should navigate to home page when click Go back', async (t) => {
   await pageSetup(t);
 

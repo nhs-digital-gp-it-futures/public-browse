@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { FakeAuthProvider, getCsrfTokenFromGet } from 'buying-catalogue-library';
+import { FakeAuthProvider, getCsrfTokenFromGet, consentCookieExpiration } from 'buying-catalogue-library';
 import { App } from './app';
 import { routes } from './routes';
 import * as homepageContext from './pages/homepage/context';
@@ -75,6 +75,21 @@ describe('routes', () => {
 
   afterEach(() => {
     documentController.getDocumentByFileName.mockReset();
+  });
+
+  describe('Check if consentCookieExpiration is being called /', () => {
+    it('should return the correct status and text if there is no error', () => {
+      jest.mock('buying-catalogue-library', () => ({
+        consentCookieExpiration: jest.fn(),
+      }));
+
+      return request(setUpFakeApp())
+        .get('/')
+        .expect(200)
+        .then(() => {
+          expect(consentCookieExpiration).toHaveBeenCalled();
+        });
+    });
   });
 
   describe('GET /re-login', () => {
