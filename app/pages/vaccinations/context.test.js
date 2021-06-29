@@ -13,7 +13,7 @@ const defaultExpectedContext = {
 const defaultSolution = {
   id: '00001',
   name: 'The first solution',
-  summary: 'Some solution summary',
+  summary: ['Some solution summary'],
 };
 
 describe('createVaccinationsSolutionListPageContext - vaccinations', () => {

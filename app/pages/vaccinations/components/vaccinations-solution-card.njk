@@ -21,9 +21,13 @@
           {{ params.solution.supplierName }}
         </h4>
 
-        <p data-test-id="solution-card-summary" class="nhsuk-u-font-size-16">
-          {{ params.solution.summary }}
-        </p>
+        <div data-test-id="solution-card-summary">
+          {% for summaryItem in params.solution.summary %}
+            <p class="nhsuk-u-font-size-16">
+              {{ summaryItem }}
+            </p>
+          {% endfor %}
+        </div>
 
         <div data-test-id="solution-card-view-link" class="nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5">
           <a href="{{ params.solution.viewSolutionUrl }}">View this solution<span class="nhsuk-u-visually-hidden"> for {{ params.solution.name }}</span></a>

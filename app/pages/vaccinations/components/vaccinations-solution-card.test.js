@@ -96,7 +96,7 @@ describe('vaccinations-solution-card', () => {
   }));
 
   it('should render the solution summary', componentTester(setup, (harness) => {
-    const summary = 'some solution summary';
+    const summary = ['Some solution summary'];
     const context = {
       params: {
         solution: {
@@ -109,7 +109,7 @@ describe('vaccinations-solution-card', () => {
       const solutionName = $('[data-test-id="solution-card-summary"]');
 
       expect(solutionName.length).toEqual(1);
-      expect(solutionName.text().trim()).toEqual(summary);
+      expect(solutionName.text().trim()).toEqual(summary[0]);
     });
   }));
 

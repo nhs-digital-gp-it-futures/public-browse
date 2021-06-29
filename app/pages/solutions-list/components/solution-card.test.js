@@ -132,7 +132,7 @@ describe('solution-card', () => {
     const context = {
       params: {
         solution: {
-          summary: 'some solution summary',
+          summary: ['Some solution summary'],
         },
       },
     };
@@ -141,7 +141,7 @@ describe('solution-card', () => {
       const solutionName = $('[data-test-id="solution-card-summary"]');
 
       expect(solutionName.length).toEqual(1);
-      expect(solutionName.text().trim()).toEqual('some solution summary');
+      expect(solutionName.text().trim()).toEqual('Some solution summary');
     });
   }));
 

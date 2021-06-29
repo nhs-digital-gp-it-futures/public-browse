@@ -19,7 +19,7 @@
     {
       "id": "S2",
       "name": "some solution name",
-      "summary": "some solution summary",
+      "summary": "Some solution summary",
       "isFoundation": false,
       "supplier": {
         "id": "O2",
