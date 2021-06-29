@@ -10,7 +10,7 @@ const foundationPageDescription = 'These Solutions meet the six Foundation Capab
 
 describe('createSolutionListPageContext - capabilities-selector', () => {
   it('should create a context for the solution list page', () => {
-  // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
+    // TODO: USE_CAPABILITIES_SELECTOR Remove line below when capabilities-selector is on by default
     config.useCapabilitiesSelector = 'true';
     const expectedContext = {
       title: solutionPageTitle,
@@ -20,7 +20,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -46,7 +46,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -101,7 +101,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -116,7 +116,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -155,7 +155,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -171,7 +171,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -214,7 +214,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
@@ -227,7 +227,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -261,7 +261,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           isFoundation: true,
           viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
@@ -273,7 +273,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -306,7 +306,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           capabilities: [],
           isFoundation: true,
           viewSolutionUrl: '/solutions/capabilities-selector.C1/00001',
@@ -318,7 +318,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         capabilities: [],
       },
@@ -372,7 +372,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
@@ -385,7 +385,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -421,7 +421,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -447,7 +447,7 @@ describe('createSolutionListPageContext - capabilities-selector', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -504,7 +504,7 @@ describe('createSolutionListPageContext - Foundation', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -530,7 +530,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -580,7 +580,7 @@ describe('createSolutionListPageContext - Foundation', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -595,7 +595,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -629,7 +629,7 @@ describe('createSolutionListPageContext - Foundation', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [],
           isFoundation: true,
@@ -642,7 +642,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -671,7 +671,7 @@ describe('createSolutionListPageContext - Foundation', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           isFoundation: true,
           viewSolutionUrl: '/solutions/foundation/00001',
@@ -683,7 +683,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',
@@ -711,7 +711,7 @@ describe('createSolutionListPageContext - Foundation', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           capabilities: [],
           isFoundation: true,
           viewSolutionUrl: '/solutions/foundation/00001',
@@ -723,7 +723,7 @@ describe('createSolutionListPageContext - Foundation', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         capabilities: [],
       },
@@ -770,7 +770,7 @@ describe('createSolutionListPageContext - DFOCVC', () => {
         {
           id: '00001',
           name: 'The first solution',
-          summary: 'Some solution summary',
+          summary: ['Some solution summary'],
           supplierName: 'Some supplier',
           capabilities: [
             'Some capability',
@@ -785,7 +785,7 @@ describe('createSolutionListPageContext - DFOCVC', () => {
       {
         id: '00001',
         name: 'The first solution',
-        summary: 'Some solution summary',
+        summary: ['Some solution summary'],
         isFoundation: true,
         supplier: {
           id: '1',

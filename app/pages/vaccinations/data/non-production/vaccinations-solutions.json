@@ -3,7 +3,9 @@
     {
       "id": "10064-004",
       "name": "Medloop Integrated COVID-19 Vaccine Manager (ICVM)",
-      "summary": "The ICVM is a COVID-19 vaccine appointment management solution that enables healthcare professionals to upload patient lists and invite patients (via SMS) to book their first and second vaccination appointment based on the default setting of the vaccine type. The solution also offers an intuitive calendar that has the ability to mark open time slots, book patients in and record any adverse reactions from the vaccination directly into the patient record.",
+      "summary": [
+        "The ICVM is a COVID-19 vaccine appointment management solution that enables healthcare professionals to upload patient lists and invite patients (via SMS) to book their first and second vaccination appointment based on the default setting of the vaccine type. The solution also offers an intuitive calendar that has the ability to mark open time slots, book patients in and record any adverse reactions from the vaccination directly into the patient record."
+      ],
       "supplier": {
         "id": "10064",
         "name": "Medloop Limited"
@@ -21,9 +23,33 @@
       }
     },
     {
+      "id": "10061-017",
+      "name": "eVacc",
+      "summary": [
+        "Point-of-care vaccination solution built for COVID-19 and flu, recording pre-screening, consent, vaccination administration and adverse reactions.",
+        "Cloud-based, interoperable and reliability-tested against over 500, 000 vaccination load with 0% downtime."
+      ],
+      "supplier": {
+        "id": "10061",
+        "name": "Eva Health Technologies"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution has been assessed for vaccination and adverse reaction recording",
+          "Records COVID-19 vaccination and adverse reaction data for patients registered at different GP practices",
+          "Updates previously recorded COVID-19 vaccination and adverse reaction data",
+          "Allows viewing of reports on COVID-19 vaccination data",
+          "This Catalogue Solution has met Vaccination and Adverse Reaction Recording Capability"
+        ]
+      }
+    },
+    {
       "id": "10034-029",
       "name": "CHS Vaccination Appointment Management",
-      "summary": "The CHS Vaccination Appointments Management app supports vaccination delivery within GP practices, primary care networks and shared care settings, ensuring the smooth running of all aspects of your vaccination sessions. Using our intelligent appointment tools, you can quickly arrange and manage your appointments sessions and efficiently manage patient arrivals and appointments processing.",
+      "summary": [
+        "The CHS Vaccination Appointments Management app supports vaccination delivery within GP practices, primary care networks and shared care settings, ensuring the smooth running of all aspects of your vaccination sessions. Using our intelligent appointment tools, you can quickly arrange and manage your appointments sessions and efficiently manage patient arrivals and appointments processing."
+      ],
       "supplier": {
         "id": "10034",
         "name": "Cegedim Healthcare Solutions"
@@ -41,7 +67,9 @@
     {
       "id": "10030-001",
       "name": "accuRx",
-      "summary": "accuRx offers vaccine appointment management functionality via its accuBook Additional Service. accuBook allows the sending of vaccination invite communications, appointment notification, reminders, and the ability for patients to manage their own vaccination appointments.",
+      "summary": [
+        "accuRx offers vaccine appointment management functionality via its accuBook Additional Service. accuBook allows the sending of vaccination invite communications, appointment notification, reminders, and the ability for patients to manage their own vaccination appointments."
+      ],
       "supplier": {
         "id": "10030",
         "name": "accuRx Limited"
@@ -62,7 +90,9 @@
     {
       "id": "10020-001",
       "name": "Q doctor",
-      "summary": "Q doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.",
+      "summary": [
+        "Q doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients."
+      ],
       "supplier": {
         "id": "10020",
         "name": "Q doctor (MyMed Ltd)"

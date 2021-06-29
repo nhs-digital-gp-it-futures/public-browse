@@ -57,9 +57,13 @@ exports[`vaccinations page should render the content 1`] = `
           Medloop Limited
         </h4>
 
-        <p data-test-id=\\"solution-card-summary\\" class=\\"nhsuk-u-font-size-16\\">
-          The ICVM is a COVID-19 vaccine appointment management solution that enables healthcare professionals to upload patient lists and invite patients (via SMS) to book their first and second vaccination appointment based on the default setting of the vaccine type. The solution also offers an intuitive calendar that has the ability to mark open time slots, book patients in and record any adverse reactions from the vaccination directly into the patient record.
-        </p>
+        <div data-test-id=\\"solution-card-summary\\">
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              The ICVM is a COVID-19 vaccine appointment management solution that enables healthcare professionals to upload patient lists and invite patients (via SMS) to book their first and second vaccination appointment based on the default setting of the vaccine type. The solution also offers an intuitive calendar that has the ability to mark open time slots, book patients in and record any adverse reactions from the vaccination directly into the patient record.
+            </p>
+          
+        </div>
 
         <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
           <a href=\\"/solutions/vaccinations/10064-004\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for Medloop Integrated COVID-19 Vaccine Manager (ICVM)</span></a>
@@ -112,6 +116,74 @@ exports[`vaccinations page should render the content 1`] = `
 
 
         <h3 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-size-32\\" data-test-id=\\"solution-card-name\\">
+          <a href=\\"/solutions/vaccinations/10061-017\\">
+            eVacc
+          </a>
+        </h3>
+
+        <h4 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22\\" data-test-id=\\"solution-card-supplier\\">
+          Eva Health Technologies
+        </h4>
+
+        <div data-test-id=\\"solution-card-summary\\">
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              Point-of-care vaccination solution built for COVID-19 and flu, recording pre-screening, consent, vaccination administration and adverse reactions.
+            </p>
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              Cloud-based, interoperable and reliability-tested against over 500, 000 vaccination load with 0% downtime.
+            </p>
+          
+        </div>
+
+        <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
+          <a href=\\"/solutions/vaccinations/10061-017\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for eVacc</span></a>
+        </div>
+      </div>
+
+      <div class=\\"nhsuk-grid-column-one-half\\">
+        <h5 class=\\"nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2\\" data-test-id=\\"solution-card-vaccinations-title\\">
+          How this Catalogue Solution can help with coronavirus vaccinations
+        </h5>
+        <ul data-test-id=\\"solution-card-vaccinations-list\\">
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              This Catalogue Solution has been assessed for vaccination and adverse reaction recording
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Records COVID-19 vaccination and adverse reaction data for patients registered at different GP practices
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Updates previously recorded COVID-19 vaccination and adverse reaction data
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Allows viewing of reports on COVID-19 vaccination data
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              This Catalogue Solution has met Vaccination and Adverse Reaction Recording Capability
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+      
+        
+  <div class=\\"nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7 bc-t-border-top--blue\\" data-test-id=\\"solution-card-vaccinations\\">
+    <div class=\\"nhsuk-grid-row\\">
+      <div class=\\"nhsuk-grid-column-one-half\\">
+
+        
+  <div data-test-id=\\"solution-card-vaccinations-tag\\" class=\\"bc-c-tag nhsuk-u-font-weight-bold bc-c-tag-foundation nhsuk-u-margin-bottom-4\\">Coronavirus vaccinations</div>
+
+
+        <h3 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-size-32\\" data-test-id=\\"solution-card-name\\">
           <a href=\\"/solutions/vaccinations/10034-029\\">
             CHS Vaccination Appointment Management
           </a>
@@ -121,9 +193,13 @@ exports[`vaccinations page should render the content 1`] = `
           Cegedim Healthcare Solutions
         </h4>
 
-        <p data-test-id=\\"solution-card-summary\\" class=\\"nhsuk-u-font-size-16\\">
-          The CHS Vaccination Appointments Management app supports vaccination delivery within GP practices, primary care networks and shared care settings, ensuring the smooth running of all aspects of your vaccination sessions. Using our intelligent appointment tools, you can quickly arrange and manage your appointments sessions and efficiently manage patient arrivals and appointments processing.
-        </p>
+        <div data-test-id=\\"solution-card-summary\\">
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              The CHS Vaccination Appointments Management app supports vaccination delivery within GP practices, primary care networks and shared care settings, ensuring the smooth running of all aspects of your vaccination sessions. Using our intelligent appointment tools, you can quickly arrange and manage your appointments sessions and efficiently manage patient arrivals and appointments processing.
+            </p>
+          
+        </div>
 
         <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
           <a href=\\"/solutions/vaccinations/10034-029\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for CHS Vaccination Appointment Management</span></a>
@@ -177,9 +253,13 @@ exports[`vaccinations page should render the content 1`] = `
           accuRx Limited
         </h4>
 
-        <p data-test-id=\\"solution-card-summary\\" class=\\"nhsuk-u-font-size-16\\">
-          accuRx offers vaccine appointment management functionality via its accuBook Additional Service. accuBook allows the sending of vaccination invite communications, appointment notification, reminders, and the ability for patients to manage their own vaccination appointments.
-        </p>
+        <div data-test-id=\\"solution-card-summary\\">
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              accuRx offers vaccine appointment management functionality via its accuBook Additional Service. accuBook allows the sending of vaccination invite communications, appointment notification, reminders, and the ability for patients to manage their own vaccination appointments.
+            </p>
+          
+        </div>
 
         <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
           <a href=\\"/solutions/vaccinations/10030-001\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for accuRx</span></a>
@@ -245,9 +325,13 @@ exports[`vaccinations page should render the content 1`] = `
           Q doctor (MyMed Ltd)
         </h4>
 
-        <p data-test-id=\\"solution-card-summary\\" class=\\"nhsuk-u-font-size-16\\">
-          Q doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.
-        </p>
+        <div data-test-id=\\"solution-card-summary\\">
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              Q doctor is a secure video consultation and appointment booking platform used around the NHS, enabling digital appointment booking (including COVID-19 vaccination appointment management) and remote consultations between clinicians and patients.
+            </p>
+          
+        </div>
 
         <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
           <a href=\\"/solutions/vaccinations/10020-001\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for Q doctor</span></a>
