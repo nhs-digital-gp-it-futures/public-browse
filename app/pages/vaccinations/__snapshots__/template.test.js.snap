@@ -370,6 +370,78 @@ exports[`vaccinations page should render the content 1`] = `
   </div>
 
       
+        
+  <div class=\\"nhsuk-u-padding-bottom-5 nhsuk-u-padding-top-7 bc-t-border-top--blue\\" data-test-id=\\"solution-card-vaccinations\\">
+    <div class=\\"nhsuk-grid-row\\">
+      <div class=\\"nhsuk-grid-column-one-half\\">
+
+        
+  <div data-test-id=\\"solution-card-vaccinations-tag\\" class=\\"bc-c-tag nhsuk-u-font-weight-bold bc-c-tag-foundation nhsuk-u-margin-bottom-4\\">Coronavirus vaccinations</div>
+
+
+        <h3 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-size-32\\" data-test-id=\\"solution-card-name\\">
+          <a href=\\"/solutions/vaccinations/10033-002\\">
+            healthya Vaccination Booking System
+          </a>
+        </h3>
+
+        <h4 class=\\"nhsuk-u-margin-bottom-2 nhsuk-u-font-weight-bold nhsuk-u-font-size-22\\" data-test-id=\\"solution-card-supplier\\">
+          ADDVantage Technologies
+        </h4>
+
+        <div data-test-id=\\"solution-card-summary\\">
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              healthya Vaccination Booking System is a secure, online, appointment management solution that will help manage the roll-out of the COVID-19 vaccination.
+            </p>
+          
+            <p class=\\"nhsuk-u-font-size-16\\">
+              Users have a choice of whether they want to use their phone or desktop to access the system.
+            </p>
+          
+        </div>
+
+        <div data-test-id=\\"solution-card-view-link\\" class=\\"nhsuk-u-margin-top-5 nhsuk-u-margin-bottom-5\\">
+          <a href=\\"/solutions/vaccinations/10033-002\\">View this solution<span class=\\"nhsuk-u-visually-hidden\\"> for healthya Vaccination Booking System</span></a>
+        </div>
+      </div>
+
+      <div class=\\"nhsuk-grid-column-one-half\\">
+        <h5 class=\\"nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2\\" data-test-id=\\"solution-card-vaccinations-title\\">
+          How this Catalogue Solution can help with coronavirus vaccinations
+        </h5>
+        <ul data-test-id=\\"solution-card-vaccinations-list\\">
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              This Catalogue Solution has been assessed for appointments management
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Tracks availability of COVID-19 vaccination appointments
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Records when a COVID-19 vaccination appointment is completed
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Allows bulk sending of vaccination appointment invites and reminders via SMS and email
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              Enables patients to book, reschedule and cancel their own vaccination appointments
+            </li>
+          
+            <li data-test-id=\\"vaccinations-list-item\\" class=\\"nhsuk-u-font-size-16\\">
+              This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability
+            </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+      
       <div class=\\"bc-t-border-top--blue\\">
     </div>
   </div>

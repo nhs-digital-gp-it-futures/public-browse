@@ -107,6 +107,29 @@
           "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
         ]
       }
+    },
+    {
+      "id": "10033-002",
+      "name": "healthya Vaccination Booking System",
+      "summary": [
+        "healthya Vaccination Booking System is a secure, online, appointment management solution that will help manage the roll-out of the COVID-19 vaccination.",
+        "Users have a choice of whether they want to use their phone or desktop to access the system."
+      ],
+      "supplier": {
+        "id": "10033",
+        "name": "ADDVantage Technologies"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution has been assessed for appointments management",
+          "Tracks availability of COVID-19 vaccination appointments",
+          "Records when a COVID-19 vaccination appointment is completed",
+          "Allows bulk sending of vaccination appointment invites and reminders via SMS and email",
+          "Enables patients to book, reschedule and cancel their own vaccination appointments",
+          "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
+        ]
+      }
     }
   ]
 }
