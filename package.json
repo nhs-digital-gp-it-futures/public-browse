@@ -1,6 +1,6 @@
 {
   "name": "public-browse",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Nodejs express app for Buying Catalogue - Public Browse",
   "main": "server.js",
   "private": true,
@@ -39,8 +39,8 @@
   "dependencies": {
     "axios": "^0.21.4",
     "body-parser": "^1.19.0",
-    "buying-catalogue-components": "^5.0.13",
-    "buying-catalogue-library": "^1.5.10",
+    "buying-catalogue-components": "^5.0.15",
+    "buying-catalogue-library": "^1.5.11",
     "compression": "^1.7.4",
     "connect-slashes": "^1.4.0",
     "cookie-parser": "^1.4.4",
@@ -57,7 +57,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.4",
+    "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
     "@babel/preset-env": "^7.15.6",
