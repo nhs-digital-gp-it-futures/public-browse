@@ -130,6 +130,28 @@
           "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
         ]
       }
+    },
+    {
+      "id": "10052-002",
+      "name": "SystmOne GP",
+      "summary": [
+        "SystmOne GP has been evolving for over 20 years, with continuous clinical input. It is one of the most advanced clinical systems in the world and is used by more than 2,700 GP practices nationwide.  SystmOne GP is the ideal solution to meet the ever-changing needs of modern General Practice."
+      ],
+      "supplier": {
+        "id": "10052",
+        "name": "TPP – The Phoenix Partnership (Leeds) Ltd"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution provides an Additional Service that has been assessed for  vaccination and adverse reaction recording, appointments management and cohort identification",
+          "Records structured COVID-19 vaccination and adverse reaction data and adds directly to Patient Record",
+          "Supports checking availability and booking of COVID-19 vaccination appointments and records when they’re completed",
+          "Allows bulk sending of vaccination appointment invites via SMS, email and letters",
+          "Supports the cancellation and rescheduling of COVID-19 vaccination appointments",
+          "The Additional Service has met the Vaccination and Adverse Reaction Recording, Appointments Management - COVID-19 Vaccinations and Cohort Identification Capabilities"
+        ]
+      }
     }
   ]
 }
