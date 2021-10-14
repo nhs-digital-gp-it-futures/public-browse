@@ -45,6 +45,29 @@
       }
     },
     {
+      "id": "10052-002",
+      "name": "SystmOne GP",
+      "summary": [
+        "The SystmOne Point of Care Additional Service supports the roll out of COVID-19 and flu vaccinations. Quick, accurate recording of all data directly into SystmOne. Combines familiar tools, for example, templates and questionnaires.",
+        "Seamless access to extra functionality allows for a smooth and more comprehensive experience for users and patients."
+      ],
+      "supplier": {
+        "id": "10052",
+        "name": "TPP – The Phoenix Partnership (Leeds) Ltd"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution provides an Additional Service that has been assessed for  vaccination and adverse reaction recording, appointments management and cohort identification",
+          "Records structured COVID-19 vaccination and adverse reaction data and adds directly to Patient Record",
+          "Supports checking availability and booking of COVID-19 vaccination appointments and records when they’re completed",
+          "Allows bulk sending of vaccination appointment invites via SMS, email and letters",
+          "Supports the cancellation and rescheduling of COVID-19 vaccination appointments",
+          "The Additional Service has met the Vaccination and Adverse Reaction Recording, Appointments Management - COVID-19 Vaccinations and Cohort Identification Capabilities"
+        ]
+      }
+    },
+    {
       "id": "10034-029",
       "name": "CHS Vaccination Appointment Management",
       "summary": [
@@ -61,6 +84,29 @@
           "Tracks availability of COVID-19 vaccination appointments",
           "Records when a COVID-19 vaccination appointment is completed",
           "This Catalogue Solution has partially met the Appointments Management - COVID-19 Vaccinations Capability"
+        ]
+      }
+    },
+    {
+      "id": "10033-002",
+      "name": "healthya Vaccination Booking System",
+      "summary": [
+        "healthya Vaccination Booking System is a secure, online, appointment management solution that will help manage the roll-out of the COVID-19 vaccination.",
+        "Users have a choice of whether they want to use their phone or desktop to access the system."
+      ],
+      "supplier": {
+        "id": "10033",
+        "name": "ADDVantage Technologies"
+      },
+      "vaccinations": {
+        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
+        "list": [
+          "This Catalogue Solution has been assessed for appointments management",
+          "Tracks availability of COVID-19 vaccination appointments",
+          "Records when a COVID-19 vaccination appointment is completed",
+          "Allows bulk sending of vaccination appointment invites and reminders via SMS and email",
+          "Enables patients to book, reschedule and cancel their own vaccination appointments",
+          "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
         ]
       }
     },
@@ -105,51 +151,6 @@
           "Allows bulk sending of vaccination appointment invites via SMS",
           "Enables patients to book their own vaccination appointments",
           "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
-        ]
-      }
-    },
-    {
-      "id": "10033-002",
-      "name": "healthya Vaccination Booking System",
-      "summary": [
-        "healthya Vaccination Booking System is a secure, online, appointment management solution that will help manage the roll-out of the COVID-19 vaccination.",
-        "Users have a choice of whether they want to use their phone or desktop to access the system."
-      ],
-      "supplier": {
-        "id": "10033",
-        "name": "ADDVantage Technologies"
-      },
-      "vaccinations": {
-        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
-        "list": [
-          "This Catalogue Solution has been assessed for appointments management",
-          "Tracks availability of COVID-19 vaccination appointments",
-          "Records when a COVID-19 vaccination appointment is completed",
-          "Allows bulk sending of vaccination appointment invites and reminders via SMS and email",
-          "Enables patients to book, reschedule and cancel their own vaccination appointments",
-          "This Catalogue Solution has met the Appointments Management - COVID-19 Vaccinations Capability"
-        ]
-      }
-    },
-    {
-      "id": "10052-002",
-      "name": "SystmOne GP",
-      "summary": [
-        "SystmOne GP has been evolving for over 20 years, with continuous clinical input. It is one of the most advanced clinical systems in the world and is used by more than 2,700 GP practices nationwide.  SystmOne GP is the ideal solution to meet the ever-changing needs of modern General Practice."
-      ],
-      "supplier": {
-        "id": "10052",
-        "name": "TPP – The Phoenix Partnership (Leeds) Ltd"
-      },
-      "vaccinations": {
-        "title": "How this Catalogue Solution can help with coronavirus vaccinations",
-        "list": [
-          "This Catalogue Solution provides an Additional Service that has been assessed for  vaccination and adverse reaction recording, appointments management and cohort identification",
-          "Records structured COVID-19 vaccination and adverse reaction data and adds directly to Patient Record",
-          "Supports checking availability and booking of COVID-19 vaccination appointments and records when they’re completed",
-          "Allows bulk sending of vaccination appointment invites via SMS, email and letters",
-          "Supports the cancellation and rescheduling of COVID-19 vaccination appointments",
-          "The Additional Service has met the Vaccination and Adverse Reaction Recording, Appointments Management - COVID-19 Vaccinations and Cohort Identification Capabilities"
         ]
       }
     }
