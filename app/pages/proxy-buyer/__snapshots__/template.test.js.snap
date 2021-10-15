@@ -7,7 +7,7 @@ exports[`nominate organisation should render the content 1`] = `
   <div data-test-id=\\"nominate-organisation-page-back-link\\" class=\\"nhsuk-u-margin-bottom-3\\">
     <div class=\\"nhsuk-back-link\\">
   <a class=\\"nhsuk-back-link__link\\" href=\\"./\\">
-  <svg class=\\"nhsuk-icon nhsuk-icon__chevron-left\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\">
+  <svg class=\\"nhsuk-icon nhsuk-icon__chevron-left\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" height=\\"24\\" width=\\"24\\">
     <path d=\\"M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z\\"></path>
   </svg>
   Go back</a>
@@ -34,7 +34,7 @@ exports[`nominate organisation should render the content 1`] = `
       <br>
       <div class=\\"nhsuk-action-link\\">
   <a class=\\"nhsuk-action-link__link\\" href=\\"mailto:buying.catalogue@nhs.net?subject=Nominate an organisation&amp;body=To%20nominate%20an%20organisation%20to%20create%20orders%20on%20the%20Buying%20Catalogue%20on%20behalf%20of%20your%20organisation%2C%20please%20provide%20the%20following%20details%E2%80%A6%0A%0AYour%20name%3A%0A%0AYour%20telephone%20number%3A%0A%0AYour%20email%20address%3A%0A%0AYour%20organisation%E2%80%99s%20name%3A%0A%0AYour%20organisation%E2%80%99s%20ODS%20code%3A%0A%0AName%20of%20the%20organisation%20you%E2%80%99re%20nominating%3A%0A%0AODS%20code%20of%20the%20organisation%20you%E2%80%99re%20nominating%3A%0A%0A%20%0A%0AWhat%20next%3F%0A%0AOnce%20the%20correct%20information%20has%20been%20received%20and%20verified%2C%20your%20organisations%20will%20be%20connected.%0A%0AThe%20organisation%20you%E2%80%99ve%20nominated%20will%20be%20notified%20and%20their%20representatives%20will%20then%20be%20assigned%20to%20create%20orders%20on%20your%20organisation%E2%80%99s%20behalf.%0A%0AThe%20Buying%20Catalogue%20team%20aims%20to%20respond%20to%20these%20requests%20within%205%20working%20days.\\">
-    <svg class=\\"nhsuk-icon nhsuk-icon__arrow-right-circle\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\">
+    <svg class=\\"nhsuk-icon nhsuk-icon__arrow-right-circle\\" xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" width=\\"36\\" height=\\"36\\">
       <path d=\\"M0 0h24v24H0z\\" fill=\\"none\\"></path>
       <path d=\\"M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z\\"></path>
     </svg>
